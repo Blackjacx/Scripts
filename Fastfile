@@ -57,15 +57,13 @@ platform :ios do
 
   after_all do
     # This is called, only if the executed lane was successful
-    # slack(success: true, message: "*Successfully Built App 🎉*")
-
+    slack(success: true, message: "*Successfully Built App 🎉*")
     clean_build_artifacts
   end
 
   error do |lane, exception|
     # This block is called, only if the executed lane failed
-    # slack(success: false, message: "*#{lane} failed with #{exception.message}*")
-
+    slack(success: false, message: "*#{lane} failed with #{exception.message}*")
     clean_build_artifacts
   end
 
@@ -106,7 +104,7 @@ platform :ios do
     run_danger = options[:run_danger]
     tester_emails = message = File.read('../testers.txt') rescue ""
 
-    # test(product_name: product_name, run_danger: run_danger)
+    test(product_name: product_name, run_danger: run_danger)
 
     # Increments CFBundleVersion by one and sets CFBundleShortVersionString
     increment_version_number(version_number: version)
@@ -122,17 +120,18 @@ platform :ios do
       output_name: "#{ipa_name}",
       export_method: "ad-hoc",
       include_bitcode: true,
-      include_symbols: true
+      include_symbols: true,
+      clean: true
     )
 
-    # github_release = set_github_release(
-    #   repository_name: "#{github_account}/#{product_name}",
-    #   api_token: ENV["GITHUB_TOKEN"],
-    #   name: version,
-    #   tag_name: version,
-    #   description: ("#{changelog}" rescue "No changelog provided"),
-    #   commitish: "master"
-    # )
+    github_release = set_github_release(
+      repository_name: "#{github_account}/#{product_name}",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: version,
+      tag_name: version,
+      description: ("#{changelog}" rescue "No changelog provided"),
+      commitish: "master"
+    )
     
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
@@ -144,14 +143,14 @@ platform :ios do
     #   ipa: "#{ipa_path}"
     # )
 
-    # slack_message = "*Successfully Built App 🎉*\n" \
-    #                 "Hey @channel, Product Version #{version} " \
-    #                 "is out 🤜:boom:🤛\n\n" \
-    #                 "In the following you'll find whats new in this " \
-    #                 "release:\n\n" \
-    #                 "#{changelog}\n\n" \
-    #                 "You'll be notified via TestFlight about the new version.\n"
-    # slack(success: true, message: slack_message)
+    slack_message = "*Successfully Built App 🎉*\n" \
+                    "Hey @channel, Product Version #{version} " \
+                    "is out 🤜:boom:🤛\n\n" \
+                    "In the following you'll find whats new in this " \
+                    "release:\n\n" \
+                    "#{changelog}\n\n" \
+                    "You'll be notified via TestFlight about the new version.\n"
+    slack(success: true, message: slack_message)
   end
 
   ##############################################################################
@@ -200,8 +199,10 @@ platform :ios do
     # recompiles the apps from bitcode hich results in new dSYM's.
     # NOTE: upload_symbols_to_crashlytics relies in the installed Fabric.app
     # Reference: https://github.com/fastlane/fastlane/issues/10255
-    download_dsyms(username: "user@company.com", app_identifier: "com.redacted.redacted", version: "latest")
+    download_dsyms(
+      username: "user@company.com", 
+      app_identifier: "com.redacted.redacted", 
+      version: "latest")
     upload_symbols_to_crashlytics()
-    clean_build_artifacts
   end
 end
