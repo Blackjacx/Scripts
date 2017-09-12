@@ -40,7 +40,6 @@
 
 
 # TODO: deploy to TestFlight, Crashlytics, Hockey, ... & move away from Bitrise
-# TODO: dSYM's are missing on upload to crashlytics
 
 
 
@@ -125,7 +124,7 @@ platform :ios do
       clean: true
     )
 
-    github_release = set_github_release(
+    set_github_release(
       repository_name: "#{github_account}/#{product_name}",
       api_token: ENV["GITHUB_TOKEN"],
       name: version,
@@ -139,7 +138,7 @@ platform :ios do
       emails: tester_emails
     )
 
-    upload_symbols_to_crashlytics(dsym_path: "#{dsym_path}")
+    upload_symbols_to_crashlytics
 
     # testflight(
     #   changelog: changelog,
@@ -203,10 +202,11 @@ platform :ios do
     # NOTE: upload_symbols_to_crashlytics relies in the installed Fabric.app
     # https://github.com/fastlane/fastlane/issues/10255
     # https://krausefx.com/blog/download-dsym-symbolication-files-from-itunes-connect-for-bitcode-ios-apps
+    # https://docs.fabric.io/apple/crashlytics/missing-dsyms.html#upload-symbols-script
     download_dsyms(
       username: "user@company.com", 
       app_identifier: "com.redacted.redacted", 
       version: "latest")
-    upload_symbols_to_crashlytics()
+    upload_symbols_to_crashlytics
   end
 end
