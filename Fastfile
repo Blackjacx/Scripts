@@ -58,13 +58,13 @@ platform :ios do
   after_all do
     # This is called, only if the executed lane was successful
     slack(success: true, message: "*Successfully Built App 🎉*")
-    clean_build_artifacts
+    # clean_build_artifacts
   end
 
   error do |lane, exception|
     # This block is called, only if the executed lane failed
     slack(success: false, message: "*#{lane} failed with #{exception.message}*")
-    clean_build_artifacts
+    # clean_build_artifacts
   end
 
   ##############################################################################
@@ -138,19 +138,21 @@ platform :ios do
       emails: tester_emails
     )
 
+    upload_symbols_to_crashlytics(dsym_path: "#{dsym_path}")
+
     # testflight(
     #   changelog: changelog,
     #   ipa: "#{ipa_path}"
     # )
 
-    slack_message = "*Successfully Built App 🎉*\n" \
-                    "Hey @channel, Product Version #{version} " \
-                    "is out 🤜:boom:🤛\n\n" \
-                    "In the following you'll find whats new in this " \
-                    "release:\n\n" \
-                    "#{changelog}\n\n" \
-                    "You'll be notified via TestFlight about the new version.\n"
-    slack(success: true, message: slack_message)
+    # slack_message = "*Successfully Built App 🎉*\n" \
+    #                 "Hey @channel, Product Version #{version} " \
+    #                 "is out 🤜:boom:🤛\n\n" \
+    #                 "In the following you'll find whats new in this " \
+    #                 "release:\n\n" \
+    #                 "#{changelog}\n\n" \
+    #                 "You'll be notified via TestFlight about the new version.\n"
+    # slack(success: true, message: slack_message)
   end
 
   ##############################################################################
