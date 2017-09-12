@@ -201,7 +201,8 @@ platform :ios do
     # This needs to be done after uploading a new app to ITC since Apple 
     # recompiles the apps from bitcode hich results in new dSYM's.
     # NOTE: upload_symbols_to_crashlytics relies in the installed Fabric.app
-    # Reference: https://github.com/fastlane/fastlane/issues/10255
+    # https://github.com/fastlane/fastlane/issues/10255
+    # https://krausefx.com/blog/download-dsym-symbolication-files-from-itunes-connect-for-bitcode-ios-apps
     download_dsyms(
       username: "user@company.com", 
       app_identifier: "com.redacted.redacted", 
