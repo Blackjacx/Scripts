@@ -101,7 +101,7 @@ platform :ios do
     deploy_dir = ENV["BITRISE_DEPLOY_DIR"]
     ipa_name = "#{product_name}.ipa"
     ipa_path = "#{deploy_dir}/#{product_name}.ipa"
-    dsym_path = "#{deploy_dir}/#{product_name}.dSYM.zip"
+    dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
     tester_emails = message = File.read('../testers.txt') rescue ""
 
