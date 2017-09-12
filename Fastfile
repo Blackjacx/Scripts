@@ -40,6 +40,7 @@
 
 
 # TODO: deploy to TestFlight, Crashlytics, Hockey, ... & move away from Bitrise
+# TODO: dSYM's are missing on upload to crashlytics
 
 
 
@@ -145,14 +146,14 @@ platform :ios do
     #   ipa: "#{ipa_path}"
     # )
 
-    # slack_message = "*Successfully Built App 🎉*\n" \
-    #                 "Hey @channel, Product Version #{version} " \
-    #                 "is out 🤜:boom:🤛\n\n" \
-    #                 "In the following you'll find whats new in this " \
-    #                 "release:\n\n" \
-    #                 "#{changelog}\n\n" \
-    #                 "You'll be notified via TestFlight about the new version.\n"
-    # slack(success: true, message: slack_message)
+    slack_message = "*Successfully Built App 🎉*\n" \
+                    "Hey @channel, Product Version #{version} " \
+                    "is out 🤜:boom:🤛\n\n" \
+                    "In the following you'll find whats new in this " \
+                    "release:\n\n" \
+                    "#{changelog}\n\n" \
+                    "You'll be notified via TestFlight about the new version.\n"
+    slack(success: true, message: slack_message)
   end
 
   ##############################################################################
