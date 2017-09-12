@@ -121,7 +121,8 @@ platform :ios do
       output_directory: deploy_dir,
       output_name: "#{ipa_name}",
       export_method: "ad-hoc",
-      include_bitcode: true
+      include_bitcode: true,
+      include_symbols: true
     )
 
     # github_release = set_github_release(
