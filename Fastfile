@@ -85,12 +85,12 @@ platform :ios do
 
     possible_release_types = ["appstore", "nightly", "beta"]
 
-    if !options[:product_name]; raise "No product_name provided!".red; end
-    if !options[:build]; raise "No build provided!".red; end
-    if !options[:github_account]; raise "No github_account provided!".red; end
-    if !possible_release_types.include? options[:release_type]
+    #if !options[:product_name]; raise "No product_name provided!".red; end
+    #if !options[:build]; raise "No build provided!".red; end
+    #if !options[:github_account]; raise "No github_account provided!".red; end
+    #if !possible_release_types.include? options[:release_type]
       raise "Please set release_type to one of: #{possible_release_types}".red
-    end
+    #end
 
     product_name = options[:product_name]
     build = options[:build]
