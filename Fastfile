@@ -59,13 +59,13 @@ platform :ios do
   after_all do
     # This is called, only if the executed lane was successful
     slack(success: true, message: "*Successfully Built App 🎉*")
-    # clean_build_artifacts
+    clean_build_artifacts
   end
 
   error do |lane, exception|
     # This block is called, only if the executed lane failed
     slack(success: false, message: "*#{lane} failed with #{exception.message}*")
-    # clean_build_artifacts
+    clean_build_artifacts
   end
 
   ##############################################################################
