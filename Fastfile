@@ -102,7 +102,7 @@ platform :ios do
     ipa_path = "#{deploy_dir}/#{product_name}.ipa"
     dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
-    tester_emails = message = File.read('../testers.txt') rescue ""
+    tester_emails = message = File.read('./testers.txt') rescue ""
 
     test(product_name: product_name, run_danger: run_danger)
 
