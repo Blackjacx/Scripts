@@ -119,8 +119,8 @@ platform :ios do
       output_directory: deploy_dir,
       output_name: "#{ipa_name}",
       export_method: "ad-hoc",
-      include_bitcode: true,
-      include_symbols: true,
+      include_bitcode: false,
+      include_symbols: false,
       clean: true
     )
 
@@ -137,8 +137,6 @@ platform :ios do
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
       emails: tester_emails
     )
-
-    upload_symbols_to_crashlytics
 
     # testflight(
     #   changelog: changelog,
