@@ -201,10 +201,10 @@ platform :ios do
     # https://github.com/fastlane/fastlane/issues/10255
     # https://krausefx.com/blog/download-dsym-symbolication-files-from-itunes-connect-for-bitcode-ios-apps
     # https://docs.fabric.io/apple/crashlytics/missing-dsyms.html#upload-symbols-script
-    download_dsyms(
-      username: "user@company.com", 
-      app_identifier: "com.redacted.redacted", 
-      version: "latest")
+    user = ENV["FASTLANE_USER"]
+    app_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+    
+    download_dsyms(username: user, app_identifier: app_id, version: "latest")
     upload_symbols_to_crashlytics
   end
 end
