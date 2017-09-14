@@ -84,13 +84,13 @@ platform :ios do
     if !options[:github_account]; raise "No github_account provided!".red; end
 
     if options[:release_type] == "appstore"
-      tester_emails = File.read('./testers') rescue ""
+      crashlytics_groups = "appstore"
       export_method = "app-store"
     elsif options[:release_type] == "beta"
-      tester_emails = File.read('./testers') rescue ""
+      crashlytics_groups = "beta"
       export_method = "ad-hoc"
     elsif options[:release_type] == "nightly" 
-      tester_emails = File.read('./testers_nightly') rescue ""
+      crashlytics_groups = "nightly"
       export_method = "ad-hoc"
     else
       raise "Please set release_type to one of: appstore, beta, nightly".red
@@ -139,7 +139,7 @@ platform :ios do
     
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
-      emails: tester_emails,
+      groups: crashlytics_groups,
       notes: changelog
     )
 
