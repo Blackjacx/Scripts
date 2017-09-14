@@ -133,22 +133,14 @@ platform :ios do
     
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
-      emails: tester_emails
+      emails: tester_emails,
+      notes: changelog
     )
 
     # testflight(
     #   changelog: changelog,
     #   ipa: "#{ipa_path}"
     # )
-
-    slack_message = "*Successfully Built App 🎉*\n" \
-                    "Hey @channel, Product Version #{version} " \
-                    "is out 🤜:boom:🤛\n\n" \
-                    "In the following you'll find whats new in this " \
-                    "release:\n\n" \
-                    "#{changelog}\n\n" \
-                    "You'll be notified via TestFlight about the new version.\n"
-    slack(success: true, message: slack_message)
   end
 
   ##############################################################################
