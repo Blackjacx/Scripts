@@ -79,19 +79,26 @@ platform :ios do
   desc "Releases a new product version"
   lane :release do |options|
 
-    possible_release_types = ["appstore", "nightly", "beta"]
-
     if !options[:product_name]; raise "No product_name provided!".red; end
     if !options[:build]; raise "No build provided!".red; end
     if !options[:github_account]; raise "No github_account provided!".red; end
-    if !possible_release_types.include? options[:release_type]
-      raise "Please set release_type to one of: #{possible_release_types}".red
+
+    if options[:release_type] == "appstore"
+      tester_emails = File.read('./testers') rescue ""
+      export_method = "app-store"
+    elsif options[:release_type] == "beta"
+      tester_emails = File.read('./testers') rescue ""
+      export_method = "ad-hoc"
+    elsif options[:release_type] == "nightly" 
+      tester_emails = File.read('./testers_nightly') rescue ""
+      export_method = "ad-hoc"
+    else
+      raise "Please set release_type to one of: appstore, beta, nightly".red
     end
 
     product_name = options[:product_name]
     build = options[:build]
     github_account = options[:github_account]
-    release_type = options[:release_type]
     project = "#{product_name}.xcodeproj"
     workspace = "#{product_name}.xcworkspace"
     version = get_version_number(xcodeproj: "#{project}", target: "#{product_name}")
@@ -100,7 +107,6 @@ platform :ios do
     ipa_path = "#{deploy_dir}/#{product_name}.ipa"
     dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
-    tester_emails = message = File.read('./testers.txt') rescue ""
 
     test(product_name: product_name, run_danger: run_danger)
 
@@ -115,8 +121,8 @@ platform :ios do
       workspace: workspace, 
       scheme: product_name,
       output_directory: deploy_dir,
-      output_name: "#{ipa_name}",
-      export_method: "ad-hoc",
+      output_name: ipa_name,
+      export_method: export_method,
       include_bitcode: false,
       include_symbols: false,
       clean: true
