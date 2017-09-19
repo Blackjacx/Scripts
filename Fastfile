@@ -150,6 +150,8 @@ platform :ios do
     #   changelog: changelog,
     #   ipa: "#{ipa_path}"
     # )
+
+    sh("ls -la #{deploy_dir}")
   end
 
   ##############################################################################
