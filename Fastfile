@@ -79,9 +79,9 @@ platform :ios do
   desc "Releases a new product version"
   lane :release do |options|
 
-    if !options[:product_name]; raise "No product_name provided!".red; end
-    if !options[:build]; raise "No build provided!".red; end
-    if !options[:github_account]; raise "No github_account provided!".red; end
+    raise "No product_name provided!".red unless options[:product_name]
+    raise "No build provided!".red unless options[:build]
+    raise "No github_account provided!".red unless options[:github_account]
 
     if options[:release_type] == "appstore"
       crashlytics_groups = "appstore"
@@ -136,7 +136,7 @@ platform :ios do
       api_token: ENV["GITHUB_TOKEN"],
       name: version,
       tag_name: version,
-      description: ("#{changelog}" rescue "No changelog provided"),
+      description: (changelog || "No changelog provided"),
       commitish: "master"
     )
     
@@ -161,7 +161,7 @@ platform :ios do
   desc "Runs tests optionally with danger"
   lane :test do |options|
 
-    if !options[:product_name]; raise "No product_name provided!".red; end
+    raise "No product_name provided!".red unless options[:product_name]
 
     product_name = options[:product_name]
     run_danger = options[:run_danger]
