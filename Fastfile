@@ -120,12 +120,15 @@ platform :ios do
     gym(
       workspace: workspace, 
       scheme: product_name,
+      buildlog_path: deploy_dir,
       output_directory: deploy_dir,
       output_name: ipa_name,
       export_method: export_method,
       include_bitcode: false,
       include_symbols: false,
-      clean: true
+      clean: true,
+      xcpretty_report_html: true,
+      analyze_build_time: true
     )
 
     set_github_release(
