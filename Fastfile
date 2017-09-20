@@ -127,7 +127,6 @@ platform :ios do
       include_bitcode: false,
       include_symbols: false,
       clean: true,
-      # xcpretty_report_html: true, # this must be a string! do further investigations on this!
       analyze_build_time: true
     )
 
