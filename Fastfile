@@ -142,7 +142,8 @@ platform :ios do
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
       groups: crashlytics_groups,
-      notes: changelog
+      notes: changelog,
+      notifications: true
     )
 
     # testflight(
