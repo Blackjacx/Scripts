@@ -124,8 +124,8 @@ platform :ios do
       output_directory: deploy_dir,
       output_name: ipa_name,
       export_method: export_method,
-      include_bitcode: false,
-      include_symbols: false,
+      include_bitcode: true,
+      include_symbols: true,
       clean: true,
       analyze_build_time: true
     )
@@ -145,6 +145,8 @@ platform :ios do
       notes: changelog,
       notifications: true
     )
+
+    upload_symbols_to_crashlytics
 
     # testflight(
     #   changelog: changelog,
