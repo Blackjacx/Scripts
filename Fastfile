@@ -175,9 +175,8 @@ platform :ios do
       workspace: "#{product_name}.xcworkspace",
       scheme: product_name,
       clean: true,
-      devices: ["iPhone 7"],
+      devices: ["iPhone 8", "iPhone 8 Plus", "iPhone X"],
       skip_build: true,
-      thread_sanitizer: true,
       output_types: "html",
       skip_slack: true,
       output_directory: ENV["BITRISE_DEPLOY_DIR"]
