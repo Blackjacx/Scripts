@@ -53,6 +53,7 @@ default_platform :ios
 platform :ios do
 
   before_all do
+    cocoapods(use_bundle_exec: true, repo_update: true)
   end
 
   after_all do
@@ -84,14 +85,11 @@ platform :ios do
     raise "No github_account provided!".red unless options[:github_account]
 
     if options[:release_type] == "appstore"
-      crashlytics_groups = "appstore"
-      export_method = "app-store"
+      testing_groups = ["appstore"]
     elsif options[:release_type] == "beta"
-      crashlytics_groups = "beta"
-      export_method = "ad-hoc"
+      testing_groups = ["beta"]
     elsif options[:release_type] == "nightly" 
-      crashlytics_groups = "nightly"
-      export_method = "ad-hoc"
+      testing_groups = ["nightly"]
     else
       raise "Please set release_type to one of: appstore, beta, nightly".red
     end
@@ -107,6 +105,7 @@ platform :ios do
     ipa_path = "#{deploy_dir}/#{product_name}.ipa"
     dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
+    testflight_whats_new = File.read("./metadata/whatsnew.txt")
 
     test(product_name: product_name, run_danger: run_danger)
 
@@ -123,11 +122,10 @@ platform :ios do
       buildlog_path: deploy_dir,
       output_directory: deploy_dir,
       output_name: ipa_name,
-      export_method: export_method,
+      export_options: "./fastlane/ExportOptions.plist",
       include_bitcode: true,
       include_symbols: true,
-      clean: true,
-      analyze_build_time: true
+      clean: true
     )
 
     set_github_release(
@@ -141,17 +139,19 @@ platform :ios do
     
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
-      groups: crashlytics_groups,
-      notes: changelog,
-      notifications: true
+      groups: testing_groups,
+      notes: testflight_whats_new,
+      notifications: false
     )
 
-    upload_symbols_to_crashlytics
+    testflight(
+      changelog: testflight_whats_new,
+      ipa: "#{ipa_path}",
+      groups: testing_groups,
+      distribute_external: true
+    )
 
-    # testflight(
-    #   changelog: changelog,
-    #   ipa: "#{ipa_path}"
-    # )
+    refresh_dsyms
 
     sh("ls -la #{deploy_dir}")
   end
@@ -167,8 +167,6 @@ platform :ios do
 
     product_name = options[:product_name]
     run_danger = options[:run_danger]
-
-    cocoapods(use_bundle_exec: true, repo_update: true)
 
     # Easily run tests of your iOS app using scan
     scan(
