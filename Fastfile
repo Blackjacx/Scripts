@@ -80,7 +80,7 @@ platform :ios do
   desc "Releases a new product version"
   lane :release do |options|
 
-    release_type_list = ["appstore", "beta", "nightly"]
+    release_type_list = ["appstore", "beta", "nightly", "pilot"]
 
     raise "No product_name provided!".red unless options[:product_name]
     raise "No build provided!".red unless options[:build]
@@ -99,7 +99,8 @@ platform :ios do
     dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
     tester_whatsnew = File.read("./metadata/whatsnew.txt")
-    tester_groups = options[:release_type]
+    tester_groups = ["#{options[:release_type]}"]
+    export_options_plist = "./fastlane/ExportOptions.plist"
 
     test(product_name: product_name, run_danger: run_danger)
 
@@ -108,7 +109,10 @@ platform :ios do
     increment_build_number(build_number: build)
 
     # read changelog
-    changelog = read_changelog(section_identifier: "[#{version}]")
+    changelog = read_changelog(
+      section_identifier: "[#{version}]",
+      excluded_markdown_elements: []
+    )
 
     gym(
       workspace: workspace, 
@@ -116,7 +120,7 @@ platform :ios do
       buildlog_path: deploy_dir,
       output_directory: deploy_dir,
       output_name: ipa_name,
-      export_options: "./fastlane/ExportOptions.plist",
+      export_options: export_options_plist,
       include_bitcode: true,
       include_symbols: true,
       clean: true
