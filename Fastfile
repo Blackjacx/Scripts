@@ -53,7 +53,7 @@ default_platform :ios
 platform :ios do
 
   before_all do
-    cocoapods(use_bundle_exec: true, repo_update: true)
+    # cocoapods(use_bundle_exec: true, repo_update: true)
   end
 
   after_all do
@@ -114,6 +114,12 @@ platform :ios do
       excluded_markdown_elements: []
     )
 
+    changelog_no_md = changelog
+        .gsub(/\* \[(.+): /, '- ')
+        .gsub(/ - (.+)\./, '')
+        .gsub(/###/, '')
+        .strip
+
     gym(
       workspace: workspace, 
       scheme: product_name,
@@ -138,12 +144,12 @@ platform :ios do
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
       groups: tester_groups,
-      notes: tester_whatsnew,
+      notes: changelog_no_md,
       notifications: false
     )
 
     testflight(
-      changelog: tester_whatsnew,
+      changelog: changelog_no_md,
       ipa: "#{ipa_path}",
       groups: tester_groups,
       distribute_external: true
