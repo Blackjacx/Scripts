@@ -80,20 +80,13 @@ platform :ios do
   desc "Releases a new product version"
   lane :release do |options|
 
+    release_type_list = ["appstore", "beta", "nightly"]
+
     raise "No product_name provided!".red unless options[:product_name]
     raise "No build provided!".red unless options[:build]
     raise "No github_account provided!".red unless options[:github_account]
-
-    if options[:release_type] == "appstore"
-      testing_groups = ["appstore"]
-    elsif options[:release_type] == "beta"
-      testing_groups = ["beta"]
-    elsif options[:release_type] == "nightly" 
-      testing_groups = ["nightly"]
-    else
-      raise "Please set release_type to one of: appstore, beta, nightly".red
-    end
-
+    raise "Please set release_type to one of: #{release_type_list}".red unless release_type_list.include?(options[:release_type])
+    
     product_name = options[:product_name]
     build = options[:build]
     github_account = options[:github_account]
@@ -105,7 +98,8 @@ platform :ios do
     ipa_path = "#{deploy_dir}/#{product_name}.ipa"
     dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
-    testflight_whats_new = File.read("./metadata/whatsnew.txt")
+    tester_whatsnew = File.read("./metadata/whatsnew.txt")
+    tester_groups = options[:release_type]
 
     test(product_name: product_name, run_danger: run_danger)
 
@@ -139,15 +133,15 @@ platform :ios do
     
     crashlytics(
       crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
-      groups: testing_groups,
-      notes: testflight_whats_new,
+      groups: tester_groups,
+      notes: tester_whatsnew,
       notifications: false
     )
 
     testflight(
-      changelog: testflight_whats_new,
+      changelog: tester_whatsnew,
       ipa: "#{ipa_path}",
-      groups: testing_groups,
+      groups: tester_groups,
       distribute_external: true
     )
 
