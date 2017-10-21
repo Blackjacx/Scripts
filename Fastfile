@@ -53,7 +53,7 @@ default_platform :ios
 platform :ios do
 
   before_all do
-    # cocoapods(use_bundle_exec: true, repo_update: true)
+    cocoapods(use_bundle_exec: true, repo_update: true)
   end
 
   after_all do
