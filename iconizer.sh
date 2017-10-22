@@ -10,59 +10,46 @@
 # Requires ImageMagick: http://www.imagemagick.org/
 # Requires jq: https://stedolan.github.io/jq/
 
-set -e
 # set -x
 
 CONTENTS_FILE="Contents.json"
 
-if [ $# -ne 2 ]; then
-    echo "\nUsage: sh iconizer.sh file.pdf FolderName"
-    exit 1
-fi
+die () {
+  echo >&2 "$@"
+  exit 1
+}
 
-if [ ! -e "$1" ]; then
-    echo "Did not find file $1, expected path to a vector image file."
-    exit 1
-fi
+[ $# == 2 ] || die "Usage: sh iconizer.sh file.pdf FolderName"
+[ -e "$1" ] || die "Did not find file $1, expected path to a vector image file."
+[ ${1: -4} == ".pdf" ] || die "File $1 is not a vector image file! Expected PDF file."
 
-if [ ${1: -4} != ".pdf" ]; then
-    echo "File $1 is not a vector image file! Expected PDF file."
-    exit 1
-fi
+CONTENT_FILE_PATH="$2/$CONTENTS_FILE"
 
-if [ ! -e "./$2/$CONTENTS_FILE" ]; then
-    echo "Did not find $2/$CONTENTS_FILE, expected folder which contains $CONTENTS_FILE"
-    exit 1
-fi
+[ -e "$CONTENT_FILE_PATH" ] || die "Did not find $CONTENT_FILE_PATH, expected folder which contains $CONTENTS_FILE"
 
-echo "Creating icons from $1 and updating $2/$CONTENTS_FILE..."
+echo "Creating icons from $1 and updating $CONTENT_FILE_PATH..."
 
 i=0
 
 while :
 do
-    image=$(jq ".images[$i]" ./$2/$CONTENTS_FILE)
+    image=$(jq ".images[$i]" $CONTENT_FILE_PATH)
     scale=$(echo $image | jq ".scale" | cut -d "\"" -f 2 | cut -d "x" -f 1 )
     sizePT=$(echo $image | jq ".size" | cut -d "\"" -f 2 | cut -d "x" -f 1 )
-    sizePX=$(bc -l <<< "scale=1; $sizePT*$scale")
+    sizePX=$(bc -l <<< "scale=1; $sizePT*$scale" | cut -d "." -f 1)
     newFileName="appicon_${sizePX}.png"
 
-    if [[ "$image" == "null" ]]; then
-      break
-    fi
+    [ "$image" != "null" ] || break
 
-    jq ".images[$i].filename = \"$newFileName\"" "./$2/$CONTENTS_FILE" > tmp.$$.json && mv tmp.$$.json "./$2/$CONTENTS_FILE"
+    jq ".images[$i].filename = \"$newFileName\"" "$CONTENT_FILE_PATH" > tmp.$$.json && mv tmp.$$.json "$CONTENT_FILE_PATH"
 
     if [ -e "$2/$newFileName" ]; then
-        echo "File $newFileName already created... Continue"
-        i=$(( $i + 1 ))
-        continue
+      echo "File $newFileName already created... Continue"
+    else
+      echo -n "Creating $newFileName and update $CONTENTS_FILE..."
+      convert -density 400 "$1" -scale "$sizePX" "$2/$newFileName"
+      echo "✅"
     fi
 
-    echo -n "Creating $newFileName of size and update $CONTENTS_FILE..."
-
-    convert -density 400 "$1" -scale "$sizePX" "$2/$newFileName"
-
-    echo " ✅"
     i=$(( $i + 1 ))
 done
