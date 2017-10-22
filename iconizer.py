@@ -6,7 +6,6 @@
 # IMPORTANT: This file is work in progress and not yet complete!
 #
 from __future__ import print_function # import Python 3 print function
-from . import _PythonMagick
 import json
 import os.path
 import sys
