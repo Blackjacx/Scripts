@@ -115,7 +115,7 @@ platform :ios do
     )
 
     changelog_no_md = changelog
-        .gsub(/\* \[(.+): /, '- ')
+        .gsub(/\* \[(.+): /, '* ')
         .gsub(/ - (.+)\./, '')
         .gsub(/###/, '')
         .strip

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Iconizer shell script by Stefan Herold
 
 # This is a simple tool to generate all necessary app icon sizes from one vector file.
@@ -9,8 +8,6 @@
 
 # Requires ImageMagick: http://www.imagemagick.org/
 # Requires jq: https://stedolan.github.io/jq/
-
-# set -x
 
 CONTENTS_FILE="Contents.json"
 
