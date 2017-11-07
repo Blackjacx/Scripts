@@ -81,12 +81,12 @@ platform :ios do
   lane :release do |options|
 
     possible_tester_groups = ["appstore", "beta", "nightly"]
-    tester_groups = ["#{options[:tester_groups]}"]
+    tester_groups = "#{options[:tester_groups]}"
 
     raise "No product_name provided!".red unless options[:product_name]
     raise "No build provided!".red unless options[:build]
     raise "No github_account provided!".red unless options[:github_account]
-    raise "No tester groups provided! Provide at least one of the following as comma separated list: #{possible_tester_groups}".red unless options[:tester_groups]
+    raise "No tester groups provided! Provide at least one of the following as ruby array: #{possible_tester_groups}".red if options[:tester_groups].empty?
     
     product_name = options[:product_name]
     build = options[:build]
