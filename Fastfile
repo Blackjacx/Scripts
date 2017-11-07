@@ -80,12 +80,13 @@ platform :ios do
   desc "Releases a new product version"
   lane :release do |options|
 
-    release_type_list = ["appstore", "beta", "nightly", "pilot"]
+    possible_tester_groups = ["appstore", "beta", "nightly"]
+    tester_groups = ["#{options[:tester_groups]}"]
 
     raise "No product_name provided!".red unless options[:product_name]
     raise "No build provided!".red unless options[:build]
     raise "No github_account provided!".red unless options[:github_account]
-    raise "Please set release_type to one of: #{release_type_list}".red unless release_type_list.include?(options[:release_type])
+    raise "No tester groups provided! Provide at least one of the following as comma separated list: #{possible_tester_groups}".red unless options[:tester_groups]
     
     product_name = options[:product_name]
     build = options[:build]
@@ -99,7 +100,6 @@ platform :ios do
     dsym_path = "#{deploy_dir}/#{product_name}.app.dSYM.zip"
     run_danger = options[:run_danger]
     tester_whatsnew = File.read("./metadata/whatsnew.txt")
-    tester_groups = ["#{options[:release_type]}"]
     export_options_plist = "./fastlane/ExportOptions.plist"
 
     test(product_name: product_name, run_danger: run_danger)
