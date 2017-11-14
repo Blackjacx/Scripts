@@ -158,6 +158,7 @@ platform :ios do
     refresh_dsyms
 
     sh("ls -la #{deploy_dir}")
+    puts tester_groups
   end
 
   ##############################################################################
