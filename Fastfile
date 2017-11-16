@@ -148,7 +148,7 @@ platform :ios do
       notifications: false
     )
 
-    testflight(
+    pilot(
       changelog: changelog_no_md,
       ipa: "#{ipa_path}",
       groups: tester_groups,
