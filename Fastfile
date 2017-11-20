@@ -71,6 +71,10 @@ platform :ios do
   ##############################################################################
 
   lane :playground do |options|
+    stamp_changelog(
+      section_identifier: version, # Stamp Unreleased section with newly released build number
+      placeholder_line: "* Your contribution here."
+    )
   end
 
   ##############################################################################
