@@ -78,6 +78,31 @@ platform :ios do
   end
 
   ##############################################################################
+  # Preparing Release
+  ##############################################################################
+
+  lane :prepare_release do |options|
+
+    raise "No product_name provided!".red unless options[:product_name]
+    raise "No version provided!".red unless options[:version]
+
+    product_name = options[:product_name]
+    version = options[:version]
+
+    ensure_git_status_clean
+    ensure_git_branch(branch: "develop")
+
+    increment_version_number(
+      version_number: version
+    )
+
+    stamp_changelog(
+      section_identifier: version, # Stamp Unreleased section with newly released build number
+      placeholder_line: "* Your contribution here."
+    )
+  end
+
+  ##############################################################################
   # Release Lane
   ##############################################################################
 
