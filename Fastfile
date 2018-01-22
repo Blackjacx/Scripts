@@ -53,7 +53,6 @@ default_platform :ios
 platform :ios do
 
   before_all do
-    cocoapods(use_bundle_exec: true, repo_update: true)
   end
 
   after_all do
@@ -202,6 +201,9 @@ platform :ios do
     product_name = options[:product_name]
     run_danger = options[:run_danger]
 
+    # install all dependencies
+    cocoapods(use_bundle_exec: true, repo_update: true)
+    
     # Easily run tests of your iOS app using scan
     scan(
       workspace: "#{product_name}.xcworkspace",
