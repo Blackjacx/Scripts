@@ -240,7 +240,7 @@ platform :ios do
     user = ENV["FASTLANE_USER"]
     app_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     
-    download_dsyms(username: user, app_identifier: app_id, version: "latest")
+    download_dsyms(username: user, app_identifier: app_id)
     upload_symbols_to_crashlytics
   end
 end
