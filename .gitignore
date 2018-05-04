@@ -75,3 +75,6 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/.env
 fastlane/README.md
+
+# Custom
+.env

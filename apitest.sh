@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # Requires the following parameters in a .env file in the projects directory:
