@@ -18,7 +18,8 @@ urls=(
   "https://api.github.com/user/starred?per_page=100"
 )
 repo_names=()
-tag_urls=()
+releases_urls=()
+html_urls=()
 records=()
 
 next="${urls[0]}"
@@ -35,33 +36,32 @@ done
 for next in "${urls[@]}"
 do
   repo_json=$(curl -H "Authorization: token $GITHUB_TOKEN" -s "${next}")
-  tag_urls+=($(echo "$repo_json" | jq '.[].tags_url' | sed -e 's/\"//g'))
+  releases_urls+=($(echo "$repo_json" | jq '.[].releases_url' | sed -e 's/\"//g' | sed -e 's/{\/id}/\/latest/g'))
+  html_urls+=($(echo "$repo_json" | jq '.[].html_url' | sed -e 's/\"//g'))  
   repo_names+=($(echo "$repo_json" | jq '.[].name' | sed -e 's/\"//g'))
 done
 
-# Fetch latest tag and all infor necessary
-for i in "${!tag_urls[@]}"
+# Fetch latest release
+for i in "${!releases_urls[@]}"
 do
-  tag_url="${tag_urls[$i]}"
+  release_url="${releases_urls[$i]}"
+  html_url="${html_urls[$i]}"
   repo_name="${repo_names[$i]}"
 
-  tag_json=$(curl -H "Authorization: token $GITHUB_TOKEN" -s "${tag_url}?per_page=1")
-  tag=$(echo "$tag_json" | jq '.[].name' | sed -e 's/\"//g')
-  commit_url=$(echo "$tag_json" | jq '.[].commit.url' | sed -e 's/\"//g')
+  release_json=$(curl -H "Authorization: token $GITHUB_TOKEN" -s "${release_url}")
+  tag=$(echo "$release_json" | jq '.tag_name' | sed -e 's/\"//g')
+  published_at=$(echo "$release_json" | jq '.published_at' | sed -e 's/\"//g')
 
-  if [ -z "${tag}" ]; then continue; fi
+  if [[ -z $tag || $tag == null ]]; then continue; fi
 
-  commit_json=$(curl -H "Authorization: token $GITHUB_TOKEN" -s "${commit_url}")
-  commit_date=$(echo "$commit_json" | jq '.commit.author.date' | sed -e 's/\"//g')
-
-  records+=("$commit_date • $repo_name • $tag")
+  records+=("$published_at • $repo_name • $tag • $html_url")
 done
 
-# Sort and display the 5 latest updates
+# Sort and display updates - latest first
 IFS=$'\n' sorted=($(sort -r <<<"${records[*]}"))
 unset IFS
 
-sorted=("${sorted[@]:0:10}")
+sorted=("${sorted[@]}")
 for record in "${sorted[@]}"; do
-  echo "$record"
+  echo $record
 done
