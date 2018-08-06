@@ -39,10 +39,6 @@
 
 
 
-# TODO: deploy to TestFlight, Crashlytics, Hockey, ... & move away from Bitrise
-
-
-
 # This is the minimum version number required. 
 # Update this, if you use features of a newer version.
 fastlane_version "2.55.0"
@@ -65,6 +61,7 @@ platform :ios do
     slack(success: false, message: "*#{lane} failed with #{exception.message}*")
   end
 
+
   ##############################################################################
   # Playground Lane
   ##############################################################################
@@ -75,6 +72,7 @@ platform :ios do
       placeholder_line: "* Your contribution here."
     )
   end
+
 
   ##############################################################################
   # Preparing Release
@@ -100,6 +98,7 @@ platform :ios do
       placeholder_line: "* Your contribution here."
     )
   end
+
 
   ##############################################################################
   # Release Lane
@@ -189,6 +188,7 @@ platform :ios do
     puts tester_groups
   end
 
+
   ##############################################################################
   # Test Lane
   ##############################################################################
@@ -226,6 +226,7 @@ platform :ios do
     end
   end
 
+
   ##############################################################################
   # Manually Refreshing Crashlytics dSYM's
   ##############################################################################
@@ -242,5 +243,43 @@ platform :ios do
     
     download_dsyms(username: user, app_identifier: app_id)
     upload_symbols_to_crashlytics
+  end
+
+
+  ##############################################################################
+  # Increment build number based on latest testflight buuild number by one.
+  ##############################################################################
+
+  desc "Increment build number based on latest testflight buuild number by one."
+  lane :increment_latest_build_number do
+    check_environment
+
+    itc_team_id = ENV["FASTLANE_ITC_TEAM_ID"]
+    bundle_id = ENV["APP_BUNDLE_ID"]
+    version = options[:version]
+    UI.crash!("No version provided") if version.nil? || version.empty?
+
+    latest_testflight_build_number(
+      team_id: itc_team_id,
+      app_identifier:  bundle_id,
+      initial_build_number: 0,
+      version: version
+    )
+  end
+
+
+  #############################################################################
+  # Check for parameters that have to be set in each environment
+  #############################################################################
+
+  desc "Check for parameters that have to be set in each environment."
+  private_lane :check_environment do |options|
+    crash_if_nil("FASTLANE_ITC_TEAM_ID")
+    crash_if_nil("APP_APPLE_TEAM_ID")
+    crash_if_nil("APP_APPLE_TEAM_NAME")
+    crash_if_nil("APP_APP_BUNDLE_ID")
+    crash_if_nil("APP_SCHEME")
+    crash_if_nil("APP_TARGET")
+    crash_if_nil("APP_TESTER_GROUPS")
   end
 end
