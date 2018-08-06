@@ -3,7 +3,7 @@
 # Load environment
 env_file="$(dirname "$0")/.env"
 if [ -f $env_file ]; then
-  export $(cat $env_file | xargs)
+  set -a; . $env_file; set +a # source .env file. works with comments.
 fi
 
 # Check if jq installed
