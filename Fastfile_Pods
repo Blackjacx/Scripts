@@ -123,7 +123,8 @@ lane :test do |options|
     workspace: workspace,
     scheme: "#{framework}-Example",
     clean: true,
-    devices: ["iPhone SE", "iPhone 8", "iPhone 8 Plus", "iPhone X"]
+    devices: ["iPhone SE", "iPhone 8", "iPhone 8 Plus", "iPhone X"],
+    xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
   )
 end
 
