@@ -127,15 +127,18 @@ lane :test do |options|
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
   )
 
-  codecov
+  codecov(framework: framework)
 end
 
 desc "Uploads Code Coverage Report To codecov.io"
 lane :codecov do |options|
+  framework = options[:framework]
+  UI.crash!("No framework specified") if framework.nil? || framework.empty?
+
   codecov_token = ENV[:CODECOV_TOKEN]
   UI.crash!("No upload token for codecov.io specified") if codecov_token.nil? || codecov_token.empty?
 
-  sh <(curl -s https://codecov.io/bash) -t "#{codecov_token}"
+  sh <(curl -s https://codecov.io/bash) -t "#{codecov_token}" - J "#{framework}"
 end
 
 
