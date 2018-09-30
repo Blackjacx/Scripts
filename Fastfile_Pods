@@ -38,9 +38,6 @@ fastlane_version "2.105.2"
 
 default_platform :ios
 
-# Import codecov action
-import_from_git(url: 'https://gist.github.com/fjcaetano/04126b3051f6cd6aebe041bb1dfe14e9')
-
 before_all do
   # This block is called, before execute the lane
 end
@@ -130,6 +127,18 @@ lane :test do |options|
   )
 
   codecov(project_name: framework, token: ENV["CODECOV_TOKEN"])
+end
+
+desc "Uploads Code Coverage Report To codecov.io"
+lane :codecov do |options|
+  cmd = ['curl -s https://codecov.io/bash | bash']
+
+  cmd << "-s --" if options.all_keys.inject(false) { |p, k| p or options[k] }
+  cmd << "-X xcodeplist" if options[:use_xcodeplist]
+  cmd << "-J '#{options[:project_name]}'" if options[:project_name]
+  cmd << "-t '#{options[:token]}'" if options[:token]
+
+  sh cmd.join(" ")
 end
 
 
