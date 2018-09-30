@@ -38,6 +38,9 @@ fastlane_version "2.105.2"
 
 default_platform :ios
 
+# Import codecov action
+import_from_git(url: 'https://gist.github.com/fjcaetano/04126b3051f6cd6aebe041bb1dfe14e9')
+
 before_all do
   # This block is called, before execute the lane
 end
@@ -126,22 +129,7 @@ lane :test do |options|
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
   )
 
-  codecov(framework: framework)
-end
-
-desc "Uploads Code Coverage Report To codecov.io"
-lane :codecov do |options|
-  framework = options[:framework]
-  UI.crash!("No framework specified") if framework.nil? || framework.empty?
-
-  codecov_token = ENV["CODECOV_TOKEN"]
-  UI.crash!("No upload token for codecov.io specified") if codecov_token.nil? || codecov_token.empty?
-
-
-  cmd = ['curl -s https://codecov.io/bash | bash']
-  cmd << "-J '#{framework}'"
-  cmd << "-t '#{codecov_token}'"
-  sh cmd.join(" ")
+  codecov(framework: framework, token)
 end
 
 
