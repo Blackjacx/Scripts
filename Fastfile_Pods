@@ -129,7 +129,7 @@ lane :test do |options|
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
   )
 
-  codecov(framework: framework, token)
+  codecov(project_name: framework, token: ENV["CODECOV_TOKEN"])
 end
 
 
