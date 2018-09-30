@@ -133,8 +133,7 @@ desc "Uploads Code Coverage Report To codecov.io"
 lane :codecov do |options|
   cmd = ['curl -s https://codecov.io/bash | bash']
 
-  cmd << "-s --" if options.all_keys.inject(false) { |p, k| p or options[k] }
-  cmd << "-X xcodeplist" if options[:use_xcodeplist]
+  # cmd << "-s --" if options.all_keys.inject(false) { |p, k| p or options[k] }
   cmd << "-J '#{options[:project_name]}'" if options[:project_name]
   cmd << "-t '#{options[:token]}'" if options[:token]
 
