@@ -135,10 +135,10 @@ lane :codecov do |options|
   framework = options[:framework]
   UI.crash!("No framework specified") if framework.nil? || framework.empty?
 
-  codecov_token = ENV[:CODECOV_TOKEN]
+  codecov_token = ENV["CODECOV_TOKEN"]
   UI.crash!("No upload token for codecov.io specified") if codecov_token.nil? || codecov_token.empty?
 
-  sh "sh <(curl -s https://codecov.io/bash) -t #{codecov_token} -J #{framework}"
+  # sh "sh <(curl -s https://codecov.io/bash) -t #{codecov_token} -J #{framework}"
 end
 
 
