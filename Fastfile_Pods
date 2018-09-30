@@ -131,9 +131,13 @@ end
 
 desc "Uploads Code Coverage Report To codecov.io"
 lane :codecov do |options|
+  project_name = options[:project_name]
+  token = options[:token]
+  puts project_name
+  puts token
   cmd = ['curl -s https://codecov.io/bash | bash']
-  cmd << "-J '#{options[:project_name]}'" if options[:project_name]
-  cmd << "-t '#{options[:token]}'" if options[:token]
+  cmd << "-J '#{project_name}'" if project_name
+  cmd << "-t '#{token}'" if token
   sh cmd.join(" ")
 end
 
