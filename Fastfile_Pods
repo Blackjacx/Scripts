@@ -39,18 +39,17 @@ fastlane_version "2.81.0"
 default_platform :ios
 
 before_all do
+  # This block is called, before execute the lane
 end
 
 
 after_all do |lane|
   # This block is called, only if the executed lane was successful
-  notification(message: "#{lane} finished")
 end
 
 
 error do |lane, exception|
   # This block is called, only if the executed lane failed
-  notification(message: "#{lane} finished with error #{exception}")
 end
 
 
