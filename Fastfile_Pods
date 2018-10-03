@@ -76,7 +76,7 @@ lane :release do |options|
   ensure_git_status_clean
   ensure_git_branch(branch: "develop")
   git_pull
-  pod_lib_lint(allow_warnings: false)
+  pod_lib_lint(allow_warnings: true)
   test(framework: framework, version: version)
 
   sh "git flow release start #{version}"
@@ -184,7 +184,7 @@ private_lane :push_framework_podspec do |options|
   
   podspec = "#{framework}.podspec"
 
-  pod_push(path: podspec)
+  pod_push(path: podspec, allow_warnings: true)
 end
 
 
