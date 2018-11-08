@@ -16,7 +16,7 @@
 # NOTE: To use faslane install:
 #           gem install bundler 
 #           brew install git-flow
-#           brew install apledoc
+#           brew install appledoc
 #
 #     Git-flow witll be configured upon installation or the first run of fastlane.
 #     IMPORTANT: Use the default options !!!
@@ -81,6 +81,7 @@ lane :release do |options|
 
   sh "git flow release start #{version}"
   
+  update_mit_license
   increment_framework_version(framework: framework, version: version)
   update_framework_podspec(framework: framework, version: version)
   push_github_release(framework: framework, version: version)
@@ -216,4 +217,26 @@ private_lane :push_github_release do |options|
     commitish: "master",
     # upload_assets: ["example_integration.ipa", "./pkg/built.gem"],
   )
+end
+
+
+
+desc "Updates the LICENSE file to MIT by replacing year and authors from a template file."
+private_lane :update_mit_license do |options|
+  fAuthors = "../AUTHORS"
+  UI.crash!("#{fAuthors} not found! Quit...") unless File.file?("#{fAuthors}")
+
+  fLicense = "../LICENSE"
+  UI.crash!("#{fLicense} not found! Quit...") unless File.file?("#{fLicense}")
+
+  authors = File.read("#{fAuthors}")
+    .gsub(/\n/, ", ")
+
+  data = download(url: "https://raw.githubusercontent.com/Blackjacx/Scripts/master/LICENSE_MIT")
+    .gsub(/<year>/, "#{Time.now.year}")
+    .gsub(/<copyright holders>/, "#{authors}")
+
+  newFile = File.open("#{fLicense}", "w")
+  newFile.write(data)
+  newFile.close
 end
