@@ -1,14 +1,12 @@
 #!/bin/bash
 
 # Define colors
-c_echo(){
-    RED="\033[0;31m"
-    GREEN='\033[0;32m'
-    YELLOW='\033[1;33m'
-    NC='\033[0m' # No Color
-
-    printf "${!1}${2} ${NC}\n"
-}
+red=$'\e[1;31m'
+green=$'\e[1;32m'
+blue=$'\e[1;34m'
+magenta=$'\e[1;35m'
+cyan=$'\e[1;36m'
+white=$'\e[0m'
 
 function loadEnvironment () {
   # Ignores commented lines
@@ -36,3 +34,6 @@ function checkInstalledImageMagick () {
   }
 }
 
+function trim () {
+  awk '{$1=$1};1'
+}
