@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Import Global Functionality
 . `dirname $0`/imports.sh --source-only
 
 # Treats spaces correctly in filenames

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define colors
+## Define colors
 red=$'\e[1;31m'
 green=$'\e[1;32m'
 blue=$'\e[1;34m'
@@ -36,4 +36,35 @@ function checkInstalledImageMagick () {
 
 function trim () {
   awk '{$1=$1};1'
+}
+
+## Function to upgrade all casks and packages 
+## (ignore "latest" casks)
+function brew-upgrade-all() {
+  if ! which socat &> /dev/null; then
+    echo "plz install socat, bro"
+    return 1
+  fi
+
+  brew update
+  brew upgrade
+
+  # Get all casks that are upgradable, but ignore 
+  # packages with "latest" as version set.
+  # Those packages would be upgraded everytime, 
+  # no matter whether there are actually new 
+  # versions.
+  # The "socat" workaround is required, as 
+  # homebrew only displays the "latest" 
+  # information when output is a TTY, so a simple 
+  # pipe doesn't work
+  local casks
+  casks=$(socat - EXEC:'brew cask outdated --greedy',pty,setsid,ctty |grep -v latest |awk '{ print $1 }')
+  if [ -n "$casks" ]; then
+    brew cask upgrade --greedy $cask
+  fi
+
+  brew prune
+  brew cleanup
+  brew doctor
 }
