@@ -112,16 +112,13 @@ lane :test do |options|
   framework = options[:framework]
   UI.crash!("No framework specified") if framework.nil? || framework.empty?
 
-  workspace = "Example/#{framework}.xcworkspace"
+  workspace = "#{framework}.xcworkspace"
 
-  cocoapods(
-    podfile: "Example/Podfile",
-    repo_update: true
-  )
+  cocoapods(repo_update: true)
 
   scan(
     workspace: workspace,
-    scheme: "#{framework}-Example",
+    scheme: framework,
     clean: true,
     devices: ["iPhone SE", "iPhone 8", "iPhone 8 Plus", "iPhone X"],
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
@@ -153,7 +150,7 @@ private_lane :increment_framework_version do |options|
   version = options[:version]
   UI.crash!("No version specified") if version.nil? || version.empty?
 
-  project = "Example/#{framework}.xcodeproj"
+  project = "#{framework}.xcodeproj"
 
   increment_version_number(xcodeproj: project, version_number: version)
   increment_build_number(xcodeproj: project)
