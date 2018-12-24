@@ -108,7 +108,6 @@ end
 
 desc "Runs tests using scan"
 lane :test do |options|
-
   framework = options[:framework]
   UI.crash!("No framework specified") if framework.nil? || framework.empty?
 
@@ -120,8 +119,6 @@ lane :test do |options|
     devices: ["iPhone SE", "iPhone 8", "iPhone 8 Plus", "iPhone X"],
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
   )
-
-  codecov(project_name: framework, token: ENV["CODECOV_TOKEN"])
 end
 
 desc "Uploads Code Coverage Report To codecov.io"
