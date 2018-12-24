@@ -77,7 +77,7 @@ lane :release do |options|
   ensure_git_branch(branch: "develop")
   git_pull
   pod_lib_lint(allow_warnings: true)
-  test(scheme: framework)
+  test(framework: framework)
 
   sh "git flow release start #{version}"
   
