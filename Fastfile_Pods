@@ -112,13 +112,10 @@ lane :test do |options|
   framework = options[:framework]
   UI.crash!("No framework specified") if framework.nil? || framework.empty?
 
-  workspace = "#{framework}.xcworkspace"
-
   cocoapods(repo_update: true) if File.file?("../Podfile")
 
   scan(
-    workspace: workspace,
-    scheme: framework,
+    scheme: framework-iOS,
     clean: true,
     devices: ["iPhone SE", "iPhone 8", "iPhone 8 Plus", "iPhone X"],
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
