@@ -114,7 +114,7 @@ lane :test do |options|
 
   workspace = "#{framework}.xcworkspace"
 
-  cocoapods(repo_update: true)
+  cocoapods(repo_update: true) if File.file?("../Podfile")
 
   scan(
     workspace: workspace,
