@@ -105,6 +105,7 @@ lane :release do |options|
   push_framework_podspec(framework: framework)
 end
 
+
 desc "Runs tests using scan"
 lane :test do |options|
   scheme = options[:scheme]
@@ -118,15 +119,6 @@ lane :test do |options|
     devices: ["iPhone SE", "iPhone 8", "iPhone 8 Plus", "iPhone X"],
     xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
   )
-end
-
-desc "Uploads Code Coverage Report To codecov.io"
-lane :codecov do |options|
-  cmd = ['curl -s https://codecov.io/bash | bash']
-  cmd << "-s --" if options.keys.inject(false) { |p, k| p or options[k] }
-  cmd << "-J '#{options[:project_name]}'" if options[:project_name]
-  cmd << "-t '#{options[:token]}'" if options[:token]
-  sh cmd.join(" ")
 end
 
 
