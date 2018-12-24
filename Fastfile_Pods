@@ -108,16 +108,15 @@ end
 
 desc "Runs tests using scan"
 lane :test do |options|
-  scheme = options[:scheme]
-  UI.crash!("No scheme specified") if scheme.nil? || scheme.empty?
+  framework = options[:framework]
+  UI.crash!("No framework specified") if framework.nil? || framework.empty?
+
+  xargs="-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
 
   cocoapods(repo_update: true) if File.file?("../Podfile")
 
-  scan(
-    scheme: "#{scheme}",
-    clean: true,
-    xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
-  )
+  scan(scheme: "#{framework}-iOS", clean: true, xcargs: xargs)
+  scan(scheme: "#{framework}-tvOS", clean: true, xcargs: xargs)
 end
 
 
@@ -127,13 +126,8 @@ end
 
 desc "Increments CFBundleVersion by one and sets CFBundleShortVersionString"
 private_lane :increment_framework_version do |options|
-
   framework = options[:framework]
-  UI.crash!("No framework specified") if framework.nil? || framework.empty?
-
   version = options[:version]
-  UI.crash!("No version specified") if version.nil? || version.empty?
-
   project = "#{framework}.xcodeproj"
 
   increment_version_number(xcodeproj: project, version_number: version)
@@ -144,13 +138,8 @@ end
 
 desc "Updates framework podspec version"
 private_lane :update_framework_podspec do |options|
-
   framework = options[:framework]
-  UI.crash!("No framework specified") if framework.nil? || framework.empty?
-
   version = options[:version]
-  UI.crash!("No version specified") if version.nil? || version.empty?
-
   podspec = "#{framework}.podspec"
 
   version_bump_podspec(path: podspec, version_number: version)
@@ -160,12 +149,8 @@ end
 
 desc "Pushes framework podspec to Cocoapods specs"
 private_lane :push_framework_podspec do |options|
-
-  framework = options[:framework]
-  UI.crash!("No framework specified") if framework.nil? || framework.empty?
-  
+  framework = options[:framework]  
   podspec = "#{framework}.podspec"
-
   pod_push(path: podspec, allow_warnings: true)
 end
 
@@ -173,12 +158,8 @@ end
 
 desc "Creates a github release with a git commit changelog"
 private_lane :push_github_release do |options|
-
   framework = options[:framework]
-  UI.crash!("No framework specified") if framework.nil? || framework.empty?
-
   version = options[:version]
-  UI.crash!("No version specified") if version.nil? || version.empty?
 
   changelog = read_changelog(
     section_identifier: '[Unreleased]',	# Specify what section to read
