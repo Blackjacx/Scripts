@@ -115,8 +115,7 @@ lane :test do |options|
 
   scan(
     scheme: "#{scheme}",
-    clean: true,
-    xcargs: "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
+    clean: true
   )
 end
 
