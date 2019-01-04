@@ -118,10 +118,10 @@ lane :test do |options|
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if File.file?("../Podfile")
 
-  scan(scheme: "#{framework}-iOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "iOS"
+  # scan(scheme: "#{framework}-iOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "iOS"
   scan(scheme: "#{framework}-tvOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "tvOS"
-  scan(scheme: "#{framework}-watchOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "watchOS"
-  scan(scheme: "#{framework}-macOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "macOS"
+  # scan(scheme: "#{framework}-watchOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "watchOS"
+  # scan(scheme: "#{framework}-macOS", test_without_building: false, clean: true, xcargs: xargs) if schemes.include? "macOS"
 end
 
 
