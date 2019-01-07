@@ -18,10 +18,7 @@ command -v rsvg-convert >/dev/null 2>&1 || {
 
 SVG_LIST=($(ls $INPUT_FOLDER/*.svg))
 JSON="{\"images\":[{\"idiom\":\"universal\",\"filename\":\"##FILE_NAME##\"}],\"info\":{\"version\":1,\"author\":\"xcode\"},\"properties\":{\"preserves-vector-representation\":true}}"
-ASSET_FOLDER="/tmp/Assets.xcassets"
-
-
-rm -rf $ASSET_FOLDER
+ASSET_FOLDER="$(mktemp -d)/Assets.xcassets"
 
 for SVG in "${SVG_LIST[@]}"; do
   ID=$(echo $(basename $SVG) | cut -d. -f1)
