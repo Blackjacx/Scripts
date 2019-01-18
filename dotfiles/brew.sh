@@ -11,14 +11,14 @@ brew install coreutils
 brew install curl
 brew install doxygen
 brew install e2fsprogs
-brew install ffmpeg --with-libass --with-fontconfig
+brew install ffmpeg
 brew install figlet
 brew install git
 brew install grep
 brew install htop
 brew install httpie
 brew install hub
-brew install imagemagick --with-fontconfig
+brew install imagemagick
 brew install jq
 brew install man
 brew install mplayer
