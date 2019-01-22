@@ -6,12 +6,12 @@ module Fastlane
     class TagReleasedPrAction < Action
       def self.run(params)
         # fastlane will take care of reading in the parameter and fetching the environment variable:
-        UI.message "Parameter Github Token: #{params[:github_token]}"
-        UI.message "Parameter Github Account: #{params[:github_account]}"
-        UI.message "Parameter Github Repo: #{params[:github_repo]}"
-        UI.message "Parameter Version: #{params[:release_version]}"
-        UI.message "Parameter PR id: #{params[:pr_id]}"
-        UI.message "Parameter PR title: #{params[:pr_title]}"
+        # UI.message "Parameter Github Token: #{params[:github_token]}"
+        # UI.message "Parameter Github Account: #{params[:github_account]}"
+        # UI.message "Parameter Github Repo: #{params[:github_repo]}"
+        # UI.message "Parameter Version: #{params[:release_version]}"
+        # UI.message "Parameter PR id: #{params[:pr_id]}"
+        # UI.message "Parameter PR title: #{params[:pr_title]}"
 
         sh "curl https://api.github.com/repos/#{params[:github_account]}/#{params[:github_repo]}/issues/#{params[:pr_id]}/comments -H \"Authorization: token #{params[:github_token]}\"  --data \'{\"body\": \"Congratulations! 🎉 This was released in version [#{params[:release_version]}](https://github.com/#{params[:github_account]}/#{params[:github_repo]}/releases/tag/#{params[:release_version]}) 🚀\"}\'"
         sh "curl https://api.github.com/repos/#{params[:github_account]}/#{params[:github_repo]}/pulls/#{params[:pr_id]} -H \"Authorization: token #{params[:github_token]}\" --data \'{\"title\": \"#{params[:pr_title]} [#{params[:release_version]}]\"}\'"
