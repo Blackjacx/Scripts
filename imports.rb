@@ -16,7 +16,7 @@ end
 # Uses a section from a changelog and converts them to an array of hashes of issue number and pr title.
 # Params:
 # +section+:: The section of a changelog representing a release. The format has to be like https://raw.githubusercontent.com/Blackjacx/SHSearchBar/develop/CHANGELOG.md.
-def changelog_get_issue_numbers_and_titles(section)  
+def get_issue_numbers_and_titles(section)  
   issues_titles = []
   section.split(/\n/).each do |line|
     issue = line[/\* \[#(.*?)\]\(/m, 1]
