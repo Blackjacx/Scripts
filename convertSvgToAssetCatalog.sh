@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
 usage() {
   echo "$1"
@@ -6,27 +8,27 @@ usage() {
   echo "Quit..."
 }
 
-INPUT_FOLDER=$1
-OUTPUT_FOLDER=$2
+if [ -z "${1:-}" ]; then usage "Input Folder missing!"; exit 1; fi
+if [ -z "${2:-}" ]; then usage "Output Folder missing!"; exit 1; fi
 
-if [ -z "$INPUT_FOLDER" ]; then usage "Input Folder missing!"; exit 1; fi
-if [ -z "$OUTPUT_FOLDER" ]; then usage "Output Folder missing!"; exit 1; fi
+input_folder=$1
+output_folder=$2
 
 command -v rsvg-convert >/dev/null 2>&1 || { 
   echo >&2 usage "RsvgConvert missing - Install using \"brew install librsvg\"."; exit 1;
 }
 
-SVG_LIST=($(ls $INPUT_FOLDER/*.svg))
-JSON="{\"images\":[{\"idiom\":\"universal\",\"filename\":\"##FILE_NAME##\"}],\"info\":{\"version\":1,\"author\":\"xcode\"},\"properties\":{\"preserves-vector-representation\":true}}"
-ASSET_FOLDER="$(mktemp -d)/Assets.xcassets"
+svg_list=($(ls $input_folder/*.svg))
+json="{\"images\":[{\"idiom\":\"universal\",\"filename\":\"##FILE_NAME##\"}],\"info\":{\"version\":1,\"author\":\"xcode\"},\"properties\":{\"preserves-vector-representation\":true}}"
+asset_folder="$(mktemp -d)/Assets.xcassets"
 
-for SVG in "${SVG_LIST[@]}"; do
-  ID=$(echo $(basename $SVG) | cut -d. -f1)
-  IMAGESET="$ASSET_FOLDER/$ID.imageset"
+for SVG in "${svg_list[@]}"; do
+  id=$(echo $(basename $SVG) | cut -d. -f1)
+  imageset="$asset_folder/$id.imageset"
 
-  mkdir -p $IMAGESET
-  rsvg-convert -f pdf -o $IMAGESET/$ID.pdf $SVG
-  echo ${JSON/"##FILE_NAME##"/"$ID.pdf"} > "$IMAGESET/Contents.json"
+  mkdir -p $imageset
+  rsvg-convert -f pdf -o $imageset/$id.pdf $SVG
+  echo ${json/"##FILE_NAME##"/"$id.pdf"} > "$imageset/Contents.json"
 done
 
-mv $ASSET_FOLDER $OUTPUT_FOLDER
+mv $asset_folder $output_folder
