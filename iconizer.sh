@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Iconizer shell script by Stefan Herold
 

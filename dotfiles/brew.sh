@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # Make sure we’re using the latest Homebrew
 brew update
 

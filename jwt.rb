@@ -2,7 +2,8 @@ require "base64"
 require "jwt"
 ISSUER_ID = "P4LECE5B35"
 KEY_ID = "NCWZ5SAFTZ"
-private_key = OpenSSL::PKey.read(File.read("/Users/stherold/Downloads/AuthKey_#{KEY_ID}.p8"))
+key_file = ARGV[0]
+private_key = OpenSSL::PKey.read(File.read("#{key_file}"))
 
 token = JWT.encode(
    {
