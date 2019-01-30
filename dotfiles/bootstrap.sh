@@ -28,12 +28,12 @@ defaults write http://com.apple.iphonesimulator ShowSingleTouches 1
 # Defaults
 ###############################################################################
 
-# show file extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-# stop photos from opening automatically when connecting an iphone
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g AppleShowAllExtensions -bool true # show file extensions
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true # stop photos from opening automatically when connecting an iphone
 # disable animations when opening and closing windows
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 # Enable debug menu in Reminders to use the manual iCloud sync
 defaults write com.apple.reminders RemindersDebugMenu -boolean true
 # Use plain text as default format in TextEdit
