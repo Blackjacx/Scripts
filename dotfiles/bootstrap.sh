@@ -18,13 +18,6 @@ DOTFILES="$HOME/.dotfiles"
 git clone git@github.com:blackjacx/dotfiles.git $DOTFILES
 
 #
-# iPhone Simulator
-###############################################################################
-
-# Shows touches - nice for recording videos
-defaults write http://com.apple.iphonesimulator ShowSingleTouches 1
-
-#
 # Defaults
 ###############################################################################
 
@@ -36,6 +29,10 @@ defaults write -g NSAutomaticWindowAnimationsEnabled -bool false # disable anima
 defaults write com.apple.reminders RemindersDebugMenu -boolean true # Enable debug menu in Reminders to use the manual iCloud sync
 defaults write com.apple.TextEdit RichText -int 0 # Use plain text as default format in TextEdit
 defaults write com.apple.dock mru-spaces -bool false # Disable automatically rearrange Spaces based on recent use
+
+# iOS Simulator
+defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 # Shows touches - nice for recording videos
+
 killall Finder # restart finder
 
 #
