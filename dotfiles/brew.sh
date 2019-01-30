@@ -40,6 +40,7 @@ brew install zsh
 brew tap caskroom/homebrew install-cask
 # brew cask install 1password # this installs the pricy 1password 7
 brew cask install alfred
+brew cask install battle-net
 brew cask install brisk
 brew cask install charles
 brew cask install dash
