@@ -32,16 +32,11 @@ defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write -g AppleShowAllExtensions -bool true # show file extensions
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true # stop photos from opening automatically when connecting an iphone
-# disable animations when opening and closing windows
-defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
-# Enable debug menu in Reminders to use the manual iCloud sync
-defaults write com.apple.reminders RemindersDebugMenu -boolean true
-# Use plain text as default format in TextEdit
-defaults write com.apple.TextEdit RichText -int 0
-# Disable automatically rearrange Spaces based on recent use
-defaults write com.apple.dock mru-spaces -bool false
-# restart finder
-killall Finder
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false # disable animations when opening and closing windows
+defaults write com.apple.reminders RemindersDebugMenu -boolean true # Enable debug menu in Reminders to use the manual iCloud sync
+defaults write com.apple.TextEdit RichText -int 0 # Use plain text as default format in TextEdit
+defaults write com.apple.dock mru-spaces -bool false # Disable automatically rearrange Spaces based on recent use
+killall Finder # restart finder
 
 #
 # Homebrew

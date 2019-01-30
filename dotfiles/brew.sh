@@ -24,7 +24,9 @@ brew install hub
 brew install imagemagick
 brew install jq
 brew install man
+brew install mas # download appstore apps
 brew install mplayer
+brew install npm
 brew install node
 brew install openssl
 brew install p0f
