@@ -30,8 +30,9 @@ defaults write com.apple.reminders RemindersDebugMenu -boolean true # Enable deb
 defaults write com.apple.TextEdit RichText -int 0 # Use plain text as default format in TextEdit
 defaults write com.apple.dock mru-spaces -bool false # Disable automatically rearrange Spaces based on recent use
 
-# iOS Simulator
-defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 # Shows touches - nice for recording videos
+# iOS Development
+defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 # Shows touches in simulator - nice for recording videos
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES # Shows build time in Xcode's top activity bar
 
 killall Finder # restart finder
 
