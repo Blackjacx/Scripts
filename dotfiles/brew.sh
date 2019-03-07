@@ -8,8 +8,10 @@ brew update
 brew upgrade --all
 
 # Packages
-brew install ag
+brew tap jzaleski/homebrew-jzaleski
 brew install apg # generate strong passwords
+
+brew install ag
 brew install carthage
 brew install coreutils
 brew install curl
