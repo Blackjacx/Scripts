@@ -9,6 +9,7 @@ brew upgrade --all
 
 # Packages
 brew install ag
+brew install apg # generate strong passwords
 brew install carthage
 brew install coreutils
 brew install curl
