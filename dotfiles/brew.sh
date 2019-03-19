@@ -36,6 +36,7 @@ brew install p0f
 brew install pstree
 brew install rbenv
 brew install ripgrep
+brew install shellcheck
 brew install tree
 brew install watch
 brew install wget
