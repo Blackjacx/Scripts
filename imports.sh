@@ -11,8 +11,8 @@ white=$'\e[0m'
 function loadEnvironment () {
   # Ignores commented lines
   ENV_FILE="$(dirname "$0")/../.env"
-  if [ -f $ENV_FILE ]; then
-    export $(grep -v '^#' $ENV_FILE | xargs) 
+  if [ -f "$ENV_FILE" ]; then
+    export "$(grep -v '^#' "$ENV_FILE" | xargs)"
   fi
 }
 
@@ -41,11 +41,10 @@ function trim () {
 ## Function to upgrade all casks and packages 
 ## (ignore "latest" casks)
 function brew-upgrade-all() {
-  if ! which socat &> /dev/null; then
-    echo "plz install socat, bro"
-    return 1
-  fi
-
+  command -v socat >/dev/null 2>&1 || { 
+    echo >&2 "Please install socat."; return 1
+  }
+  
   brew update
   brew upgrade
 
@@ -61,7 +60,7 @@ function brew-upgrade-all() {
   local casks
   casks=$(socat - EXEC:'brew cask outdated --greedy',pty,setsid,ctty |grep -v latest |awk '{ print $1 }')
   if [ -n "$casks" ]; then
-    brew cask upgrade --greedy $cask
+    brew cask upgrade --greedy "$casks"
   fi
 
   brew prune
