@@ -9,13 +9,12 @@
 #
 # DISCLAIMER: Don't execute it if you do not know what you rae doing!!!
 
-DOTFILES="$HOME/.dotfiles"
-
 #
-# Clone Dotfiles
+# Dotfiles
 ###############################################################################
 
-git clone git@github.com:blackjacx/dotfiles.git $DOTFILES
+# DOTFILES="$HOME/.dotfiles"
+# git clone git@github.com:blackjacx/dotfiles.git $DOTFILES
 
 #
 # Defaults
