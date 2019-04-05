@@ -65,6 +65,7 @@ casks=(
   dash
   deckset
   disk-inventory-x
+  docker
   dropbox
   emacs
   fantastical
@@ -111,7 +112,8 @@ echo "#################################################################"
 echo "Installing Python software"
 echo "#################################################################"
 
-pip install xkcdpass # memorable passsword generator
+# [ERROR] pip is not installed!
+# pip install xkcdpass # memorable passsword generator
 
 echo "#################################################################"
 echo "Setting up ZSH with Oh-My-Zsh"
@@ -125,30 +127,33 @@ sudo chsh -s /usr/local/bin/zsh
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo "#################################################################"
-echo "Installing Ruby Gems"
-echo "#################################################################"
+# Make first shure ZSH and oh-my-zsh are installed correctly 
+# echo "#################################################################"
+# echo "Installing Ruby Gems"
+# echo "#################################################################"
+# 
+# RUBY_GEMS=(
+#   bundler
+# )
+# export GEM_HOME="${HOME}/.gems"
+# gem install ${RUBY_GEMS[@]}
 
-RUBY_GEMS=(
-  bundler
-)
-export GEM_HOME="${HOME}/.gems"
-gem install ${RUBY_GEMS[@]}
+command -v xcode >/dev/null 2>&1 || { 
+  echo "#################################################################"
+  echo "Installing Xcode"
+  echo "#################################################################"
 
-echo "#################################################################"
-echo "Installing Xcode commandline tools"
-echo "#################################################################"
+  mas install 497799835  # Xcode
 
-# xcode-select --install
+  echo "#################################################################"
+  echo "Agree to Xcode License"
+  echo "#################################################################"
 
-echo "#################################################################"
-echo "Agree to Xcode License"
-echo "#################################################################"
+  xcodebuild -license accept
 
-# xcodebuild -license accept
+  echo "#################################################################"
+  echo "Installing Xcode commandline tools"
+  echo "#################################################################"
 
-echo "#################################################################"
-echo "Installing Mac Appstore Apps"
-echo "#################################################################"
-
-# mas install 497799835  # Xcode
+  xcode-select --install
+}
