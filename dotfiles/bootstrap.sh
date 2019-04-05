@@ -73,6 +73,8 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+# Remove dock auto-hide delay
+defaults write com.apple.dock autohide-delay -float 0
 
 #
 # Terminal
