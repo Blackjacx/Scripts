@@ -42,7 +42,7 @@ brew install wget
 brew install zsh
 
 # brew cask installs
-brew tap caskroom/homebrew install-cask
+brew tap caskroom/cask
 # brew cask install 1password # this installs the pricy 1password 7
 brew cask install alfred
 brew cask install battle-net
