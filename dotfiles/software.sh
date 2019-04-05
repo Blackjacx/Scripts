@@ -2,7 +2,7 @@
 #
 # Installs all needed software, ruby gems, Homebrew packages and casks
 #
-set -eu
+set -uo pipefail
 
 command -v brew >/dev/null 2>&1 || { 
   echo "#################################################################"

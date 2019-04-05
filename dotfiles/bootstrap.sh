@@ -6,7 +6,7 @@
 #
 # DISCLAIMER: Don't execute it if you do not know what you are doing!!!
 #
-set -eu
+set -uo pipefail
 
 #
 # Dotfiles
