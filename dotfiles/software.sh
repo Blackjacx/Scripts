@@ -22,9 +22,6 @@ brew update
 brew upgrade
 
 # Packages
-brew tap jzaleski/homebrew-jzaleski # for apg
-brew tap caskroom/fonts # for fonts
-
 packages=(
   ag
   apg # generate strong passwords
@@ -58,7 +55,6 @@ packages=(
   zsh
 )
 brew install ${packages[@]}
-
 
 casks=(
   # 1password # this installs the pricy 1password 7
@@ -101,8 +97,9 @@ casks=(
   wwdc
   zeplin
 )
-# Install brew cask
-brew tap caskroom/cask
+brew tap caskroom/cask # install cask system
+brew tap caskroom/fonts # support for fonts
+brew tap jzaleski/homebrew-jzaleski # support for apg
 brew cask install ${casks[@]}
 
 # Cleanup
