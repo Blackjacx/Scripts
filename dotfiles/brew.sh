@@ -5,7 +5,7 @@ set -euo pipefail
 brew update
 
 # Upgrade any already-installed formulae.
-brew upgrade --all
+brew upgrade
 
 # Packages
 brew tap jzaleski/homebrew-jzaleski
