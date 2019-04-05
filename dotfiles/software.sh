@@ -20,6 +20,7 @@ brew update
 
 # Upgrade any already-installed formulae.
 brew upgrade
+brew cask upgrade
 
 # Packages
 packages=(
