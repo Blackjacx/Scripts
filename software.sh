@@ -119,9 +119,9 @@ echo "Credits: https://stackoverflow.com/a/17649823/971329"
 echo "#################################################################"
 
 # append zsh to the end of /etc/shells
-sudo echo "/usr/local/bin/zsh"  >> /etc/shells
+sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
 # change default shell
-chsh -s /usr/local/bin/zsh
+sudo chsh -s /usr/local/bin/zsh
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -132,22 +132,23 @@ echo "#################################################################"
 RUBY_GEMS=(
   bundler
 )
-sudo gem install ${RUBY_GEMS[@]}
+export GEM_HOME="${HOME}/.gems"
+gem install ${RUBY_GEMS[@]}
 
 echo "#################################################################"
 echo "Installing Xcode commandline tools"
 echo "#################################################################"
 
-xcode-select --install
+# xcode-select --install
 
 echo "#################################################################"
 echo "Agree to Xcode License"
 echo "#################################################################"
 
-xcodebuild -license accept
+# xcodebuild -license accept
 
 echo "#################################################################"
 echo "Installing Mac Appstore Apps"
 echo "#################################################################"
 
-mas install 497799835  # Xcode
+# mas install 497799835  # Xcode
