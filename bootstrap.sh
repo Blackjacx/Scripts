@@ -12,8 +12,7 @@ set -uo pipefail
 # Dotfiles
 ########################################################################
 
-# DOTFILES="$HOME/.dotfiles"
-# git clone git@github.com:blackjacx/dotfiles.git $DOTFILES
+DOTFILES="$(cd "$(dirname "$0")"; pwd -P)/dotfiles"
 
 #
 # Defaults
@@ -106,11 +105,3 @@ done
 
 # Install all neede software, Homebrew packages and casks
 ./software.sh
-
-#
-# Shell (ZSH)
-# Install via Homebrew: https://stackoverflow.com/a/17649823/971329
-########################################################################
-
-export ZSH="$HOME/.oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
