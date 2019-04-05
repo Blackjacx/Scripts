@@ -5,6 +5,8 @@
 # It is not guaranteed that every command will work!
 #
 # DISCLAIMER: Don't execute it if you do not know what you are doing!!!
+#
+set -eu
 
 #
 # Dotfiles
