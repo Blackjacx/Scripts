@@ -43,9 +43,7 @@ killall Finder # restart finder
 # Homebrew
 ###############################################################################
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# Install all packages and casks from Brewfile
+# Install Homebrew and all needed packages and casks
 ./brew.sh
 
 #

@@ -1,6 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
+# Install Homebrew if not already present
+command -v brew >/dev/null 2>&1 || { 
+  echo >&2 "brew not installed - Installing now..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
 # Make sure we’re using the latest Homebrew
 brew update
 
