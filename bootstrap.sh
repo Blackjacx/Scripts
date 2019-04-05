@@ -12,7 +12,7 @@ set -uo pipefail
 # Dotfiles
 ########################################################################
 
-DOTFILES="$(cd "$(dirname "$0")"; pwd -P)/dotfiles"
+# export DOTFILES="$(cd "$(dirname "$0")"; pwd -P)/dotfiles"
 
 #
 # Defaults
