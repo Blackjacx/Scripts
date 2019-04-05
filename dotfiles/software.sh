@@ -96,7 +96,6 @@ casks=(
   telegram
   tunnelblick
   typora
-  ulysses
   vlc
   wireshark
   wwdc
