@@ -29,6 +29,7 @@ packages=(
   carthage
   coreutils
   curl
+  docker
   doxygen
   e2fsprogs # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
   ffmpeg
