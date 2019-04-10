@@ -62,9 +62,9 @@ plugins=(git-extra-commands git-extras sublime git gem pod brew bundler common-a
 # User configuration
 
 # Set user gem path to avoid the need of sudo
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin"
 export GEM_HOME=$HOME/.gem
-export PATH="$GEM_HOME/bin:$PATH"
+# Set the path using specified order
+export PATH="$GEM_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin"
 
 ### History settings
 ### ignore these commands
