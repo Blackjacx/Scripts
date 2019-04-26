@@ -1,0 +1,27 @@
+[core]
+	excludesfile = ${HOME}/.gitignore_global
+	mergeoptions = --no-edit
+	editor = subl -n -w
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Stefan Herold
+	email = stefan.herold@gmail.com
+	signingkey = DE546DEBFC1C1C01
+[push]
+	default = simple
+[commit]
+	template = ${HOME}/.stCommitMsg
+	gpgsign = true
+[branch]
+	autosetuprebase = always
+[github]
+	user = blackjacx
+[ghi]
+	token = !security find-internet-password -a blackjacx -s github.com -l 'ghi token' -w
+[credential]
+	helper = osxkeychain
