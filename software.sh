@@ -154,10 +154,4 @@ command -v xcode >/dev/null 2>&1 || {
   echo "#################################################################"
 
   xcodebuild -license accept
-
-  echo "#################################################################"
-  echo "Installing Xcode commandline tools"
-  echo "#################################################################"
-
-  xcode-select --install
 }
