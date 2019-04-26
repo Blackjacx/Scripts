@@ -65,10 +65,17 @@ registerDefaults() {
   defaults write com.apple.finder ShowStatusBar -bool true
   # Show Pathbar
   defaults write com.apple.finder ShowPathbar -bool true
+  
+  #
+  # Dock
+  #
+
   # Automatically hide and show the Dock
   defaults write com.apple.dock autohide -bool true
   # Remove dock auto-hide delay
   defaults write com.apple.dock autohide-delay -float 0
+  # Move the dock to the left
+  defaults write com.apple.Dock orientation -string left
 
   #
   # Terminal
