@@ -112,6 +112,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
+alias opendoc='cd ${HOME}/dev/projects/db/api-docs; git reset --hard; git checkout master; git pull; open passenger-api.html; cd -'
 alias cdtmp='cd "$(mktemp -d)"'
 alias git=hub
 alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
