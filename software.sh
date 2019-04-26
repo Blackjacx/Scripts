@@ -57,6 +57,7 @@ packages=(
   wget
   zsh
 )
+brew tap jzaleski/homebrew-jzaleski # support for apg
 brew install ${packages[@]}
 
 casks=(
@@ -103,7 +104,6 @@ casks=(
 )
 brew tap caskroom/cask # install cask system
 brew tap caskroom/fonts # support for fonts
-brew tap jzaleski/homebrew-jzaleski # support for apg
 brew cask install ${casks[@]}
 
 # Cleanup
