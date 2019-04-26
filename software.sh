@@ -42,7 +42,6 @@ packages=(
   hub
   imagemagick
   jq # Command-line JSON processor
-  mas # Mac App Store command line interface
   mplayer
   npm
   node
@@ -141,17 +140,3 @@ grep -q /usr/local/bin/zsh /etc/shells || {
 # )
 # export GEM_HOME="${HOME}/.gems"
 # gem install ${RUBY_GEMS[@]}
-
-command -v xcode >/dev/null 2>&1 || { 
-  echo "#################################################################"
-  echo "Installing Xcode"
-  echo "#################################################################"
-
-  mas install 497799835  # Xcode
-
-  echo "#################################################################"
-  echo "Agree to Xcode License"
-  echo "#################################################################"
-
-  xcodebuild -license accept
-}
