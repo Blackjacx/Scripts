@@ -130,13 +130,11 @@ grep -q /usr/local/bin/zsh /etc/shells || {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
-# Make first shure ZSH and oh-my-zsh are installed correctly 
-# echo "#################################################################"
-# echo "Installing Ruby Gems"
-# echo "#################################################################"
-# 
-# RUBY_GEMS=(
-#   bundler
-# )
-# export GEM_HOME="${HOME}/.gems"
-# gem install ${RUBY_GEMS[@]}
+echo "#################################################################"
+echo "Installing Ruby Gems"
+echo "#################################################################"
+
+RUBY_GEMS=(
+  bundler
+)
+gem install ${RUBY_GEMS[@]}
