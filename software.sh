@@ -126,7 +126,7 @@ grep -q /usr/local/bin/zsh /etc/shells || {
   # append zsh to the end of /etc/shells
   sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
   # change default shell
-  sudo chsh -s /usr/local/bin/zsh
+  chsh -s /usr/local/bin/zsh
   # install oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
