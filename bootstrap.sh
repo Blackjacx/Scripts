@@ -11,7 +11,7 @@ set -uo pipefail
 script_dir="$(cd "$(dirname "$0")"; pwd -P)"
 
 # TODOS
-# - display free diskspace on desktop
+# https://nerdlogger.com/2012/07/30/get-control-of-mountain-lion-with-a-huge-list-of-command-line-tweaks/
 # - new finder windows open home folder
 #
 
@@ -66,6 +66,8 @@ registerDefaults() {
   defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
   # Desktop: Show Mounted servers
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+  # Desktop: Show item info below icons
+  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
   # Show columns view by default
   defaults write com.apple.finder FXPreferredViewStyle clmv
   # Show Statusbar
