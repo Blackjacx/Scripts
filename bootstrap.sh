@@ -10,7 +10,10 @@ set -uo pipefail
 
 script_dir="$(cd "$(dirname "$0")"; pwd -P)"
 
-
+# TODOS
+# - display free diskspace on desktop
+# - new finder windows open home folder
+#
 
 registerDefaults() {
   #
@@ -61,6 +64,8 @@ registerDefaults() {
   defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
   # Desktop: Show Mounted servers
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+  # Show columns view by default
+  defaults write com.apple.finder FXPreferredViewStyle clmv
   # Show Statusbar
   defaults write com.apple.finder ShowStatusBar -bool true
   # Show Pathbar
@@ -122,6 +127,5 @@ linkDotfiles() {
 
 
 
-registerDefaults
-installSoftware
+
 linkDotfiles
