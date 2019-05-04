@@ -92,6 +92,7 @@ casks=(
   sourcetree
   spectacle
   spotify
+  sublime-merge
   sublime-text
   telegram
   tunnelblick

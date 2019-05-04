@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ${HOME}/.gitignore_global
+	excludesfile = /Users/stherold/.gitignore_global
 	mergeoptions = --no-edit
 	editor = subl -n -w
 [difftool "sourcetree"]
