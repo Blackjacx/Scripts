@@ -62,7 +62,6 @@ brew install ${packages[@]}
 
 casks=(
   # 1password # this installs the pricy 1password 7
-  battle-net
   brisk
   charles
   dash
