@@ -36,6 +36,7 @@ packages=(
   figlet
   git # Distributed version-control system for tracking changes in source code during software development
   git-extras
+  git-flow
   gource # Software version control visualization
   grep
   htop
