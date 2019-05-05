@@ -37,7 +37,7 @@ registerDefaults() {
   # Disable user interface sound effects
   defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
   # Store screenshots in a dedicated place - not on desktop
-  defaults write com.apple.screencapture location ${HOME}/Pictures/screenshots
+  defaults write com.apple.screencapture location ${HOME}/Dropbox/img/screenshots
 
   #
   # Global
