@@ -35,6 +35,7 @@ packages=(
   ffmpeg
   figlet
   git # Distributed version-control system for tracking changes in source code during software development
+  git-extras
   gource # Software version control visualization
   grep
   htop
