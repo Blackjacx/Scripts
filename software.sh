@@ -140,3 +140,13 @@ RUBY_GEMS=(
   bundler
 )
 gem install ${RUBY_GEMS[@]}
+
+echo "#################################################################"
+echo "Installing AppStore Apps"
+echo "#################################################################"
+
+echo "Noting yet..."
+# > Apple Configurator
+# > Audiacity
+# > Tweetbot
+# > Xcode
