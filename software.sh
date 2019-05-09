@@ -24,7 +24,7 @@ brew cask upgrade
 
 # Packages
 packages=(
-  ag
+  ag # code-searching tool similar to ack, but faster
   apg # generate strong passwords
   carthage
   coreutils
@@ -33,37 +33,40 @@ packages=(
   doxygen
   e2fsprogs # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
   ffmpeg
-  figlet
-  git # Distributed version-control system for tracking changes in source code during software development
+  figlet # making large letters out of ordinary text
+  file
+  git # distributed version-control system for tracking changes in source code during software development
   git-extras
   git-flow
-  gource # Software version control visualization
+  gource # software version control visualization
   grep
   htop
   httpie
   hub
   imagemagick
-  jq # Command-line JSON processor
-  mplayer
+  jq # command-line JSON processor
+  man
+  mplayer # free and open-source media player
   npm
   node
   openssl
   p0f
   pstree
   rbenv
-  ripgrep
+  ripgrep # recursively searches directories for a regex pattern
   shellcheck # static analysis tool for shell scripts
   tree
   watch
   wget
   zsh
+  zsh-completions
 )
 brew tap jzaleski/homebrew-jzaleski # support for apg
 brew install ${packages[@]}
 
 casks=(
   # 1password # this installs the pricy 1password 7
-  brisk
+  brisk # submitting radars
   charles
   dash
   deckset
@@ -77,6 +80,7 @@ casks=(
   font-roboto
   font-source-code-pro
   # firefox # to work correctly with 1password install it manually
+  geektool
   gpg-suite
   # google-chrome # to work correctly with 1password install it manually
   handbrake
@@ -96,6 +100,7 @@ casks=(
   sublime-merge
   sublime-text
   telegram
+  texshop
   tunnelblick
   typora
   vlc
@@ -140,13 +145,3 @@ RUBY_GEMS=(
   bundler
 )
 gem install ${RUBY_GEMS[@]}
-
-echo "#################################################################"
-echo "Installing AppStore Apps"
-echo "#################################################################"
-
-echo "Noting yet..."
-# > Apple Configurator
-# > Audiacity
-# > Tweetbot
-# > Xcode
