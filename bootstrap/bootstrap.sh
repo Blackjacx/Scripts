@@ -15,7 +15,7 @@ script_dir="$(cd "$(dirname "$0")"; pwd -P)"
 # - new finder windows open home folder
 #
 
-registerDefaults() {
+configureSystem() {
   #
   # Misc
   #
@@ -111,14 +111,10 @@ registerDefaults() {
   done
 }
 
-
-
 installSoftware() {
   # Install all needed software, Homebrew packages, casks, etc.
   ./software.sh
 }
-
-
 
 linkDotfiles() {
   # Finds hidden dotfiles and uses safe syntax to execute loop
@@ -129,7 +125,76 @@ linkDotfiles() {
   done
 }
 
+cloneRepositories() {
+  pods=(
+    "git@github.com:Blackjacx/Columbus.git"
+    "git@github.com:Blackjacx/RADToolKit.git"
+    "git@github.com:Blackjacx/SHDateFormatter.git"
+    "git@github.com:Blackjacx/SHSearchBar.git"
+    "git@github.com:Blackjacx/Source.git"
+  )
+  base_dir="${HOME}/dev/projects/private"
 
+  git clone "git@github.com:Blackjacx/Playgrounds.git" "${HOME}/dev/projects/private/playgrounds"
 
+  for repo in ${pods[@]}; do
+    git clone $repo "$base_dir/pods/$(basename $repo | cut -d'.' -f1)"
+  done
+}
 
-linkDotfiles
+showUsage() {
+# `cat << EOF` This means that cat should stop reading when EOF is detected
+cat << EOF  
+Usage: $0 [-hvcilr]
+
+Sets up a development mac by setting system configurations, installing 
+software and linking dotfiles to your home folder.
+
+-h     Display this help
+-v     Run script in verbose mode. Will print out each step of execution
+-c     Configure default values for the system
+-i     Install software using brew and brew cask
+-l     Link dotfiles to your home folder
+-r     Repositories on the internet are cloned
+
+EOF
+# EOF is found above and hence cat command stops reading.
+}
+
+# Check for empty parameters
+if [ -z "${1:-}" ]; then
+	echo "No parameters provided"
+  showUsage
+  exit 1
+fi
+
+while getopts "hvcilr" opt; do
+  case ${opt} in
+    h)
+      showUsage; exit 0;;
+    v)
+      export verbose=1
+      set -xv  # Set xtrace and verbose mode.
+      ;;
+    c)
+      echo "Configure System..."
+      # configureSystem
+      ;;
+    i)
+	    echo "Install Software..."
+      # installSoftware
+      ;;
+    l)
+      echo "Link Dotfiles..."
+      linkDotfiles
+      ;;
+    r)
+      echo "Clone Repositories..."
+      cloneRepositories
+      ;;
+    \?)
+      showUsage; exit 1;;
+    *)
+      showUsage; exit 1;;
+  esac
+done
