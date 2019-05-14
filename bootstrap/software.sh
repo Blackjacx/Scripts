@@ -26,6 +26,7 @@ brew cask upgrade
 packages=(
   ag # code-searching tool similar to ack, but faster
   apg # generate strong passwords
+  bash # installs a modern version of bash
   carthage
   coreutils
   curl
