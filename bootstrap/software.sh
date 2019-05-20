@@ -47,6 +47,7 @@ packages=(
   imagemagick
   jq # command-line JSON processor
   man
+  mas # installs Mac App Store apps
   mplayer # free and open-source media player
   npm
   node
@@ -75,9 +76,9 @@ casks=(
   docker
   dropbox
   emacs
-  fantastical
   flycut
   font-fira-code
+  font-microsoft-office
   font-roboto
   font-source-code-pro
   # firefox # to work correctly with 1password install it manually
@@ -111,6 +112,7 @@ casks=(
 )
 brew tap caskroom/cask # install cask system
 brew tap caskroom/fonts # support for fonts
+brew tap colindean/fonts-nonfree # Calibri, Cambria, ...
 brew cask install ${casks[@]}
 
 # Cleanup
@@ -146,3 +148,11 @@ RUBY_GEMS=(
   bundler
 )
 gem install ${RUBY_GEMS[@]}
+
+echo "#################################################################"
+echo "Installing AppStore Software"
+echo "#################################################################"
+
+# fantastical
+
+
