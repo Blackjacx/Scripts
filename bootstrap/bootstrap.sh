@@ -53,6 +53,10 @@ configureSystem() {
   defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
   # disable animations when opening and closing windows
   defaults write -g NSAutomaticWindowAnimationsEnabled -bool false 
+  # disable just smart dashes
+  defaults write -g NSAutomaticDashSubstitutionEnabled 0
+  # disable just smart quotes
+  defaults write -g NSAutomaticQuoteSubstitutionEnabled 0
 
   #
   # Finder
