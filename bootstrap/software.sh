@@ -68,6 +68,7 @@ brew install ${packages[@]}
 
 casks=(
   # 1password # this installs the pricy 1password 7
+  aware # Menubar app for macOS that displays how long you've been actively using your computer.
   brisk # submitting radars
   charles
   dash
