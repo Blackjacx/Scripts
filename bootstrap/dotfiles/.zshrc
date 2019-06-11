@@ -9,7 +9,8 @@ export LANG=en_US.UTF-8
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gnzh"
+# ZSH_THEME="gnzh"
+ZSH_THEME="Spaceship"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="superjarin"
 #ZSH_THEME="duellj"
@@ -38,7 +39,7 @@ export UPDATE_ZSH_DAYS=7
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="false"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -57,7 +58,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv)
+plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv zsh-syntax-highlighting)
 
 # User configuration
 
