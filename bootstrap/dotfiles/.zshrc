@@ -129,3 +129,5 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # init rbenv ruby
 eval "$(rbenv init -)"
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -62,6 +62,7 @@ packages=(
   wget
   zsh
   zsh-completions
+  zsh-syntax-highlighting
 )
 brew tap jzaleski/homebrew-jzaleski # support for apg
 brew install ${packages[@]}
