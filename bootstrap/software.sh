@@ -72,6 +72,7 @@ casks=(
   aware # Menubar app for macOS that displays how long you've been actively using your computer.
   brisk # submitting radars
   charles
+  cyberduck # FTP / Dropbox client 
   dash
   deckset
   disk-inventory-x
