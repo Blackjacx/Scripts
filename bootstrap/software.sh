@@ -63,6 +63,7 @@ packages=(
   wget
   zsh
   zsh-completions
+  zsh-syntax-highlighting
 )
 brew tap jzaleski/homebrew-jzaleski # support for apg
 brew tap lokalise/brew # for lokalise
@@ -70,8 +71,10 @@ brew install ${packages[@]}
 
 casks=(
   # 1password # this installs the pricy 1password 7
+  aware # Menubar app for macOS that displays how long you've been actively using your computer.
   brisk # submitting radars
   charles
+  cyberduck # FTP / Dropbox client 
   dash
   deckset
   disk-inventory-x
