@@ -15,110 +15,8 @@ echo "#################################################################"
 echo "Installing Software via Homebrew"
 echo "#################################################################"
 
-# Make sure we’re using the latest Homebrew
-brew update
-
-# Upgrade any already-installed formulae.
-brew upgrade
-brew cask upgrade
-
-# Packages
-packages=(
-  ag # code-searching tool similar to ack, but faster
-  apg # generate strong passwords
-  bash # installs a modern version of bash
-  carthage
-  coreutils
-  curl
-  docker
-  doxygen
-  e2fsprogs # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
-  ffmpeg
-  figlet # making large letters out of ordinary text
-  file
-  git # distributed version-control system for tracking changes in source code during software development
-  git-extras
-  git-flow
-  gource # software version control visualization
-  grep
-  htop
-  httpie
-  hub
-  imagemagick
-  jq # command-line JSON processor
-  lokalise # tool for for mobile localization cloud platform
-  man
-  mas # installs Mac App Store apps
-  mplayer # free and open-source media player
-  npm
-  node
-  openssl
-  p0f
-  pstree
-  rbenv
-  ripgrep # recursively searches directories for a regex pattern
-  shellcheck # static analysis tool for shell scripts
-  tree
-  watch
-  wget
-  zsh
-  zsh-completions
-  zsh-syntax-highlighting
-)
-brew tap jzaleski/homebrew-jzaleski # support for apg
-brew tap lokalise/brew # for lokalise
-brew install ${packages[@]}
-
-casks=(
-  # 1password # this installs the pricy 1password 7
-  aware # Menubar app for macOS that displays how long you've been actively using your computer.
-  brisk # submitting radars
-  charles
-  cyberduck # FTP / Dropbox client 
-  dash
-  deckset
-  disk-inventory-x
-  docker
-  dropbox
-  emacs
-  flycut
-  font-fira-code
-  font-microsoft-office
-  font-roboto
-  font-source-code-pro
-  # firefox # to work correctly with 1password install it manually
-  geektool
-  gpg-suite
-  # google-chrome # to work correctly with 1password install it manually
-  handbrake
-  iterm2
-  provisionql
-  qlimagesize
-  qlmarkdown
-  qlstephen
-  quicklook-json
-  scummvm
-  sketch
-  skype
-  slack
-  sourcetree
-  spectacle
-  spotify
-  sublime-merge
-  sublime-text
-  telegram
-  texshop
-  tunnelblick
-  typora
-  vlc
-  wireshark
-  wwdc
-  zeplin
-)
-brew tap caskroom/cask # install cask system
-brew tap caskroom/fonts # support for fonts
-brew tap colindean/fonts-nonfree # Calibri, Cambria, ...
-brew cask install ${casks[@]}
+# Install/Upgrade software via Brewfile
+brew bundle -v
 
 # Cleanup
 brew cleanup
@@ -153,11 +51,3 @@ RUBY_GEMS=(
   bundler
 )
 gem install ${RUBY_GEMS[@]}
-
-echo "#################################################################"
-echo "Installing AppStore Software"
-echo "#################################################################"
-
-# fantastical
-
-
