@@ -46,6 +46,7 @@ packages=(
   hub
   imagemagick
   jq # command-line JSON processor
+  lokalise # tool for for mobile localization cloud platform
   man
   mas # installs Mac App Store apps
   mplayer # free and open-source media player
@@ -64,6 +65,7 @@ packages=(
   zsh-completions
 )
 brew tap jzaleski/homebrew-jzaleski # support for apg
+brew tap lokalise/brew # for lokalise
 brew install ${packages[@]}
 
 casks=(
