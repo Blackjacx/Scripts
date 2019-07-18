@@ -23,11 +23,13 @@ brew cleanup
 brew doctor
 
 echo "#################################################################"
-echo "Installing Python software"
+echo "Installing Powerline Fonts For iTerm"
 echo "#################################################################"
 
-# [ERROR] pip is not installed!
-# pip install xkcdpass # memorable passsword generator
+tmp="$(mktemp -d)/fonts"
+git clone https://github.com/powerline/fonts.git --depth=1 $tmp
+$tmp/install.sh
+rm -rf $tmp
 
 echo "#################################################################"
 echo "Setting up ZSH with Oh-My-Zsh"
