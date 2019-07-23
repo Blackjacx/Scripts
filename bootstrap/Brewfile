@@ -19,6 +19,7 @@ tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
 brew "ag" # code-searching tool similar to ack, but faster
 brew "apg" # generate strong passwords
 brew "bash" # installs a modern version of bash
+brew "bat" # `cat` command line tool but with line numbers and syntax highlighting
 brew "carthage"
 brew "coreutils"
 brew "curl"
