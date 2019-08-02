@@ -1,18 +1,21 @@
 require "base64"
 require "jwt"
-ISSUER_ID = "P4LECE5B35"
-KEY_ID = "NCWZ5SAFTZ"
 key_file = ARGV[0]
+key_id = "#{ARGV[1]}"
+issuer_id = "#{ARGV[2]}"
 private_key = OpenSSL::PKey.read(File.read("#{key_file}"))
 
 token = JWT.encode(
    {
-    iss: ISSUER_ID,
-    iat: Time.now.to_i,
+    iss: issuer_id,
+    exp: Time.now.to_i + 20 * 60,
+    # iat: Time.now.to_i + 20 * 60,
+    aud: "appstoreconnect-v1"
    },
    private_key,
    "ES256",
    header_fields={
-     kid: KEY_ID }
+     kid: key_id
+   }
  )
 puts token
