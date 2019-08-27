@@ -8,9 +8,9 @@ private_key = OpenSSL::PKey.read(File.read("#{key_file}"))
 token = JWT.encode(
    {
     iss: issuer_id,
-    exp: Time.now.to_i + 20 * 60,
-    # iat: Time.now.to_i + 20 * 60,
-    aud: "appstoreconnect-v1"
+    iat: Time.now.to_i,
+    # exp: Time.now.to_i + 20 * 60,
+    # aud: "appstoreconnect-v1"
    },
    private_key,
    "ES256",
