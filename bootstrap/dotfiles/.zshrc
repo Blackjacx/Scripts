@@ -120,6 +120,8 @@ alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
 alias glogd="git log --oneline --decorate --graph develop.."
 alias brsc="brew search --casks"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
+alias wttr='curl https://v2.wttr.in/FrankfurtAmMain'
+alias wttrfc='curl https://wttr.in/FrankfurtAmMain'
 
 # enble fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
