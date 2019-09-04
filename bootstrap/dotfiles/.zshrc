@@ -133,3 +133,13 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 eval "$(rbenv init -)"
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Notifiy if command finished in iTerm2
+function f_notifyme {
+  LAST_EXIT_CODE=$?
+  CMD=$(fc -ln -1)
+  # No point in waiting for the command to complete
+  ${HOME}/dev/scripts/notifyme.sh "$CMD" "$LAST_EXIT_CODE" &
+}
+export PS1='$(f_notifyme)'$PS1
