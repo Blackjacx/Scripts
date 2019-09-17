@@ -58,7 +58,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv)
+plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv swiftpm)
 
 # User configuration
 
