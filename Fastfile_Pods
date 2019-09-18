@@ -66,11 +66,19 @@ desc "Pushes releases to github"
 desc "Commits and pushes changes to remote and tags the release commit"
 lane :release do |options|
 
-  framework = options[:framework]
-  UI.crash!("No framework specified") if framework.nil? || framework.empty?
+  podspecs = Dir["../*.podspec"]
+  UI.crash!("No podspecs found") if podspecs.count == 0
+  UI.crash!("Multiple podspecs found") if podspecs.count > 1
 
-  version = options[:version]
-  UI.crash!("No version specified") if version.nil? || version.empty?
+  framework = File.basename(podspecs[0], ".podspec")
+  UI.crash!("Framework name not found from #{podspecs}") if framework.nil? || framework.empty?
+
+  # version = options[:version]
+  # UI.crash!("No version specified") if version.nil? || version.empty?
+
+
+
+  UI.crash!("WIP - #{get_version_number}") 
 
   # Ensure the source code is OK and tests are green
   ensure_git_status_clean
