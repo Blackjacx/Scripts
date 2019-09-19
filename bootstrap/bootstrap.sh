@@ -104,7 +104,7 @@ configureSystem() {
   # Shows touches in simulator - nice for recording videos
   defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 
   # Shows build time in Xcode's top activity bar
-  defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES 
+  defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES 
 
   #
   # Restart all affected apps
