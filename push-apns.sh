@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# Script for testing APNS push service directly.
+#
+
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -32,5 +36,9 @@ curl -v \
      --http2 \
      --header "apns-topic: ${bundleId}" \
      --header "Authorization: bearer ${auth_token}" \
-     -data '{"aps":{"alert":"'"$message"'"}}' \
+     -data '{
+              "aps": {
+                "alert": "'"$message"'"
+              }
+            }' \
      "${url}"
