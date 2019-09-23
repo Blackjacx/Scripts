@@ -34,11 +34,12 @@ url=$endpoint$urlPath$device_token
 
 curl -v \
      --http2 \
-     --header "apns-topic: ${bundleId}" \
-     --header "Authorization: bearer ${auth_token}" \
-     -data '{
-              "aps": {
-                "alert": "'"$message"'"
-              }
-            }' \
+     -H "apns-topic: ${bundleId}" \
+     -H "apns-push-type: alert" \
+     -H "Authorization: bearer ${auth_token}" \
+     -d '{
+            "aps": {
+              "alert": "'"$message"'"
+            }
+          }' \
      "${url}"
