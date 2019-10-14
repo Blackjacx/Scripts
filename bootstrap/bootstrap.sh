@@ -182,11 +182,11 @@ while getopts "hvcilr" opt; do
       ;;
     c)
       echo "Configure System..."
-      # configureSystem
+      configureSystem
       ;;
     i)
 	    echo "Install Software..."
-      # installSoftware
+      installSoftware
       ;;
     l)
       echo "Link Dotfiles..."

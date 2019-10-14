@@ -39,31 +39,15 @@ function trim () {
 }
 
 ## Function to upgrade all casks and packages 
-## (ignore "latest" casks)
 function brew-upgrade-all() {
-  command -v socat >/dev/null 2>&1 || { 
-    echo >&2 "Please install socat."; return 1
-  }
   
+  # update homebrew  
   brew update
+  # update packages
   brew upgrade
+  # upgrade casks
+  brew cask upgrade
 
-  # Get all casks that are upgradable, but ignore 
-  # packages with "latest" as version set.
-  # Those packages would be upgraded everytime, 
-  # no matter whether there are actually new 
-  # versions.
-  # The "socat" workaround is required, as 
-  # homebrew only displays the "latest" 
-  # information when output is a TTY, so a simple 
-  # pipe doesn't work
-  local casks
-  casks=$(socat - EXEC:'brew cask outdated --greedy',pty,setsid,ctty |grep -v latest |awk '{ print $1 }')
-  if [ -n "$casks" ]; then
-    brew cask upgrade --greedy "$casks"
-  fi
-
-  brew prune
   brew cleanup
   brew doctor
 }
