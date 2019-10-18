@@ -45,7 +45,7 @@ do
       echo "File $newFileName already created... Continue"
     else
       echo -n "Creating $newFileName and update $CONTENTS_FILE..."
-      convert -density 400 "$1" -scale "$sizePX" "$2/$newFileName"
+      convert -alpha off -density 400 "$1" -scale "$sizePX" "$2/$newFileName"
       echo "✅"
     fi
 
