@@ -46,7 +46,8 @@ function brew-upgrade-all() {
   # update packages
   brew upgrade
   # upgrade casks
-  brew cask upgrade
+  # brew cask upgrade # doesn't work
+  brew cask upgrade $(sed -n -e '/^cask "/p' ./bootstrap/Brewfile |cut -d \" -f2)
 
   brew cleanup
   brew doctor
