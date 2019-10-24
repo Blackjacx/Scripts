@@ -73,7 +73,6 @@ cask "flycut"
 cask "font-fira-code"
 cask "font-microsoft-office"
 cask "font-source-code-pro"
-# cask "firefox" # to work correctly with 1password install it manually
 cask "geektool"
 cask "gpg-suite"
 # cask "google-chrome" # to work correctly with 1password install it manually
