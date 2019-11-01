@@ -16,9 +16,8 @@ echo "Installing Software via Homebrew"
 echo "#################################################################"
 
 # Install/Upgrade software via Brewfile
+brew update
 brew bundle -v
-
-# Cleanup
 brew cleanup
 brew doctor
 
