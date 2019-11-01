@@ -43,12 +43,18 @@ function brew-upgrade-all() {
   
   # update homebrew  
   brew update
-  # update packages
-  brew upgrade
-  # upgrade casks
-  # brew cask upgrade # doesn't work
-  brew cask upgrade $(sed -n -e '/^cask "/p' ./bootstrap/Brewfile |cut -d \" -f2)
-
+  # create working dir
+  temp=$(mktemp -d)
+  brewfile="$temp/Brewfile"
+  echo "Created temporary directory at $temp"
+  # create a Brewfile of all installed formulas, casks, taps, mas
+  brew bundle dump --describe --file="$brewfile"
+  # upgrade all software from the created Brewfile
+  brew bundle -v --file="$brewfile"
+  # upgrade casks since the approach with the brewfile doesnt work
+  brew cask upgrade $(sed -n -e '/^cask "/p' "$brewfile" |cut -d \" -f2)
+  # cleanup old versions
   brew cleanup
+  # check if the system is ready to brew
   brew doctor
 }
