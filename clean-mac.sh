@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Clean up unused gem versions..."
+gem cleanup
+
 echo "Erase DerivedData folder..."
 rm -rf ${HOME}/Library/Developer/Xcode/DerivedData/*
 
