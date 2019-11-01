@@ -84,7 +84,7 @@ cask "sketch"
 cask "skype"
 cask "slack"
 cask "spectacle"
-cask "spotify"
+# cask "spotify" # switched off since macOS couldn't open the app
 cask "sublime-merge"
 cask "sublime-text"
 cask "telegram"
