@@ -39,8 +39,8 @@ brew "hub"
 brew "imagemagick"
 brew "jq" # command-line JSON processor
 brew "lokalise" # tool for for mobile localization cloud platform
-# brew "mas" # installs Mac App Store apps
-brew "mplayer" # free and open-source media player
+brew "mas" # installs Mac App Store apps
+# brew "mplayer" # free and open-source media player | currently not used
 brew "npm"
 brew "node"
 brew "openssl"
