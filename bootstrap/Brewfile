@@ -65,7 +65,6 @@ cask "charles"
 cask "cyberduck" # FTP / Dropbox client 
 cask "dash"
 cask "deckset"
-cask "disk-inventory-x"
 cask "docker"
 cask "dropbox"
 cask "emacs"
