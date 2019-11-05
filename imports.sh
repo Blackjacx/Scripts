@@ -41,12 +41,12 @@ function trim () {
 ## Function to upgrade all casks and packages 
 function brew-upgrade-all() {
   
-  # update homebrew  
-  brew update
   # create working dir
   temp=$(mktemp -d)
   brewfile="$temp/Brewfile"
   echo "Created temporary directory at $temp"
+  # update homebrew  
+  brew update
   # create a Brewfile of all installed formulas, casks, taps, mas
   brew bundle dump --describe --file="$brewfile"
   # upgrade all software from the created Brewfile
