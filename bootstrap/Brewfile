@@ -78,6 +78,7 @@ cask "gpg-suite"
 # cask "google-chrome" # to work correctly with 1password install it manually
 cask "handbrake"
 cask "iterm2"
+cask "nightowl"
 cask "provisionql"
 cask "scummvm"
 cask "sf-symbols"
