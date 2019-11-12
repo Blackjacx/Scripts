@@ -15,7 +15,6 @@
 [push]
 	default = simple
 [commit]
-	template = "/Users/stherold/.stCommitMsg"
 	gpgsign = true
 [branch]
 	autosetuprebase = always
