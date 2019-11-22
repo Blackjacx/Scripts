@@ -150,7 +150,7 @@ find "$working_dir" -type f -name "*.png" -print0 | xargs -0 pngquant --ext .png
 for scheme in "${schemes[@]}"; do
   # create archive - cd into folder to prevent storage of absolute path
   cd "$working_dir"
-  zip -r0 "${deploy_dir}/${scheme}.zip" "./${scheme}" -x \*.xcresult\*
+  zip -r0 "${deploy_dir}/${scheme}.zip" "./Screens_${scheme}" -x \*.xcresult\*
   cd -
 done
 
