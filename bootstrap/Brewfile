@@ -46,6 +46,7 @@ brew "npm"
 brew "node"
 brew "openssl"
 brew "p0f"
+brew "pngquant"
 brew "poppler" # for pdfinfo command
 brew "pstree"
 brew "rbenv"
