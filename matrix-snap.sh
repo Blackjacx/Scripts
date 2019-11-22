@@ -34,7 +34,7 @@ set -x
 
 usage() {
   echo "$1"
-  echo "Usage: $0 <workspace> \"\$(cat <scheme_file>)\""
+  echo "Usage: $0 <workspace> <deploy_dir> \"\$(cat <scheme_file>)\""
   echo "Quit..."
 }
 
@@ -42,10 +42,13 @@ workspace="$1"
 if [ -z "$workspace" ]; then usage "Workspace parameter missing!"; exit 1; fi
 [[ ! -d $workspace ]] && { echo "Workspace folder $workspace not found!"; exit 1; }
 
-schemes="$2"
+deploy_dir="$2"
+if [ -z "$deploy_dir" ]; then usage "Deploy directory not specified!"; exit 1; fi
+[[ ! -d $deploy_dir ]] && { echo "Deploy directory $deploy_dir not found!"; exit 1; }
+
+schemes="$3"
 if [ -z "$schemes" ]; then usage "Schemes parameter missing!"; exit 1; fi
 
-deploy_dir="."
 schemes=($schemes)
 working_dir=$(mktemp -d)
 styles=("light" "dark")
