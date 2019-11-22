@@ -34,20 +34,19 @@ set -x
 
 usage() {
   echo "$1"
-  echo "Usage: $0 <workspace> <scheme_file>"
+  echo "Usage: $0 <workspace> \"\$(cat <scheme_file>)\""
   echo "Quit..."
 }
 
 workspace="$1"
 if [ -z "$workspace" ]; then usage "Workspace parameter missing!"; exit 1; fi
-[[ ! -d $workspace ]] && { echo "Workspace folder $$workspace not found!"; exit 1; }
+[[ ! -d $workspace ]] && { echo "Workspace folder $workspace not found!"; exit 1; }
 
-scheme_file="$2"
-if [ -z "$scheme_file" ]; then usage "Scheme file parameter missing!"; exit 1; fi
-[[ ! -f $scheme_file ]] && { echo "Scheme file $scheme_file not found!"; exit 1; }
+schemes="$2"
+if [ -z "$schemes" ]; then usage "Schemes parameter missing!"; exit 1; fi
 
 deploy_dir="."
-schemes=($(cat "$scheme_file"))
+schemes=($schemes)
 working_dir=$(mktemp -d)
 styles=("light" "dark")
 device_names=("iPhone SE" "iPhone 11 Pro" "iPhone 11 Pro Max")
