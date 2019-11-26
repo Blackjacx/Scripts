@@ -41,6 +41,7 @@ brew "imagemagick"
 brew "jq" # command-line JSON processor
 brew "lokalise" # tool for for mobile localization cloud platform
 brew "mas" # installs Mac App Store apps
+brew "mitmproxy" # Intercepting Network Traffic
 # brew "mplayer" # free and open-source media player | currently not used
 brew "npm"
 brew "node"
@@ -64,7 +65,6 @@ brew "zsh-syntax-highlighting"
 # tap "1password" # this installs the pricy 1password 7
 cask "aware" # Menubar app for macOS that displays how long you've been actively using your computer.
 cask "brisk" # submitting radars
-cask "charles"
 cask "cyberduck" # FTP / Dropbox client 
 cask "dash"
 cask "deckset"
