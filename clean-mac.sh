@@ -6,8 +6,8 @@ gem cleanup
 echo "Erase DerivedData folder..."
 rm -rf ${HOME}/Library/Developer/Xcode/DerivedData/*
 
-# echo "Erase Caches Folder..."
-# rm -rf ${HOME}/Library/Caches
+echo "Erase Caches Folder..."
+rm -rf ${HOME}/Library/Caches
 
 echo "Reset all simulators..."
 osascript -e 'tell application "Simulator" to quit'
