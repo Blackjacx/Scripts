@@ -22,25 +22,30 @@ rm -rf ~/.Trash/*
 
 
 
-##
-## The following is highly experimental!!!
-## It is used to automatically delete iOS device support files and keeps 
-## the two most recent versions. Those are one of the biggest space
-## killers in iOS world.
-##
+# ##
+# ## The following is highly experimental!!!
+# ## It is used to automatically delete iOS device support files and keeps 
+# ## the two most recent versions. Those are one of the biggest space
+# ## killers in iOS world.
+# ##
 
-# set -euo pipefail
-# IFS=$'\n\t'
+# # set -euo pipefail
 
-# # # files=$(ls -v Versions |awk '{print $1}' |uniq |cut -d'.' -f1 |uniq |tail -c -2)
-# # # folders=$(ls -v ${HOME}/Library/Developer/Xcode/iOS\ DeviceSupport |awk '{print $1}')
-# # folders=$(ls -vd ${HOME}/Desktop/Versions/*/ | sed 's/.$//')
-# # # folders=$(cat ~/list.txt)
-# # MAX_VERSION=$(echo $folders | awk -F/ '{print $NF}')
-# # # printf '%s\n' ${folders[@]}
-# # # printf '%s\n' ${#folders[@]}
-# # printf '%s\n' $MAX_VERSION
+# # 1: find all versions (folders) currently installed
+# # 2: reverse sort folders - use file name major version as key
+# folders=$(find ${HOME}/Library/Developer/Xcode/iOS\ DeviceSupport -type d -d 1 \
+#   | sort -t. -nr)
 
-# folders=$(ls -vd ${HOME}/Library/Developer/Xcode/iOS\ DeviceSupport/*/ | sed 's/.$//')
-# keep=$(echo "${folders[*]}" | sort -t. -nr | awk -F. 'a[$1]++<1' | cut -d' ' -f1 | head -2 | paste -s -d '|' -)
-# echo "${folders[*]}" | grep -vE $keep
+# # 1: filter latest 2 major versions
+# # 2: remove path components after the version number
+# # 3: trim trailing whitespaces
+# keep=$(echo "${folders[*]}" \
+#   | awk -F. 'a[$1]++<1' \
+#   | cut -d'(' -f1 \
+#   | sed 's/ *$//g' \
+#   | head -2 \
+#   | paste -s -d '|' -)
+# # echo "${folders[*]}" | grep -vE $keep
+# echo "${folders[*]}" 
+# echo "-----"
+# echo "${keep}"
