@@ -168,6 +168,8 @@ lane :test do |options|
   scan(scheme: "#{framework}-tvOS", clean: true, xcargs: xargs) if schemes.include? "tvOS"
   scan(scheme: "#{framework}-watchOS", clean: true, xcargs: xargs) if schemes.include? "watchOS"
   scan(scheme: "#{framework}-macOS", clean: true, xcargs: xargs) if schemes.include? "macOS"
+
+  danger(verbose: true)
 end
 
 
