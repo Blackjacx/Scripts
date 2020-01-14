@@ -46,3 +46,10 @@ changelog.check!
 
 # Lint all commits using defaults
 commit_lint.check warn: :all
+
+# This is swiftlint plugin. More info: https://github.com/ashfurrow/danger-swiftlint
+#
+# This lints all Swift files and leave comments in PR if 
+# there is any issue with linting
+swiftlint.config_file = '.swiftlint.yml'
+swiftlint.lint_files inline_mode: true
