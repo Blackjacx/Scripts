@@ -1,8 +1,8 @@
 # Let's check if there are any changes in the project folder
-has_app_changes = !git.modified_files.grep(/Source/Classes/).empty?
+has_app_changes = git.modified_files.include? "Source/*"
 
 # Then, we should check if tests are updated
-has_test_changes = !git.modified_files.grep(/Tests/Source/).empty?
+has_test_changes = git.modified_files.include? "Tests/*"
 
 # note when PR is a work in progress and shouldn't be merged yet
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
