@@ -169,7 +169,7 @@ lane :test do |options|
   scan(scheme: "#{framework}-watchOS", clean: true, xcargs: xargs) if schemes.include? "watchOS"
   scan(scheme: "#{framework}-macOS", clean: true, xcargs: xargs) if schemes.include? "macOS"
 
-  danger(verbose: true)
+  danger(verbose: true) if is_set( options[:run_danger] )
 end
 
 
@@ -195,4 +195,12 @@ private_lane :update_mit_license do |options|
   newFile = File.open("#{fLicense}", "w")
   newFile.write(data)
   newFile.close
+end
+
+###############################################################################
+# Global Functions
+###############################################################################
+
+def is_set(var)
+  !var.nil? && !var.empty? && var != "0"
 end
