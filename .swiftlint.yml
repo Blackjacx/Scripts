@@ -7,6 +7,13 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
   - tools
+  - vendor
+  - .bundle
+  - .build
+  - .git
+  - .swiftpm
+  - .github
+  - fastlane 
   - GoogleMaps*
   - GooglePlaces*
 
