@@ -38,7 +38,6 @@ opt_in_rules: # some rules are only opt-in
   - fatal_error_message
   - modifier_order
   - toggle_bool
-  - unused_private_declaration
   - fallthrough
   - unavailable_function
 
