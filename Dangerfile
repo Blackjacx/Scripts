@@ -1,5 +1,5 @@
 # Let's check if there are any changes in the project folder
-has_app_changes = !git.modified_files.grep(/Source/Classes).empty?
+has_app_changes = !git.modified_files.grep(/Source/Classes/).empty?
 
 # Then, we should check if tests are updated
 has_test_changes = !git.modified_files.grep(/Tests/Source/).empty?
