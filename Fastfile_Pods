@@ -202,5 +202,5 @@ end
 ###############################################################################
 
 def is_set(var)
-  !var.nil? && !var.empty? && var != "0"
+  !var.nil? && !var.empty? && (var == "pull_request" || var == "1" || var == "true")
 end
