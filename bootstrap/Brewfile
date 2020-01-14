@@ -41,6 +41,7 @@ brew "imagemagick"
 brew "jq" # command-line JSON processor
 brew "lokalise" # tool for for mobile localization cloud platform
 brew "mas" # installs Mac App Store apps
+brew "mint" # dependency manager for swift packages
 brew "mitmproxy" # Intercepting Network Traffic
 # brew "mplayer" # free and open-source media player | currently not used
 brew "npm"
