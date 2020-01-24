@@ -17,9 +17,8 @@ die () {
   exit 1
 }
 
-[ $# == 2 ] || die "Usage: sh iconizer.sh file.pdf FolderName"
-[ -e "$1" ] || die "Did not find file $1, expected path to a vector image file."
-[ ${1: -4} == ".pdf" ] || die "File $1 is not a vector image file! Expected PDF file."
+[ $# == 2 ] || die "Usage: sh iconizer.sh <file name> <path to *.appiconset>"
+[ -e "$1" ] || die "Did not find file $1, expected path to an image file."
 
 CONTENT_FILE_PATH="$2/$CONTENTS_FILE"
 
