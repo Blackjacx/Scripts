@@ -47,8 +47,8 @@ brew "npm"
 brew "node"
 brew "openssl"
 brew "p0f"
-brew "pngquant"
-brew "poppler" # for pdfinfo command
+brew "pngquant" # Lossy PNG compressor
+brew "poppler" # necessary for pdfinfo command
 brew "pstree"
 brew "rbenv"
 brew "ripgrep" # recursively searches directories for a regex pattern
