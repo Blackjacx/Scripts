@@ -33,7 +33,6 @@ brew "git" # distributed version-control system for tracking changes in source c
 brew "git-extras"
 brew "git-flow"
 brew "gource" # software version control visualization
-brew "grep"
 brew "htop"
 brew "httpie"
 brew "hub"
