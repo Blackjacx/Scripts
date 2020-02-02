@@ -10,6 +10,12 @@ set -uo pipefail
 # fail if any command fails
 set -e
 
+# Download files using curl
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dangerfile -o Dangerfile
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.gitignore -o .gitignore
+
 echo "checking for homebrew updates";
 brew update
 
@@ -18,11 +24,6 @@ function install_current {
   brew upgrade $1 || brew install $1 || true
   brew link $1
 }
-
-# Download files using curl
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dangerfile -o Dangerfile
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
 
 if [ -e "Mintfile" ]; then
   install_current mint
