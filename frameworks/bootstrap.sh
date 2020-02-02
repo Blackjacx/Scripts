@@ -11,11 +11,11 @@ set -uo pipefail
 set -e
 
 # Download files using curl
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dangerfile -o Dangerfile
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gitignore -o .gitignore
-curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Gemfile -o Gemfile
+curl -v https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dangerfile -o Dangerfile
+curl -v https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
+curl -v https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
+curl -v https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gitignore -o .gitignore
+curl -v https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Gemfile -o Gemfile
 
 echo "checking for homebrew updates";
 brew update
