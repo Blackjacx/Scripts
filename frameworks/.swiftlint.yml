@@ -21,7 +21,6 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
 opt_in_rules: # some rules are only opt-in
   - empty_count
   - empty_string
-  - force_unwrapping
   - attributes
   - closure_end_indentation
   - closure_spacing
