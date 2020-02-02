@@ -57,6 +57,12 @@ function install_dependencies {
     gem install bundler --no-document || echo "failed to install bundle";
     bundle install || echo "failed to install bundle";
   fi
+
+    # Install gems if a Gemfile exists
+  if [ -e "Podfile" ]; then
+    echo "installing cocoapods dependencies";
+    bundle exec pod install
+  fi
 }
 
 
