@@ -55,7 +55,6 @@ function install_dependencies {
     echo "installing ruby gems";
     # install bundler gem for ruby dependency management
     gem install bundler --no-document || echo "failed to install bundle";
-    bundle config set deployment 'true';
     bundle install || echo "failed to install bundle";
   fi
 }
