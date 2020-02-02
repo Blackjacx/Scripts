@@ -20,9 +20,9 @@ function install_current {
 }
 
 # Download files using curl
-curl https://github.com/Blackjacx/Scripts/blob/master/frameworks/Dangerfile -o Dangerfile
-curl https://github.com/Blackjacx/Scripts/blob/master/frameworks/.swiftlint.yml -o .swiftlint.yml
-curl https://github.com/Blackjacx/Scripts/blob/master/frameworks/Mintfile -o Mintfile
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dangerfile -o Dangerfile
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
 
 if [ -e "Mintfile" ]; then
   install_current mint
