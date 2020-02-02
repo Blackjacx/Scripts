@@ -113,6 +113,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
+alias gu="gfa && gco develop && gl && for branch in `git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' | egrep -v '\*|master|develop'`; do git branch -D $branch; done"
 alias opendoc='cd ${HOME}/dev/projects/db/api-docs; git reset --hard; git checkout master; git pull; open passenger-api.html; cd -'
 alias cdtmp='cd "$(mktemp -d)"'
 alias git=hub
