@@ -15,6 +15,7 @@ curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dange
 curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
 curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
 curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.gitignore -o .gitignore
+curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Gemfile -o .gitignore
 
 echo "checking for homebrew updates";
 brew update
