@@ -5,8 +5,6 @@
 ## CI
 codesigndoc_exports
 
-# Ignore gitignore file since it is downloaded
-.gitignore
 # Mint dependencies file which is downloaded
 Mintfile
 # Swiftlint config file which is downloaded
