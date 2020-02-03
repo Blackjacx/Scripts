@@ -5,19 +5,6 @@
 ## CI
 codesigndoc_exports
 
-# Mint dependencies file which is downloaded
-Mintfile
-# Swiftlint config file which is downloaded
-.swiftlint.yml
-# Danger config file which is downloaded
-Dangerfile
-# Ruby gems config file which is downloaded
-Gemfile
-# Bundler configuration which is bootstrapped
-.bundle
-# Bundler vendor information which is bootstrapped
-vendor
-
 ## Build generated
 build/
 DerivedData/
