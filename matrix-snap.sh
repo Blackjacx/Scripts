@@ -101,6 +101,10 @@ take_screenshots() {
     -workspace \"$workspace\" \
     -scheme \"$scheme\" \
     -resultBundlePath \"$results_path\" \
+    -maximum-parallel-testing-workers 1 \
+    -parallel-testing-enabled NO \
+    -maximum-concurrent-test-simulator-destinations 1 \
+    -disable-concurrent-destination-testing \
     $destinations \
     -testPlan \"${scheme}-Screenshots\""
 
@@ -130,6 +134,10 @@ for scheme in "${schemes[@]}"; do
   eval "xcrun xcodebuild build-for-testing \
     -workspace \"$workspace\" \
     -scheme \"$scheme\" \
+    -maximum-parallel-testing-workers 1 \
+    -parallel-testing-enabled NO \
+    -maximum-concurrent-test-simulator-destinations 1 \
+    -disable-concurrent-destination-testing \
     $destinations"
 done
 
