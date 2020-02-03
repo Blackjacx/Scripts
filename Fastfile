@@ -213,6 +213,7 @@ platform :ios do
       skip_build: false,
       output_types: "html",
       skip_slack: true,
+      code_coverage: true,
       output_directory: ENV["BITRISE_DEPLOY_DIR"]
     )
 
