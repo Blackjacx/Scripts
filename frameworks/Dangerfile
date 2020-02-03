@@ -56,7 +56,7 @@ swiftlint.lint_files inline_mode: true
 
 # Xcov reports in PRs
 xcov.report(
-   scheme: ENV["FRAMEWORK_SCHEME"],
+   scheme: ENV["XCOV_SCHEME"],
    workspace: ENV["FRAMEWORK_WORKSPACE"],
    minimum_coverage_percentage: 0.0
 )
