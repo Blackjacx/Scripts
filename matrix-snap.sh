@@ -112,7 +112,7 @@ take_screenshots() {
 
   mkdir -p "$screens_path"
   # extract screenshots from result bundle
-  xcparse screenshots --test-run --model "$results_path" "$screens_path"
+  mint run ChargePoint/xcparse xcparse screenshots --test-plan-config --model "$results_path" "$screens_path"
 }
 
 # Find ids of preferred devices. If device not available - create it.
