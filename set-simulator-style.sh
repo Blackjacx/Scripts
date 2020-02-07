@@ -25,14 +25,7 @@ raw=$(xcrun simctl list --json)
 # ios_runtime=$(echo $raw | jq ".runtimes[] | select(.identifier | test(\"iOS\")).identifier" | cut -d\" -f2)
 device_ids=($(echo $raw | jq ".devices[][].udid" | cut -d\" -f2))
 
-killall "Simulator"
-xcrun simctl shutdown booted
-xcrun simctl erase $(printf "%s " "${device_ids[@]}")
-
 for device_id in "${device_ids[@]}"; do
-  plist="${HOME}/Library/Developer/CoreSimulator/Devices/${device_id}/data/Library/Preferences/com.apple.uikitservices.userInterfaceStyleMode.plist"  
-  printf '\n%s\n' "Set style $style for device $device_id ($plist)"
-
-  [[ ! -f "$plist" ]] && /usr/libexec/PlistBuddy -c "save" $plist
-  plutil -replace UserInterfaceStyleMode -integer $appearance $plist
+  printf '\n%s\n' "Setting style $style for device $device_id"
+  xcrun simctl ui $device appearance $style
 done
