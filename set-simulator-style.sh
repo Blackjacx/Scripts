@@ -15,17 +15,22 @@ usage() {
 loadEnvironment
 checkInstalledJq
 
-case $1 in
-     light) appearance=1 ;;
-     dark)  appearance=2 ;;
+appearance=$1
+
+case $appearance in
+     light) ;;
+     dark)  ;;
      *)     usage "Style parameter missing or wrong!"; exit 1 ;;
 esac
 
-raw=$(xcrun simctl list --json)
-# ios_runtime=$(echo $raw | jq ".runtimes[] | select(.identifier | test(\"iOS\")).identifier" | cut -d\" -f2)
-device_ids=($(echo $raw | jq ".devices[][].udid" | cut -d\" -f2))
+runtimes=( $( xcrun simctl list --json | jq ".runtimes | .[] | select(.identifier | contains(\"watchOS\") | not) | .identifier" ) )
+runtime_ids=$( printf ".%s," "${runtimes[@]}" | cut -d "," -f 1-${#runtimes[@]} )
+device_ids=( $(xcrun simctl list --json | jq ".devices | $runtime_ids | .[] | .udid" | cut -d\" -f2) )
 
-for device_id in "${device_ids[@]}"; do
-  printf '\n%s\n' "Setting style $style for device $device_id"
-  xcrun simctl ui $device appearance $style
+# printf "%s\n" "${device_ids[@]}"
+
+for device in "${device_ids[@]}"; do
+  printf '\n%s\n' "Setting style $appearance for device $device"
+  xcrun simctl boot $device
+  xcrun simctl ui $device appearance $appearance
 done

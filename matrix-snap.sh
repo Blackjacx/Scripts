@@ -61,8 +61,9 @@ results=()
 
 # Update appearance of preferred devices to light or dark
 update_style() {
-  for device_id in "${device_ids[@]}"; do
+  for device in "${device_ids[@]}"; do
     printf '\n%s\n' "Setting style $style for device $device_id"
+    xcrun simctl boot $device
     xcrun simctl ui $device appearance $style
   done
 }
@@ -110,8 +111,11 @@ take_screenshots() {
   mint run ChargePoint/xcparse xcparse screenshots --test-plan-config --model "$results_path" "$screens_path"
 }
 
+#
+# Programm Start
+#
+
 killall "Simulator"
-xcrun simctl shutdown booted
 
 # Find runtime ids of desired platforms and devices
 for platform in "${platforms[@]}"; do
