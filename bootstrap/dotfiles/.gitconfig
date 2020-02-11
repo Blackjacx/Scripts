@@ -1,7 +1,7 @@
 [core]
 	excludesfile = /Users/stherold/.gitignore_global
 	mergeoptions = --no-edit
-	editor = subl -n -w
+	editor = nano
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
