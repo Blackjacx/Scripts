@@ -139,6 +139,10 @@ lane :release do |options|
   # Needs to be done at the end (expects git tag to be available)
   pod_push(path: "#{framework}.podspec", allow_warnings: true)
 
+  # Create a Carthage archive which is then added to the github release, to enable carthage caching
+  carthage_archive_name = "#{framework}.framework.zip"
+  carthage(output: "#{carthage_archive_name}", command: "archive")
+
   # Creates new release on Github with changelog + pushes the tag if not done already
   set_github_release(
     repository_name: repository_name,
@@ -147,7 +151,7 @@ lane :release do |options|
     tag_name: version,
     description: (changelog || "No changelog provided"),
     commitish: "master",
-    # upload_assets: ["example_integration.ipa", "./pkg/built.gem"],
+    upload_assets: ["#{carthage_archive_name}"],
   )
 end
 
@@ -174,8 +178,6 @@ end
 
 desc "An contained area for testing new features or running parts of other lanes."
 lane :playground do |options|
-  carthage_archive_name = "MyFrameworkBundle.framework.zip"
-  carthage(output: "#{carthage_archive_name}", command: "archive")
 end
 
 
