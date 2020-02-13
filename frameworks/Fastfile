@@ -174,7 +174,8 @@ end
 
 desc "An contained area for testing new features or running parts of other lanes."
 lane :playground do |options|
-  carthage(command: "archive")
+  carthage_archive_name = "MyFrameworkBundle.framework.zip"
+  carthage(output: "#{carthage_archive_name}", command: "archive")
 end
 
 
