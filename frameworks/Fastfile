@@ -141,7 +141,8 @@ lane :release do |options|
 
   # Create a Carthage archive which is then added to the github release, to enable carthage caching
   carthage_archive_name = "#{framework}.framework.zip"
-  carthage(output: "#{carthage_archive_name}", command: "archive")
+  sh "carthage build --no-skip-current"
+  sh "carthage archive #{carthage_archive_name}"
 
   # Creates new release on Github with changelog + pushes the tag if not done already
   set_github_release(
