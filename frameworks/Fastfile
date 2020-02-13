@@ -152,7 +152,7 @@ lane :release do |options|
     tag_name: version,
     description: (changelog || "No changelog provided"),
     commitish: "master",
-    upload_assets: ["../#{carthage_archive_name}"],
+    upload_assets: ["#{carthage_archive_name}"],
   )
 end
 
