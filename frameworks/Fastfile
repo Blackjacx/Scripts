@@ -172,6 +172,11 @@ lane :test do |options|
   danger(verbose: true) if is_set( options[:run_danger] )
 end
 
+desc "An contained area for testing new features or running parts of other lanes."
+lane :playground do |options|
+  carthage(command: "archive")
+end
+
 
 ###############################################################################
 #                          PRIVATE SECTION
