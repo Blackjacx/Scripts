@@ -1,0 +1,2 @@
+set constantshow
+include /usr/local/share/nano/*.nanorc
