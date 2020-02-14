@@ -33,8 +33,8 @@ function download_config_files {
   curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
   curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gitignore -o .gitignore
   curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Gemfile -o Gemfile
-  curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Fastfile -o ./fastlane/Fastfile
-  curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Pluginfile -o ./fastlane/Pluginfile
+  curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Fastfile -o ./fastlane/Fastfile --create-dirs
+  curl https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Pluginfile -o ./fastlane/Pluginfile --create-dirs
 }
 
 function install_current {
