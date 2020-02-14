@@ -74,7 +74,11 @@ lane :release do |options|
   ensure_bundle_exec
   ensure_git_status_clean
   ensure_git_branch(branch: "develop")
-  git_pull
+  
+  # Delete local branches and tags not on remote to prevent pushing unwanted tags
+  sh "git fetch --prune --prune-tags"
+  # Pull develop/master to be sure we're up to date everywherre
+  sh "git pull && git checkout master && git pull && git checkout develop"
 
   # Sets CFBundleShortVersionString"
   version = increment_version_number(xcodeproj: "#{framework}.xcodeproj", bump_type: bump_type)
