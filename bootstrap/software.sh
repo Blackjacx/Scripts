@@ -43,12 +43,3 @@ grep -q /usr/local/bin/zsh /etc/shells || {
   # install oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
-
-echo "#################################################################"
-echo "Installing Ruby Gems"
-echo "#################################################################"
-
-RUBY_GEMS=(
-  bundler
-)
-gem install ${RUBY_GEMS[@]}
