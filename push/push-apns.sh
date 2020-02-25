@@ -2,6 +2,7 @@
 
 #
 # Script for testing APNS push service directly.
+# https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns
 #
 
 set -euo pipefail
