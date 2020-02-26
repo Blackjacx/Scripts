@@ -16,6 +16,7 @@ tap "lokalise/cli-2"
 tap "caskroom/cask" # install cask system
 tap "caskroom/fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
+tap "github/gh" # Github CLI
 
 brew "ag" # code-searching tool similar to ack, but faster
 brew "apg" # generate strong passwords
@@ -30,13 +31,13 @@ brew "doxygen"
 # brew "e2fsprogs" # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
 brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
+brew "gh"
 brew "git" # distributed version-control system for tracking changes in source code during software development
 brew "git-extras"
 brew "git-flow"
 brew "gource" # software version control visualization
 brew "htop"
 brew "httpie"
-brew "hub"
 brew "imagemagick"
 brew "jq" # command-line JSON processor
 brew "lokalise" # tool for for mobile localization cloud platform
