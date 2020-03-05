@@ -49,10 +49,18 @@ if [ -z "$deploy_dir" ]; then usage "Deploy directory not specified!"; exit 1; f
 schemes="$3"
 if [ -z "$schemes" ]; then usage "Schemes parameter missing!"; exit 1; fi
 
+config="$4"
+if [ -z "$config" ]; then usage "Config parameter missing. Use \"fast\" or \"full\"!"; exit 1; fi
+if [ "$config" == "fast" ]; then 
+  styles=("light")
+  device_names=("iPhone 11 Pro")
+else 
+  styles=("light", "dark")
+  device_names=("iPhone SE" "iPhone 11 Pro" "iPhone 11 Pro Max")
+fi
+
 schemes=($schemes)
 working_dir=$(mktemp -d)
-styles=("light" "dark")
-device_names=("iPhone SE" "iPhone 11 Pro" "iPhone 11 Pro Max")
 platforms=("iOS")
 runtime_ids=()
 device_ids=()
