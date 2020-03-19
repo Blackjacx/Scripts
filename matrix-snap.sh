@@ -55,14 +55,13 @@ if [ "$config" == "fast" ]; then
   styles=("light")
   device_names=("iPhone 11 Pro")
 else 
-  styles=("light", "dark")
+  styles=("light" "dark")
   device_names=("iPhone SE" "iPhone 11 Pro" "iPhone 11 Pro Max")
 fi
 
 schemes=($schemes)
 working_dir=$(mktemp -d)
-platforms=("iOS")
-runtime_ids=()
+platform="iOS 13.4"
 device_ids=()
 destinations=()
 results=()
@@ -105,12 +104,14 @@ take_screenshots() {
   # file created before the actual testing. There everything can be 
   # configured to run the tests without needing the source code, i.e. 
   # the tests can be performed on different machines.
-  eval "xcrun xcodebuild test-without-building \
+  cmd="xcrun xcodebuild test-without-building \
     -workspace \"$workspace\" \
     -scheme \"$scheme\" \
     -resultBundlePath \"$results_path\" \
     $destinations \
     -testPlan \"${scheme}-Screenshots\""
+  echo "Running command: $cmd"
+  eval "$cmd"
 
   printf '\n%s\n' "Extracting screenshots from xcresult bundle..."
 
@@ -125,33 +126,33 @@ take_screenshots() {
 
 killall "Simulator"
 
-# Find runtime ids of desired platforms and devices
-for platform in "${platforms[@]}"; do
-  id=$(xcrun simctl list --json | jq ".runtimes | .[] | select(.identifier | contains(\"$platform\")) | .identifier")
-  runtime_ids+=( $id )
-done
-runtime_ids=$( printf ".%s," "${runtime_ids[@]}" | cut -d "," -f 1-${#runtime_ids[@]} )
+# Find runtime id of desired platform
+runtime_id=$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name == \"$platform\") | .identifier" | cut -d\" -f2)
+echo "Found runtime id for platform $platform: $runtime_id"
 
 # Find ids of preferred devices. If device not available - create it.
 for name in "${device_names[@]}"; do
-  id=$(xcrun simctl list --json | jq ".devices | $runtime_ids | .[] | select(.name == \"$name\") | .udid" | cut -d\" -f2)
+  echo "Following devices available for name \"$name\" and runtime id \"$runtime_id\""
+  xcrun simctl list --json | jq ".devices | .\"$runtime_id\""
+
+  id=$(xcrun simctl list --json | jq ".devices | .\"$runtime_id\" | .[] | select(.name == \"$name\") | .udid" | cut -d\" -f2)
   if [ "$id" != "" ]; then
     device_ids+=("$id")
   else 
     device_ids+=("$(xcrun simctl create "$name" "$name" "$runtime_id")")
   fi 
 done
-
 destinations=$(printf -- "-destination \'platform=iOS Simulator,id=%s\' " "${device_ids[@]}")
 
 # Build withouit testing for all schemes
 for scheme in "${schemes[@]}"; do
   printf '\n%s\n' "Build $scheme to prepare tests..."
-
-  eval "xcrun xcodebuild build-for-testing \
+  cmd="xcrun xcodebuild build-for-testing \
     -workspace \"$workspace\" \
     -scheme \"$scheme\" \
     $destinations"
+  echo "Running command: $cmd"
+  eval "$cmd"
 done
 
 # Take screenshots for all schemes
