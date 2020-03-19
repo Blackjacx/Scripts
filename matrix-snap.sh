@@ -34,7 +34,7 @@
 
 usage() {
   echo "$1"
-  echo "Usage: $0 <workspace> <deploy_dir> \"\$(cat <scheme_file>)\""
+  echo "Usage: matrix-snap.sh <workspace> <deploy_dir> \"\$(cat <scheme_file>)\" <fast | full>"
   echo "Quit..."
 }
 
