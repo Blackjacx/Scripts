@@ -21,6 +21,13 @@ xcrun simctl delete unavailable
 echo "Empty Trash..."
 rm -rf ~/.Trash/*
 
+echo "Create huge file and delete it again to re-claim hidden space from the system."
+fname="DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
+pwd=$(pwd)
+cd /tmp/
+mkfile 13G $fname
+rm -rf $fname
+cd $pwd
 
 
 # ##
