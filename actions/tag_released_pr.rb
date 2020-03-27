@@ -13,8 +13,8 @@ module Fastlane
         # UI.message "Parameter PR id: #{params[:pr_id]}"
         # UI.message "Parameter PR title: #{params[:pr_title]}"
 
-        sh "curl https://api.github.com/repos/#{params[:github_account]}/#{params[:github_repo]}/issues/#{params[:pr_id]}/comments -H \"Authorization: token #{params[:github_token]}\"  --data \'{\"body\": \"Congratulations! 🎉 This was released in version [#{params[:release_version]}](https://github.com/#{params[:github_account]}/#{params[:github_repo]}/releases/tag/#{params[:release_version]}) 🚀\"}\'"
-        sh "curl https://api.github.com/repos/#{params[:github_account]}/#{params[:github_repo]}/pulls/#{params[:pr_id]} -H \"Authorization: token #{params[:github_token]}\" --data \'{\"title\": \"#{params[:pr_title]} [#{params[:release_version]}]\"}\'"
+        sh "curl https://api.github.com/repos/#{params[:github_account]}/#{params[:github_repo]}/issues/#{params[:pr_id]}/comments -H \"Authorization: token #{params[:github_token]}\"  --data \"{\\\"body\\\": \\\"Congratulations! 🎉 This was released in version [#{params[:release_version]}](https://github.com/#{params[:github_account]}/#{params[:github_repo]}/releases/tag/#{params[:release_version]}) 🚀\\\"}\""
+        sh "curl https://api.github.com/repos/#{params[:github_account]}/#{params[:github_repo]}/pulls/#{params[:pr_id]} -H \"Authorization: token #{params[:github_token]}\" --data \"{\\\"title\\\": \\\"#{params[:pr_title]} [#{params[:release_version]}]\\\"}\""
       end
 
       #####################################################
