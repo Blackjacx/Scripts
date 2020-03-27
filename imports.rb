@@ -20,7 +20,7 @@ def get_issue_numbers_and_titles(section)
   issues_titles = []
   section.split(/\n/).each do |line|
     issue = line[/\* \[#(.*?)\]\(/m, 1]
-    title = line[/\)\: (.*?) - \[@/m, 1]
+    title = line[/\)\: (.*?) - \[@/m, 1].gsub(/\"/, "") # strip double quotations from pr titles
     issues_titles.push( { "issue" => issue, "title" => title } ) if issue && !issue.empty? && title && !title.empty?
   end    
   return issues_titles
