@@ -1,5 +1,8 @@
+#!/usr/bin/env ruby
+
 require "base64"
 require "jwt"
+
 key_file = ARGV[0]
 key_id = "#{ARGV[1]}"
 issuer_id = "#{ARGV[2]}"
