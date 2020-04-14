@@ -113,14 +113,15 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
-alias cdtmp='cd "$(mktemp -d)"'
-alias git=hub
+alias cdtemp='cd "$(mktemp -d)"'
 alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
 alias glogd="git log --oneline --decorate --graph develop.."
 alias brsc="brew search --casks"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 alias wttr='curl https://v2.wttr.in/FrankfurtAmMain'
 alias wttrfc='curl "wttr.in/Frankfurt am Main?FAq&lang=de"'
+alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_TOKEN\""
+alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_TOKEN\""
 
 # enble fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
