@@ -17,7 +17,7 @@ echo "#################################################################"
 
 # Install/Upgrade software via Brewfile
 brew update
-brew bundle -v
+brew bundle -v --global
 brew cleanup
 brew doctor
 
