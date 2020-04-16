@@ -1,10 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
-# Set the locale
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -27,7 +23,7 @@ ZSH_THEME="agnoster"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=7
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -36,7 +32,7 @@ export UPDATE_ZSH_DAYS=7
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="false"
@@ -58,10 +54,13 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv swiftpm)
+plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv swiftpm z)
 
 # User configuration
 
+# Set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 # Set user gem path to avoid the need of sudo
 export GEM_HOME=$HOME/.gem
 # Set the path using specified order
@@ -113,15 +112,24 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
-alias cdtemp='cd "$(mktemp -d)"'
+alias cdtmp='cd "$(mktemp -d)"'
 alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
 alias glogd="git log --oneline --decorate --graph develop.."
 alias brsc="brew search --casks"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
-alias wttr='curl https://v2.wttr.in/FrankfurtAmMain'
-alias wttrfc='curl "wttr.in/Frankfurt am Main?FAq&lang=de"'
+alias wffm1='curl https://v2.wttr.in/FrankfurtAmMain'
+alias wffm2='curl "wttr.in/Frankfurt am Main?FAq&lang=de"'
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_TOKEN\""
+
+# File System
+alias hs='history | grep'
+alias df="df -h"
+
+# Developer
+alias json=" open http://jsonviewer.stack.hu "
+alias regexp=" open https://regex101.com/ " 
+alias images=" http://placehold.it/150x350 "
 
 # enble fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
