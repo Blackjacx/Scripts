@@ -60,6 +60,7 @@ brew "transcrypt" # used to transparently de-/encrypt the repo ios-keystore
 brew "tree"
 brew "watch"
 brew "wget"
+brew "youtube-dl"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
