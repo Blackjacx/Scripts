@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 #
 # Script to setup a MacBook from scratch!
 # These commands are collected throughout the internet over time. 
@@ -115,12 +115,63 @@ configureSystem() {
   done
 }
 
+#
+# Installs all useful software, ruby gems, Homebrew packages and casks
+#
 installSoftware() {
-  # Install all needed software, Homebrew packages, casks, etc.
-  ./software.sh
+
+  command -v brew >/dev/null 2>&1 || { 
+    printf "\n#################################################################\n"
+    printf "Installing Homebrew\n"
+    printf "#################################################################\n\n"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  }
+
+  printf "\n\n#################################################################\n"
+  printf "Installing Software via Homebrew\n"
+  printf "#################################################################\n\n"
+
+  # Install/Upgrade software via Brewfile
+  printf "\nUpdate-reset Homebrew...\n"
+  brew update-reset
+  printf "\nUpdate Homebrew...\n"
+  brew update 
+  printf "\nUpdate software defined in global Brewfile @ HOME...\n"
+  brew bundle -v --global
+  printf "\nBrew cask upgrade - upgrade casks separately...\n"
+  brew cask upgrade $(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)
+  printf "\nCleanup...\n"
+  brew cleanup
+  printf "\nDisplay brew eco-system health...\n"
+  brew doctor
+
+  printf "\n\n#################################################################\n"
+  printf "Installing Powerline Fonts For iTerm\n"
+  printf "#################################################################\n\n"
+
+  tmp="$(mktemp -d)/fonts"
+  git clone https://github.com/powerline/fonts.git --depth=1 $tmp
+  $tmp/install.sh
+  rm -rf $tmp
+
+  printf "\n\n#################################################################\n"
+  printf "Install Ruby Gems\n"
+  printf "#################################################################\n\n"
+
+  gem install bundler --no-document
+  gem install jwt --no-document
+
+  if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+    printf "\n\n#################################################################\n"
+    printf "Setting up ZSH with Oh-My-Zsh\n"
+    printf "#################################################################\n\n"
+    
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  
+  fi
 }
 
 linkDotfiles() {
+
   # Finds hidden dotfiles and uses safe syntax to execute loop
   find "$script_dir/dotfiles" -type f -iname ".*" -print0 | while read -d $'\0' file
   do
@@ -130,12 +181,13 @@ linkDotfiles() {
 }
 
 cloneRepositories() {
+
   pods=(
     "git@github.com:Blackjacx/Columbus.git"
-    "git@github.com:Blackjacx/RADToolKit.git"
     "git@github.com:Blackjacx/SHDateFormatter.git"
     "git@github.com:Blackjacx/SHSearchBar.git"
     "git@github.com:Blackjacx/Source.git"
+    "git@github.com:Blackjacx/Quickie.git"
   )
   base_dir="${HOME}/dev/projects/private"
 

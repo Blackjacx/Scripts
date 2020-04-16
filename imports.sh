@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 ## Define colors
 red=$'\e[1;31m'
@@ -36,29 +36,6 @@ function checkInstalledImageMagick () {
 
 function trim () {
   awk '{$1=$1};1'
-}
-
-## Function to upgrade all casks and packages 
-function brew-upgrade-all() {
-  
-  echo "\nBrew update-reset && brew update:"  
-  brew update-reset && brew update 
-  
-  # create a Brewfile of all installed formulas, casks, taps, mas
-  # brew bundle dump --describe --global
-
-  # upgrade all software defined in Brewfile
-  echo "\nBrew bundle - update software defined in global Brewfile in HOME:"
-  brew bundle -v --global
-  
-  echo "\nBrew cask upgrade - upgrade casks separately:"
-  brew cask upgrade $(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" |cut -d \" -f2)
-  
-  echo "\nBrew cleanup:"
-  brew cleanup
-  
-  echo "\nBrew doctor:"
-  brew doctor
 }
 
 function mdsee() { 
