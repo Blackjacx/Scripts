@@ -10,8 +10,8 @@ export LANG=en_US.UTF-8
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="gnzh"
-ZSH_THEME="Spaceship"
-#ZSH_THEME="agnoster"
+# ZSH_THEME="Spaceship"
+ZSH_THEME="agnoster"
 #ZSH_THEME="superjarin"
 #ZSH_THEME="duellj"
 #ZSH_THEME="random"
@@ -160,3 +160,5 @@ function cci() {
 function asc_auth_header() {
   echo "Authorization: Bearer $(ruby ~/dev/scripts/jwt.rb $ASC_AUTH_KEY $ASC_AUTH_KEY_ID $ASC_AUTH_KEY_ISSUER_ID)"
 }
+
+export DEFAULT_USER=`whoami`
