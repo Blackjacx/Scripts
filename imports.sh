@@ -46,3 +46,24 @@ function mdsee() {
     echo $HTMLFILE
     open "$HTMLFILE"
 }
+
+# Create and commit changelog item
+function cci() {
+  if [[ -z $1 ]]; then
+    echo "Please provide the PR issue number. Exit." && return
+  fi
+
+  if [[ -z $2 ]]; then
+    echo "Please provide a changelog title. Exit." && return
+  fi
+  touch changelog/$1.md
+  echo "* [#$1](https://github.com/dbdrive/beiwagen/pull/$1): $2 - [@Blackjacx](https://github.com/blackjacx)." > changelog/$1.md
+  git add changelog/$1.md
+  git commit -m "Add Changelog Item"
+  git push
+}
+
+# Easily create ASC auth header
+function asc_auth_header() {
+  echo "Authorization: Bearer $(ruby ~/dev/scripts/jwt.rb $ASC_AUTH_KEY $ASC_AUTH_KEY_ID $ASC_AUTH_KEY_ISSUER_ID)"
+}
