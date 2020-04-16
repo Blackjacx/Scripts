@@ -156,3 +156,7 @@ function cci() {
   git commit -m "Add Changelog Item"
   git push
 }
+
+function asc_auth_header() {
+  echo "Authorization: Bearer $(ruby ~/dev/scripts/jwt.rb $ASC_AUTH_KEY $ASC_AUTH_KEY_ID $ASC_AUTH_KEY_ISSUER_ID)"
+}
