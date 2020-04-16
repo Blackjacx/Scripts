@@ -140,3 +140,19 @@ function f_notifyme {
   ${HOME}/dev/scripts/notifyme.sh "$CMD" "$LAST_EXIT_CODE" &
 }
 export PS1='$(f_notifyme)'$PS1
+
+# Create and commit changelog item
+function cci() {
+  if [[ -z $1 ]]; then
+    echo "Please provide the PR issue number. Exit." && return
+  fi
+
+  if [[ -z $2 ]]; then
+    echo "Please provide a changelog title. Exit." && return
+  fi
+  touch changelog/$1.md
+  echo "* [#$1](https://github.com/dbdrive/beiwagen/pull/$1): $2 - [@Blackjacx](https://github.com/blackjacx)." > changelog/$1.md
+  git add changelog/$1.md
+  git commit -m "Add Changelog Item"
+  git push
+}
