@@ -50,11 +50,17 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Configure bgnotify
+bgnotify_threshold=3  ## set your own notification threshold
+
+# Configure agnoster theme
+export DEFAULT_USER=`whoami`
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git-extras sublime git gem pod brew bundler common-aliases httpie colored-man-pages dotenv swiftpm z)
+plugins=(git git-extras pod bundler common-aliases httpie colored-man-pages dotenv z bgnotify history)
 
 # User configuration
 
@@ -124,11 +130,12 @@ alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/br
 
 # File System
 alias hs='history | grep'
+alias hsi='history | grep -i' # case insensitive
 alias df="df -h"
 
 # Developer
 alias json=" open http://jsonviewer.stack.hu "
-alias regexp=" open https://regex101.com/ " 
+alias regexp=" open https://regex101.com/ "
 alias images=" http://placehold.it/150x350 "
 
 # enble fastlane autocompletion
@@ -139,14 +146,3 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Notifiy if command finished in iTerm2
-function f_notifyme {
-  LAST_EXIT_CODE=$?
-  CMD=$(fc -ln -1)
-  # No point in waiting for the command to complete
-  ${HOME}/dev/scripts/notifyme.sh "$CMD" "$LAST_EXIT_CODE" &
-}
-export PS1='$(f_notifyme)'$PS1
-
-export DEFAULT_USER=`whoami`
