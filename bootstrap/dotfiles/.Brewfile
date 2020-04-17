@@ -49,6 +49,7 @@ brew "mitmproxy" # Intercepting Network Traffic
 brew "npm"
 brew "node"
 brew "openssl"
+brew "pass" # open source password manager • including iOS app • syncing via git repo • encryption using GPG
 brew "p0f"
 brew "pngquant" # Lossy PNG compressor
 brew "poppler" # necessary for pdfinfo command
