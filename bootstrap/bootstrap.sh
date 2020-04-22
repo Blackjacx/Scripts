@@ -132,6 +132,15 @@ installSoftware() {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   }
 
+
+  printf "\n\n#################################################################\n"
+  printf "Installing Xcode Command Line Tools\n"
+  printf "#################################################################\n\n"
+
+  sudo xcode-select --install
+  printf "\nAgree to the Xcode license...\n"
+  sudo xcodebuild -license accept
+
   printf "\n\n#################################################################\n"
   printf "Installing Software via Homebrew\n"
   printf "#################################################################\n\n"
