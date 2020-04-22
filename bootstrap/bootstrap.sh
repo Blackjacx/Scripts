@@ -184,7 +184,7 @@ linkDotfiles() {
   done
 
   echo "Source ~/.zshrc ..."
-  . ~/.zshrc
+  source ~/.zshrc
 }
 
 cloneRepositories() {
