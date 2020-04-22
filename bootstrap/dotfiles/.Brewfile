@@ -13,7 +13,7 @@
 tap "jzaleski/homebrew-jzaleski" # support for apg
 tap "lokalise/brew"
 tap "lokalise/cli-2"
-tap "homebrew/cask-casks" # install cask system
+tap "homebrew/cask-cask" # install cask system
 tap "homebrew/cask-fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
 tap "github/gh" # Github CLI
