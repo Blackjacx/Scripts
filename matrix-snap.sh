@@ -56,7 +56,7 @@ if [ "$config" == "fast" ]; then
   device_names=("iPhone 11 Pro")
 else 
   styles=("light" "dark")
-  device_names=("iPhone SE" "iPhone 11 Pro" "iPhone 11 Pro Max")
+  device_names=("iPhone SE (2nd generation)" "iPhone 11 Pro" "iPhone 11 Pro Max")
 fi
 
 schemes=($schemes)
@@ -132,7 +132,7 @@ echo "Found runtime id for platform $platform: $runtime_id"
 
 # Find ids of preferred devices. If device not available - create it.
 for name in "${device_names[@]}"; do
-  echo "Following devices available for name \"$name\" and runtime id \"$runtime_id\""
+  echo "Following devices available for runtime_id \"$runtime_id\""
   xcrun simctl list --json | jq ".devices | .\"$runtime_id\""
 
   id=$(xcrun simctl list --json | jq ".devices | .\"$runtime_id\" | .[] | select(.name == \"$name\") | .udid" | cut -d\" -f2)
