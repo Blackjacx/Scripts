@@ -16,6 +16,11 @@ script_dir="$(cd "$(dirname "$0")"; pwd -P)"
 #
 
 configureSystem() {
+
+  printf "\n#################################################################\n"
+  printf "Configure System\n"
+  printf "#################################################################\n\n"
+
   #
   # Misc
   #
@@ -176,6 +181,10 @@ installSoftware() {
 
 linkDotfiles() {
 
+  printf "\n#################################################################\n"
+  printf "Link Dotfiles\n"
+  printf "#################################################################\n\n"
+
   # Finds hidden dotfiles and uses safe syntax to execute loop
   find "$script_dir/dotfiles" -type f -iname ".*" -print0 | while read -d $'\0' file
   do
@@ -188,6 +197,10 @@ linkDotfiles() {
 }
 
 cloneRepositories() {
+
+  printf "\n#################################################################\n"
+  printf "Clone Repos\n"
+  printf "#################################################################\n\n"
 
   pods=(
     "git@github.com:Blackjacx/Columbus.git"
