@@ -178,6 +178,9 @@ linkDotfiles() {
     echo "Linking $file..."
     ln -sf "$file" "${HOME}/"
   done
+
+  echo "Source ~/.zshrc ..."
+  . ~/.zshrc
 }
 
 cloneRepositories() {
