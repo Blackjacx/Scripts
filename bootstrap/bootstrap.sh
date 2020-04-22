@@ -201,16 +201,17 @@ cloneRepositories() {
 showUsage() {
 # `cat << EOF` This means that cat should stop reading when EOF is detected
 cat << EOF  
-Usage: $0 [-hvcilr]
+Usage: $0 [-hvacilr]
 
 Sets up a development mac by setting system configurations, installing 
 software and linking dotfiles to your home folder.
 
 -h     Display this help
 -v     Run script in verbose mode. Will print out each step of execution
+-a     Execute all, -clir
 -c     Configure default values for the system
--i     Install software using brew and brew cask
 -l     Link dotfiles to your home folder
+-i     Install software using brew and brew cask
 -r     Repositories on the internet are cloned
 
 EOF
@@ -224,7 +225,7 @@ if [ -z "${1:-}" ]; then
   exit 1
 fi
 
-while getopts "hvcilr" opt; do
+while getopts "hvacilr" opt; do
   case ${opt} in
     h)
       showUsage; exit 0;;
@@ -232,17 +233,24 @@ while getopts "hvcilr" opt; do
       export verbose=1
       set -xv  # Set xtrace and verbose mode.
       ;;
+    a)
+      echo "Execute all..."
+      configureSystem
+      linkDotfiles
+      installSoftware
+      cloneRepositories
+      ;;
     c)
       echo "Configure System..."
       configureSystem
       ;;
-    i)
-	    echo "Install Software..."
-      installSoftware
-      ;;
     l)
       echo "Link Dotfiles..."
       linkDotfiles
+      ;;
+    i)
+	    echo "Install Software..."
+      installSoftware
       ;;
     r)
       echo "Clone Repositories..."
