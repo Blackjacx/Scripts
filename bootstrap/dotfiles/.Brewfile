@@ -18,6 +18,11 @@ tap "homebrew/cask-fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
 tap "github/gh" # Github CLI
 
+# Xcode first since it is required by applications below, e.g. xcparse
+mas "xcode", id: 497799835
+mas "tweetbot", id: 557168941
+mas "gifski", id: 1351639930
+
 brew "ag" # code-searching tool similar to ack, but faster
 brew "apg" # generate strong passwords
 brew "bash" # installs a modern version of bash
@@ -100,6 +105,3 @@ cask "vlc"
 cask "wireshark"
 cask "wwdc"
 cask "zeplin"
-
-mas "tweetbot", id: 557168941
-mas "gifski", id: 1351639930
