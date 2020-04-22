@@ -85,6 +85,7 @@ cask "geektool"
 cask "gpg-suite"
 # cask "google-chrome" # to work correctly with 1password install it manually
 cask "handbrake"
+cask "iina"
 cask "iterm2"
 cask "provisionql"
 cask "scummvm"
