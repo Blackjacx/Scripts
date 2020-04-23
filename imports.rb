@@ -1,3 +1,5 @@
+require 'zip'
+
 # Splits a string into components and returns them as an array.
 # If the string is nil or empty or if the string just consists of delimiters it returns an empty array.
 # Params:
@@ -24,4 +26,16 @@ def get_issue_numbers_and_titles(section)
     issues_titles.push( { "issue" => issue, "title" => title } ) if issue && !issue.empty? && title && !title.empty?
   end    
   return issues_titles
+end
+
+# Extracting a ZIP file
+def unzip(file, destination)
+  FileUtils.mkdir_p(destination)
+
+  Zip::File.open(file) do |zip_file|
+    zip_file.each do |f|
+      fpath = File.join(destination, f.name)
+      zip_file.extract(f, fpath) unless File.exist?(fpath)
+    end
+  end
 end
