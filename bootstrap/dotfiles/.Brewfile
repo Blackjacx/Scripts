@@ -82,6 +82,7 @@ cask "emacs"
 cask "font-fira-code"
 cask "font-microsoft-office"
 cask "font-source-code-pro"
+case "font-jetbrains-mono"
 cask "geektool"
 cask "gpg-suite"
 # cask "google-chrome" # to work correctly with 1password install it manually
