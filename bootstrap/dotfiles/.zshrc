@@ -97,11 +97,7 @@ setopt SHARE_HISTORY
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='subl -n -w'
-else
-  export EDITOR='subl -n -w'  
-fi
+export EDITOR='subl -n -w'  
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -134,9 +130,10 @@ alias hsi='history | grep -i' # case insensitive
 alias df="df -h"
 
 # Developer
-alias json=" open http://jsonviewer.stack.hu "
-alias regexp=" open https://regex101.com/ "
-alias images=" http://placehold.it/150x350 "
+alias json="open http://jsonviewer.stack.hu"
+alias regexp="open https://regex101.com/"
+alias images="http://placehold.it/150x350"
+alias smerge="smerge ."
 
 # enble fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
