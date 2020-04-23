@@ -50,6 +50,7 @@ brew "mas" # installs Mac App Store apps
 brew "mint" # dependency manager for swift packages
 brew "mitmproxy" # Intercepting Network Traffic
 # brew "mplayer" # free and open-source media player | currently not used
+brew "nano"
 brew "npm"
 brew "node"
 brew "openssl"
