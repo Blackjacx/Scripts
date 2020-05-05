@@ -50,15 +50,16 @@ function mdsee() {
 # Create and commit changelog item
 function cci() {
   if [[ -z $1 ]]; then
-    echo "Please provide the PR issue number. Exit." && return
+    echo "Please provide a changelog title. Exit." && return
   fi
 
   if [[ -z $2 ]]; then
-    echo "Please provide a changelog title. Exit." && return
+    echo "Please provide the PR issue number. Exit." && return
   fi
-  touch changelog/$1.md
-  echo "* [#$1](https://github.com/dbdrive/beiwagen/pull/$1): $2 - [@Blackjacx](https://github.com/blackjacx)." > changelog/$1.md
-  git add changelog/$1.md
+  
+  touch changelog/$2.md
+  echo "* [#$2](https://github.com/dbdrive/beiwagen/pull/$2): $1 - [@Blackjacx](https://github.com/blackjacx)." > changelog/$2.md
+  git add changelog/$2.md
   git commit -m "Add Changelog Item"
   git push
 }
