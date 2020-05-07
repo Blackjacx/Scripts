@@ -58,7 +58,7 @@ function cci() {
   fi
   
   touch changelog/$2.md
-  echo "* [#$2](https://github.com/dbdrive/beiwagen/pull/$2): $1 - [@Blackjacx](https://github.com/blackjacx)." > changelog/$2.md
+  echo "* [#$2](https://github.com/dbdrive/beiwagen/pull/$2): $1 - [@stherold](https://github.com/stherold)." > changelog/$2.md
   git add changelog/$2.md
   git commit -m "Add Changelog Item"
   git push
