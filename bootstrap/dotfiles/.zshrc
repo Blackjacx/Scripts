@@ -90,8 +90,8 @@ setopt INC_APPEND_HISTORY
 ### As each line is added, the history file is checked to see if anything was written out by another shell, and if so it is included in the history of the current shell too
 setopt SHARE_HISTORY
 
-[ -f "$ZSH"/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
-[ -f "${HOME}"/dev/scripts/imports.sh ] && source "${HOME}"/dev/scripts/imports.sh
+[ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
+[ -f ~/dev/scripts/imports.sh ] && source ~/dev/scripts/imports.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -142,4 +142,3 @@ alias smerge="smerge ."
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
