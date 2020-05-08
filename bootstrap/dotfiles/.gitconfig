@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/stherold/.gitignore_global
+	excludesfile = /Users/stherold/.gitignore
 	mergeoptions = --no-edit
 	editor = nano
 [difftool "sourcetree"]
