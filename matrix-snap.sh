@@ -166,8 +166,8 @@ for style in "${styles[@]}"; do
 done
 
 # shrink png
-printf '\n%s\n' "Shrinking PNGs using PNGQuant..."
-find "$working_dir" -type f -name "*.png" -print0 | xargs -0 pngquant --ext .png --force
+# printf '\n%s\n' "Shrinking PNGs using PNGQuant..."
+# find "$working_dir" -type f -name "*.png" -print0 | xargs -0 pngquant --ext .png --force
 
 for scheme in "${schemes[@]}"; do
   # create archive - cd into folder to prevent storage of absolute path
