@@ -21,12 +21,12 @@ if [ -z "$group_ids" ]; then usage "Tester group ids missing!"; exit 1; fi
 # Find user in each group nd delete it
 for gid in "${group_ids[@]}"; do
   echo "Searching user $email in group with id $gid"
-  response=$(curl -g -s "$url/betaGroups/$gid/betaTesters?fields[betaTesters]=email" -H  "$json_content_type" -H "$ASC_AUTH_HEADER")
+  response=$(curl -g -s "$url/betaGroups/$gid/betaTesters?fields[betaTesters]=email" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER")
   uid=$(echo $response | jq ".data[] | select(.attributes.email ==\"$email\").id" | awk -F'"' '{print $2}')
   [[ $uid == "" ]] && echo "❌ Not found!" && continue
   echo "✅ $uid"
 
-  curl -g s -X DELETE -s "$url/betaTesters/$uid/relationships/betaGroups" -H  "$json_content_type" -H "$ASC_AUTH_HEADER" \
+  curl -g s -X DELETE -s "$url/betaTesters/$uid/relationships/betaGroups" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
     -d '{"data": [{ "id": "$gid", "type": "betaGroups" }] }' \
     | jq '.data | ( .id, .attributes )'
 done

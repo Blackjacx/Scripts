@@ -17,7 +17,7 @@ if [ -z "$group" ]; then usage "Tester group name missing!"; exit 1; fi
 if [ -z "$ASC_AUTH_HEADER" ]; then usage "Authorization header environment variable missing!"; exit 1; fi
 
 # Get all group ids
-ids=$(curl -g -s "$url/betaGroups" -H  "$json_content_type" -H "$ASC_AUTH_HEADER" \
+ids=$(curl -g -s "$url/betaGroups" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
   | jq ".data[] | select(.attributes.name == \"$group\") | .id" \
   | awk -F'"' '{print $2}')
 

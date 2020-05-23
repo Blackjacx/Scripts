@@ -15,7 +15,7 @@ if [ -z "$ASC_AUTH_HEADER" ]; then usage "Authorization header environment varia
 
 while true; do
   build_ids=($(curl -s -g "$url/builds?limit=50&filter[expired]=false" \
-    -H "$ASC_AUTH_HEADER" -H "$json_content_type" \
+    -H "Authorization: $ASC_AUTH_HEADER" -H "$json_content_type" \
     | jq '.data[].id' | awk -F'"' '{print $2}'))
 
   if [[ $build_ids == "" ]]; then
@@ -28,7 +28,7 @@ while true; do
   for id in "${build_ids[@]}"; do
     curl -X PATCH \
       -g "$url/builds/$id" \
-      -H "$ASC_AUTH_HEADER" -H "$json_content_type" \
+      -H "Authorization: $ASC_AUTH_HEADER" -H "$json_content_type" \
       --data '{"data":{"id":'"\"$id\""',"type": "builds", "attributes":{"expired":true}}}'
   done
 done

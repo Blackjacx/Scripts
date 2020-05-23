@@ -24,7 +24,7 @@ if [ -z "$group_ids" ]; then usage "Tester group ids missing!"; exit 1; fi
 
 # Add tester to all groups of given name
 for id in "${group_ids[@]}"; do
-  curl -g -s "$url/betaTesters" -H  "$json_content_type" -H "$ASC_AUTH_HEADER" \
+  curl -g -s "$url/betaTesters" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
     -d '{"data":{"type":"betaTesters", "attributes":{"email":"'"$email"'","firstName":"'"$first"'","lastName":"'"$last"'"},"relationships":{"betaGroups":{"data":[{"id":"'$id'","type":"betaGroups"}]}}}}' \
     | jq '.data | ( .id, .attributes )'
 done
