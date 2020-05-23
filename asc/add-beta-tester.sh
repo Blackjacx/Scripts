@@ -2,22 +2,17 @@
 
 set -euo pipefail
 
-# Check to see if a pipe exists on stdin.
-if [ -p /dev/stdin ]; then
-  # Grab all the data piped into this script by using cat
-  group_ids=($(cat))
-fi
-
 url="https://api.appstoreconnect.apple.com/v1"
 json_content_type="Content-Type: application/json"
 
-email="$1"
-first="$2"
-last="$3"
+email=$1
+first=$2
+last=$3
+group_ids=($4)
 
 usage() {
   echo "$1"
-  echo 'Usage: export ASC_AUTH_HEADER="$(asc_auth_header)" && ./group-ids-for-name.sh ioki | '$0' <email> <first_name> <last_name>'
+  echo 'Usage: export ASC_AUTH_HEADER="$(asc_auth_header)" && '$0' "<email>" "<first_name>" <last_name>" "$(./group-ids-for-name.sh ioki)"'
   echo "Quit..."
 }
 
