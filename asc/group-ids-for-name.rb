@@ -23,12 +23,9 @@ end
 
 conn.headers = {'Content-Type' => 'application/json', 'Authorization' => ENV["ASC_AUTH_HEADER"]}
 
-conn.get('betaGroups') do |req|
-  # req.params['limit'] = 100
-  # req.body = {query: 'salmon'}.to_json
-end
-
-puts response.body['data']
+puts conn
+  .get('betaGroups')
+  .body['data']
   .select { |array| array['attributes']['name'] == "#{group}" }
   .map { |group| group['id'] }
   .join(' ')
