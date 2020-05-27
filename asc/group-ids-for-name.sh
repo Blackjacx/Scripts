@@ -27,12 +27,14 @@ fi
 echo $ids
 
 # all_names=$(echo $groups_json | jq '.data[] | ( .id, .attributes )')
+# printf '%s\n' "${all_names[@]}"
+
 # all_ids=$(echo $groups_json | jq ".data[].id" | awk -F'"' '{print $2}')
+# printf '%s\n' "${all_ids[@]}"
 
 # printf '%s\n' "${ids[@]}"
-# printf '%s\n' "${all_ids[@]}"
 # printf '%s\n' "${groups_json[@]}"
-# printf '%s\n' "${all_names[@]}"
+
 
 # app_links=($(echo $groups_json | jq ".data[] | select(.attributes.name == \"$group\") | .relationships.app.links.self" | awk -F'"' '{print $2}'))
 # apps_json=$(curl -g -s "$url/apps" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER")
