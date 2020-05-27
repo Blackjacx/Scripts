@@ -24,9 +24,8 @@ for gid in "${group_ids[@]}"; do
   response=$(curl -g -s "$url/betaGroups/$gid/betaTesters?fields[betaTesters]=email" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER")
   uid=$(echo $response | jq ".data[] | select(.attributes.email ==\"$email\").id" | awk -F'"' '{print $2}')
   [[ $uid == "" ]] && echo "❌ Not found!" && continue
-  echo "✅ $uid"
-
-  curl -g s -X DELETE -s "$url/betaTesters/$uid/relationships/betaGroups" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
-    -d '{"data": [{ "id": "$gid", "type": "betaGroups" }] }' \
-    | jq '.data | ( .id, .attributes )'
+  
+  echo "✅ $uid, delete user..."
+  curl -g -s -X DELETE "$url/betaTesters/$uid/relationships/betaGroups" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
+    -d '{"data": [{ "id": "'$gid'", "type": "betaGroups" }] }'
 done
