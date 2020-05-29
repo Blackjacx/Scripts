@@ -49,7 +49,7 @@ configureSystem() {
   #
 
   # Show filename extensions by default
-  defaults write -g AppleShowAllExtensions -bool true
+  defaults write -g AppleShowAllExtensions -bool false
   # Disable auto-correct
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
   # Set a shorter Delay until key repeat
