@@ -93,7 +93,7 @@ configureSystem() {
   # Remove dock auto-hide delay
   defaults write com.apple.dock autohide-delay -float 0
   # Move the dock to the left
-  defaults write com.apple.Dock orientation -string left
+  defaults write com.apple.Dock orientation -string right
 
   #
   # Terminal
