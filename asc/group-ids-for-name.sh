@@ -25,9 +25,13 @@ else
 fi
 
 echo $ids
+# printf '%s\n' "${ids[@]}"
 
 # all_names=$(echo $groups_json | jq '.data[] | ( .id, .attributes )')
 # printf '%s\n' "${all_names[@]}"
+
+# names=$(echo $groups_json | jq ".data[] | select(.attributes.name == \"$group\") | (.id, .attributes)")
+# printf '%s\n' "${names[@]}"
 
 # all_ids=$(echo $groups_json | jq ".data[].id" | awk -F'"' '{print $2}')
 # printf '%s\n' "${all_ids[@]}"
