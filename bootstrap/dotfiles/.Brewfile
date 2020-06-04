@@ -41,6 +41,7 @@ brew "gh"
 brew "git" # distributed version-control system for tracking changes in source code during software development
 brew "git-extras"
 brew "git-flow"
+brew "github-markdown-toc"
 brew "gource" # software version control visualization
 brew "htop"
 brew "httpie"
