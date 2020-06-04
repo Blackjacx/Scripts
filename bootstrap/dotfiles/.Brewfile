@@ -28,6 +28,7 @@ brew "bash" # installs a modern version of bash
 brew "bat" # `cat` command line tool but with line numbers and syntax highlighting
 brew "carthage"
 brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
+brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
 brew "docker"
