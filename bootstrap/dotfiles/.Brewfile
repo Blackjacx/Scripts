@@ -31,6 +31,7 @@ brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult 
 brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
+brew "git-delta"
 brew "docker"
 brew "doxygen"
 # brew "e2fsprogs" # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
