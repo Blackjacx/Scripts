@@ -50,18 +50,29 @@ function mdsee() {
 # Create and commit changelog item
 function cci() {
   if [[ -z $1 ]]; then
-    echo "Please provide a changelog title. Exit." && return
+    echo "Please provide a changelog title / issue number combination in the format <title #number>. Exit." && return
   fi
 
-  if [[ -z $2 ]]; then
-    echo "Please provide the PR issue number. Exit." && return
-  fi
+  title=$(echo $1 | sed 's/ #[0-9]*$//')
+  number=$(echo $1 | sed 's/.*#//')
   
-  touch changelog/$2.md
-  echo "* [#$2](https://github.com/dbdrive/beiwagen/pull/$2): $1 - [@stherold](https://github.com/stherold)." > changelog/$2.md
-  git add changelog/$2.md
-  git commit -m "Add Changelog Item"
-  git push
+  touch changelog/$number.md
+  entry="* [#$number](https://github.com/dbdrive/beiwagen/pull/$number): $title - [@stherold](https://github.com/stherold)."
+  echo $entry
+  echo $entry > changelog/$number.md
+
+  while true; do
+    printf "Do you want to commit this changelog entry? [y/N]: " 
+   read yn
+    case $yn in
+      [Yy]* ) git add changelog/$number.md
+              git commit -m "Add Changelog Item"
+              git push
+              break;;
+
+          * ) break;;
+    esac
+  done
 }
 
 # Easily create ASC auth header
