@@ -11,7 +11,6 @@
 # mas "1Password", id: 443987910
 
 tap "jzaleski/homebrew-jzaleski" # support for apg
-tap "lokalise/brew"
 tap "lokalise/cli-2"
 tap "homebrew/cask-fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
@@ -47,7 +46,6 @@ brew "htop"
 brew "httpie"
 brew "imagemagick"
 brew "jq" # command-line JSON processor
-brew "lokalise" # tool for for mobile localization cloud platform
 brew "lokalise2" # tool for for mobile localization cloud platform (new version)
 brew "mas" # installs Mac App Store apps
 brew "mint" # dependency manager for swift packages
