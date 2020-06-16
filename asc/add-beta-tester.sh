@@ -24,8 +24,14 @@ if [ -z "$group_ids" ]; then usage "Tester group ids missing!"; exit 1; fi
 
 # Add tester to all groups of given name
 for id in "${group_ids[@]}"; do
-  echo "Inviting $first $last $email to group with id $id..."
+  echo "Inviting $first $last $email to group with id \"$id\""
   curl -g -s "$url/betaTesters" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
     -d '{"data":{"type":"betaTesters", "attributes":{"email":"'"$email"'","firstName":"'"$first"'","lastName":"'"$last"'"},"relationships":{"betaGroups":{"data":[{"id":"'$id'","type":"betaGroups"}]}}}}' \
     | jq '.data | ( .id, .attributes )'
+
+  # Add users to an internal App Store Conect app (they must exist and thus have an ID)
+  # tester_id=""
+  # curl -g -s "$url/betaGroups/$id/relationships/betaTesters" -H  "$json_content_type" -H "Authorization: $ASC_AUTH_HEADER" \
+  #   -d '{ "data": [{ "type": "betaTesters", "id": "'"$tester_id"'" }] }' \
+  #   | jq '.data | ( .id, .attributes )'
 done
