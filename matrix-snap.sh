@@ -59,9 +59,11 @@ else
   device_names=("iPhone SE (2nd generation)" "iPhone 11 Pro" "iPhone 11 Pro Max")
 fi
 
+platform="$5"
+if [ -z "$platform" ]; then usage "Platform parameter missing!"; exit 1; fi
+
 schemes=($schemes)
 working_dir=$(mktemp -d)
-platform="iOS 13.5"
 device_ids=()
 destinations=()
 results=()
