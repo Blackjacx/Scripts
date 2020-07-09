@@ -61,7 +61,7 @@ fi
 
 schemes=($schemes)
 working_dir=$(mktemp -d)
-platform="iOS 13.4"
+platform="iOS 13.5"
 device_ids=()
 destinations=()
 results=()
