@@ -34,7 +34,8 @@
 
 usage() {
   echo "$1"
-  echo "Usage: matrix-snap.sh <workspace> <deploy_dir> \"\$(cat <scheme_file>)\" <fast | full>"
+  echo "Usage: matrix-snap.sh <workspace> <deploy_dir> \"\$(cat <scheme_file>)\" <fast | full> [iOS <version>]"
+  echo "Platform parameter is optional. Only iOS <version> is supported. Leave blank to use the latest installed iOS."
   echo "Quit..."
 }
 
@@ -60,7 +61,20 @@ else
 fi
 
 platform="$5"
-if [ -z "$platform" ]; then usage "Platform parameter missing!"; exit 1; fi
+if [ -z "$platform" ]; then 
+  printf "Platform not provided - choosing latest iOS platform..."
+  platform=$(xcrun simctl list --json | jq "[.runtimes | .[] | select(.name | contains(\"iOS\"))] | max_by(.version) | .name" | cut -d\" -f2)
+  printf "Valid platform found: $platform\n"
+else
+  printf "Platform \"$platform\" provided - checking for existence... "
+  tmp_platform=$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name == \"$platform\") | .name" | cut -d\" -f2)
+  if [[ $tmp_platform == "" ]]; then
+    printf "Not found: These are the ones you may use:\n"
+    printf "$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name | contains(\"iOS\")) | .name")\n"
+  else
+    printf " ✅\n"
+  fi
+fi
 
 schemes=($schemes)
 working_dir=$(mktemp -d)
@@ -130,7 +144,7 @@ killall "Simulator"
 
 # Find runtime id of desired platform
 runtime_id=$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name == \"$platform\") | .identifier" | cut -d\" -f2)
-echo "Found runtime id for platform $platform: $runtime_id"
+echo "Found runtime id for $platform: $runtime_id"
 
 # Find ids of preferred devices. If device not available - create it.
 for name in "${device_names[@]}"; do
