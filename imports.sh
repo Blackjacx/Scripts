@@ -8,6 +8,10 @@ magenta=$'\e[1;35m'
 cyan=$'\e[1;36m'
 white=$'\e[0m'
 
+function join_by { 
+  local IFS="$1"; shift; echo "$*"; 
+}
+
 function loadEnvironment () {
   # Ignores commented lines
   ENV_FILE="$(dirname "$0")/../.env"

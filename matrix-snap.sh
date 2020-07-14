@@ -32,6 +32,9 @@
 
 # set -x
 
+# Import Global Functionality
+. $(dirname "$0")/imports.sh --source-only
+
 usage() {
   echo "$1"
   echo "Usage: matrix-snap.sh <workspace> <deploy_dir> \"\$(cat <scheme_file>)\" <fast | full> [iOS <version>]"
@@ -51,14 +54,19 @@ schemes="$3"
 if [ -z "$schemes" ]; then usage "Schemes parameter missing!"; exit 1; fi
 
 config="$4"
-if [ -z "$config" ]; then usage "Config parameter missing. Use \"fast\" or \"full\"!"; exit 1; fi
+if [ -z "$config" ]; then usage "Config parameter missing."; exit 1; fi
 if [ "$config" == "fast" ]; then 
   styles=("light")
   device_names=("iPhone 11 Pro")
-else 
+else if [ "$config" == "full" ]; then 
   styles=("light" "dark")
   device_names=("iPhone SE (2nd generation)" "iPhone 11 Pro" "iPhone 11 Pro Max")
+else 
+  usage "Config parameter wrong."; exit 1; fi
 fi
+styles_string=$(join_by , "${styles[@]}")
+devices_string=$(join_by , "${device_names[@]}")
+printf "Using config \"$config\". Will take screenshots on styles [$styles_string] and devices [$devices_string]\n"
 
 platform="$5"
 if [ -z "$platform" ]; then 
