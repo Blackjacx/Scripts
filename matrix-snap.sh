@@ -64,13 +64,14 @@ platform="$5"
 if [ -z "$platform" ]; then 
   printf "Platform not provided - choosing latest iOS platform..."
   platform=$(xcrun simctl list --json | jq "[.runtimes | .[] | select(.name | contains(\"iOS\"))] | max_by(.version) | .name" | cut -d\" -f2)
-  printf "Valid platform found: $platform\n"
+  printf "Valid platform found: $platform" $'\n'
 else
   printf "Platform \"$platform\" provided - checking for existence... "
   tmp_platform=$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name == \"$platform\") | .name" | cut -d\" -f2)
   if [[ $tmp_platform == "" ]]; then
-    printf "Not found: These are the ones you may use:\n"
-    printf "$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name | contains(\"iOS\")) | .name")\n"
+    printf "%s" "Not found: You can use the ones below:" $'\n'
+    printf "%s" "$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name | contains(\"iOS\")) | .name")" $'\n'
+    exit 1
   else
     printf " ✅\n"
   fi
