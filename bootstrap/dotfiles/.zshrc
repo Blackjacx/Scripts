@@ -126,6 +126,7 @@ alias wffm1='curl https://v2.wttr.in/FrankfurtAmMain'
 alias wffm2='curl "wttr.in/Frankfurt am Main?FAq&lang=de"'
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_TOKEN\""
+alias swiftb="swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15""
 
 # File System
 alias hs='history | grep'
