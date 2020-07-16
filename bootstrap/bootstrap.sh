@@ -211,7 +211,7 @@ cloneRepositories() {
   printf "Clone Repos\n"
   printf "#################################################################\n\n"
 
-  pods=(
+  packages=(
     "git@github.com:Blackjacx/Columbus.git"
     "git@github.com:Blackjacx/SHDateFormatter.git"
     "git@github.com:Blackjacx/SHSearchBar.git"
@@ -220,10 +220,10 @@ cloneRepositories() {
   )
   base_dir="${HOME}/dev/projects/private"
 
-  git clone "git@github.com:Blackjacx/Playgrounds.git" "${HOME}/dev/projects/private/playgrounds"
+  git clone "git@github.com:Blackjacx/Playgrounds.git" "$base_dir/playgrounds"
 
-  for repo in ${pods[@]}; do
-    git clone $repo "$base_dir/pods/$(basename $repo | cut -d'.' -f1)"
+  for repo in ${packages[@]}; do
+    git clone $repo "$base_dir/packages/$(basename $repo | cut -d'.' -f1)"
   done
 }
 
