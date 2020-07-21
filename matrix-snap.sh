@@ -197,7 +197,7 @@ done
 for scheme in "${schemes[@]}"; do
   # create archive - cd into folder to prevent storage of absolute path
   cd "$working_dir"
-  zip -r0 "${deploy_dir}/Screens_${scheme}.zip" "./${scheme}" #-x \*.xcresult\*
+  zip -r0 "${deploy_dir}/Screens_${scheme}.zip" "./${scheme}" -x \*.xcresult\*
   cd -
 done
 
