@@ -70,9 +70,9 @@ printf "Using config \"$config\". Will take screenshots on styles [$styles_strin
 
 platform="$5"
 if [ -z "$platform" ]; then 
-  printf "Platform not provided - choosing latest iOS platform..."
+  printf "Platform not provided - choosing latest iOS platform... "
   platform=$(xcrun simctl list --json | jq "[.runtimes | .[] | select(.name | contains(\"iOS\"))] | max_by(.version) | .name" | cut -d\" -f2)
-  printf "Valid platform found: $platform" $'\n'
+  printf "Valid platform found: $platform\n"
 else
   printf "Platform \"$platform\" provided - checking for existence... "
   tmp_platform=$(xcrun simctl list --json | jq ".runtimes | .[] | select(.name == \"$platform\") | .name" | cut -d\" -f2)
