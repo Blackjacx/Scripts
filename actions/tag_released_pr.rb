@@ -37,7 +37,7 @@ module Fastlane
         # Below a few examples
         [
           FastlaneCore::ConfigItem.new(key: :github_token,
-                                       env_name: "GITHUB_TOKEN", # The name of the environment variable
+                                       env_name: "GITHUB_ACCESS_TOKEN", # The name of the environment variable
                                        description: "API Token for Github", # a short description of this parameter
                                        verify_block: proc do |value|
                                           UI.user_error!("No Github API token for TagReleasedPrAction given, pass using `github_token: 'token'`") unless (value and not value.empty?)
