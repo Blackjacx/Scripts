@@ -83,6 +83,10 @@ configureSystem() {
   defaults write com.apple.finder ShowStatusBar -bool true
   # Show Pathbar
   defaults write com.apple.finder ShowPathbar -bool true
+  # Emptry trash securely by default
+  defaults write com.apple.finder EmptyTrashSecurely -bool true
+  # Remove items from the Trash after 30 days
+  defaults write com.apple.finder FXRemoveOldTrashItems -bool true
   
   #
   # Dock
