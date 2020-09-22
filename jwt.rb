@@ -12,8 +12,8 @@ token = JWT.encode(
    {
     iss: issuer_id,
     iat: Time.now.to_i,
-    # exp: Time.now.to_i + 20 * 60,
-    # aud: "appstoreconnect-v1"
+    exp: Time.now.to_i + 20 * 60,
+    aud: "appstoreconnect-v1"
    },
    private_key,
    "ES256",
