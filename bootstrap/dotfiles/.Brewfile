@@ -37,6 +37,7 @@ brew "doxygen"
 brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
 brew "gh"
+brew "ghostscript" # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git" # distributed version-control system for tracking changes in source code during software development
 brew "git-extras"
 brew "git-flow"
