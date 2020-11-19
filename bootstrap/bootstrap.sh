@@ -141,9 +141,9 @@ installSoftware() {
   printf "Installing Xcode Command Line Tools\n"
   printf "#################################################################\n\n"
 
-  sudo xcode-select --install
+  xcode-select --install
   printf "\nAgree to the Xcode license...\n"
-  sudo xcodebuild -license accept
+  xcodebuild -license accept
 
   printf "\n\n#################################################################\n"
   printf "Installing Software via Homebrew\n"
