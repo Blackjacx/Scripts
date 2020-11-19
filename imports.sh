@@ -59,17 +59,17 @@ function cci() {
 
   title=$(echo $1 | sed 's/ #[0-9]*$//')
   number=$(echo $1 | sed 's/.*#//')
-  
-  touch changelog/$number.md
-  entry="* [#$number](https://github.com/dbdrive/beiwagen/pull/$number): $title - [@stherold](https://github.com/stherold)."
+  account="stherold"
+
+  entry="* [#$number](https://github.com/dbdrive/beiwagen/pull/$number): $title - [@$account](https://github.com/$account)."
   echo $entry
-  echo $entry > changelog/$number.md
 
   while true; do
     printf "Do you want to commit this changelog entry? [y/N]: " 
    read yn
     case $yn in
-      [Yy]* ) git add changelog/$number.md
+      [Yy]* ) echo $entry > changelog/$number.md
+              git add changelog/$number.md
               git commit -m "Add Changelog Item"
               git push
               break;;
