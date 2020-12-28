@@ -23,6 +23,7 @@ tap "github/gh" # Github CLI
 
 brew "ag" # code-searching tool similar to ack, but faster
 brew "apg" # generate strong passwords
+brew "aria2" # download manager that supports segmented downloads
 brew "bash" # installs a modern version of bash
 brew "bat" # `cat` command line tool but with line numbers and syntax highlighting
 brew "carthage"
