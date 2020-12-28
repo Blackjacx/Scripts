@@ -36,3 +36,5 @@
     diffFilter = delta --color-only
 [pull]
 	rebase = true
+[rerere]
+	enabled = true
