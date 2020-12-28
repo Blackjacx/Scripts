@@ -157,7 +157,7 @@ installSoftware() {
   printf "\nUpdate software defined in global Brewfile @ HOME...\n"
   brew bundle -v --global
   printf "\nBrew cask upgrade - upgrade casks separately...\n"
-  brew cask upgrade $(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)
+  brew upgrade --cask $(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)
   printf "\nCleanup...\n"
   brew cleanup
   printf "\nDisplay brew eco-system health...\n"
