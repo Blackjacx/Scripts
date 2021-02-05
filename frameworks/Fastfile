@@ -95,7 +95,7 @@ lane :release do |options|
   UI.user_error!("Github release #{version} already exists") if is_set( github_release )
 
   # Updates framework podspec version
-  version_bump_podspec(path: "#{framework}.podspec", version_number: version) if supports_cocoapods
+  version_bump_podspec(path: "#{framework}.podspec", version_number: version) if is_cocoapods_framework
 
   update_mit_license
 
@@ -111,7 +111,7 @@ lane :release do |options|
   )
 
   # Check if podspec is ok and tests succeed
-  pod_lib_lint(allow_warnings: true) if supports_cocoapods
+  pod_lib_lint(allow_warnings: true) if is_cocoapods_framework
   test(framework: framework)
 
   #
@@ -142,11 +142,11 @@ lane :release do |options|
 
   # Pushes framework podspec to Cocoapods specs
   # Needs to be done at the end (expects git tag to be available)
-  pod_push(path: "#{framework}.podspec", allow_warnings: true) if supports_cocoapods
+  pod_push(path: "#{framework}.podspec", allow_warnings: true) if is_cocoapods_framework
 
   # Create a Carthage archive which is then added to the github release, to enable carthage caching
   github_release_assets = []
-  if supports_carthage
+  if is_carthage_framework
     carthage_archive_name = "#{framework}.framework.zip"
     sh "cd .. && carthage build --no-skip-current" 
     # Replace the top by the one below when carthage is able to archive xcframeworks. 
@@ -178,7 +178,7 @@ lane :test do |options|
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if has_podfile
 
-  if supports_spm 
+  if is_spm_package 
     scheme = framework
     supported_platforms = sh "cd .. && swift package dump-package | jq '.platforms[].platformName'"
     destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
@@ -194,7 +194,7 @@ lane :test do |options|
     sh "cd .. && xcodebuild -scheme #{scheme} test -sdk macosx -destination 'platform=macOS'" if supports_macos
   end
 
-  if supports_cocoapods || supports_carthage
+  if is_cocoapods_framework || is_carthage_framework
     xargs = "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
 
     scan(scheme: "#{framework}-iOS", clean: true, xcargs: xargs) if schemes.include? "iOS"
@@ -253,7 +253,7 @@ def is_set(var)
   !var.nil? && !var.to_s.strip.empty? && var != "0"
 end
 
-def supports_cocoapods
+def is_cocoapods_framework
   podspecs = Dir["../*.podspec"]
   return podspecs.count == 1
 end
@@ -263,11 +263,11 @@ def has_podfile
   return podfile.count == 1
 end
 
-def supports_carthage
+def is_carthage_framework
   File.file?("../Cartfile")
 end
 
-def supports_spm
+def is_spm_package
   File.file?("../Package.swift")
 end
 
