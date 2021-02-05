@@ -176,7 +176,7 @@ lane :test do |options|
   UI.user_error!("No framework specified") unless is_set( framework )
 
   # only run the cocoapods action if there is a podfile
-  cocoapods(repo_update: true) if supports_cocoapods
+  cocoapods(repo_update: true) if has_podfile
 
   if supports_spm 
     scheme = framework
@@ -256,6 +256,11 @@ end
 def supports_cocoapods
   podspecs = Dir["../*.podspec"]
   return podspecs.count == 1
+end
+
+def has_podfile
+  podfile = Dir["../Podfile"]
+  return podfile.count == 1
 end
 
 def supports_carthage
