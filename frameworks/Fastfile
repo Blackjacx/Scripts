@@ -147,13 +147,11 @@ lane :release do |options|
   # Create a Carthage archive which is then added to the github release, to enable carthage caching
   github_release_assets = []
   if is_carthage_framework
-    carthage_archive_name = "#{framework}.framework.zip"
-    sh "cd .. && carthage build --no-skip-current" 
-    # Replace the top by the one below when carthage is able to archive xcframeworks. 
-    # The output name will then be <fw-name>.xcframework which can simply be ziped and uploaded. 
-    # Delete the line and zip manually: carthage(command: "archive", output: "#{carthage_archive_name}")
-    # carthage build --no-skip-current --use-xcframeworks
-    carthage(command: "archive", output: "#{carthage_archive_name}")
+    xcframework_name = "#{framework}.xcframework"
+    archive_name = "#{xcframework_name}.zip"
+    sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
+    # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
+    sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
     github_release_assets.append("#{carthage_archive_name}")
   end
 
