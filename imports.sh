@@ -79,6 +79,14 @@ function cci() {
   done
 }
 
+# Open man page in Preview 
+function manv() {
+  if [[ -z $1 ]]; then
+    echo "Please provide the command you want to view the man page for. Exit." && return
+  fi
+  man -t $1 | open -f -a Preview
+}
+
 # Easily create ASC auth header
 function asc_auth_header() {
   echo "Bearer $(ruby ~/dev/scripts/jwt.rb $ASC_AUTH_KEY $ASC_AUTH_KEY_ID $ASC_AUTH_KEY_ISSUER_ID)"
