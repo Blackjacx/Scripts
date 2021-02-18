@@ -63,7 +63,7 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras pod bundler common-aliases httpie colored-man-pages dotenv z bgnotify history)
+plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder)
 
 # User configuration
 
@@ -117,9 +117,11 @@ export EDITOR='subl -n -w'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
+alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-dsyms"
 alias cdtmp='cd "$(mktemp -d)"'
 alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
-alias glogd="git log --oneline --decorate --graph develop.."
+alias glogd="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short develop.."
+alias glogm="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short master.."
 alias brsc="brew search --casks"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 alias wffm1='curl https://v2.wttr.in/FrankfurtAmMain'
@@ -129,8 +131,6 @@ alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/br
 alias swiftb="swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15""
 
 # File System
-alias hs='history | grep'
-alias hsi='history | grep -i' # case insensitive
 alias df="df -h"
 
 # Developer
