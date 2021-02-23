@@ -35,7 +35,8 @@ function download_config_files {
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Gemfile -o Gemfile
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Fastfile -o ./fastlane/Fastfile --create-dirs
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Pluginfile -o ./fastlane/Pluginfile --create-dirs
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gh-actions/test.yml -o ./.github/workflows/test.yml --create-dirs
+  # Test workflow for SPM only packages - for now integrated manually where needed
+  # curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gh-actions/spm-only-test.yml -o ./.github/workflows/spm-only-test.yml --create-dirs
 }
 
 function install_current {
