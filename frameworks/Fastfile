@@ -59,9 +59,11 @@ desc "Pushes releases to github"
 desc "Commits and pushes changes to remote and tags the release commit"
 lane :release do |options|
 
-  framework = options[:framework]
+  config = project_configuration
+  framework = config["name"]  
   repo_name = "blackjacx/#{framework}"
-  UI.user_error!("No framework specified") unless is_set( framework )
+
+  UI.user_error!("No framework name found") unless is_set( framework )
 
   # Ensure the source code is OK and tests are green
   ensure_bundle_exec
@@ -73,7 +75,7 @@ lane :release do |options|
   # Pull develop/master to be sure we're up to date everywherre
   sh "git pull && git checkout master && git pull && git checkout develop"
 
-  if has_project_file(framework)
+  if has_project_file
     bump_type = options[:bump_type]
     UI.user_error!("bump_type not specified. Please specify \"major\", \"minor\" or \"patch\"!") unless is_set( bump_type )
 
@@ -112,7 +114,7 @@ lane :release do |options|
 
   # Check if podspec is ok and tests succeed
   pod_lib_lint(allow_warnings: true) if is_cocoapods_framework
-  test(framework: framework)
+  test
 
   #
   # Start the release
@@ -153,7 +155,7 @@ lane :release do |options|
   sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
   # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
   sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
-  github_release_assets.append("#{carthage_archive_name}")
+  github_release_assets.append("#{archive_name}")
 
   # Creates new release on Github with changelog + pushes the tag if not done already
   set_github_release(
@@ -170,15 +172,20 @@ end
 
 desc "Runs tests using scan"
 lane :test do |options|
-  framework = options[:framework]
-  UI.user_error!("No framework specified") unless is_set( framework )
+  config = project_configuration
+  framework = config["name"]
+  schemes = config["schemes"]
+  platforms = ["iOS", "tvOS", "watchOS", "macOS"]
+
+  UI.user_error!("No framework name found") unless is_set( framework )
+  UI.user_error!("No schemes found") unless schemes.length > 0
 
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if has_podfile
 
   if is_spm_package && !is_cocoapods_framework
     scheme = framework
-    supported_platforms = sh "cd .. && swift package dump-package | jq '.platforms[].platformName'"
+    supported_platforms = spm_supported_platforms
     destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
 
     supports_ios = supported_platforms.include? "ios"
@@ -186,24 +193,18 @@ lane :test do |options|
     supports_watchos = supported_platforms.include? "watchos"
     supports_macos = supported_platforms.include? "macos"
 
-    sh "cd .. && xcodebuild -scheme #{scheme} test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11'" if supports_ios
+    sh "cd .. && xcodebuild -scheme #{scheme} test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12 Pro'" if supports_ios
     sh "cd .. && xcodebuild -scheme #{scheme} test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'" if supports_tvos
     sh "cd .. && xcodebuild -scheme #{scheme} test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Series 6 - 44mm'" if supports_watchos
     sh "cd .. && xcodebuild -scheme #{scheme} test -sdk macosx -destination 'platform=macOS'" if supports_macos
   end
 
-  if is_cocoapods_framework
+  if is_cocoapods_framework    
+    xargs = "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"    
     
-    xargs = "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
-    supported_platforms = ["iOS", "tvOS", "watchOS", "macOS"]
-    project_config = JSON.parse("#{sh 'cd .. && xcodebuild -list -json'}")
-    schemes = project_config["project"]["schemes"]
-
-    supported_platforms.each do |platform|
-      matching_scheme = schemes.detect{|s| s.include? platform }
-      scan(scheme: matching_scheme, clean: true, xcargs: xargs) unless matching_scheme.nil?
+    schemes.each do |scheme|
+      scan(scheme: scheme, clean: true, xcargs: xargs) if scheme.include? "#{framework}" # don't test schemes like `Resources-iOS` in Columbus
     end
-
   end
 
   danger(verbose: true) if is_true( options[:run_danger] )
@@ -241,6 +242,18 @@ end
 
 desc "An contained area for testing new features or running parts of other lanes."
 lane :playground do |o|
+  
+  config = project_configuration
+  framework = config["name"]
+  schemes = config["schemes"]
+  platforms = spm_supported_platforms
+  UI.user_error!("No framework name found") unless is_set( framework )
+  UI.user_error!("No schemes found") unless schemes.length > 0
+  UI.user_error!("No platforms found") unless platforms.length > 0
+  
+  puts framework
+  puts schemes
+  puts platforms
 end
 
 
@@ -266,11 +279,44 @@ def has_podfile
   return podfile.count == 1
 end
 
+def is_carthage_framework
+  File.file?("../Cartfile")
+end
+
 def is_spm_package
   File.file?("../Package.swift")
 end
 
-def has_project_file(framework)
-  project = Dir["../#{framework}.xcodeproj"]
+def has_project_file
+  project = Dir["../*.xcodeproj"]
   return project.count == 1
 end
+
+def project_configuration
+  config = JSON.parse("#{sh 'cd .. && xcodebuild -list -json'}")
+  config = has_project_file ? config["project"] : config["workspace"]
+  return config
+end
+
+def spm_supported_platforms
+  # jq '.platforms[].platformName'
+  package = JSON.parse("#{sh 'cd .. && swift package dump-package'}")
+  platforms = package["platforms"]
+  platform_names = platforms.map { |platform| platform["platformName"] }
+  # platform_versions = platforms.map { |platform| platform["version"] }
+  return platform_names
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
