@@ -176,7 +176,7 @@ lane :test do |options|
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if has_podfile
 
-  if is_spm_package 
+  if is_spm_package && !is_cocoapods_framework && !is_carthage_framework
     scheme = framework
     supported_platforms = sh "cd .. && swift package dump-package | jq '.platforms[].platformName'"
     destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
