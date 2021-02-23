@@ -146,14 +146,14 @@ lane :release do |options|
 
   # Create a Carthage archive which is then added to the github release, to enable carthage caching
   github_release_assets = []
-  if is_carthage_framework
-    xcframework_name = "#{framework}.xcframework"
-    archive_name = "#{xcframework_name}.zip"
-    sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
-    # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
-    sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
-    github_release_assets.append("#{carthage_archive_name}")
-  end
+
+  # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
+  xcframework_name = "#{framework}.xcframework"
+  archive_name = "#{xcframework_name}.zip"
+  sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
+  # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
+  sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
+  github_release_assets.append("#{carthage_archive_name}")
 
   # Creates new release on Github with changelog + pushes the tag if not done already
   set_github_release(
@@ -176,7 +176,7 @@ lane :test do |options|
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if has_podfile
 
-  if is_spm_package && !is_cocoapods_framework && !is_carthage_framework
+  if is_spm_package && !is_cocoapods_framework
     scheme = framework
     supported_platforms = sh "cd .. && swift package dump-package | jq '.platforms[].platformName'"
     destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
@@ -192,7 +192,7 @@ lane :test do |options|
     sh "cd .. && xcodebuild -scheme #{scheme} test -sdk macosx -destination 'platform=macOS'" if supports_macos
   end
 
-  if is_cocoapods_framework || is_carthage_framework
+  if is_cocoapods_framework
     
     xargs = "-maximum-parallel-testing-workers 1 -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 -disable-concurrent-destination-testing"
     supported_platforms = ["iOS", "tvOS", "watchOS", "macOS"]
@@ -264,10 +264,6 @@ end
 def has_podfile
   podfile = Dir["../Podfile"]
   return podfile.count == 1
-end
-
-def is_carthage_framework
-  File.file?("../Cartfile")
 end
 
 def is_spm_package
