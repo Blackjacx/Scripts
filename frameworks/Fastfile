@@ -149,13 +149,15 @@ lane :release do |options|
   # Create a Carthage archive which is then added to the github release, to enable carthage caching
   github_release_assets = []
 
-  # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
-  xcframework_name = "#{framework}.xcframework"
-  archive_name = "#{xcframework_name}.zip"
-  sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
-  # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
-  sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
-  github_release_assets.append("#{archive_name}")
+  if has_project_file
+    # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
+    xcframework_name = "#{framework}.xcframework"
+    archive_name = "#{xcframework_name}.zip"
+    sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
+    # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
+    sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
+    github_release_assets.append("#{archive_name}")
+  end
 
   # Creates new release on Github with changelog + pushes the tag if not done already
   set_github_release(
@@ -183,7 +185,7 @@ lane :test do |options|
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if has_podfile
 
-  if is_spm_package && !is_cocoapods_framework
+  if is_pure_spm_package
     scheme = framework
     supported_platforms = spm_supported_platforms
     destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
@@ -254,6 +256,14 @@ lane :playground do |o|
   puts framework
   puts schemes
   puts platforms
+
+
+  # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
+  xcframework_name = "#{framework}.xcframework"
+  archive_name = "#{xcframework_name}.zip"
+  sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
+  # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
+  sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
 end
 
 
@@ -283,8 +293,8 @@ def is_carthage_framework
   File.file?("../Cartfile")
 end
 
-def is_spm_package
-  File.file?("../Package.swift")
+def is_pure_spm_package
+  File.file?("../Package.swift") && !is_cocoapods_framework
 end
 
 def has_project_file
