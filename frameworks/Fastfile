@@ -257,13 +257,37 @@ lane :playground do |o|
   puts schemes
   puts platforms
 
+  #
+  # How to test my frameworks
+  #
 
-  # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
-  xcframework_name = "#{framework}.xcframework"
-  archive_name = "#{xcframework_name}.zip"
-  sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
-  # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
-  sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
+  # For Swift packages
+  sh "cd .. && xcodebuild -list -json | jq" # get all schemes
+  sh "cd .. && swift package dump-package | jq '.platforms'" # get supported platforms
+  sh "cd .. && xcrun simctl list --json | jq" # get simulator name per platform
+  # for each scheme test for each platform using xcodebuild
+
+  # For Xcode projects
+
+
+  sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
+  
+  sh "cd .. && xcrun simctl list --json | jq" # promising but doesn't relate to scheme
+  sh "cd .. && xcodebuild -list -json | jq" # good to get all schemes
+  sh "cd .. && swift package dump-package | jq '.platforms'" # needed for SPM to get supported platforms
+
+  sh "cd .. && xcrun xctrace list devices" # not suitable sine outputs all simulators
+
+  #
+  # Build Carthage pre-built framework for Github
+  #
+
+  # # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
+  # xcframework_name = "#{framework}.xcframework"
+  # archive_name = "#{xcframework_name}.zip"
+  # sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
+  # # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
+  # sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
 end
 
 
