@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/osascript
 
-# Raycast Script Command Template
+
+# Toggles the microphone using Apple Script
 #
-# Duplicate this file and remove ".template." from the filename to get started.
 # See full documentation here: https://github.com/raycast/script-commands
 #
 # Required parameters:
@@ -14,11 +14,15 @@
 # @raycast.icon 🎤
 # @raycast.currentDirectoryPath ~
 # @raycast.packageName Raycast Scripts
+#
+# Documentation:
+# @raycast.author Stefan H.
+# @raycast.authorURL https://github.com/blackjacx
 
-osascript <<EOD
+on run argv
   if input volume of (get volume settings) > 0 then
     tell application "System Events" to set volume input volume 0
   else
     tell application "System Events" to set volume input volume 100
   end if
-EOD
+end run
