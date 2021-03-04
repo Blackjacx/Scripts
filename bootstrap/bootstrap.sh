@@ -143,7 +143,7 @@ installSoftware() {
 
   xcode-select --install
   printf "\nAgree to the Xcode license...\n"
-  xcodebuild -license accept
+  sudo xcodebuild -license accept
 
   printf "\n\n#################################################################\n"
   printf "Installing Software via Homebrew\n"
