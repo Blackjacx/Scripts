@@ -119,7 +119,12 @@ export EDITOR='subl -n -w'
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
 alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-dsyms"
 alias cdtmp='cd "$(mktemp -d)"'
-alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
+# Not correct according to https://lapcatsoftware.com/articles/DerivedData.html
+# alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
+# Correct - including empty trash
+# alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash" -e "tell application \"Finder\" to empty trash"'
+# Semi-correct - without emptying trash
+alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
 alias glogd="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short develop.."
 alias glogm="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short master.."
 alias brsc="brew search --casks"
