@@ -22,7 +22,9 @@
 on run argv
   if input volume of (get volume settings) > 0 then
     tell application "System Events" to set volume input volume 0
+    display notification "Microphone switched off." with title "Toggle Microphone"
   else
     tell application "System Events" to set volume input volume 100
+    display notification "Microphone switched on." with title "Toggle Microphone"
   end if
 end run
