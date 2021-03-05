@@ -32,4 +32,3 @@ while true; do
       --data '{"data":{"id":'"\"$id\""',"type": "builds", "attributes":{"expired":true}}}'
   done
 done
-
