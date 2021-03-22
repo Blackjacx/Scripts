@@ -145,6 +145,7 @@ alias json="open http://jsonviewer.stack.hu"
 alias regexp="open https://regex101.com/"
 alias images="http://placehold.it/150x350"
 alias smerge="smerge ."
+alias sourcez="source ${HOME}/.zshrc"
 
 # enble fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
