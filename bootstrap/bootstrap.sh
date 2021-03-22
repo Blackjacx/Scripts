@@ -98,6 +98,8 @@ configureSystem() {
   defaults write com.apple.dock autohide-delay -float 0
   # Move the dock to the left
   defaults write com.apple.Dock orientation -string right
+  # show app switcher on all displays - useful when you have a lot displays
+  defaults write com.apple.Dock appswitcher-all-displays -bool true && killall Dock
 
   #
   # Terminal
