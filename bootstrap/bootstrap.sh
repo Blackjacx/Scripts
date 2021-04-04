@@ -223,6 +223,9 @@ cloneRepositories() {
     "git@github.com:Blackjacx/SHSearchBar.git"
     "git@github.com:Blackjacx/Source.git"
     "git@github.com:Blackjacx/Quickie.git"
+    "git@github.com:Blackjacx/Engine.git"
+    "git@github.com:Blackjacx/ASCKit.git"
+    "git@github.com:Blackjacx/Assist.git"
   )
   base_dir="${HOME}/dev/projects/private"
 
