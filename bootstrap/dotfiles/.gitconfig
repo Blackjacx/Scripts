@@ -3,12 +3,6 @@
 	mergeoptions = --no-edit
 	editor = nano
   pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [user]
 	name = Stefan Herold
 	email = stefan.herold@gmail.com
