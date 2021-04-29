@@ -82,6 +82,8 @@ export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"
 export HISTSIZE=10000
 ### The maximum number of lines that are kept in the history file.
 export SAVEHIST=$HISTSIZE
+### Enables fast pasting
+export DISABLE_MAGIC_FUNCTIONS=true
 ### Ignore duplicated
 setopt hist_ignore_all_dups
 ### A useful trick to prevent particular entries from being recorded into a history by preceding them with at least one space.
