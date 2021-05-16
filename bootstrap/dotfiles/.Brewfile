@@ -26,13 +26,11 @@ brew "apg" # generate strong passwords
 brew "aria2" # download manager that supports segmented downloads
 brew "bash" # installs a modern version of bash
 brew "bat" # `cat` command line tool but with line numbers and syntax highlighting
-brew "carthage"
 brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
 brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
 brew "git-delta"
-brew "docker"
 brew "doxygen"
 # brew "e2fsprogs" # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
 brew "ffmpeg"
@@ -79,7 +77,7 @@ cask "brisk" # submitting radars
 cask "cyberduck" # FTP / Dropbox client 
 cask "dash"
 cask "deckset"
-cask "docker"
+# cask "docker" # not used
 cask "dropbox"
 cask "font-fira-code"
 cask "font-microsoft-office"
@@ -95,14 +93,14 @@ cask "provisionql"
 cask "scummvm"
 cask "sf-symbols"
 cask "sketch"
-cask "skype"
+# cask "skype" # not used
 cask "slack"
 cask "spectacle"
 # cask "spotify" # switched off since macOS couldn't open the app
 cask "sublime-merge"
 cask "sublime-text"
 cask "telegram"
-cask "texshop"
+# cask "texshop" # switched off since quite big - re-enable when needed
 cask "tunnelblick"
 cask "typora"
 cask "vlc"
