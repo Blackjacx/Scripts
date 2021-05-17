@@ -92,6 +92,7 @@ cask "iterm2"
 cask "provisionql"
 cask "scummvm"
 cask "sf-symbols"
+cask "signal"
 cask "sketch"
 # cask "skype" # not used
 cask "slack"
