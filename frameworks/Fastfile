@@ -179,8 +179,17 @@ lane :test do |options|
   schemes = config["schemes"]
   platforms = ["iOS", "tvOS", "watchOS", "macOS"]
 
-  UI.user_error!("No framework name found") unless is_set( framework )
-  UI.user_error!("No schemes found") unless schemes.length > 0
+  if is_set( framework ) 
+    UI.important("Found framework name: #{framework}")
+  else 
+    UI.user_error!("No framework name found")
+  end  
+
+  if schemes.length > 0 
+    UI.important("Found schemes: #{schemes}")
+  else
+    UI.user_error!("No schemes found")
+  end  
 
   # only run the cocoapods action if there is a podfile
   cocoapods(repo_update: true) if has_podfile
