@@ -20,7 +20,7 @@
 [credential]
 	helper = osxkeychain
 [gpg]
-	program = /usr/local/MacGPG2/bin/gpg2
+	program = /usr/local/bin/gpg
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
