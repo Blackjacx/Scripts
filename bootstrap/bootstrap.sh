@@ -144,7 +144,7 @@ installSoftware() {
   printf "#################################################################\n\n"
 
   xcode-select --install
-  printf "\nAgree to the Xcode license...\n"
+  printf "🟢 Agree to the Xcode license...\n"
   sudo xcodebuild -license accept
 
   printf "\n\n#################################################################\n"
@@ -152,20 +152,22 @@ installSoftware() {
   printf "#################################################################\n\n"
 
   # Install/Upgrade software via Brewfile
-  printf "\nUpdate-reset Homebrew...\n"
+  printf "🟢 Update-reset Homebrew...\n"
   brew update-reset
-  printf "\nUpdate Homebrew...\n"
+  printf "🟢 Update Homebrew...\n"
   brew update 
-  printf "\nUpdate software defined in global Brewfile @ HOME...\n"
+  printf "🟢 Install all dependencies declared in global  ~/.Brewfile (eventually upgrade them)...\n"
   brew bundle -v --global
-  printf "\nBrew cask upgrade - upgrade casks separately...\n"
+  printf "🟢 Upgrade all dependencies (even those not declared in global ~/.Brewfile)...\n"
+  brew upgrade
+  printf "🟢 Upgrade all casks declared in global ~/.Brewfile ...\n"
   brew upgrade --cask $(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)
-  printf "\nCleanup...\n"
+  printf "🟢 Cleanup...\n"
   brew cleanup
-  printf "\nDisplay brew eco-system health...\n"
+  printf "🟢 Display homebrew system health...\n"
   brew doctor
 
-  printf "\nDisable read access to zsh directories for other users...\n"
+  printf "🟢 Disable read access to zsh directories for other users...\n"
   chmod 755 /usr/local/share/zsh
   chmod 755 /usr/local/share/zsh/site-functions
 

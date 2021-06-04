@@ -63,6 +63,7 @@ brew "pstree"
 brew "rbenv"
 brew "ripgrep" # recursively searches directories for a regex pattern
 brew "shellcheck" # static analysis tool for shell scripts
+brew "svn"
 brew "transcrypt" # used to transparently de-/encrypt the repo ios-keystore
 brew "tree"
 brew "watch"
