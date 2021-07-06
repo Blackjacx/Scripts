@@ -9,8 +9,6 @@
 	signingkey = DE546DEBFC1C1C01
 [push]
 	default = simple
-[commit]
-	gpgsign = true
 [branch]
 	autosetuprebase = always
 [github]
