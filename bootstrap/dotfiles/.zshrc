@@ -129,7 +129,7 @@ alias cdtmp='cd "$(mktemp -d)"'
 alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
 alias glogd="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short develop.."
 alias glogm="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short master.."
-alias gcfu="git commit -a --fixup"
+alias gcfu="git commit --fixup"
 # List branches created by me
 alias gbm="git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)""
 alias brsc="brew search --casks"
