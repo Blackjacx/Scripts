@@ -42,7 +42,7 @@ configureSystem() {
   # Disable user interface sound effects
   defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
   # Store screenshots in a dedicated place - not on desktop
-  defaults write com.apple.screencapture location ${HOME}/Dropbox/img/screenshots
+  defaults write com.apple.screencapture location "${HOME}/Dropbox/img/screenshots"
 
   #
   # Global
@@ -161,7 +161,7 @@ installSoftware() {
   printf "🟢 Upgrade all dependencies (even those not declared in global ~/.Brewfile)...\n"
   brew upgrade
   printf "🟢 Upgrade all casks declared in global ~/.Brewfile ...\n"
-  brew upgrade --cask $(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)
+  brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
   printf "🟢 Cleanup...\n"
   brew cleanup
   printf "🟢 Display homebrew system health...\n"
@@ -176,9 +176,9 @@ installSoftware() {
   printf "#################################################################\n\n"
 
   tmp="$(mktemp -d)/fonts"
-  git clone https://github.com/powerline/fonts.git --depth=1 $tmp
-  $tmp/install.sh
-  rm -rf $tmp
+  git clone https://github.com/powerline/fonts.git --depth=1 "$tmp"
+  "$tmp"/install.sh
+  rm -rf "$tmp"
 
   printf "\n\n#################################################################\n"
   printf "Install Ruby Gems\n"
@@ -203,14 +203,14 @@ linkDotfiles() {
   printf "#################################################################\n\n"
 
   # Finds hidden dotfiles and uses safe syntax to execute loop
-  find "$script_dir/dotfiles" -type f -iname ".*" -print0 | while read -d $'\0' file
+  find "$script_dir/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
   do
     echo "Linking $file..."
     ln -sf "$file" "${HOME}/"
   done
 
   echo "Source ~/.zshrc ..."
-  source ~/.zshrc
+  source "${HOME}"/.zshrc
 }
 
 cloneRepositories() {
@@ -233,8 +233,8 @@ cloneRepositories() {
 
   git clone "git@github.com:Blackjacx/Playgrounds.git" "$base_dir/playgrounds"
 
-  for repo in ${packages[@]}; do
-    git clone $repo "$base_dir/packages/$(basename $repo | cut -d'.' -f1)"
+  for repo in "${packages[@]}"; do
+    git clone "$repo" "$base_dir/packages/$(basename "$repo" | cut -d'.' -f1)"
   done
 }
 
