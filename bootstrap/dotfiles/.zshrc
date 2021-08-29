@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
 ZSH=${HOME}/.oh-my-zsh
 
@@ -7,10 +14,11 @@ ZSH=${HOME}/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="gnzh"
 # ZSH_THEME="Spaceship"
-ZSH_THEME="agnoster"
-#ZSH_THEME="superjarin"
-#ZSH_THEME="duellj"
-#ZSH_THEME="random"
+# ZSH_THEME="superjarin"
+# ZSH_THEME="duellj"
+# ZSH_THEME="random"
+# ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -63,7 +71,7 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder)
+plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder sudo)
 
 # User configuration
 
@@ -159,3 +167,9 @@ alias sz="source ${HOME}/.zshrc"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Print system information
+neofetch
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
