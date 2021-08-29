@@ -12,13 +12,16 @@ ZSH=${HOME}/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+#
+# CURRENTLY POWERLEVEL10K THEME IS USED - SOURCED BELOW
+#
 # ZSH_THEME="gnzh"
 # ZSH_THEME="Spaceship"
 # ZSH_THEME="superjarin"
 # ZSH_THEME="duellj"
 # ZSH_THEME="random"
 # ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -168,8 +171,12 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Load powerlevel10K theme
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Print system information
 neofetch
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

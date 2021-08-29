@@ -15,6 +15,7 @@ tap "lokalise/cli-2"
 tap "homebrew/cask-fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
 tap "github/gh" # Github CLI
+tap "romkatv/powerlevel10k"
 
 # Xcode first since it is required by applications below, e.g. xcparse
 # mas "xcode", id: 497799835 # This will download Xcode even if it is installed - which takes a lot of time
@@ -59,6 +60,7 @@ brew "pass" # open source password manager • including iOS app • syncing via
 brew "p0f"
 brew "pngquant" # Lossy PNG compressor
 brew "poppler" # necessary for pdfinfo command
+brew "powerlevel10k" # blazing fast theme for ZSH
 brew "pstree"
 brew "rbenv"
 brew "ripgrep" # recursively searches directories for a regex pattern

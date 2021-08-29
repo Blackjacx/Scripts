@@ -192,7 +192,7 @@ installSoftware() {
     printf "Setting up ZSH with Oh-My-Zsh\n"
     printf "#################################################################\n\n"
     
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 }
 
