@@ -199,15 +199,15 @@ lane :test do |options|
     supported_platforms = spm_supported_platforms
     # destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json" # only works if we have a workspace
 
-    supports_ios = supported_platforms.include? "ios"
-    supports_tvos = supported_platforms.include? "tvos"
-    supports_watchos = supported_platforms.include? "watchos"
-    supports_macos = supported_platforms.include? "macos"
+    # supports_ios = supported_platforms.include? "ios"
+    # supports_tvos = supported_platforms.include? "tvos"
+    # supports_watchos = supported_platforms.include? "watchos"
+    # supports_macos = supported_platforms.include? "macos"
 
-    sh "cd .. && xcodebuild -scheme #{scheme} test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12 Pro'" if supports_ios
-    sh "cd .. && xcodebuild -scheme #{scheme} test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'" if supports_tvos
-    sh "cd .. && xcodebuild -scheme #{scheme} test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Series 6 - 44mm'" if supports_watchos
-    sh "cd .. && xcodebuild -scheme #{scheme} test -sdk macosx -destination 'platform=macOS'" if supports_macos
+    # sh "cd .. && xcodebuild -scheme #{scheme} test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12 Pro'" if supports_ios
+    # sh "cd .. && xcodebuild -scheme #{scheme} test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'" if supports_tvos
+    # sh "cd .. && xcodebuild -scheme #{scheme} test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Series 6 - 44mm'" if supports_watchos
+    # sh "cd .. && xcodebuild -scheme #{scheme} test -sdk macosx -destination 'platform=macOS'" if supports_macos
   end
 
   if is_cocoapods_framework    
