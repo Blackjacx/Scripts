@@ -197,7 +197,7 @@ lane :test do |options|
   if is_pure_spm_package
     scheme = framework
     supported_platforms = spm_supported_platforms
-    destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json"
+    # destinations = sh "cd .. && xcodebuild -showdestinations -scheme #{scheme} -json" # only works if we have a workspace
 
     supports_ios = supported_platforms.include? "ios"
     supports_tvos = supported_platforms.include? "tvos"
