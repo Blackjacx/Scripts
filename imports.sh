@@ -65,16 +65,18 @@ function cci() {
   echo $entry
 
   while true; do
-    printf "Do you want to commit this changelog entry? [y/N]: " 
+    printf "Do you want to commit this changelog entry? [Y/n]: " 
    read yn
     case $yn in
-      [Yy]* ) echo $entry > changelog/$number.md
+      [Nn]* ) 
+              break;;
+
+          * ) 
+              echo $entry > changelog/$number.md
               git add changelog/$number.md
               git commit -m "Add Changelog Item"
               git push
               break;;
-
-          * ) break;;
     esac
   done
 }
