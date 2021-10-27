@@ -76,11 +76,13 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 # tap "1password" # this installs the pricy 1password 7
+cask "adobe-creative-cloud"
 cask "aware" # Menubar app for macOS that displays how long you've been actively using your computer.
 cask "brisk" # submitting radars
 cask "cyberduck" # FTP / Dropbox client 
-cask "dash"
+# cask "dash" # not used
 cask "deckset"
+cask "discord"
 # cask "docker" # not used
 cask "dropbox"
 cask "font-fira-code"
@@ -93,6 +95,8 @@ cask "gpg-suite-no-mail"
 cask "handbrake"
 cask "iina"
 cask "iterm2"
+cask "karabiner-elements"
+cask "openra" # C&C ❤️
 cask "provisionql"
 cask "scummvm"
 cask "sf-symbols"
@@ -101,13 +105,14 @@ cask "sketch"
 # cask "skype" # not used
 cask "slack"
 cask "spectacle"
-# cask "spotify" # switched off since macOS couldn't open the app
+cask "spotify"
 cask "sublime-merge"
 cask "sublime-text"
 cask "telegram"
 # cask "texshop" # switched off since quite big - re-enable when needed
 cask "tunnelblick"
 cask "typora"
+cask "visual-studio-code"
 cask "vlc"
 cask "wireshark"
 cask "wwdc"

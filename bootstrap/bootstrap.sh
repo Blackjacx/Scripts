@@ -161,7 +161,10 @@ installSoftware() {
   printf "🟢 Upgrade all dependencies (even those not declared in global ~/.Brewfile)...\n"
   brew upgrade
   printf "🟢 Upgrade all casks declared in global ~/.Brewfile ...\n"
-  brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
+  # Upgrades casks defined in Brewfile
+  # brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
+  # Upgrades casks currently installed
+  brew list --cask | xargs brew upgrade
   printf "🟢 Cleanup...\n"
   brew cleanup
   printf "🟢 Display homebrew system health...\n"
