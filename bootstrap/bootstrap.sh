@@ -146,6 +146,11 @@ installSoftware() {
   xcode-select --install
   printf "🟢 Agree to the Xcode license...\n"
   sudo xcodebuild -license accept
+  # Link Xcode configuration
+  ln -sf ${HOME}/Dropbox/job/xcode/KeyBindings ${HOME}/Library/Developer/Xcode/UserData/
+  ln -sf ${HOME}/Dropbox/job/xcode/FontAndColorThemes ${HOME}/Library/Developer/Xcode/UserData/
+  ln -sf ${HOME}/Dropbox/job/xcode/CodeSnippets ${HOME}/Library/Developer/Xcode/UserData/
+  ln -sf ${HOME}/Dropbox/job/xcode/Templates ${HOME}/Library/Developer/Xcode/
 
   printf "\n\n#################################################################\n"
   printf "Installing Software via Homebrew\n"
