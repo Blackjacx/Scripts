@@ -37,6 +37,7 @@ brew "doxygen"
 # brew "e2fsprogs" # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
 brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
+brew "firebase-cli" # automating Firebase
 brew "gh"
 brew "ghostscript" # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git" # distributed version-control system for tracking changes in source code during software development
@@ -58,6 +59,7 @@ brew "npm"
 brew "node"
 brew "openssl"
 brew "pass" # open source password manager • including iOS app • syncing via git repo • encryption using GPG
+brew "peco" # It’s a interactive filtering tool.
 brew "p0f"
 brew "pngquant" # Lossy PNG compressor
 brew "poppler" # necessary for pdfinfo command
