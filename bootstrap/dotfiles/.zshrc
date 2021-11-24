@@ -74,7 +74,7 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder copybuffer dirhistory)
+plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder copybuffer)
 
 # User configuration
 
