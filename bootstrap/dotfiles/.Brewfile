@@ -82,7 +82,6 @@ cask "brisk" # submitting radars
 cask "cyberduck" # FTP / Dropbox client 
 # cask "dash" # not used
 cask "deckset"
-cask "discord"
 # cask "docker" # not used
 cask "dropbox"
 cask "font-fira-code"
