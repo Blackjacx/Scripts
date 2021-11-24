@@ -93,6 +93,7 @@ cask "gpg-suite-no-mail"
 # cask "google-chrome" # to work correctly with 1password install it manually
 cask "handbrake"
 cask "iina"
+cask "inkscape"
 cask "iterm2"
 cask "karabiner-elements"
 cask "openra" # C&C ❤️
