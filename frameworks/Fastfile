@@ -153,7 +153,7 @@ lane :release do |options|
     # Pre-build Carthage artifacts - for ALL: frameworks, packages, ...
     xcframework_name = "#{framework}.xcframework"
     archive_name = "#{xcframework_name}.zip"
-    sh "cd .. && carthage build --no-skip-current --use-xcframeworks" 
+    sh "cd .. && mint run carthage carthage build --no-skip-current --use-xcframeworks" 
     # change to the carthage builds folder and zip the contents so only <framework>.xcframework is in the zip
     sh "cd .. && pushd Carthage/Build && zip -r0 ../../#{archive_name} #{xcframework_name} && popd"
     github_release_assets.append("#{archive_name}")
