@@ -60,8 +60,9 @@ desc "Commits and pushes changes to remote and tags the release commit"
 lane :release do |options|
 
   config = project_configuration
-  framework = config["name"]  
+  framework = config["name"]
   repo_name = "blackjacx/#{framework}"
+  homebrew_formula_name = options[:formula]
 
   UI.user_error!("No framework name found") unless is_set( framework )
 
@@ -169,8 +170,12 @@ lane :release do |options|
     commitish: "master",
     upload_assets: github_release_assets,
   )
-end
 
+  if is_set( homebrew_formula_name ) && is_set( lane_context[SharedValues::SET_GITHUB_RELEASE_HTML_LINK] )
+    UI.important("Bumping Homebrew tap \"#{homebrew_formula_name}\" with version #{version}")
+    sh "brew bump-formula-pr --no-audit --message=\"Update Formula #{version}\" --tag=\"#{version}\" --revision=$(git rev-list -n 1 #{version}) #{homebrew_formula_name}"
+  end
+end
 
 desc "Runs tests using scan"
 lane :test do |options|
