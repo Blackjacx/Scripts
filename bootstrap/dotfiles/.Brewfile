@@ -31,7 +31,6 @@ brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult 
 brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
-brew "git-delta"
 brew "direnv"
 brew "doxygen"
 # brew "e2fsprogs" # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
@@ -69,6 +68,8 @@ brew "rbenv"
 brew "ripgrep" # recursively searches directories for a regex pattern
 brew "shellcheck" # static analysis tool for shell scripts
 brew "svn"
+brew "task" # Command line Task Management
+brew "tasksh" # Shell wrapper for Taskwarrior commands
 brew "transcrypt" # used to transparently de-/encrypt the repo ios-keystore
 brew "tree"
 brew "watch"
@@ -98,6 +99,7 @@ cask "iina"
 cask "inkscape"
 cask "iterm2"
 cask "karabiner-elements"
+cask "macdown"
 cask "openra" # C&C ❤️
 cask "provisionql"
 cask "scummvm"
@@ -113,7 +115,6 @@ cask "sublime-text"
 cask "telegram"
 # cask "texshop" # switched off since quite big - re-enable when needed
 cask "tunnelblick"
-cask "typora"
 cask "visual-studio-code"
 cask "vlc"
 cask "wireshark"
