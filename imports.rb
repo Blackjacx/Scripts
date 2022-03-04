@@ -1,5 +1,10 @@
 require 'zip'
 
+# Check if a variable is set
+def is_set(var)
+  !var.nil? && !var.to_s.strip.empty? && var != "0"
+end
+
 # Splits a string into components and returns them as an array.
 # If the string is nil or empty or if the string just consists of delimiters it returns an empty array.
 # Params:
