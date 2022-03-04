@@ -151,6 +151,9 @@ installSoftware() {
   ln -sf ${HOME}/Dropbox/job/xcode/FontAndColorThemes ${HOME}/Library/Developer/Xcode/UserData/
   ln -sf ${HOME}/Dropbox/job/xcode/CodeSnippets ${HOME}/Library/Developer/Xcode/UserData/
   ln -sf ${HOME}/Dropbox/job/xcode/Templates ${HOME}/Library/Developer/Xcode/
+  # Link timewarrior & taskwarrior data bases
+  ln -sf ${HOME}/Dropbox/configs/.timewarrior ${HOME}/
+  ln -sf ${HOME}/Dropbox/configs/.task ${HOME}/
 
   printf "\n\n#################################################################\n"
   printf "Installing Software via Homebrew\n"
