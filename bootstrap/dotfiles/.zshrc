@@ -34,7 +34,7 @@ ZSH=${HOME}/.oh-my-zsh
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-UPDATE_ZSH_DAYS=1
+UPDATE_ZSH_DAYS=7
 
 # Uncomment if you would like oh-my-zsh to automatically upgrade itself without prompting you.
 DISABLE_UPDATE_PROMPT=true
@@ -74,7 +74,7 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder copybuffer)
+plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages dotenv direnv z bgnotify history alias-finder copybuffer taskwarrior)
 
 # User configuration
 
@@ -84,7 +84,7 @@ export LANG=en_US.UTF-8
 # Set user gem path to avoid the need of sudo
 export GEM_HOME=$HOME/.gem
 # Set the path using specified order
-export PATH="$GEM_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin"
+export PATH="${HOME}/.mint/bin:$GEM_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:$PATH"
 
 ###
 ### History settings
@@ -125,46 +125,62 @@ export EDITOR='subl -n -w'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+#----------------
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-alias cddb="cd ${HOME}/dev/projects/db/beiwagen"
-alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-dsyms"
+#----------------
+alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
+alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
 alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
-alias cdtmp='cd "$(mktemp -d)"'
+alias cdtemp='cd "$(mktemp -d)"'
+#----------------
 # Not correct according to https://lapcatsoftware.com/articles/DerivedData.html
 # alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
 # Correct - including empty trash
 # alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash" -e "tell application \"Finder\" to empty trash"'
 # Semi-correct - without emptying trash
-alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
-alias glogd="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short develop.."
-alias glogm="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short master.."
+#----------------
+alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
+alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short develop.."
+alias glogm="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short master.."
 alias gcfu="git commit --fixup"
+#----------------
 # List branches created by me
+#----------------
 alias gbm="git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)""
 alias brws="brew search --casks"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias swiftb="swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15""
-
+#----------------
+# scrum meeting setup
+#-----------------
+alias task-yesterday="task scrum modified.after:now-1day status:completed"
+alias task-friday="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d) status:completed"
+alias task-today="task scrum modified:today status:completed"
+#alias task-today="task scrum due.after:now due.before:tomorrow status:pending"
+#----------------
 # File System
+#----------------
 alias df="df -h"
-
+#----------------
 # Developer
+#----------------
 alias json="open http://jsonviewer.stack.hu"
 alias regexp="open https://regex101.com/"
 alias images="http://placehold.it/150x350"
 alias sm="smerge ."
-
+#----------------
 # Search hidden files and ignore some uninteresting folders - good for searching from home dir
+#----------------
 alias ag="ag --hidden --skip-vcs-ignores --ignore=\"*Library*\" --ignore=\"*.gem*\" --ignore=\"*.build*\" --ignore=\"*.git*\" --ignore=\"*bundle*\" --ignore=\"*.zsh_history*\""
 alias sz="source ${HOME}/.zshrc"
-
+#----------------
 # CleanUp Commands
+#----------------
 alias kill_ca="sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`"
 
 ###
