@@ -8,6 +8,7 @@ magenta=$'\e[1;35m'
 cyan=$'\e[1;36m'
 white=$'\e[0m'
 
+# https://stackoverflow.com/a/17841619/971329
 function join_by { 
   local IFS="$1"; shift; echo "$*"; 
 }
@@ -59,14 +60,32 @@ function cci() {
 
   title=$(echo $1 | sed 's/ #[0-9]*$//')
   number=$(echo $1 | sed 's/.*#//')
-  account="stherold"
+  accounts=(
+    "stherold"
+    "blackjacx"
+  )
+  account_count=$(( ${#accounts[@]}+1 ))
+
+  # Thanks to: https://unix.stackexchange.com/a/65312
+  # Uses `return` since `exit 1` will terminate the terminal session
+  PS3='Which GitHub account do you want to use? '
+  select opt in "${accounts[@]}" exit; do
+     case $(( 
+      (REPLY == $account_count)              * 1 +
+      (REPLY <= 0 || REPLY > $account_count) * 2)) in 
+      (1) echo "Thank you and goodbye!"; return;;
+      (2) echo "Incorrect choice, goodbye!"; return;;
+      (0) break;;
+     esac
+  done
+  account=$accounts[$REPLY]
 
   entry="* [#$number](https://github.com/dbdrive/beiwagen/pull/$number): $title - [@$account](https://github.com/$account)."
   echo $entry
 
   while true; do
     printf "Do you want to commit this changelog entry? [Y/n]: " 
-   read yn
+    read yn
     case $yn in
       [Nn]* ) 
               break;;
