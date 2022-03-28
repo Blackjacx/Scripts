@@ -23,21 +23,36 @@ data.location=~/.task
 #data.location=~/.local/share/task
 #hooks.location=~/.config/task/hooks
 
+########################################################################
 # Color theme (uncomment one to use)
+########################################################################
 #include light-16.theme
 #include light-256.theme
 #include dark-16.theme
 #include dark-256.theme
-include dark-red-256.theme # ok
-#include dark-green-256.theme # ok
+#include dark-red-256.theme # ✅
+#color.blocked=color4
+#color.blocking=color4
+#include dark-green-256.theme # ✅
 #include dark-blue-256.theme
 #include dark-violets-256.theme
 #include dark-yellow-green.theme
 #include dark-gray-256.theme
 #include dark-gray-blue-256.theme
-#include solarized-dark-256.theme # ok
+#include solarized-dark-256.theme # ✅
 #include solarized-light-256.theme
 #include no-color.theme
+##################################################
+# Custom Themes
+##################################################
+include ~/.task/themes/solarized-16.theme
+color.summary.bar=color0 on color4
+color.due=
+color.calendar.due=
+
+########################################################################
+# Setting Overrides
+########################################################################
 
 news.version=2.6.0
 
@@ -48,10 +63,19 @@ report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 
+# Next customization
 report.next.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.next.filter=(+UNBLOCKED and +PENDING)
+report.next.sort=status-,start-,priority-,project+,due+
 
 report.scrum.description=Scrum report for standup
-report.scrum.columns=id,uuid.short,project,status.short,tags,modified.formatted,description.combined
+report.scrum.columns=id,uuid.short,project,status.short,tags,modified.formatted,description.count
 report.scrum.labels=ID,UUID,Project,Stat,Tags,Mod,Title
-report.scrum.sort=modified+
+report.scrum.sort=status+,modified+
+report.scrum.filter=(+COMPLETED or +PENDING)
+
+context.ioki.read=project:ioki
+context.ioki.write=project:ioki
+context.private.read=project:private
+context.private.write=project:private
