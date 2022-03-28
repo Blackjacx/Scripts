@@ -178,9 +178,9 @@ installSoftware() {
   printf "🟢 Display homebrew system health...\n"
   brew doctor
 
-  printf "🟢 Disable read access to zsh directories for other users...\n"
-  chmod 755 /usr/local/share/zsh
-  chmod 755 /usr/local/share/zsh/site-functions
+  printf "🟢 Disable read access to ZSH directories for other users...\n"
+  chmod 700 /usr/local/share/zsh
+  chmod 700 /usr/local/share/zsh/site-functions
 
   printf "\n\n#################################################################\n"
   printf "Installing Powerline Fonts For iTerm\n"
