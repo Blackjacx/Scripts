@@ -120,7 +120,7 @@ setopt NO_HIST_BEEP
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='subl -n -w'  
+export EDITOR='subl -n -w'
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
@@ -145,16 +145,18 @@ alias cdtemp='cd "$(mktemp -d)"'
 alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
 alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short develop.."
 alias glogm="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short master.."
+alias grbdi="git rebase --interactive develop"
 alias gcfu="git commit --fixup"
 #----------------
 # List branches created by me
 #----------------
+alias gb="git --no-pager branch"
 alias gbm="git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)""
 alias brws="brew search --casks"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
-alias swiftb="swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15""
+alias swiftb='swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15"'
 #----------------
 # scrum meeting setup
 #-----------------
