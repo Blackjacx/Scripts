@@ -27,6 +27,7 @@ brew "apg" # generate strong passwords
 brew "aria2" # download manager that supports segmented downloads
 brew "bash" # installs a modern version of bash
 brew "bat" # `cat` command line tool but with line numbers and syntax highlighting
+brew "bitwarden-cli" # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
 brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
 brew "cloc" # lines of code counter
 brew "coreutils"
