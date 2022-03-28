@@ -158,9 +158,9 @@ alias swiftb="swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15"
 #----------------
 # scrum meeting setup
 #-----------------
-alias task-yesterday="task scrum modified.after:now-1day status:completed"
-alias task-friday="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d) status:completed"
-alias task-today="task scrum modified:today status:completed"
+alias t-yesterday="task scrum modified.after:now-1day"
+alias t-friday="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d)"
+alias t-today="task scrum modified:today"
 #alias task-today="task scrum due.after:now due.before:tomorrow status:pending"
 #----------------
 # File System
