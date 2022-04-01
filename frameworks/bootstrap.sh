@@ -28,15 +28,15 @@ EOF
 function download_config_files {
   echo "Download configuration files"
   # Download files using curl
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Dangerfile -o Dangerfile
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/.swiftlint.yml -o .swiftlint.yml
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Mintfile -o Mintfile
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gitignore -o .gitignore
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Gemfile -o Gemfile
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Fastfile -o ./fastlane/Fastfile --create-dirs
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/Pluginfile -o ./fastlane/Pluginfile --create-dirs
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Dangerfile -o Dangerfile
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/.swiftlint.yml -o .swiftlint.yml
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Mintfile -o Mintfile
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/gitignore -o .gitignore
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Gemfile -o Gemfile
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Fastfile -o ./fastlane/Fastfile --create-dirs
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Pluginfile -o ./fastlane/Pluginfile --create-dirs
   # Test workflow for SPM only packages - for now integrated manually where needed
-  # curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/master/frameworks/gh-actions/spm-only-test.yml -o ./.github/workflows/spm-only-test.yml --create-dirs
+  # curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/gh-actions/spm-only-test.yml -o ./.github/workflows/spm-only-test.yml --create-dirs
 }
 
 function install_current {

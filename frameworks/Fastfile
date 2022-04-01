@@ -242,7 +242,7 @@ private_lane :update_mit_license do |options|
   authors = File.read("#{fAuthors}")
     .gsub(/\n/, ", ")
 
-  data = download(url: "https://raw.githubusercontent.com/Blackjacx/Scripts/master/LICENSE_MIT")
+  data = download(url: "https://raw.githubusercontent.com/Blackjacx/Scripts/main/LICENSE_MIT")
     .gsub(/<year>/, "#{Time.now.year}")
     .gsub(/<copyright holders>/, "#{authors}")
 
