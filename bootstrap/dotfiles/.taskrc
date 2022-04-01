@@ -79,3 +79,4 @@ context.ioki.read=project:ioki
 context.ioki.write=project:ioki
 context.private.read=project:private
 context.private.write=project:private
+context=ioki
