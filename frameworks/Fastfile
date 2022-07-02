@@ -345,7 +345,7 @@ def has_project_file
 end
 
 def project_configuration
-  config = JSON.parse("#{sh 'cd .. && xcodebuild -list -json'}")
+  config = JSON.parse("#{sh 'cd .. && xcrun xcodebuild -quiet -list -json 1>&2 2>/dev/null'}")
   config = has_project_file ? config["project"] : config["workspace"]
   return config
 end
