@@ -79,4 +79,6 @@ context.ioki.read=project:ioki
 context.ioki.write=project:ioki
 context.private.read=project:private
 context.private.write=project:private
+context.ios-tools.read=project:ioki.ios-tools
+context.ios-tools.write=project:ioki.ios-tools
 context=ioki
