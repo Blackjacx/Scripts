@@ -73,8 +73,8 @@ lane :release do |options|
   
   # Delete local branches and tags not on remote to prevent pushing unwanted tags
   sh "git fetch --prune --prune-tags"
-  # Pull develop/master to be sure we're up to date everywherre
-  sh "git pull && git checkout master && git pull && git checkout develop"
+  # Pull develop/main to be sure we're up to date everywherre
+  sh "git pull && git checkout main && git pull && git checkout develop"
 
   if has_project_file
     bump_type = options[:bump_type]
@@ -131,12 +131,12 @@ lane :release do |options|
   sh "git commit -am 'Fastlane: Release on Production #{version}'"
 
   # Finish the release branch. The shell may hang here because it: 
-  # 1) promts for a merge message.
+  # 1) prompts for a merge message.
   # 
   # To get around this do the following:
   # 1) git config --global core.mergeoptions --no-edit
   tag_message = "production_release_#{version}"
-  sh "git checkout master"
+  sh "git checkout main"
   sh "git merge --no-ff #{release_branch}"
   sh "git tag -m #{tag_message} -a #{version}"
   sh "git checkout develop"
@@ -144,7 +144,7 @@ lane :release do |options|
   sh "git branch -d #{release_branch}"
 
   sh "git push origin develop"
-  sh "git push origin master"
+  sh "git push origin main"
   sh "git push origin -f --tags"
 
   # Pushes framework podspec to Cocoapods specs
@@ -171,7 +171,7 @@ lane :release do |options|
     name: version,
     tag_name: version,
     description: (changelog || "No changelog provided"),
-    commitish: "master",
+    commitish: "main",
     upload_assets: github_release_assets,
   )
 
