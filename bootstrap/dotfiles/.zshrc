@@ -1,6 +1,8 @@
 # Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+
+# [INSTANT_PROMPT] Correctly initialize direnv
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -8,6 +10,9 @@ eval "$(fig init zsh pre)"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# [INSTANT_PROMPT] Correctly initialize direnv
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 # Path to your oh-my-zsh installation.
 ZSH=${HOME}/.oh-my-zsh
@@ -222,5 +227,4 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
-
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
