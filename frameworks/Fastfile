@@ -113,9 +113,13 @@ lane :release do |options|
     section_identifier: version # Stamp Unreleased section with newly released build number
   )
 
-  # Check if podspec is ok and tests succeed
+
+  # Check if Podspec is OK and tests succeed
   pod_lib_lint(allow_warnings: true) if is_cocoapods_framework
   test
+
+  # Build documentation
+  sh "cd .. && ./scripts/make-docc-documentation.sh #{framework}"
 
   #
   # Start the release
