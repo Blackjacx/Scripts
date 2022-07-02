@@ -67,7 +67,7 @@ report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +P
 report.next.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
 report.next.filter=(+UNBLOCKED and +PENDING)
-report.next.sort=status-,start-,priority-,project+,due+
+report.next.sort=status-,start-,priority-,urgency-,project+,due+
 
 report.scrum.description=Scrum report for standup
 report.scrum.columns=id,uuid.short,project,status.short,tags,modified.formatted,description.count
