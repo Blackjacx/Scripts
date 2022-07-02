@@ -97,7 +97,7 @@ export PATH="${HOME}/.mint/bin:$GEM_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr
 # ignore these commands
 export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"
 # increase history to the last 10000 commands
-export HISTSIZE=10000
+export HISTSIZE=500000
 # The maximum number of lines that are kept in the history file.
 export SAVEHIST=$HISTSIZE
 # Enables fast pasting
