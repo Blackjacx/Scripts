@@ -156,6 +156,9 @@ alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Cre
 alias glogm="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short $(git_main_branch).."
 alias grbdi="git rebase --interactive develop"
 alias gcfu="git commit --fixup"
+greload () {
+    local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
+}
 #----------------
 # List branches created by me
 #----------------
