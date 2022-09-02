@@ -170,7 +170,7 @@ lane :release do |options|
     api_token: ENV["GITHUB_TOKEN"],
     name: version,
     tag_name: version,
-    description: (changelog || "No changelog provided"),
+    is_generate_release_notes: true,
     commitish: "main",
     upload_assets: github_release_assets,
   )
