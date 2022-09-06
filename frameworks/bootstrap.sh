@@ -35,9 +35,12 @@ function download_config_files {
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Gemfile -o Gemfile
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Fastfile -o ./fastlane/Fastfile --create-dirs
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Pluginfile -o ./fastlane/Pluginfile --create-dirs
-  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/make-docc-documentation.sh -o ./scripts/make-docc-documentation.sh --create-dirs
+
+  # Do not use custom script since Swift Package Index can host the docs automatically
+  #curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/make-docc-documentation.sh -o ./scripts/make-docc-documentation.sh --create-dirs
+  
   # Test workflow for SPM only packages - for now integrated manually where needed
-  # curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/gh-actions/spm-only-test.yml -o ./.github/workflows/spm-only-test.yml --create-dirs
+  #curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/gh-actions/spm-only-test.yml -o ./.github/workflows/spm-only-test.yml --create-dirs
 }
 
 function install_current {
