@@ -118,9 +118,6 @@ lane :release do |options|
   pod_lib_lint(allow_warnings: true) if is_cocoapods_framework
   test
 
-  # Build documentation
-  sh "cd .. && ./scripts/make-docc-documentation.sh #{framework}"
-
   #
   # Start the release
   #
