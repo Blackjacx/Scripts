@@ -143,6 +143,14 @@ alias gcfu="git commit --fixup"
 greload () {
     local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
 }
+gupdate () {
+    gfa 
+    gco develop 
+    gl
+    for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' | egrep -v '\*|master|main|develop'); do 
+        git branch -D $branch
+    done
+}
 #----------------
 # List branches created by me
 #----------------
