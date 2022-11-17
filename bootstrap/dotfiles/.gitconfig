@@ -31,3 +31,6 @@
 	autosquash = true
 [init]
 	defaultBranch = main
+[pager]
+	diff = false
+	log = true
