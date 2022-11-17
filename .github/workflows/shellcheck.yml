@@ -3,7 +3,7 @@ on:
     branches:
       - main
 
-name: "Push action"
+name: "Shellheck"
 
 jobs:
   shellcheck:
