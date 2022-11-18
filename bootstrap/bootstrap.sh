@@ -31,18 +31,34 @@ configureSystem() {
   defaults write com.apple.reminders RemindersDebugMenu -boolean true
   # Use plain text as default format in TextEdit
   defaults write com.apple.TextEdit RichText -int 0 
-  # Disable automatically rearrange Spaces based on recent use
-  defaults write com.apple.dock mru-spaces -bool false
-  # Require password as soon as screensaver or sleep mode starts
-  defaults write com.apple.screensaver askForPassword -int 1
-  defaults write com.apple.screensaver askForPasswordDelay -int 0
+    
   # Enable tap-to-click
+  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
   defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
   # Disable user interface sound effects
   defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
   # Store screenshots in a dedicated place - not on desktop
   defaults write com.apple.screencapture location "${HOME}/Dropbox/img/screenshots"
+
+  #
+  # Power Management
+  #
+
+  # Require password as soon as screensaver or sleep mode starts
+  defaults write com.apple.screensaver askForPassword -int 1
+  defaults write com.apple.screensaver askForPasswordDelay -int 0
+  
+  #
+  # Power Saving: Turn off
+  #
+
+  # # Disable screensaver
+  # defaults -currentHost write com.apple.screensaver idleTime -int 0
+  # # Turn off hard disk sleep
+  # sudo systemsetup -setsleep off
+  # # Prevent displaz sleep when on battery and power
+  # sudo pmset -a displaysleep 0
 
   #
   # Global
@@ -97,9 +113,13 @@ configureSystem() {
   # Remove dock auto-hide delay
   defaults write com.apple.dock autohide-delay -float 0
   # Move the dock to the left
-  defaults write com.apple.Dock orientation -string left
+  defaults write com.apple.Dock orientation -string bottom
   # show app switcher on all displays - useful when you have a lot displays
-  defaults write com.apple.Dock appswitcher-all-displays -bool true && killall Dock
+  defaults write com.apple.Dock appswitcher-all-displays -bool true
+  # Disable automatically rearrange Spaces based on recent use
+  defaults write com.apple.dock mru-spaces -bool false
+
+  killall Dock
 
   #
   # Terminal
