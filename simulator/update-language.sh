@@ -19,6 +19,6 @@ usage() {
 }
 
 DEVICES=$(xcrun simctl list -j "devices")
-UDIDS=$(echo $DEVICES | jq -r '.devices | map(.[])[].udid') 
+UDIDS=$(echo "$DEVICES" | jq -r '.devices | map(.[])[].udid') 
 
-echo $UDIDS | parallel 'xcrun simctl boot {}; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLanguages -array en_BZ; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLocale -string en_BZ; xcrun simctl shutdown {}'
+echo "$UDIDS" | parallel 'xcrun simctl boot {}; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLanguages -array en_BZ; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLocale -string en_BZ; xcrun simctl shutdown {}'
