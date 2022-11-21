@@ -238,7 +238,7 @@ linkConfigurationFiles() {
   printf "#################################################################\n\n"
 
   # Finds hidden dotfiles and uses safe syntax to execute loop
-  find "$script_dir/bootstrap/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
+  find "$SCRIPT_DIR/bootstrap/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
   do
     log "Linking $file…"
     ln -sf "$file" "${HOME}/"
@@ -246,7 +246,7 @@ linkConfigurationFiles() {
 
   # [TODO]
   #log "Link .config directory to \$HOME"
-  #ln -s "$script_dir/bootstrap/dotfiles/config/karabiner.json" "${HOME}/config/karabiner/karabiner.json"
+  #ln -s "$SCRIPT_DIR/bootstrap/dotfiles/config/karabiner.json" "${HOME}/config/karabiner/karabiner.json"
 
   log "Source ~/.zshrc…"
   source "${HOME}"/.zshrc
