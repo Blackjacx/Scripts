@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
 #
-# Update simulater preferred languages. It prevents the bug when en and 
-# de-AT is set by default and Locale cannot get a region code for `en`.
+# Update the preferred language of each suported 
+# simulator. 
 #
+# This is helpful since each new Xcode 
+# installation created the simulators in their 
+# default languages which might not fit your 
+# development needs.
+#
+
+# Debug
 # set -x
 
 usage() {
   echo "$1"
-  echo "Usage: $0 <device_id>"
+  echo "Usage: $0"
   echo "Quit..."
 }
 
-local device_id=$1
+DEVICES=$(xcrun simctl list -j "devices")
+UDIDS=$(echo $DEVICES | jq -r '.devices | map(.[])[].udid') 
 
-if [ -z "${device_id:-}" ]; then
-  usage "Device id parameter missing or wrong!"; exit 1
-fi
-
-local plist_path="${HOME}/Library/Developer/CoreSimulator/Devices/$device_id/data/Library/Preferences/.GlobalPreferences.plist"
-
-killall "Simulator"
-xcrun simctl shutdown $device_id
-
-plutil -replace AppleLanguages -json '[ "en-US", "de-DE" ]' $plist_path
-# open $plist_path
+echo $UDIDS | parallel 'xcrun simctl boot {}; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLanguages -array en_BZ; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLocale -string en_BZ; xcrun simctl shutdown {}'
