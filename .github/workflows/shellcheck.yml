@@ -18,5 +18,5 @@ jobs:
         env:
           SHELLCHECK_OPTS: -s bash
         with: 
-          ignore_paths: actions .github .git
+          ignore_paths: actions .github .git _archive
           ignore_names: \*.rb .p10k.zsh .zshrc
