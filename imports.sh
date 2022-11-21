@@ -8,6 +8,18 @@ magenta=$'\e[1;35m'
 cyan=$'\e[1;36m'
 white=$'\e[0m'
 
+function log () {
+  echo "🟢 [$(date +'%H:%M:%S')] $1"
+}
+
+function log_warning () {
+  echo "🟡 [$(date +'%H:%M:%S')] $1"
+}
+
+function log_error () {
+  echo >&2 "🔴 [$(date +'%H:%M:%S')] $1"
+}
+
 # https://stackoverflow.com/a/17841619/971329
 function join_by { 
   local IFS="$1"; shift; echo "$*"; 

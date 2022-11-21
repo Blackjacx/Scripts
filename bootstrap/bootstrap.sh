@@ -7,8 +7,12 @@
 # DISCLAIMER: Don't execute it if you do not know what you are doing!!!
 #
 set -uo pipefail
+#set -x
 
-script_dir="$(cd "$(dirname "$0")"; pwd -P)"
+SCRIPT_DIR="${HOME}/dev/scripts"
+
+# Imprort global functionality
+[ -f "$SCRIPT_DIR/imports.sh" ] && source "$SCRIPT_DIR/imports.sh"
 
 # TODOS
 # https://nerdlogger.com/2012/07/30/get-control-of-mountain-lion-with-a-huge-list-of-command-line-tweaks/
@@ -164,7 +168,7 @@ installSoftware() {
   printf "#################################################################\n\n"
 
   xcode-select --install
-  printf "🟢 Agree to the Xcode license...\n"
+  log "Agree to the Xcode license…"
   sudo xcodebuild -license accept
   # Link Xcode configuration
   ln -sf ${HOME}/Dropbox/job/xcode/KeyBindings ${HOME}/Library/Developer/Xcode/UserData/
@@ -180,25 +184,25 @@ installSoftware() {
   printf "#################################################################\n\n"
 
   # Install/Upgrade software via Brewfile
-  printf "🟢 Update-reset Homebrew...\n"
+  log "Update-reset Homebrew…"
   brew update-reset
-  printf "🟢 Update Homebrew...\n"
+  log "Update Homebrew…"
   brew update 
-  printf "🟢 Install all dependencies declared in global  ~/.Brewfile (eventually upgrade them)...\n"
+  log "Install all dependencies declared in global  ~/.Brewfile (eventually upgrade them)…"
   brew bundle -v --global
-  printf "🟢 Upgrade all dependencies (even those not declared in global ~/.Brewfile)...\n"
+  log "Upgrade all dependencies (even those not declared in global ~/.Brewfile)…"
   brew upgrade
-  printf "🟢 Upgrade all casks declared in global ~/.Brewfile ...\n"
+  log "Upgrade all casks declared in global ~/.Brewfile…"
   # Upgrades casks defined in Brewfile
   # brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
   # Upgrades casks currently installed
   brew list --cask | xargs brew upgrade
-  printf "🟢 Cleanup...\n"
+  log "Cleanup…"
   brew cleanup
-  printf "🟢 Display homebrew system health...\n"
+  log "Display homebrew system health…"
   brew doctor
 
-  printf "🟢 Disable read access to ZSH directories for other users...\n"
+  log "Disable read access to ZSH directories for other users…"
   chmod 700 /usr/local/share/zsh
   chmod 700 /usr/local/share/zsh/site-functions
 
@@ -227,20 +231,24 @@ installSoftware() {
   fi
 }
 
-linkDotfiles() {
+linkConfigurationFiles() {
 
   printf "\n#################################################################\n"
-  printf "Link Dotfiles\n"
+  printf "Link Configuration Files\n"
   printf "#################################################################\n\n"
 
   # Finds hidden dotfiles and uses safe syntax to execute loop
-  find "$script_dir/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
+  find "$script_dir/bootstrap/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
   do
-    echo "Linking $file..."
+    log "Linking $file…"
     ln -sf "$file" "${HOME}/"
   done
 
-  echo "Source ~/.zshrc ..."
+  # [TODO]
+  #log "Link .config directory to \$HOME"
+  #ln -s "$script_dir/bootstrap/dotfiles/config/karabiner.json" "${HOME}/config/karabiner/karabiner.json"
+
+  log "Source ~/.zshrc…"
   source "${HOME}"/.zshrc
 }
 
@@ -275,13 +283,13 @@ cat << EOF
 Usage: $0 [-hvacilr]
 
 Sets up a development mac by setting system configurations, installing 
-software and linking dotfiles to your home folder.
+software and linking configuration (dotfiles) to your home and configuration folders.
 
 -h     Display this help
 -v     Run script in verbose mode. Will print out each step of execution
 -a     Execute all, -clir
 -c     Configure default values for the system
--l     Link dotfiles to your home folder
+-l     Link configuration to your home folder
 -i     Install software using brew and brew cask
 -r     Repositories on the internet are cloned
 
@@ -291,7 +299,7 @@ EOF
 
 # Check for empty parameters
 if [ -z "${1:-}" ]; then
-	echo "No parameters provided"
+	log "No parameters provided"
   showUsage
   exit 1
 fi
@@ -305,26 +313,26 @@ while getopts "hvacilr" opt; do
       set -xv  # Set xtrace and verbose mode.
       ;;
     a)
-      echo "Execute all..."
+      log "Execute all…"
       configureSystem
-      linkDotfiles
+      linkConfigurationFiles
       installSoftware
       cloneRepositories
       ;;
     c)
-      echo "Configure System..."
+      log "Configure System…"
       configureSystem
       ;;
     l)
-      echo "Link Dotfiles..."
-      linkDotfiles
+      log "Link Configuration Files…"
+      linkConfigurationFiles
       ;;
     i)
-	    echo "Install Software..."
+	    log "Install Software…"
       installSoftware
       ;;
     r)
-      echo "Clone Repositories..."
+      log "Clone Repositories…"
       cloneRepositories
       ;;
     \?)
