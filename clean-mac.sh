@@ -13,7 +13,7 @@ cleanup() {
   cd $pwd
   # Print statuscode if non successful
   if [[ ! $code -eq 0 ]]; then
-      echo "🔴 Exit with status code $code"
+      log_error "Exit with status code $code"
       exit $code
   fi
 }
