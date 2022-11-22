@@ -1,5 +1,10 @@
 #!/bin/bash
 
+SCRIPT_DIR="${HOME}/dev/scripts"
+
+# Imprort global functionality
+[ -f "$SCRIPT_DIR/imports.sh" ] && source "$SCRIPT_DIR/imports.sh"
+
 pwd="$(pwd)"
 
 cleanup() {
@@ -14,35 +19,38 @@ cleanup() {
 }
 trap "cleanup" INT TERM HUP EXIT
 
-echo "🟢 Clean up unused gem versions..."
+log "Clean up unused gem versions..."
 gem cleanup
 
-echo "🟢 Erase DerivedData folder..."
+log "Erase DerivedData folder..."
 rm -rf ${HOME}/Library/Developer/Xcode/DerivedData/*
 
-echo "🟢 Erase Caches Folder..."
+log "Erase Caches Folder..."
 rm -rf ${HOME}/Library/Caches
 
-echo "🟢 Reset all simulators..."
+log "Remove All Unavailable Simulators"
+xcrun simctl delete unavailable
+
+log "Reset all simulators..."
 osascript -e 'tell application "Simulator" to quit'
 osascript -e 'tell application "iOS Simulator" to quit'
 xcrun simctl shutdown all
 xcrun simctl erase all
 
-echo "🟢 Delete unneeded simulator devices..."
-xcrun simctl delete unavailable
-
-echo "🟢 Empty Trash..."
+log "Empty Trash"
 rm -rf "~/.Trash/*"
 
-echo "🟢 Create huge file and delete it again to re-claim hidden space from the system."
+log "Erase Spotlight Index and Rebuild"
+sudo mdutil -E /
+
+log "Reload Core Audio"
+sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`
+
+log "Create huge file and delete it again to re-claim hidden space from the system."
 fname="DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
 cd /tmp/
-mkfile 13G $fname
+mkfile 50G $fname
 rm -rf $fname
-
-echo "🟢 Reload Core Audio"
-sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`
 
 ##
 ## The following is highly experimental!!!
