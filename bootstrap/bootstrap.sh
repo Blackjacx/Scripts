@@ -33,9 +33,7 @@ configureSystem() {
   defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true 
   # Enable debug menu in Reminders to use the manual iCloud sync
   defaults write com.apple.reminders RemindersDebugMenu -boolean true
-  # Use plain text as default format in TextEdit
-  defaults write com.apple.TextEdit RichText -int 0 
-    
+
   # Enable tap-to-click
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -44,6 +42,15 @@ configureSystem() {
   defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
   # Store screenshots in a dedicated place - not on desktop
   defaults write com.apple.screencapture location "${HOME}/Dropbox/img/screenshots"
+
+  #
+  # Text Edit
+  #
+
+  # Create an Untitled Document at Launch instead of showing the open dialog
+  defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
+  # Use Plain Text Mode as Default
+  defaults write com.apple.TextEdit RichText -int 0 
 
   #
   # Power Management
@@ -167,9 +174,12 @@ installSoftware() {
   printf "Installing Xcode Command Line Tools\n"
   printf "#################################################################\n\n"
 
+  log "Install Command Line Tools"
   xcode-select --install
+
   log "Agree to the Xcode license…"
   sudo xcodebuild -license accept
+  
   # Link Xcode configuration
   ln -sf ${HOME}/Dropbox/job/xcode/KeyBindings ${HOME}/Library/Developer/Xcode/UserData/
   ln -sf ${HOME}/Dropbox/job/xcode/FontAndColorThemes ${HOME}/Library/Developer/Xcode/UserData/
