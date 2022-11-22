@@ -57,10 +57,9 @@ function trim () {
 
 function mdsee() { 
     HTMLFILE="$(mktemp -u).html"
-    cat "$1" | \
-      jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' | \
+    jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' "$1" | \
       curl -s --data @- https://api.github.com/markdown > "$HTMLFILE"
-    echo $HTMLFILE
+    echo "$HTMLFILE"
     open "$HTMLFILE"
 }
 
@@ -75,11 +74,11 @@ function cci() {
   account=$(git config github.user)
 
   while true; do
-    printf "Is the account name \"$green$account$white\" correct? [Y/n]: "
+    printf 'Is the account name "%s" correct? [Y/n]: ' "$green$account$white"
     read yn
     case $yn in
       [Nn]* ) 
-              echo "Please add your GitHub username to the local config using the following account and run the command again:$green git config --local github.user "\<username\>""
+              echo "Please add your GitHub username to the local config using the following account and run the command again:$green git config --local github.user \<username\>"
               return;;
 
           * ) 
@@ -90,15 +89,15 @@ function cci() {
   entry="* [#$number](https://github.com/dbdrive/beiwagen/pull/$number): $title - [@$account](https://github.com/$account)."
 
   while true; do
-    printf "Do you want to commit the change log entry:$green $entry $white? [Y/n]: "
+    printf 'Do you want to commit the change log entry:%s? [Y/n]: ' "$green $entry $white"
     read yn
     case $yn in
       [Nn]* ) 
               break;; # cancel process
 
           * ) 
-              echo $entry > changelog/$number.md
-              git add changelog/$number.md
+              echo "$entry" > "changelog/$number.md"
+              git add "changelog/$number.md"
               git commit -m "Add Changelog Item"
               git push
               break;;
@@ -106,15 +105,15 @@ function cci() {
   done
 }
 
-# Open man page in Preview 
+# Open man page in textedit
 function manv() {
   if [[ -z $1 ]]; then
     echo "Please provide the command you want to view the man page for. Exit." && return
   fi
-  man -t $1 | open -f -a Preview
+  MANWIDTH=80 MANPAGER='col -bx' man "$1" | open -f
 }
 
 # Easily create ASC auth header
 function asc_auth_header() {
-  echo "Bearer $(ruby ~/dev/scripts/jwt.rb $ASC_AUTH_KEY $ASC_AUTH_KEY_ID $ASC_AUTH_KEY_ISSUER_ID)"
+  echo "Bearer $(ruby ~/dev/scripts/jwt.rb "$ASC_AUTH_KEY" "$ASC_AUTH_KEY_ID" "$ASC_AUTH_KEY_ISSUER_ID")"
 }
