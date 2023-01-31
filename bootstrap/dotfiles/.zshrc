@@ -70,7 +70,7 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras pod swiftpm bundler common-aliases colored-man-pages direnv z bgnotify history alias-finder copybuffer)
+plugins=(git git-extras swiftpm bundler common-aliases colored-man-pages direnv z bgnotify zsh-autosuggestions fzf fzf-tab)
 
 # User configuration
 
@@ -82,9 +82,32 @@ export GEM_HOME=$HOME/.gem
 # Set the path using specified order
 export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_PREFIX}/sbin:${HOMEBREW_DIR_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:${PATH}"
 
-###
-### History settings
-###
+#
+# 3rd Party Tools
+#
+
+# FZF
+#
+# Configuration: https://github.com/Aloxaf/fzf-tab/wiki/Configuration
+# Preview: https://github.com/Aloxaf/fzf-tab/wiki/Preview
+
+# No sorting
+# zstyle ':completion:complete:*:options' sort false
+# Show preview when using cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath' # remember to use single quote here!!!
+
+#export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+#export FZF_DEFAULT_OPTS='--layout=reverse'
+# Uncomment the following line to disable fuzzy completion
+# export DISABLE_FZF_AUTO_COMPLETION="true"
+# Uncomment the following line to disable key bindings (CTRL-T, CTRL-R, ALT-C)
+# export DISABLE_FZF_KEY_BINDINGS="true"
+# Uncomment to specify default command when input is tty
+# export FZF_DEFAULT_COMMAND='ag'
+
+#
+# History settings
+#
 
 # ignore these commands
 export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"
@@ -174,6 +197,7 @@ alias twt="task scrum modified:today"
 # File System
 #----------------
 alias df="df -h"
+alias cat="ccat"
 #----------------
 # Developer
 #----------------
@@ -186,6 +210,7 @@ alias sm="smerge ."
 #----------------
 alias ag="ag --hidden --skip-vcs-ignores --ignore=\"*Library*\" --ignore=\"*.gem*\" --ignore=\"*.build*\" --ignore=\"*.git*\" --ignore=\"*bundle*\" --ignore=\"*.zsh_history*\""
 alias sz="source ${HOME}/.zshrc"
+alias hsi="history | fzf"
 #----------------
 # CleanUp Commands
 #----------------
@@ -222,6 +247,9 @@ source "${HOMEBREW_DIR_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highligh
 source "${HOMEBREW_DIR_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
+
+# Load sqlite history plugin
+echo 'eval "$(atuin init zsh)"' >> ~/.zshrceval "$(atuin init zsh)"
 
 # Load rbenv
 eval "$(rbenv init - zsh)"

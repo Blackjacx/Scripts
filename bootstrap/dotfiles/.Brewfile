@@ -22,22 +22,21 @@ tap "romkatv/powerlevel10k"
 # mas "tweetbot", id: 557168941
 # mas "gifski", id: 1351639930
 
-brew "ag" # code-searching tool similar to ack, but faster
+brew "ag" # code-searching tool similar to ack, but faster 🔥
 brew "apg" # generate strong passwords
-brew "aria2" # download manager that supports segmented downloads
-brew "bash" # installs a modern version of bash
-brew "bat" # `cat` command line tool but with line numbers and syntax highlighting
+brew "aria2" # download manager that supports segmented downloads 🔥
 brew "bitwarden-cli" # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
+brew "ccat" # Colorizing `cat 🔥
 brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
 brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
-brew "direnv"
+brew "direnv" 🔥
 brew "doxygen"
-# brew "e2fsprogs" # e2fsprogs is a set of utilities for maintaining the ext2, ext3 and ext4 file systems.
 brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
 brew "firebase-cli" # automating Firebase
+brew "fzf" # A command-line fuzzy finder 🔥
 brew "gh"
 brew "ghostscript" # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git" # distributed version-control system for tracking changes in source code during software development
@@ -48,12 +47,14 @@ brew "gource" # software version control visualization
 brew "htop"
 brew "httpie"
 brew "imagemagick"
-brew "jq" # command-line JSON processor
+brew "irssi"
+brew "jq" # command-line JSON processor 🔥
 brew "lokalise2" # tool for for mobile localization cloud platform (new version)
 brew "mas" # installs Mac App Store apps
-brew "mint" # dependency manager for swift packages
-brew "mitmproxy" # Intercepting Network Traffic
-# brew "mplayer" # free and open-source media player | currently not used
+brew "micro" # A modern and intuitive terminal-based text editor
+brew "mint" # dependency manager for swift packages 🔥
+brew "mitmproxy" # Intercepting Network Traffic 🔥
+# brew "mplayer" # free and open-source media player | currently not used
 brew "nano"
 brew "npm"
 brew "node"
@@ -66,45 +67,44 @@ brew "poppler" # necessary for pdfinfo command
 brew "powerlevel10k" # blazing fast theme for ZSH
 brew "pstree"
 brew "rbenv"
-brew "ripgrep" # recursively searches directories for a regex pattern
-brew "shellcheck" # static analysis tool for shell scripts
-brew "svn"
+brew "shellcheck" # static analysis tool for shell scripts 🔥
 brew "task" # Command line Task Management
 brew "tasksh" # Shell wrapper for Taskwarrior commands
+brew "tmux"
 brew "transcrypt" # used to transparently de-/encrypt the repo ios-keystore
 brew "tree"
 brew "watch"
 brew "wget"
 brew "youtube-dl"
-brew "zsh-completions"
-brew "zsh-syntax-highlighting"
+brew "zsh-completions" 🔥
+brew "zsh-syntax-highlighting" 🔥
 
 # tap "1password" # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
 cask "aware" # Menubar app for macOS that displays how long you've been actively using your computer.
 cask "brisk" # submitting radars
 cask "cyberduck" # FTP / Dropbox client 
-# cask "dash" # not used
 cask "deckset"
-# cask "docker" # not used
+cask "docker" # 🔥
 cask "dropbox"
 cask "font-fira-code"
 cask "font-microsoft-office"
 cask "font-source-code-pro"
 cask "font-jetbrains-mono"
 cask "geektool"
-cask "gpg-suite-no-mail"
+cask "gpg-suite-no-mail" 🔥
 # cask "google-chrome" # to work correctly with 1password install it manually
 cask "handbrake"
 cask "iina"
 cask "inkscape"
-cask "iterm2"
-cask "karabiner-elements"
-cask "macdown"
-cask "openra" # C&C ❤️
+cask "insomnia" # The open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC. 🔥
+cask "iterm2" # 🔥
+cask "karabiner-elements" # 🔥
+cask "linkliar" # Link-Layer MAC spoofing GUI for macOS
+cask "openra" # C&C open source 🔥
 cask "provisionql"
 cask "scummvm"
-cask "sf-symbols"
+cask "sf-symbols" # 🔥
 cask "sketch"
 # cask "skype" # not used
 cask "slack"
