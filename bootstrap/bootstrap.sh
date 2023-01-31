@@ -21,6 +21,12 @@ SCRIPT_DIR="${HOME}/dev/scripts"
 
 configureSystem() {
 
+  #
+  # TODO: 
+  #
+  # - include essential entries from https://gist.github.com/brandonb927/3195465
+  #
+
   printf "\n#################################################################\n"
   printf "Configure System\n"
   printf "#################################################################\n\n"
@@ -181,13 +187,14 @@ installSoftware() {
   sudo xcodebuild -license accept
   
   # Link Xcode configuration
-  ln -sf ${HOME}/Dropbox/job/xcode/KeyBindings ${HOME}/Library/Developer/Xcode/UserData/
-  ln -sf ${HOME}/Dropbox/job/xcode/FontAndColorThemes ${HOME}/Library/Developer/Xcode/UserData/
-  ln -sf ${HOME}/Dropbox/job/xcode/CodeSnippets ${HOME}/Library/Developer/Xcode/UserData/
-  ln -sf ${HOME}/Dropbox/job/xcode/Templates ${HOME}/Library/Developer/Xcode/
+  DROPBOX_FOLDER="${HOME}/Library/CloudStorage/Dropbox"
+  ln -sf ${DROPBOX_FOLDER}/job/xcode/KeyBindings ${HOME}/Library/Developer/Xcode/UserData/
+  ln -sf ${DROPBOX_FOLDER}/job/xcode/FontAndColorThemes ${HOME}/Library/Developer/Xcode/UserData/
+  ln -sf ${DROPBOX_FOLDER}/job/xcode/CodeSnippets ${HOME}/Library/Developer/Xcode/UserData/
+  ln -sf ${DROPBOX_FOLDER}/job/xcode/Templates ${HOME}/Library/Developer/Xcode/
   # Link timewarrior & taskwarrior data bases
-  ln -sf ${HOME}/Dropbox/configs/.timewarrior ${HOME}/
-  ln -sf ${HOME}/Dropbox/configs/.task ${HOME}/
+  ln -sf ${DROPBOX_FOLDER}/configs/.timewarrior ${HOME}/
+  ln -sf ${DROPBOX_FOLDER}/configs/.task ${HOME}/
 
   printf "\n\n#################################################################\n"
   printf "Installing Software via Homebrew\n"
