@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh installation.
 ZSH=${HOME}/.oh-my-zsh
 
+# Homebrew directory prefix differentiation M1 / Intel
+[[ $(uname -p) == 'arm' ]] && HOMEBREW_DIR_PREFIX="/opt/homebrew" || HOMEBREW_DIR_PREFIX="/usr/local"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -77,7 +80,7 @@ export LANG=en_US.UTF-8
 # Set user gem path to avoid the need of sudo
 export GEM_HOME=$HOME/.gem
 # Set the path using specified order
-export PATH="${HOME}/.mint/bin:$GEM_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:$PATH"
+export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_PREFIX}/sbin:${HOMEBREW_DIR_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:${PATH}"
 
 ###
 ### History settings
@@ -203,19 +206,19 @@ unsetopt LIST_AMBIGUOUS
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
 
 # Lots of different, nice looking completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(${HOMEBREW_DIR_PREFIX}/share/zsh-completions $fpath)
 
 ###
 ### Syntax Highlighting
 ###
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "${HOMEBREW_DIR_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ###
 ### Power Level 10K
 ###
 
 # Load powerlevel10K theme
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source "${HOMEBREW_DIR_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
