@@ -139,7 +139,8 @@ setopt NO_HIST_BEEP
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='subl -n -w'
+# export EDITOR="subl -n -w"
+export EDITOR="nano"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
