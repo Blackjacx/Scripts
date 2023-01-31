@@ -110,7 +110,7 @@ function manv() {
   if [[ -z $1 ]]; then
     echo "Please provide the command you want to view the man page for. Exit." && return
   fi
-  MANWIDTH=80 MANPAGER='col -bx' man "$1" | open -f
+  MANWIDTH=80 MANPAGER='col -bx' man "$1" | subl 
 }
 
 # Easily create ASC auth header
