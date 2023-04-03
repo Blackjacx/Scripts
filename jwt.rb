@@ -3,10 +3,19 @@
 require "base64"
 require "jwt"
 
-key_file = ARGV[0]
+#
+# JWT Debugger: https://jwt.io/
+#
+
+key_file_or_string = ARGV[0]
 key_id = "#{ARGV[1]}"
 issuer_id = "#{ARGV[2]}"
-private_key = OpenSSL::PKey.read(File.read("#{key_file}"))
+
+if File.exists?("#{key_file_or_string}")
+  private_key = OpenSSL::PKey.read(File.read("#{key_file_or_string}"))
+else
+  private_key = OpenSSL::PKey.read("#{key_file_or_string}")
+end
 
 token = JWT.encode(
    {
