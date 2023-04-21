@@ -95,7 +95,7 @@ cask "font-source-code-pro"
 cask "font-jetbrains-mono"
 cask "geektool"
 cask "gpg-suite-no-mail" # 🔥
-# cask "google-chrome" # to work correctly with 1password install it manually
+cask "google-chrome" # Doesn't work correctly with 1password 🚨
 cask "handbrake"
 cask "iina"
 cask "inkscape"
