@@ -82,6 +82,7 @@ brew "zsh-syntax-highlighting" # 🔥
 # tap "1password" # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
 cask "aware" # Menubar app for macOS that displays how long you've been actively using your computer.
+cask "battle-net" # Play games like Starcraft or Diablo
 cask "brisk" # submitting radars
 cask "cyberduck" # FTP / Dropbox client 
 cask "deckset"
