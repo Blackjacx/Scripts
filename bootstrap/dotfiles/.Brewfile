@@ -25,6 +25,7 @@ tap "romkatv/powerlevel10k"
 brew "ag" # code-searching tool similar to ack, but faster 🔥
 brew "apg" # generate strong passwords
 brew "aria2" # download manager that supports segmented downloads 🔥
+brew "atuin" # SQLlite history plugin
 brew "bitwarden-cli" # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
 brew "ccat" # Colorizing `cat 🔥
 brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
