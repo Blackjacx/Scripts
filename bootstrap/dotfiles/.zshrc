@@ -230,6 +230,8 @@ unsetopt LIST_AMBIGUOUS
 
 # Fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
+# Do Not Track Environment Variables
+[ -f ~/dotfiles/do_not_track_env_vars.sh ] && source ~/dotfiles/do_not_track_env_vars.sh
 
 # Lots of different, nice looking completions
 fpath=(${HOMEBREW_DIR_PREFIX}/share/zsh-completions $fpath)
