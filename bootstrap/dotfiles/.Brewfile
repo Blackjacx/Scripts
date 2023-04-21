@@ -31,7 +31,7 @@ brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult 
 brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
-brew "direnv" 🔥
+brew "direnv" # 🔥
 brew "doxygen"
 brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
@@ -76,8 +76,8 @@ brew "tree"
 brew "watch"
 brew "wget"
 brew "youtube-dl"
-brew "zsh-completions" 🔥
-brew "zsh-syntax-highlighting" 🔥
+brew "zsh-completions" # 🔥
+brew "zsh-syntax-highlighting" # 🔥
 
 # tap "1password" # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
@@ -92,7 +92,7 @@ cask "font-microsoft-office"
 cask "font-source-code-pro"
 cask "font-jetbrains-mono"
 cask "geektool"
-cask "gpg-suite-no-mail" 🔥
+cask "gpg-suite-no-mail" # 🔥
 # cask "google-chrome" # to work correctly with 1password install it manually
 cask "handbrake"
 cask "iina"
