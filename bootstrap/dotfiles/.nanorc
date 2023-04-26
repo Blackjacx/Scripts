@@ -1,2 +1,3 @@
 set constantshow
-include /usr/local/share/nano/*.nanorc
+include "/opt/homebrew/share/nano/*.nanorc"
+
