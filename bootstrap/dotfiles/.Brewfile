@@ -103,6 +103,7 @@ cask "insomnia" # The open-source, cross-platform API client for GraphQL, REST, 
 cask "iterm2" # 🔥
 cask "karabiner-elements" # 🔥
 cask "linkliar" # Link-Layer MAC spoofing GUI for macOS
+cask "macdown" # MD file editor
 cask "openra" # C&C open source 🔥
 cask "provisionql"
 cask "scummvm"
