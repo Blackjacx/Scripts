@@ -10,6 +10,7 @@ set -uo pipefail
 #set -x
 
 SCRIPT_DIR="${HOME}/dev/scripts"
+DROPBOX_FOLDER="${HOME}/Library/CloudStorage/Dropbox"
 
 # Imprort global functionality
 [ -f "$SCRIPT_DIR/imports.sh" ] && source "$SCRIPT_DIR/imports.sh"
@@ -22,9 +23,12 @@ SCRIPT_DIR="${HOME}/dev/scripts"
 configureSystem() {
 
   #
-  # TODO: 
+  # Extendes Settings - Include here too
   #
-  # - include essential entries from https://gist.github.com/brandonb927/3195465
+  # https://github.com/webpro/awesome-dotfiles
+  # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+  # https://gist.github.com/alanzeino/42b6d983c7aa2f29d64ea2749621f7cf
+  # https://apple.stackexchange.com/questions/408716/setting-safari-preferences-from-script-on-big-sur
   #
 
   printf "\n#################################################################\n"
@@ -47,7 +51,39 @@ configureSystem() {
   # Disable user interface sound effects
   defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
   # Store screenshots in a dedicated place - not on desktop
-  defaults write com.apple.screencapture location "${HOME}/Dropbox/img/screenshots"
+  defaults write com.apple.screencapture location "${DROPBOX_FOLDER}/images/screenshots"
+  # Always expand Save Panel by default:
+  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+  #
+  # Safari
+  # 
+
+  # Don't open files in Safari after downloading
+  defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+  # Hide favorites bar in Safari by default
+  defaults write com.apple.Safari ShowFavoritesBar -bool false
+  # Show status bar in Safari
+  defaults write com.apple.Safari ShowOverlayStatusBar -bool true
+  # Show the full URL in the address bar (note: this still hides the scheme)
+  defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+  # Safari opens with: last session
+  defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+  # Do not open private window on startup
+  defaults write com.apple.Safari OpenPrivateWindowWhenNotRestoringSessionAtLaunch -bool false
+  # Enable the Develop menu and the Web Inspector in Safari
+  defaults write com.apple.Safari IncludeDevelopMenu -bool true  
+  # Enable Safari’s debug menu
+  defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+  # Update extensions automatically
+  defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+  # Make Safari’s search banners default to Contains instead of Starts With
+  defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+  # Website use of location services
+  # 0 = Deny without prompting
+  # 1 = Prompt for each website once each day
+  # 2 = Prompt for each website one time only
+  defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
   #
   # Text Edit
@@ -85,6 +121,8 @@ configureSystem() {
   defaults write -g AppleShowAllExtensions -bool false
   # Disable auto-correct
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+  # Disabling press-and-hold for special keys in favor of key repeat
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   # Set a shorter Delay until key repeat
   defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
   # Set super fast key repeat rate
@@ -92,10 +130,10 @@ configureSystem() {
   # disable animations when opening and closing windows
   defaults write -g NSAutomaticWindowAnimationsEnabled -bool false 
   # disable just smart dashes
-  defaults write -g NSAutomaticDashSubstitutionEnabled 0
+  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
   # disable just smart quotes
-  defaults write -g NSAutomaticQuoteSubstitutionEnabled 0
-
+  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+  
   #
   # Finder
   #
@@ -112,6 +150,8 @@ configureSystem() {
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
   # Show columns view by default
   defaults write com.apple.finder FXPreferredViewStyle clmv
+  # Disable the warning when changing a file extension
+  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
   # Show Statusbar
   defaults write com.apple.finder ShowStatusBar -bool true
   # Show Pathbar
@@ -120,7 +160,11 @@ configureSystem() {
   defaults write com.apple.finder EmptyTrashSecurely -bool true
   # Remove items from the Trash after 30 days
   defaults write com.apple.finder FXRemoveOldTrashItems -bool true
-  
+  # Enable Text Selection in QuickLook previews
+  defaults write com.apple.finder QLEnableTextSelection -bool true
+  # Avoid creation of .DS_Store files on network volumes?
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
   #
   # Dock
   #
@@ -135,8 +179,10 @@ configureSystem() {
   defaults write com.apple.Dock appswitcher-all-displays -bool true
   # Disable automatically rearrange Spaces based on recent use
   defaults write com.apple.dock mru-spaces -bool false
-
-  killall Dock
+  # Disable Dock magnification
+  defaults write com.apple.dock magnification -bool false
+  # Wipe all (default) app icons from the Dock?
+  defaults write com.apple.dock persistent-apps -array
 
   #
   # Terminal
@@ -146,19 +192,22 @@ configureSystem() {
   defaults write com.googlecode.iterm2 HotkeyTermAnimationDuration -float 0.000001
 
   #
-  # iOS Development
+  # Xcode
   #
 
   # Shows touches in simulator - nice for recording videos
   defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 
-  # Shows build time in Xcode's top activity bar
-  defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES 
+  # Xcode Show Build Times in Toolba
+  defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
+  # Show Xcode Line Numbers
+  defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
+  # Xcode Show Code Folding Ribbons
+  defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool true
 
   #
   # Restart all affected apps
   #
-
-  for app in Safari Finder Dock Mail SystemUIServer; do 
+  for app in Safari Finder Dock Mail SystemUIServer iterm2; do 
     killall -HUP "$app" >/dev/null 2>&1; 
   done
 }
@@ -187,7 +236,6 @@ installSoftware() {
   sudo xcodebuild -license accept
   
   # Link Xcode configuration
-  DROPBOX_FOLDER="${HOME}/Library/CloudStorage/Dropbox"
   ln -sf ${DROPBOX_FOLDER}/job/xcode/KeyBindings ${HOME}/Library/Developer/Xcode/UserData/
   ln -sf ${DROPBOX_FOLDER}/job/xcode/FontAndColorThemes ${HOME}/Library/Developer/Xcode/UserData/
   ln -sf ${DROPBOX_FOLDER}/job/xcode/CodeSnippets ${HOME}/Library/Developer/Xcode/UserData/
