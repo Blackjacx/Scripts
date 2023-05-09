@@ -16,6 +16,7 @@ tap "homebrew/cask-fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
 tap "github/gh" # Github CLI
 tap "romkatv/powerlevel10k"
+tap "Blackjacx/asc" # App Store Connect API client written in Swift
 
 # Xcode first since it is required by applications below, e.g. xcparse
 # mas "xcode", id: 497799835 # This will download Xcode even if it is installed - which takes a lot of time
@@ -25,6 +26,7 @@ tap "romkatv/powerlevel10k"
 brew "ag" # code-searching tool similar to ack, but faster 🔥
 brew "apg" # generate strong passwords
 brew "aria2" # download manager that supports segmented downloads 🔥
+brew "asc" # App Store Connect API client written in Swift
 brew "atuin" # SQLlite history plugin
 brew "bitwarden-cli" # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
 brew "ccat" # Colorizing `cat 🔥
