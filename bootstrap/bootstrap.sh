@@ -217,6 +217,14 @@ configureSystem() {
 #
 installSoftware() {
 
+  if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+    printf "\n\n#################################################################\n"
+    printf "Setting up ZSH with Oh-My-Zsh\n"
+    printf "#################################################################\n\n"
+    
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+
   command -v brew >/dev/null 2>&1 || { 
     printf "\n#################################################################\n"
     printf "Installing Homebrew\n"
@@ -286,14 +294,6 @@ installSoftware() {
 
   gem install bundler --no-document
   gem install jwt --no-document
-
-  if [ ! -d "${HOME}/.oh-my-zsh" ]; then
-    printf "\n\n#################################################################\n"
-    printf "Setting up ZSH with Oh-My-Zsh\n"
-    printf "#################################################################\n\n"
-    
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  fi
 }
 
 linkConfigurationFiles() {
