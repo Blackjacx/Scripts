@@ -312,9 +312,6 @@ linkConfigurationFiles() {
   # [TODO]
   #log "Link .config directory to \$HOME"
   #ln -s "$SCRIPT_DIR/bootstrap/dotfiles/config/karabiner.json" "${HOME}/config/karabiner/karabiner.json"
-
-  log "Source ~/.zshrc…"
-  source "${HOME}"/.zshrc
 }
 
 cloneRepositories() {
