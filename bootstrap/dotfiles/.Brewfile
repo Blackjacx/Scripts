@@ -16,7 +16,7 @@ tap "homebrew/cask-fonts" # support for fonts
 tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
 tap "github/gh" # Github CLI
 tap "romkatv/powerlevel10k"
-tap "Blackjacx/asc" # App Store Connect API client written in Swift
+tap "Blackjacx/homebrew-formulae" # App Store Connect API client written in Swift
 
 # Xcode first since it is required by applications below, e.g. xcparse
 # mas "xcode", id: 497799835 # This will download Xcode even if it is installed - which takes a lot of time
