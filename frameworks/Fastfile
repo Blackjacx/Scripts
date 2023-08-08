@@ -349,7 +349,7 @@ end
 
 def spm_supported_platforms
   # jq '.platforms[].platformName'
-  package = JSON.parse("#{sh 'cd .. && swift package dump-package'}")
+  package = JSON.parse("#{sh 'cd .. && swift package --quiet dump-package'}")
   platforms = package["platforms"]
   platform_names = platforms.map { |platform| platform["platformName"] }
   # platform_versions = platforms.map { |platform| platform["version"] }
