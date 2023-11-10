@@ -172,9 +172,14 @@ glogp() {
     git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 $(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
 }
 
+gfu() {
+  ga . && glogp && echo "Which commit hash should I use for fixup? " && read commit_hash && gcfu $commit_hash
+}
+
 greload () {
     local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
 }
+
 gupdate () {
     gfa 
     gco develop 
