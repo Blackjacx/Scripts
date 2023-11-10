@@ -33,7 +33,7 @@
     os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
-    prompt_char           # prompt symbol
+    # prompt_char           # prompt symbol
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -104,13 +104,18 @@
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
-    # battery               # internal battery
+    battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
-  typeset -g POWERLEVEL9K_MODE=powerline
+  # typeset -g POWERLEVEL9K_MODE=powerline
+  typeset -g POWERLEVEL9K_MODE='nerdfont-complete'
+  # typeset -g POWERLEVEL9K_MODE='awesome-fontconfig'
+  # typeset -g POWERLEVEL9K_MODE='awesome-patched'
+  # typeset -g POWERLEVEL9K_MODE='awesome-config'
+  # typeset -g POWERLEVEL9K_MODE='nerdfont-fontconfig'
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
   # icon overlap when using non-monospace fonts. When set to `none`, spaces are not added.
   typeset -g POWERLEVEL9K_ICON_PADDING=none
