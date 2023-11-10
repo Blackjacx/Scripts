@@ -109,6 +109,7 @@ cask "insomnia"                                   # Open-source, cross-platform 
 cask "iterm2"                                     # 🔥
 cask "karabiner-elements"                         # 🔥
 cask "keepassxc"
+cask "keycastr"                                   # KeyCastr, an open-source keystroke visualizer
 cask "linkliar"                                   # Link-Layer MAC spoofing GUI for macOS
 cask "openra"                                     # C&C open source 🔥
 cask "provisionql"
