@@ -18,8 +18,6 @@
 # @raycast.author Stefan Herold
 # @raycast.authorURL https://github.com/blackjacx
 
-
-
 -- on run argv
 --   if input volume of (get volume settings) > 0 then
 --     tell application "System Events" to set volume input volume 0
@@ -30,14 +28,9 @@
 --   end if
 -- end run
 
+-- 👆 toggle globally - not visible for people in call
 
-## 👆 toggle globally - not visible for people in call
+-- 👇 toggle only teams but then it's visible in the ui for everybody (does not work currently)
 
-## 👇 toggle only teams but then it's visible in the ui for everybody
-
-tell application "Microsoft Teams"
-  activate
-  tell application "System Events"
-    keystroke "m" using {shift down, command down}
-  end tell
-end tell
+tell application "Microsoft Teams classic" to activate
+tell application "System Events" to keystroke "m" using {shift down, command down}
