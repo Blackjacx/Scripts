@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/stherold/.gitignore
+	excludesfile = ~/.gitignore
 	mergeoptions = --no-edit
 [merge]
   ff = only
