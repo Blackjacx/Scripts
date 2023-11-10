@@ -36,6 +36,7 @@ brew "coreutils"
 brew "curl"
 brew "direnv" # 🔥
 brew "doxygen"
+brew "exa"                                        # Modern `ls` replacement
 brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
 brew "firebase-cli" # automating Firebase
