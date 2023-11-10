@@ -6,6 +6,8 @@
 #
 # DISCLAIMER: Don't execute it if you do not know what you are doing!!!
 #
+# Check https://youtu.be/r_MpUP6aKiQ?si=dBAQnWCIeKkJmBHD&t=718 for steps to setup a new mac
+#
 set -uo pipefail
 #set -x
 
