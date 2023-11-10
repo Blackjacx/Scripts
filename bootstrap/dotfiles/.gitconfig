@@ -1,6 +1,8 @@
 [core]
 	excludesfile = /Users/stherold/.gitignore
 	mergeoptions = --no-edit
+[merge]
+  ff = only
 [user]
 	name = Stefan Herold
 	email = stefan.herold@gmail.com
