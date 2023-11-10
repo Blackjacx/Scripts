@@ -183,11 +183,16 @@ gupdate () {
         git branch -D $branch
     done
 }
-#----------------
+
 # List branches created by me
-#----------------
-alias gb="git --no-pager branch"
 alias gbm="git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)""
+alias gb="git --no-pager branch"
+# Prevent adding comments to git commit message file 
+# (removes --verbose). This triggers the git hook that prevents 
+# commmitting on failing  commit message lint. It also checks the 
+# comments whcih is wrong of course. Whenever the hook is fixed this 
+# can be removed again.
+alias gc="git commit"
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
