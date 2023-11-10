@@ -34,3 +34,5 @@
 [pager]
 	diff = false
 	log = true
+[fetch]
+  prune = true
