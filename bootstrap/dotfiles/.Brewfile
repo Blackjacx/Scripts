@@ -75,6 +75,7 @@ brew "shellcheck"                                 # static analysis tool for she
 brew "task"                                       # Command line Task Management
 brew "tasksh"                                     # Shell wrapper for Taskwarrior commands
 brew "tmux"
+brew "tpm"                                        # Tmux plugin mnager
 brew "transcrypt"                                 # used to transparently de-/encrypt the repo ios-keystore
 brew "tree"
 brew "watch"
@@ -100,28 +101,28 @@ cask "font-source-code-pro"
 cask "font-jetbrains-mono"
 cask "geektool"
 cask "gpg-suite-no-mail" # 🔥
-cask "google-chrome" # Doesn't work correctly with 1password 🚨
+cask "google-chrome"                              # Doesn't work correctly with 1password 🚨
 cask "handbrake"
 cask "iina"
 cask "inkscape"
-cask "insomnia" # The open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC. 🔥
-cask "iterm2" # 🔥
-cask "karabiner-elements" # 🔥
+cask "insomnia"                                   # Open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC. 🔥
+cask "iterm2"                                     # 🔥
+cask "karabiner-elements"                         # 🔥
 cask "keepassxc"
-cask "linkliar" # Link-Layer MAC spoofing GUI for macOS
+cask "linkliar"                                   # Link-Layer MAC spoofing GUI for macOS
 cask "openra"                                     # C&C open source 🔥
 cask "provisionql"
 cask "scummvm"
-cask "sf-symbols" # 🔥
+cask "sf-symbols"                                 # 🔥
 cask "sketch"
-# cask "skype" # not used
+# cask "skype"                                    # not used
 cask "slack"
 cask "spectacle"
 cask "spotify"
 cask "sublime-merge"
 cask "sublime-text"
 cask "telegram"
-# cask "texshop" # switched off since quite big - re-enable when needed
+# cask "texshop"                                  # switched off since quite big - re-enable when needed
 cask "tunnelblick"
 cask "visual-studio-code"
 cask "vlc"
