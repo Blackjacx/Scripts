@@ -40,6 +40,7 @@ brew "ffmpeg"
 brew "figlet" # making large letters out of ordinary text
 brew "firebase-cli" # automating Firebase
 brew "fzf" # A command-line fuzzy finder 🔥
+brew "fx"                                         # Interactive terminal JSON viewer & processor  🔥
 brew "gh"
 brew "ghostscript" # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git" # distributed version-control system for tracking changes in source code during software development
@@ -66,24 +67,27 @@ brew "pass" # open source password manager • including iOS app • syncing via
 brew "peco" # It’s a interactive filtering tool.
 brew "p0f"
 brew "pngquant" # Lossy PNG compressor
-brew "poppler" # necessary for pdfinfo command
-brew "powerlevel10k" # blazing fast theme for ZSH
+brew "poppler"                                    # Necessary for pdfinfo command
+brew "powerlevel10k"                              # Blazing fast theme for ZSH
 brew "pstree"
 brew "rbenv"
-brew "shellcheck" # static analysis tool for shell scripts 🔥
-brew "task" # Command line Task Management
-brew "tasksh" # Shell wrapper for Taskwarrior commands
+brew "shellcheck"                                 # static analysis tool for shell scripts 🔥
+brew "task"                                       # Command line Task Management
+brew "tasksh"                                     # Shell wrapper for Taskwarrior commands
 brew "tmux"
-brew "transcrypt" # used to transparently de-/encrypt the repo ios-keystore
+brew "transcrypt"                                 # used to transparently de-/encrypt the repo ios-keystore
 brew "tree"
 brew "watch"
 brew "wget"
+brew "xcodesorg/made/xcodes"                      # The best command-line tool to install and switch between multiple versions of Xcode.
 brew "youtube-dl"
-brew "zsh-completions" # 🔥
-brew "zsh-syntax-highlighting" # 🔥
+brew "zsh-completions"                            # 🔥
+brew "zsh-syntax-highlighting"                    # 🔥
+brew "zoxide"                                     # A smarter cd command, inspired by z and autojump.
 
 # tap "1password" # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
+cask "aerial" # phenomenal screen saver with tons of options
 cask "aware" # Menubar app for macOS that displays how long you've been actively using your computer.
 cask "brisk" # submitting radars
 cask "cyberduck" # FTP / Dropbox client 
@@ -103,9 +107,9 @@ cask "inkscape"
 cask "insomnia" # The open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC. 🔥
 cask "iterm2" # 🔥
 cask "karabiner-elements" # 🔥
+cask "keepassxc"
 cask "linkliar" # Link-Layer MAC spoofing GUI for macOS
-cask "macdown" # MD file editor
-cask "openra" # C&C open source 🔥
+cask "openra"                                     # C&C open source 🔥
 cask "provisionql"
 cask "scummvm"
 cask "sf-symbols" # 🔥
