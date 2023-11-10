@@ -258,28 +258,29 @@ installSoftware() {
   printf "Installing Software via Homebrew\n"
   printf "#################################################################\n\n"
 
-  # Install/Upgrade software via Brewfile
   log "Update-reset Homebrew…"
   brew update-reset
+  
   log "Update Homebrew…"
   brew update 
+  
   log "Install all dependencies declared in global  ~/.Brewfile (eventually upgrade them)…"
   brew bundle -v --global
+  
   log "Upgrade all dependencies (even those not declared in global ~/.Brewfile)…"
   brew upgrade
-  log "Upgrade all casks declared in global ~/.Brewfile…"
+  
   # Upgrades casks defined in Brewfile
   # brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
   # Upgrades casks currently installed
+  log "Upgrade all casks declared in global ~/.Brewfile…"
   brew list --cask | xargs brew upgrade
+  
   log "Cleanup…"
   brew cleanup
+  
   log "Display homebrew system health…"
   brew doctor
-
-  log "Disable read access to ZSH directories for other users…"
-  chmod 700 /usr/local/share/zsh
-  chmod 700 /usr/local/share/zsh/site-functions
 
   printf "\n\n#################################################################\n"
   printf "Installing Powerline Fonts For iTerm\n"
