@@ -94,8 +94,20 @@ export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_P
 # No sorting
 # zstyle ':completion:complete:*:options' sort false
 # Show preview when using cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath' # remember to use single quote here!!!
-
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
+# Show preview when using exa (ls)
+# zstyle ':fzf-tab:complete:exa:*' fzf-preview 'bat --color always --paging never $realpath'
+zstyle ':fzf-tab:complete:exa:*' fzf-preview '
+  if [[ -f $realpath ]]; then 
+    if command -v bat > /dev/null 2>&1; then
+      bat --color always --paging never $realpath
+    else
+      cat $realpath
+    fi    
+  else 
+    exa -aFh1 -g --color-scale --icons --color=always $realpath
+  fi
+'
 #export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 #export FZF_DEFAULT_OPTS='--layout=reverse'
 # Uncomment the following line to disable fuzzy completion
@@ -215,9 +227,9 @@ alias twt="task scrum modified:today"
 alias df="df -h"
 alias la="exa -laFh"
 alias tree="exa --tree"
-if command -v bat > /dev/null; then
+if command -v bat > /dev/null 2>&1; then
   alias cat="bat --paging=never"
-elif command -v batcat > /dev/null; then
+elif command -v batcat > /dev/null 2>&1; then
   alias cat="batcat"
 fi
 #----------------
