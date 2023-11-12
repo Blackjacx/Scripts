@@ -24,6 +24,7 @@ DROPBOX_FOLDER="${HOME}/Library/CloudStorage/Dropbox"
 
 configureSystem() {
 
+
   #
   # Extendes Settings - Include here too
   #
@@ -33,185 +34,195 @@ configureSystem() {
   # https://apple.stackexchange.com/questions/408716/setting-safari-preferences-from-script-on-big-sur
   #
 
-  printf "\n#################################################################\n"
-  printf "Configure System\n"
-  printf "#################################################################\n\n"
+  if [[ $(uname) == "Darwin" ]]; then
 
-  #
-  # Misc
-  #
+    printf "\n#################################################################\n"
+    printf "Configure System (MacOS)\n"
+    printf "#################################################################\n\n"
 
-  # stop photos from opening automatically when connecting an iphone
-  defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true 
-  # Enable debug menu in Reminders to use the manual iCloud sync
-  defaults write com.apple.reminders RemindersDebugMenu -boolean true
+    #
+    # Misc
+    #
 
-  # Enable tap-to-click
-  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-  # Disable user interface sound effects
-  defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
-  # Store screenshots in a dedicated place - not on desktop
-  defaults write com.apple.screencapture location "${DROPBOX_FOLDER}/images/screenshots"
-  # Always expand Save Panel by default:
-  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+    # stop photos from opening automatically when connecting an iphone
+    defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true 
+    # Enable debug menu in Reminders to use the manual iCloud sync
+    defaults write com.apple.reminders RemindersDebugMenu -boolean true
 
-  #
-  # Safari
-  # 
+    # Enable tap-to-click
+    defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+    defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    # Disable user interface sound effects
+    defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
+    # Store screenshots in a dedicated place - not on desktop
+    defaults write com.apple.screencapture location "${DROPBOX_FOLDER}/images/screenshots"
+    # Always expand Save Panel by default:
+    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-  # Don't open files in Safari after downloading
-  defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-  # Hide favorites bar in Safari by default
-  defaults write com.apple.Safari ShowFavoritesBar -bool false
-  # Show status bar in Safari
-  defaults write com.apple.Safari ShowOverlayStatusBar -bool true
-  # Show the full URL in the address bar (note: this still hides the scheme)
-  defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-  # Safari opens with: last session
-  defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
-  # Do not open private window on startup
-  defaults write com.apple.Safari OpenPrivateWindowWhenNotRestoringSessionAtLaunch -bool false
-  # Enable the Develop menu and the Web Inspector in Safari
-  defaults write com.apple.Safari IncludeDevelopMenu -bool true  
-  # Enable Safari’s debug menu
-  defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-  # Update extensions automatically
-  defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-  # Make Safari’s search banners default to Contains instead of Starts With
-  defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-  # Website use of location services
-  # 0 = Deny without prompting
-  # 1 = Prompt for each website once each day
-  # 2 = Prompt for each website one time only
-  defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
+    #
+    # Safari
+    # 
 
-  #
-  # Text Edit
-  #
+    # Don't open files in Safari after downloading
+    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+    # Hide favorites bar in Safari by default
+    defaults write com.apple.Safari ShowFavoritesBar -bool false
+    # Show status bar in Safari
+    defaults write com.apple.Safari ShowOverlayStatusBar -bool true
+    # Show the full URL in the address bar (note: this still hides the scheme)
+    defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+    # Safari opens with: last session
+    defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+    # Do not open private window on startup
+    defaults write com.apple.Safari OpenPrivateWindowWhenNotRestoringSessionAtLaunch -bool false
+    # Enable the Develop menu and the Web Inspector in Safari
+    defaults write com.apple.Safari IncludeDevelopMenu -bool true  
+    # Enable Safari’s debug menu
+    defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+    # Update extensions automatically
+    defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+    # Make Safari’s search banners default to Contains instead of Starts With
+    defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+    # Website use of location services
+    # 0 = Deny without prompting
+    # 1 = Prompt for each website once each day
+    # 2 = Prompt for each website one time only
+    defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
-  # Create an Untitled Document at Launch instead of showing the open dialog
-  defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
-  # Use Plain Text Mode as Default
-  defaults write com.apple.TextEdit RichText -int 0 
+    #
+    # Text Edit
+    #
 
-  #
-  # Power Management
-  #
+    # Create an Untitled Document at Launch instead of showing the open dialog
+    defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
+    # Use Plain Text Mode as Default
+    defaults write com.apple.TextEdit RichText -int 0 
 
-  # Require password as soon as screensaver or sleep mode starts
-  defaults write com.apple.screensaver askForPassword -int 1
-  defaults write com.apple.screensaver askForPasswordDelay -int 0
-  
-  #
-  # Power Saving: Turn off
-  #
+    #
+    # Power Management
+    #
 
-  # # Disable screensaver
-  # defaults -currentHost write com.apple.screensaver idleTime -int 0
-  # # Turn off hard disk sleep
-  # sudo systemsetup -setsleep off
-  # # Prevent displaz sleep when on battery and power
-  # sudo pmset -a displaysleep 0
+    # Require password as soon as screensaver or sleep mode starts
+    defaults write com.apple.screensaver askForPassword -int 1
+    defaults write com.apple.screensaver askForPasswordDelay -int 0
+    
+    #
+    # Power Saving: Turn off
+    #
 
-  #
-  # Global
-  #
+    # # Disable screensaver
+    # defaults -currentHost write com.apple.screensaver idleTime -int 0
+    # # Turn off hard disk sleep
+    # sudo systemsetup -setsleep off
+    # # Prevent displaz sleep when on battery and power
+    # sudo pmset -a displaysleep 0
 
-  # Show filename extensions by default
-  defaults write -g AppleShowAllExtensions -bool false
-  # Disable auto-correct
-  defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
-  # Disabling press-and-hold for special keys in favor of key repeat
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-  # Set a shorter Delay until key repeat
-  defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-  # Set super fast key repeat rate
-  defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
-  # disable animations when opening and closing windows
-  defaults write -g NSAutomaticWindowAnimationsEnabled -bool false 
-  # disable just smart dashes
-  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-  # disable just smart quotes
-  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-  
-  #
-  # Finder
-  #
+    #
+    # Global
+    #
 
-  # Desktop: Show External hard drives
-  defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-  # Desktop: Show Hard drives
-  defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-  # Desktop: Show Removable media
-  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-  # Desktop: Show Mounted servers
-  defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-  # Desktop: Show item info below icons
-  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-  # Show columns view by default
-  defaults write com.apple.finder FXPreferredViewStyle clmv
-  # Disable the warning when changing a file extension
-  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-  # Show Statusbar
-  defaults write com.apple.finder ShowStatusBar -bool true
-  # Show Pathbar
-  defaults write com.apple.finder ShowPathbar -bool true
-  # Emptry trash securely by default
-  defaults write com.apple.finder EmptyTrashSecurely -bool true
-  # Remove items from the Trash after 30 days
-  defaults write com.apple.finder FXRemoveOldTrashItems -bool true
-  # Enable Text Selection in QuickLook previews
-  defaults write com.apple.finder QLEnableTextSelection -bool true
-  # Avoid creation of .DS_Store files on network volumes?
-  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    # Show filename extensions by default
+    defaults write -g AppleShowAllExtensions -bool false
+    # Disable auto-correct
+    defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+    # Disabling press-and-hold for special keys in favor of key repeat
+    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+    # Set a shorter Delay until key repeat
+    defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+    # Set super fast key repeat rate
+    defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+    # disable animations when opening and closing windows
+    defaults write -g NSAutomaticWindowAnimationsEnabled -bool false 
+    # disable just smart dashes
+    defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+    # disable just smart quotes
+    defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+    
+    #
+    # Finder
+    #
 
-  #
-  # Dock
-  #
+    # Desktop: Show External hard drives
+    defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+    # Desktop: Show Hard drives
+    defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+    # Desktop: Show Removable media
+    defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+    # Desktop: Show Mounted servers
+    defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+    # Desktop: Show item info below icons
+    /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+    # Show columns view by default
+    defaults write com.apple.finder FXPreferredViewStyle clmv
+    # Disable the warning when changing a file extension
+    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+    # Show Statusbar
+    defaults write com.apple.finder ShowStatusBar -bool true
+    # Show Pathbar
+    defaults write com.apple.finder ShowPathbar -bool true
+    # Emptry trash securely by default
+    defaults write com.apple.finder EmptyTrashSecurely -bool true
+    # Remove items from the Trash after 30 days
+    defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+    # Enable Text Selection in QuickLook previews
+    defaults write com.apple.finder QLEnableTextSelection -bool true
+    # Avoid creation of .DS_Store files on network volumes?
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-  # Automatically hide and show the Dock
-  defaults write com.apple.dock autohide -bool true
-  # Remove dock auto-hide delay
-  defaults write com.apple.dock autohide-delay -float 0
-  # Move the dock to the left
-  defaults write com.apple.Dock orientation -string bottom
-  # show app switcher on all displays - useful when you have a lot displays
-  defaults write com.apple.Dock appswitcher-all-displays -bool true
-  # Disable automatically rearrange Spaces based on recent use
-  defaults write com.apple.dock mru-spaces -bool false
-  # Disable Dock magnification
-  defaults write com.apple.dock magnification -bool false
-  # Wipe all (default) app icons from the Dock?
-  defaults write com.apple.dock persistent-apps -array
+    #
+    # Dock
+    #
 
-  #
-  # Terminal
-  #
+    # Automatically hide and show the Dock
+    defaults write com.apple.dock autohide -bool true
+    # Remove dock auto-hide delay
+    defaults write com.apple.dock autohide-delay -float 0
+    # Move the dock to the left
+    defaults write com.apple.Dock orientation -string bottom
+    # show app switcher on all displays - useful when you have a lot displays
+    defaults write com.apple.Dock appswitcher-all-displays -bool true
+    # Disable automatically rearrange Spaces based on recent use
+    defaults write com.apple.dock mru-spaces -bool false
+    # Disable Dock magnification
+    defaults write com.apple.dock magnification -bool false
+    # Wipe all (default) app icons from the Dock?
+    defaults write com.apple.dock persistent-apps -array
 
-  # iTerm appears quickly
-  defaults write com.googlecode.iterm2 HotkeyTermAnimationDuration -float 0.000001
+    #
+    # Terminal
+    #
 
-  #
-  # Xcode
-  #
+    # iTerm appears quickly
+    defaults write com.googlecode.iterm2 HotkeyTermAnimationDuration -float 0.000001
 
-  # Shows touches in simulator - nice for recording videos
-  defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 
-  # Xcode Show Build Times in Toolba
-  defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
-  # Show Xcode Line Numbers
-  defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
-  # Xcode Show Code Folding Ribbons
-  defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool true
+    #
+    # Xcode
+    #
 
-  #
-  # Restart all affected apps
-  #
-  for app in Safari Finder Dock Mail SystemUIServer iterm2; do 
-    killall -HUP "$app" >/dev/null 2>&1; 
-  done
+    # Shows touches in simulator - nice for recording videos
+    defaults write http://com.apple.iphonesimulator ShowSingleTouches 1 
+    # Xcode Show Build Times in Toolba
+    defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
+    # Show Xcode Line Numbers
+    defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
+    # Xcode Show Code Folding Ribbons
+    defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool true
+
+    #
+    # Restart all affected apps
+    #
+    for app in Safari Finder Dock Mail SystemUIServer iterm2; do 
+      killall -HUP "$app" >/dev/null 2>&1; 
+    done
+
+  elif [[ $(uname) == "Linux" ]]; then
+
+    printf "\n#################################################################\n"
+    printf "Configure System (Linux)\n"
+    printf "#################################################################\n\n"
+
+  fi
 }
 
 configureSoftware() {
