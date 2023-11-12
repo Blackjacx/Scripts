@@ -89,12 +89,9 @@ export GEM_HOME=$HOME/.gem
 # Set the path using specified order
 export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_PREFIX}/sbin:${HOMEBREW_DIR_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:/Library/TeX/texbin:${PATH}"
 
-#
-# 3rd Party Tools
-#
-
+#-------------------------------------------------------------------------------
 # FZF
-#
+#-------------------------------------------------------------------------------
 # Configuration: https://github.com/Aloxaf/fzf-tab/wiki/Configuration
 # Preview: https://github.com/Aloxaf/fzf-tab/wiki/Preview
 
@@ -125,9 +122,9 @@ zstyle ':fzf-tab:complete:exa:*' fzf-preview '
 # Uncomment to specify default command when input is tty
 # export FZF_DEFAULT_COMMAND='ag'
 
-#
-# History settings
-#
+#-------------------------------------------------------------------------------
+# History
+#-------------------------------------------------------------------------------
 
 # ignore these commands
 export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"
@@ -165,26 +162,25 @@ export EDITOR="nano"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-#----------------
+#-------------------------------------------------------------------------------
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#----------------
-alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
-alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
-alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
-alias cdtemp='cd "$(mktemp -d)"'
-#----------------
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
 # Not correct according to https://lapcatsoftware.com/articles/DerivedData.html
 # alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
 # Correct - including empty trash
 # alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash" -e "tell application \"Finder\" to empty trash"'
 # Semi-correct - without emptying trash
-#----------------
+#-------------------------------------------------------------------------------
 alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
-alias gcfu="git commit --fixup"
-alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 develop.."
+
+#-------------------------------------------------------------------------------
+# Git
+#-------------------------------------------------------------------------------
 
 # Show commit difference to parent branch
 # Source: https://stackoverflow.com/a/42562318/971329
@@ -212,24 +208,34 @@ gupdate () {
 # List branches created by me
 alias gbm="git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)""
 alias gb="git --no-pager branch"
+alias gcfu="git commit --fixup"
+alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 develop.."
 # Prevent adding comments to git commit message file 
 # (removes --verbose). This triggers the git hook that prevents 
 # commmitting on failing  commit message lint. It also checks the 
 # comments whcih is wrong of course. Whenever the hook is fixed this 
 # can be removed again.
 alias gc="git commit"
-alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
+# List remote branches and select them using fzf
+fco () { git checkout $(git branch -r | cut -d'/' -f2- | fzf --reverse) }
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
+
+#-------------------------------------------------------------------------------
+# iOS | Xcode | Swift
+#-------------------------------------------------------------------------------
+
 alias swiftb='swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15"'
-#-----------------
+alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
+
+#-------------------------------------------------------------------------------
 # Scrum Daily
-#-----------------
+#-------------------------------------------------------------------------------
 alias twy="task scrum modified.after:now-1day"
 alias twf="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d)"
 alias twt="task scrum modified:today"
 #alias task-today="task scrum due.after:now due.before:tomorrow status:pending"
-#----------------
+
 #-------------------------------------------------------------------------------
 # File System
 #-------------------------------------------------------------------------------
@@ -241,9 +247,15 @@ if command -v bat > /dev/null 2>&1; then
 elif command -v batcat > /dev/null 2>&1; then
   alias cat="batcat"
 fi
-#----------------
+alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
+alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
+alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
+alias cdtemp='cd "$(mktemp -d)"'
+brewinfo () { brew info $(brew list | fzf --reverse) }
+
+#-------------------------------------------------------------------------------
 # Developer
-#----------------
+#-------------------------------------------------------------------------------
 alias json="open http://jsonviewer.stack.hu"
 alias regexp="open https://regex101.com/"
 alias images="http://placehold.it/150x350"
@@ -252,18 +264,20 @@ alias sm="smerge ."
 alias ag="ag --hidden --skip-vcs-ignores --ignore=\"*Library*\" --ignore=\"*.gem*\" --ignore=\"*.build*\" --ignore=\"*.git*\" --ignore=\"*bundle*\" --ignore=\"*.zsh_history*\""
 alias sz="source ${HOME}/.zshrc"
 alias hsi="history | fzf"
-#----------------
-# CleanUp Commands
-#----------------
+
+#-------------------------------------------------------------------------------
+# CleanUp
+#-------------------------------------------------------------------------------
 alias kill_ca="sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`"
-#----------------
+
+#-------------------------------------------------------------------------------
 # Remove alias rm -i to get rid of interactivity
-#----------------
+#-------------------------------------------------------------------------------
 unalias rm
 
-###
-### Completion System
-###
+#-------------------------------------------------------------------------------
+# Completion System
+#-------------------------------------------------------------------------------
 
 # By the following 3 options, the completion selection menu is opened with the first press of TAB
 setopt AUTOLIST AUTOMENU
@@ -280,29 +294,30 @@ unsetopt LIST_AMBIGUOUS
 # Lots of different, nice looking completions
 fpath=(${HOMEBREW_DIR_PREFIX}/share/zsh-completions $fpath)
 
-###
-### Syntax Highlighting
-###
+#-------------------------------------------------------------------------------
+# Syntax Highlighting
+#-------------------------------------------------------------------------------
 
 source "${HOMEBREW_DIR_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-###
-### Power Level 10K
-###
+#-------------------------------------------------------------------------------
+# Power Level 10K
+#-------------------------------------------------------------------------------
 
 # Load powerlevel10K theme
 source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
-# Load sqlite history plugin
+#-------------------------------------------------------------------------------
+# Load tools for ZSH
+#-------------------------------------------------------------------------------
+
+# atuin
 # echo 'eval "$(atuin init zsh)"' >> ~/.zshrceval "$(atuin init zsh)"
 
-# Load rbenv
+# rbenv
 eval "$(rbenv init - zsh)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # zoxide
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
