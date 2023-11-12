@@ -221,15 +221,21 @@ configureSoftware() {
   printf "#################################################################\n\n"
 
   command -v bat >/dev/null 2>&1 && {
+    printf "Install Catppuccin for Bat\n"
 
-    printf "Install  Catppuccin for Bat\n"
-
-    git clone git@github.com:catppuccin/bat.git /tmp/catppuccin-for-bat
+    tmp=$(mktemp -d)
+    git clone git@github.com:catppuccin/bat.git "$tmp"
     mkdir -p "$(bat --config-dir)/themes"
-    cp /tmp/catppuccin-for-bat/*.tmTheme "$(bat --config-dir)/themes"
+    cp "$tmp/*.tmTheme" "$(bat --config-dir)/themes"
     bat cache --build
     printf 'Preview themes using `bat --list-themes | fzf --preview="bat --theme={} --color=always <path to file>"`\n'
-  }
+  }  
+
+  fzf_tab_dir="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab"
+  if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+    printf "Install `fzf-tab` ZSH plugin\n"
+    git clone https://github.com/Aloxaf/fzf-tab "$fzf_tab_dir"
+  fi  
 }
 
 #
