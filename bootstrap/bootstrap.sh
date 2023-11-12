@@ -214,6 +214,24 @@ configureSystem() {
   done
 }
 
+configureSoftware() {
+
+  printf "\n\n#################################################################\n"
+  printf "Configure Sotware\n"
+  printf "#################################################################\n\n"
+
+  command -v bat >/dev/null 2>&1 && {
+
+    printf "Install  Catppuccin for Bat\n"
+
+    git clone git@github.com:catppuccin/bat.git /tmp/catppuccin-for-bat
+    mkdir -p "$(bat --config-dir)/themes"
+    cp /tmp/catppuccin-for-bat/*.tmTheme "$(bat --config-dir)/themes"
+    bat cache --build
+    printf 'Preview themes using `bat --list-themes | fzf --preview="bat --theme={} --color=always <path to file>"`\n'
+  }
+}
+
 #
 # Installs all useful software, ruby gems, Homebrew packages and casks
 #
@@ -353,7 +371,7 @@ software and linking configuration (dotfiles) to your home and configuration fol
 -h     Display this help
 -v     Run script in verbose mode. Will print out each step of execution
 -a     Execute all, -clir
--c     Configure default values for the system
+-c     Configure default values for system and software installed previously
 -l     Link configuration to your home folder
 -i     Install software using brew and brew cask
 -r     Repositories on the internet are cloned
@@ -385,8 +403,9 @@ while getopts "hvacilr" opt; do
       cloneRepositories
       ;;
     c)
-      log "Configure System…"
+      log "Configure System and Software…"
       configureSystem
+      configureSoftware
       ;;
     l)
       log "Link Configuration Files…"
