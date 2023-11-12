@@ -270,7 +270,7 @@ source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
 # Load sqlite history plugin
-echo 'eval "$(atuin init zsh)"' >> ~/.zshrceval "$(atuin init zsh)"
+# echo 'eval "$(atuin init zsh)"' >> ~/.zshrceval "$(atuin init zsh)"
 
 # Load rbenv
 eval "$(rbenv init - zsh)"
