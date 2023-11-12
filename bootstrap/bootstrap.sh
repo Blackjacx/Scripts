@@ -213,7 +213,7 @@ configureSystem() {
     # Restart all affected apps
     #
     for app in Safari Finder Dock Mail SystemUIServer iterm2; do 
-      killall -HUP "$app" >/dev/null 2>&1; 
+      killall -HUP "$app" > /dev/null 2>&1; 
     done
 
   elif [[ $(uname) == "Linux" ]]; then
@@ -231,7 +231,7 @@ configureSoftware() {
   printf "Configure Sotware\n"
   printf "#################################################################\n\n"
 
-  command -v bat >/dev/null 2>&1 && {
+  command -v bat > /dev/null 2>&1 && {
     printf "Install Catppuccin for Bat\n"
 
     tmp=$(mktemp -d)
@@ -262,7 +262,7 @@ installSoftware() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 
-  command -v brew >/dev/null 2>&1 || { 
+  command -v brew > /dev/null 2>&1 || { 
     printf "\n#################################################################\n"
     printf "Installing Homebrew\n"
     printf "#################################################################\n\n"
