@@ -202,8 +202,8 @@ alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +
 alias admin_on="curl -X POST https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias admin_off="curl -X DELETE https://api.github.com/repos/dbdrive/beiwagen/branches/develop/protection/enforce_admins -H \"Authorization: token $GITHUB_ACCESS_TOKEN\""
 alias swiftb='swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15"'
-#----------------
-# scrum meeting setup
+#-----------------
+# Scrum Daily
 #-----------------
 alias twy="task scrum modified.after:now-1day"
 alias twf="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d)"
@@ -213,7 +213,13 @@ alias twt="task scrum modified:today"
 # File System
 #----------------
 alias df="df -h"
-alias cat="ccat"
+alias la="exa -laFh"
+alias tree="exa --tree"
+if command -v bat > /dev/null; then
+  alias cat="bat --paging=never"
+elif command -v batcat > /dev/null; then
+  alias cat="batcat"
+fi
 #----------------
 # Developer
 #----------------
@@ -223,7 +229,6 @@ alias images="http://placehold.it/150x350"
 alias sm="smerge ."
 # Search hidden files and ignore some uninteresting folders - good for searching from home dir
 alias ag="ag --hidden --skip-vcs-ignores --ignore=\"*Library*\" --ignore=\"*.gem*\" --ignore=\"*.build*\" --ignore=\"*.git*\" --ignore=\"*bundle*\" --ignore=\"*.zsh_history*\""
-alias la="exa -laFh"
 alias sz="source ${HOME}/.zshrc"
 alias hsi="history | fzf"
 #----------------
