@@ -70,7 +70,7 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras swiftpm bundler common-aliases colored-man-pages direnv z bgnotify zsh-autosuggestions fzf fzf-tab)
+plugins=(git git-extras swiftpm bundler common-aliases colored-man-pages direnv bgnotify zsh-autosuggestions fzf fzf-tab)
 
 # User configuration
 
@@ -95,6 +95,7 @@ export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_P
 # zstyle ':completion:complete:*:options' sort false
 # Show preview when using cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
 # Show preview when using exa (ls)
 # zstyle ':fzf-tab:complete:exa:*' fzf-preview 'bat --color always --paging never $realpath'
 zstyle ':fzf-tab:complete:exa:*' fzf-preview '
@@ -222,8 +223,9 @@ alias twf="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d)"
 alias twt="task scrum modified:today"
 #alias task-today="task scrum due.after:now due.before:tomorrow status:pending"
 #----------------
+#-------------------------------------------------------------------------------
 # File System
-#----------------
+#-------------------------------------------------------------------------------
 alias df="df -h"
 alias la="exa -laFh"
 alias tree="exa --tree"
@@ -295,3 +297,5 @@ eval "$(rbenv init - zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# zoxide
+command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
