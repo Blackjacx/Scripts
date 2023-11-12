@@ -34,13 +34,14 @@ brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult 
 brew "cloc" # lines of code counter
 brew "coreutils"
 brew "curl"
-brew "direnv" # 🔥
+brew "direnv"                                     # 🔥
 brew "doxygen"
+brew "entr"                                       # Run arbitrary commands when files change
 brew "exa"                                        # Modern `ls` replacement
 brew "ffmpeg"
-brew "figlet" # making large letters out of ordinary text
-brew "firebase-cli" # automating Firebase
-brew "fzf" # A command-line fuzzy finder 🔥
+brew "figlet"                                     # making large letters out of ordinary text
+brew "firebase-cli"                               # automating Firebase
+brew "fzf"                                        # A command-line fuzzy finder 🔥
 brew "fx"                                         # Interactive terminal JSON viewer & processor  🔥
 brew "gh"
 brew "ghostscript" # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
@@ -61,8 +62,9 @@ brew "mint" # dependency manager for swift packages 🔥
 brew "mitmproxy" # Intercepting Network Traffic 🔥
 # brew "mplayer" # free and open-source media player | currently not used
 brew "nano"
-brew "npm"
 brew "node"
+brew "npm"
+brew "nvim"
 brew "openssl"
 brew "pass" # open source password manager • including iOS app • syncing via git repo • encryption using GPG
 brew "peco" # It’s a interactive filtering tool.
