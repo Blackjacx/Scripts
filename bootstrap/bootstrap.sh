@@ -231,22 +231,37 @@ configureSoftware() {
   printf "Configure Sotware\n"
   printf "#################################################################\n\n"
 
-  command -v bat > /dev/null 2>&1 && {
-    printf "Install Catppuccin for Bat\n"
+  command -v ls &>/dev/null && {
+    log "Install 'Catppuccin' theme for Bat"
 
-    tmp=$(mktemp -d)
-    git clone git@github.com:catppuccin/bat.git "$tmp"
-    mkdir -p "$(bat --config-dir)/themes"
-    cp "$tmp/*.tmTheme" "$(bat --config-dir)/themes"
-    bat cache --build
-    printf 'Preview themes using `bat --list-themes | fzf --preview="bat --theme={} --color=always <path to file>"`\n'
-  }  
+    local tmp="$(mktemp -d)"
+    local config_dir="$(bat --config-dir)"
+    git clone -v git@github.com:catppuccin/bat.git $tmp
+    mkdir -p "$config_dir/themes"
+    cp -f "${tmp}"/*.tmTheme "${config_dir}/themes/" && \
+    bat cache --build && \
+    log 'Preview themes using $ bat --list-themes | fzf --preview="bat --theme={} --color=always <path to file>"'
+  }
 
-  fzf_tab_dir="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab"
-  if [ ! -d "${HOME}/.oh-my-zsh" ]; then
-    printf "Install `fzf-tab` ZSH plugin\n"
-    git clone https://github.com/Aloxaf/fzf-tab "$fzf_tab_dir"
-  fi  
+  #-----------------------------------------------------------------------------
+  # ZSH Plugins Platform Independent
+  # e.g. no homebrew on Raspberry Pi
+  #-----------------------------------------------------------------------------
+
+  github_plugins=(
+    "aloxaf/fzf-tab"
+    "zsh-users/zsh-autosuggestions"
+  )
+
+  for plugin in "${github_plugins[@]}"; do
+    plugin_name=$(echo $plugin | cut -d"/" -f2)
+    plugin_dir="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/$plugin_name"
+
+    if [[ ! -d $plugin_dir ]]; then
+      log "Installing ZSH plugin '$plugin'"
+      git clone "https://github.com/$plugin" "$plugin_dir"
+    fi  
+  done
 }
 
 #
@@ -258,7 +273,6 @@ installSoftware() {
     printf "\n\n#################################################################\n"
     printf "Setting up ZSH with Oh-My-Zsh\n"
     printf "#################################################################\n\n"
-    
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 

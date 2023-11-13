@@ -77,7 +77,19 @@ export DEFAULT_USER=`whoami`
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras swiftpm bundler common-aliases colored-man-pages direnv bgnotify zsh-autosuggestions fzf fzf-tab)
+plugins=(
+  git 
+  git-extras 
+  swiftpm 
+  bundler 
+  common-aliases 
+  colored-man-pages 
+  direnv 
+  bgnotify 
+  zsh-autosuggestions
+  fzf 
+  fzf-tab
+)
 
 # User configuration
 
@@ -128,7 +140,7 @@ zstyle ':fzf-tab:complete:exa:*' fzf-preview '
 
 # ignore these commands
 export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"
-# increase history to the last 10000 commands
+# increase maximum history entry count
 export HISTSIZE=500000
 # The maximum number of lines that are kept in the history file.
 export SAVEHIST=$HISTSIZE
@@ -163,10 +175,11 @@ export EDITOR="nano"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 #-------------------------------------------------------------------------------
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# Aliases
+#
+# Aliases can be placed here, though oh-my-zsh users are encouraged to 
+# define aliases within the ZSH_CUSTOM folder. For a full list of active 
+# aliases, run `alias`.
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
@@ -321,3 +334,7 @@ eval "$(rbenv init - zsh)"
 
 # zoxide
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
+
+
+
+
