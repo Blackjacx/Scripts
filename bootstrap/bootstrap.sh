@@ -231,16 +231,19 @@ configureSoftware() {
   printf "Configure Sotware\n"
   printf "#################################################################\n\n"
 
-  command -v ls &>/dev/null && {
-    log "Install 'Catppuccin' theme for Bat"
+  command -v bat &>/dev/null && {
+    if ! cat $(bat --config-file) | grep -q "\-\-theme\="; then
+      log "Install 'Catppuccin' theme for Bat"
+      return 
 
-    local tmp="$(mktemp -d)"
-    local config_dir="$(bat --config-dir)"
-    git clone -v git@github.com:catppuccin/bat.git $tmp
-    mkdir -p "$config_dir/themes"
-    cp -f "${tmp}"/*.tmTheme "${config_dir}/themes/" && \
-    bat cache --build && \
-    log 'Preview themes using $ bat --list-themes | fzf --preview="bat --theme={} --color=always <path to file>"'
+      local tmp="$(mktemp -d)"
+      local config_dir="$(bat --config-dir)"
+      git clone -v git@github.com:catppuccin/bat.git $tmp
+      mkdir -p "$config_dir/themes"
+      cp -f "${tmp}"/*.tmTheme "${config_dir}/themes/" && \
+      bat cache --build && \
+      log 'Preview themes using $ bat --list-themes | fzf --preview="bat --theme={} --color=always <path to file>"'
+    fi
   }
 
   #-----------------------------------------------------------------------------
