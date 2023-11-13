@@ -89,6 +89,7 @@ plugins=(
   zsh-autosuggestions
   fzf 
   fzf-tab
+  brew
 )
 
 # User configuration
@@ -305,7 +306,15 @@ unsetopt LIST_AMBIGUOUS
 [ -f ~/dotfiles/do_not_track_env_vars.sh ] && source ~/dotfiles/do_not_track_env_vars.sh
 
 # Lots of different, nice looking completions
-fpath=(${HOMEBREW_DIR_PREFIX}/share/zsh-completions $fpath)
+
+if type brew &>/dev/null; then
+  fpath=($(brew --prefix)/share/zsh-completions $fpath)
+  # If you receive "zsh compinit: insecure directories" warnings when 
+  # attempting to load these completions, you may need to run these commands:
+  #
+  # chmod go-w '$HOMEBREW_PREFIX/share'
+  # chmod -R go-w '$HOMEBREW_PREFIX/share/zsh'
+fi
 
 #-------------------------------------------------------------------------------
 # Syntax Highlighting
