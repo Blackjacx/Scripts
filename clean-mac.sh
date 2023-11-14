@@ -31,6 +31,9 @@ rm -rf ${HOME}/Library/Caches
 log "Remove All Unavailable Simulators"
 xcrun simctl delete unavailable
 
+log "Remove Homebrew cache"
+brew cleanup --prune=all
+
 log "Reset all simulators..."
 osascript -e 'tell application "Simulator" to quit'
 osascript -e 'tell application "iOS Simulator" to quit'
