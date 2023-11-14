@@ -49,7 +49,7 @@ glogp() {
 
 # Create fixup commit for stashed changed
 gfu() {
-  glogp && echo "Which commit hash should I use for fixup? " && read commit_hash && gcfu $commit_hash
+  glogp | fzf-tmux -p --reverse | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
 }
 
 #-------------------------------------------------------------------------------
