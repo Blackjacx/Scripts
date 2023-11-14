@@ -90,6 +90,7 @@ plugins=(
   fzf 
   fzf-tab
   brew
+  timewarrior
 )
 
 # User configuration

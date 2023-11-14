@@ -77,6 +77,7 @@ brew "rbenv"
 brew "shellcheck"                                 # static analysis tool for shell scripts 🔥
 brew "task"                                       # Command line Task Management
 brew "tasksh"                                     # Shell wrapper for Taskwarrior commands
+brew "timewarrior"
 brew "tmux"
 brew "tpm"                                        # Tmux plugin mnager
 brew "transcrypt"                                 # used to transparently de-/encrypt the repo ios-keystore
