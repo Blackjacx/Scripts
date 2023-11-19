@@ -113,6 +113,7 @@ export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_P
 # zstyle ':completion:complete:*:options' sort false
 # Show preview when using cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
+zstyle ':fzf-tab:complete:open:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
 # Show preview when using exa (ls)
 # zstyle ':fzf-tab:complete:exa:*' fzf-preview 'bat --color always --paging never $realpath'
