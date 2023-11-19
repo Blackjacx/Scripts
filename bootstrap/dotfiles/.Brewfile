@@ -29,7 +29,8 @@ brew "aria2" # download manager that supports segmented downloads 🔥
 brew "asc" # App Store Connect API client written in Swift
 #brew "atuin"                                     # SQLlite history plugin
 brew "bitwarden-cli" # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
-brew "ccat" # Colorizing `cat 🔥
+brew "btop"                                       # 🔥 A monitor of resources
+brew "ccat" #  🔥 Colorizing cat
 brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
 brew "cloc" # lines of code counter
 brew "coreutils"
@@ -38,6 +39,7 @@ brew "direnv"                                     # 🔥
 brew "doxygen"
 brew "entr"                                       # Run arbitrary commands when files change
 brew "exa"                                        # Modern `ls` replacement
+brew "fd"                                         # Drop in replacement for find
 brew "ffmpeg"
 brew "figlet"                                     # making large letters out of ordinary text
 brew "firebase-cli"                               # automating Firebase
@@ -62,6 +64,8 @@ brew "mint" # dependency manager for swift packages 🔥
 brew "mitmproxy" # Intercepting Network Traffic 🔥
 # brew "mplayer" # free and open-source media player | currently not used
 brew "nano"
+brew "ncdu"                                       # Disk usage analyzer
+brew "neofetch"                                   # A CLI system information tool
 brew "node"
 brew "npm"
 brew "nvim"
@@ -74,7 +78,9 @@ brew "poppler"                                    # Necessary for pdfinfo comman
 brew "powerlevel10k"                              # Blazing fast theme for ZSH
 brew "pstree"
 brew "rbenv"
-brew "shellcheck"                                 # static analysis tool for shell scripts 🔥
+brew "rga"                                        # 🔥 rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.
+brew "ripgrep"                                    # ripgrep recursively searches directories for a regex pattern while respecting your gitignore
+brew "shellcheck"                                 # 🔥 static analysis tool for shell scripts
 brew "task"                                       # Command line Task Management
 brew "tasksh"                                     # Shell wrapper for Taskwarrior commands
 brew "timewarrior"
@@ -86,8 +92,8 @@ brew "watch"
 brew "wget"
 brew "xcodesorg/made/xcodes"                      # The best command-line tool to install and switch between multiple versions of Xcode.
 brew "youtube-dl"
-brew "zsh-completions"                            # 🔥
-brew "zsh-syntax-highlighting"                    # 🔥
+brew "zsh-completions"                            # Additional completion definitions for Zsh
+brew "zsh-syntax-highlighting"                    # Fish shell like syntax highlighting for Zsh.
 brew "zoxide"                                     # A smarter cd command, inspired by z and autojump.
 
 # tap "1password" # this installs the pricy 1password 7
@@ -100,9 +106,10 @@ cask "deckset"
 cask "docker" # 🔥
 cask "dropbox"
 cask "font-fira-code"
-cask "font-microsoft-office"
-cask "font-source-code-pro"
 cask "font-jetbrains-mono"
+cask "font-microsoft-office"
+cask "font-hack-nerd-font"
+cask "font-source-code-pro"
 cask "geektool"
 cask "gpg-suite-no-mail" # 🔥
 cask "google-chrome"                              # Doesn't work correctly with 1password 🚨
