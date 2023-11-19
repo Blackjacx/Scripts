@@ -184,6 +184,9 @@ export EDITOR="nano"
 setopt AUTOLIST AUTOMENU
 unsetopt LIST_AMBIGUOUS
 
+setopt nocaseglob # ignore case
+setopt correct # correct spelling mistakes
+
 # Expand aliases when pressing TAB
 # zstyle ':completion:*' completer _expand_alias _complete _ignored
 
