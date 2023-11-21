@@ -360,9 +360,19 @@ linkConfigurationFiles() {
   # Finds hidden dotfiles and uses safe syntax to execute loop
   find "$SCRIPT_DIR/bootstrap/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
   do
-    link_dir="${HOME}"
+    link_dir="${HOME}/"
     log "Link dotfile $file --> $link_dir"
     ln -sf "$file" "$link_dir/"
+  done
+
+  # Finds dotfiles that should be linked into ~/.config/<tool>/
+  find "$SCRIPT_DIR/bootstrap/config_files" -type f -print0 | while read -r -d $'\0' file
+  do
+    link_dir="${HOME}/.config/"
+    tool_name=$(basename "$file" | cut -d'.' -f1)
+    mkdir "$link_dir" > /dev/null 2>&1; 
+    log "Link config file $file --> $link_dir/$tool_name"
+    ln -sf "$file" "$link_dir/$tool_name"
   done
 
   find "$SCRIPT_DIR/bootstrap/zsh_config_files" -type f -iname "*" -print0 | while read -r -d $'\0' file
