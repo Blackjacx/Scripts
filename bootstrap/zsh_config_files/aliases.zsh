@@ -152,4 +152,4 @@ alias kill_ca="sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`"
 #-------------------------------------------------------------------------------
 # Remove alias rm -i to get rid of interactivity
 #-------------------------------------------------------------------------------
-unalias rm
+# unalias rm

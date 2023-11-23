@@ -150,28 +150,25 @@ zstyle ':fzf-tab:*' fzf-command fzf
 # History
 #-------------------------------------------------------------------------------
 
-# ignore these commands
-export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"
-# increase maximum history entry count
-export HISTSIZE=500000
-# The maximum number of lines that are kept in the history file.
-export SAVEHIST=$HISTSIZE
-# Enables fast pasting
-export DISABLE_MAGIC_FUNCTIONS=true
-# Ignore duplicated items
-setopt HIST_IGNORE_ALL_DUPS
-# Tidy up the line when it is entered into the history by removing any excess blanks that mean nothing to the shell. This can also mean that the line becomes a duplicate of a previous one even if it would not have been in its untidied form. It is smart enough not to remove blanks which are important, i.e. are quoted.
-setopt HIST_REDUCE_BLANKS
-# A useful trick to prevent particular entries from being recorded into a history by preceding them with at least one space.
-setopt HIST_IGNORE_SPACE
-# Allows appending the new history to the old
-setopt APPEND_HISTORY
-# Each line is added to the history in this way as it is executed
-setopt INC_APPEND_HISTORY
-# As each line is added, the history file is checked to see if anything was written out by another shell, and if so it is included in the history of the current shell too
-setopt SHARE_HISTORY
-# If you try to scroll up or down beyond the end of the history list, the shell will beep. It is on by default, so use NO_HIST_BEEP to turn it off.
-setopt NO_HIST_BEEP
+
+export HISTFILE="${HOME}/.zsh_history"                # Explicitly set the history file
+export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"  # Ignore these commands
+export HISTSIZE=500000                                # Max number of commands loaded into memory from the history file
+export HISTFILESIZE=500000
+export SAVEHIST=500000                                # Max number of commands stored in the zsh history file
+export DISABLE_MAGIC_FUNCTIONS=true                   # Enables fast pasting
+setopt HIST_IGNORE_ALL_DUPS                           # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_REDUCE_BLANKS                             # Tidy up the line when it is entered into the history by removing any excess blanks that mean nothing to the shell. This can also mean that the line becomes a duplicate of a previous one even if it would not have been in its untidied form. It is smart enough not to remove blanks which are important, i.e. are quoted.
+setopt HIST_IGNORE_SPACE                              # A useful trick to prevent particular entries from being recorded into a history by preceding them with at least one space.
+setopt APPEND_HISTORY                                 # Allows appending the new history to the old
+setopt INC_APPEND_HISTORY                             # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY                                  # Share history between all sessions.
+setopt NO_HIST_BEEP                                   # If you try to scroll up or down beyond the end of the history list, the shell will beep. It is on by default, so use NO_HIST_BEEP to turn it off.
+setopt HIST_VERIFY                                    # Don't execute immediately upon history expansion.
+setopt HIST_SAVE_NO_DUPS                              # Don't write duplicate entries in the history file.
+setopt HIST_EXPIRE_DUPS_FIRST                         # Expire duplicate entries first when trimming history.
+setopt BANG_HIST                                      # Treat the '!' character specially during expansion.
+
 
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
 [ -f ~/dev/scripts/imports.sh ] && source ~/dev/scripts/imports.sh
