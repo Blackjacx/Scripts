@@ -132,6 +132,11 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
+# Use tmux popup for tab completion (https://github.com/Aloxaf/fzf-tab/wiki/Configuration#fzf-command)
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# Default
+zstyle ':fzf-tab:*' fzf-command fzf
+
 #export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 #export FZF_DEFAULT_OPTS='--layout=reverse'
 # Uncomment the following line to disable fuzzy completion
