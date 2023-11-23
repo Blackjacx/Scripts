@@ -107,10 +107,24 @@ alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME
 #-------------------------------------------------------------------------------
 # Task Warrior • Scrum Daily
 #-------------------------------------------------------------------------------
-alias twy="task scrum modified.after:now-1day"
-alias twf="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d)"
-alias twt="task scrum modified:today"
+
+#alias twy="task scrum modified.after:now-1day"
+#alias twf="task scrum modified.after:$(gdate --date="last friday" +%Y-%m-%d)"
+#alias twt="task scrum modified:today"
 #alias task-today="task scrum due.after:now due.before:tomorrow status:pending"
+
+#-------------------------------------------------------------------------------
+# Time Warrior
+#-------------------------------------------------------------------------------
+
+alias twby="timew balance 2023-11-13 - yesterday" # balance from the beginning of all records
+alias twb="timew balance" # balance from the beginning of all records (including today)
+alias tws="timew summary :week :ids"
+alias twsa="timew summary :all :ids"
+alias twd="timew day summary :ids rc.reports.day.hours=auto"
+alias tww="timew week summary :ids rc.reports.week.hours=auto"
+alias twm="timew month summary :ids rc.reports.month.hours=auto"
+
 
 #-------------------------------------------------------------------------------
 # File System
