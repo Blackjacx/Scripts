@@ -74,3 +74,8 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/.env
 fastlane/README.md
+
+# tmux
+#
+# Plugin directory should be installed fresh on every machine
+bootstrap/config_dirs/tmux/plugins

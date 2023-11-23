@@ -361,24 +361,22 @@ linkConfigurationFiles() {
   find "$SCRIPT_DIR/bootstrap/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file
   do
     link_dir="${HOME}/"
-    log "Link dotfile $file --> $link_dir"
+    log "Link dotfile $file --> $link_dir$(basename $file)"
     ln -sf "$file" "$link_dir/"
   done
 
-  # Finds dotfiles that should be linked into ~/.config/<tool>/
-  find "$SCRIPT_DIR/bootstrap/config_files" -type f -print0 | while read -r -d $'\0' file
+  # Finds configuration directories for various tools that should be linked into ~/.config/
+  find "$SCRIPT_DIR/bootstrap/config_dirs" -type d -depth 1 -print0 | while read -r -d $'\0' tool_config_dir
   do
     link_dir="${HOME}/.config/"
-    tool_name=$(basename "$file" | cut -d'.' -f1)
-    mkdir "$link_dir" > /dev/null 2>&1; 
-    log "Link config file $file --> $link_dir/$tool_name"
-    ln -sf "$file" "$link_dir/$tool_name"
+    log "Link dir $tool_config_dir --> $link_dir$tool_config_dir:t" # ':t' ~ Remove all leading pathname components, leaving the tail.
+    ln -sf "$tool_config_dir" "$link_dir/"
   done
 
   find "$SCRIPT_DIR/bootstrap/zsh_config_files" -type f -iname "*" -print0 | while read -r -d $'\0' file
   do
-    link_dir="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
-    log "Link zsh-config file $file --> $link_dir/"
+    link_dir="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/"
+    log "Link zsh-config file $file --> $link_dir$(basename $file)"
     ln -sf "$file" "$link_dir/"
   done
 
