@@ -128,6 +128,10 @@ zstyle ':fzf-tab:complete:exa:*' fzf-preview '
 '
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
 #export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 #export FZF_DEFAULT_OPTS='--layout=reverse'
 # Uncomment the following line to disable fuzzy completion
