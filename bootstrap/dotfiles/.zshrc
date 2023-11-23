@@ -126,6 +126,8 @@ zstyle ':fzf-tab:complete:exa:*' fzf-preview '
     exa -aFh1 -g --color-scale --icons --color=always $realpath
   fi
 '
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
 #export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 #export FZF_DEFAULT_OPTS='--layout=reverse'
 # Uncomment the following line to disable fuzzy completion
