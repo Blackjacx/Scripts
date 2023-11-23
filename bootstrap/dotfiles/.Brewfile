@@ -10,29 +10,29 @@
 # cask "firefox", args: { appdir: "~/my-apps/Applications" }
 # mas "1Password", id: 443987910
 
-tap "jzaleski/homebrew-jzaleski" # support for apg
+tap "jzaleski/homebrew-jzaleski"                  # support for apg
 tap "lokalise/cli-2"
-tap "homebrew/cask-fonts" # support for fonts
-tap "colindean/fonts-nonfree" # Calibri, Cambria, ...
-tap "github/gh" # Github CLI
+tap "homebrew/cask-fonts"                         # support for fonts
+tap "colindean/fonts-nonfree"                     # Calibri, Cambria, ...
+tap "github/gh"                                   # Github CLI
 tap "romkatv/powerlevel10k"
-tap "Blackjacx/homebrew-formulae" # App Store Connect API client written in Swift
+tap "Blackjacx/homebrew-formulae"                 # App Store Connect API client written in Swift
 
 # Xcode first since it is required by applications below, e.g. xcparse
 # mas "xcode", id: 497799835 # This will download Xcode even if it is installed - which takes a lot of time
 # mas "tweetbot", id: 557168941
 # mas "gifski", id: 1351639930
 
-brew "ag" # code-searching tool similar to ack, but faster 🔥
-brew "apg" # generate strong passwords
-brew "aria2" # download manager that supports segmented downloads 🔥
-brew "asc" # App Store Connect API client written in Swift
+brew "ag"                                         # 🔥 code-searching tool similar to ack, but faster
+brew "apg"                                        # generate strong passwords
+brew "aria2"                                      # 🔥 download manager that supports segmented downloads
+brew "asc"                                        # App Store Connect API client written in Swift
 #brew "atuin"                                     # SQLlite history plugin
-brew "bitwarden-cli" # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
+brew "bitwarden-cli"                              # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
 brew "btop"                                       # 🔥 A monitor of resources
-brew "ccat" #  🔥 Colorizing cat
-brew "chargepoint/xcparse/xcparse" # extract screenshots from Xcode 11 xcresult bundle
-brew "cloc" # lines of code counter
+brew "ccat"                                       # 🔥 Colorizing cat
+brew "chargepoint/xcparse/xcparse"                # extract screenshots from Xcode 11 xcresult bundle
+brew "cloc"                                       # lines of code counter
 brew "coreutils"
 brew "curl"
 brew "direnv"                                     # 🔥
@@ -43,26 +43,26 @@ brew "fd"                                         # Drop in replacement for find
 brew "ffmpeg"
 brew "figlet"                                     # making large letters out of ordinary text
 brew "firebase-cli"                               # automating Firebase
-brew "fzf"                                        # A command-line fuzzy finder 🔥
-brew "fx"                                         # Interactive terminal JSON viewer & processor  🔥
+brew "fzf"                                        # 🔥 A command-line fuzzy finder
+brew "fx"                                         # 🔥 Interactive terminal JSON viewer & processor
 brew "gh"
-brew "ghostscript" # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
-brew "git" # distributed version-control system for tracking changes in source code during software development
+brew "ghostscript"                                # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
+brew "git"                                        # distributed version-control system for tracking changes in source code during software development
 brew "git-extras"
 brew "git-flow"
 brew "github-markdown-toc"
-brew "gource" # software version control visualization
+brew "gource"                                     # software version control visualization
 brew "htop"
 brew "httpie"
 brew "imagemagick"
 brew "irssi"
-brew "jq" # command-line JSON processor 🔥
-brew "lokalise2" # tool for for mobile localization cloud platform (new version)
-brew "mas" # installs Mac App Store apps
-brew "micro" # A modern and intuitive terminal-based text editor
-brew "mint" # dependency manager for swift packages 🔥
-brew "mitmproxy" # Intercepting Network Traffic 🔥
-# brew "mplayer" # free and open-source media player | currently not used
+brew "jq"                                         # 🔥 command-line JSON processor
+brew "lokalise2"                                  # tool for for mobile localization cloud platform (new version)
+brew "mas"                                        # installs Mac App Store apps
+brew "micro"                                      # A modern and intuitive terminal-based text editor
+brew "mint"                                       # 🔥 dependency manager for swift packages
+brew "mitmproxy"                                  # 🔥 Intercepting Network Traffic
+# brew "mplayer"                                  # free and open-source media player | currently not used
 brew "nano"
 brew "ncdu"                                       # Disk usage analyzer
 brew "neofetch"                                   # A CLI system information tool
@@ -70,10 +70,10 @@ brew "node"
 brew "npm"
 brew "nvim"
 brew "openssl"
-brew "pass" # open source password manager • including iOS app • syncing via git repo • encryption using GPG
-brew "peco" # It’s a interactive filtering tool.
+brew "pass"                                       # open source password manager • including iOS app • syncing via git repo • encryption using GPG
+brew "peco"                                       # It’s a interactive filtering tool.
 brew "p0f"
-brew "pngquant" # Lossy PNG compressor
+brew "pngquant"                                   # Lossy PNG compressor
 brew "poppler"                                    # Necessary for pdfinfo command
 brew "powerlevel10k"                              # Blazing fast theme for ZSH
 brew "pstree"
@@ -96,14 +96,14 @@ brew "zsh-completions"                            # Additional completion defini
 brew "zsh-syntax-highlighting"                    # Fish shell like syntax highlighting for Zsh.
 brew "zoxide"                                     # A smarter cd command, inspired by z and autojump.
 
-# tap "1password" # this installs the pricy 1password 7
+# tap "1password"                                 # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
-cask "aerial" # phenomenal screen saver with tons of options
-cask "aware" # Menubar app for macOS that displays how long you've been actively using your computer.
-cask "brisk" # submitting radars
-cask "cyberduck" # FTP / Dropbox client 
+cask "aerial"                                     # phenomenal screen saver with tons of options
+cask "aware"                                      # Menubar app for macOS that displays how long you've been actively using your computer.
+cask "brisk"                                      # submitting radars
+cask "cyberduck"                                  # FTP / Dropbox client 
 cask "deckset"
-cask "docker" # 🔥
+cask "docker"                                     # 🔥
 cask "dropbox"
 cask "font-fira-code"
 cask "font-jetbrains-mono"
@@ -111,18 +111,18 @@ cask "font-microsoft-office"
 cask "font-hack-nerd-font"
 cask "font-source-code-pro"
 cask "geektool"
-cask "gpg-suite-no-mail" # 🔥
-cask "google-chrome"                              # Doesn't work correctly with 1password 🚨
+cask "gpg-suite-no-mail"                          # 🔥
+cask "google-chrome"                              # 🚨 Doesn't work correctly with 1password
 cask "handbrake"
 cask "iina"
 cask "inkscape"
-cask "insomnia"                                   # Open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC. 🔥
+cask "insomnia"                                   # 🔥 Open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC.
 cask "iterm2"                                     # 🔥
 cask "karabiner-elements"                         # 🔥
 cask "keepassxc"
 cask "keycastr"                                   # KeyCastr, an open-source keystroke visualizer
 cask "linkliar"                                   # Link-Layer MAC spoofing GUI for macOS
-cask "openra"                                     # C&C open source 🔥
+cask "openra"                                     # 🔥 C&C open source
 cask "provisionql"
 cask "scummvm"
 cask "sf-symbols"                                 # 🔥
