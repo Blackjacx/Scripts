@@ -47,9 +47,10 @@ glogp() {
   git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 $(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
 }
 
-# Create fixup commit for stashed changed
+# Create fixup commit for stashed changes
 gfu() {
-  glogp | fzf-tmux -p --reverse | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
+  message="Please select a commit hash"
+  glogp | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
 }
 
 #-------------------------------------------------------------------------------
