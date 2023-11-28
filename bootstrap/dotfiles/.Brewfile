@@ -93,7 +93,6 @@ brew "wget"
 brew "xcodesorg/made/xcodes"                      # The best command-line tool to install and switch between multiple versions of Xcode.
 brew "youtube-dl"
 brew "zsh-completions"                            # Additional completion definitions for Zsh
-brew "zsh-syntax-highlighting"                    # Fish shell like syntax highlighting for Zsh.
 brew "zoxide"                                     # A smarter cd command, inspired by z and autojump.
 
 # tap "1password"                                 # this installs the pricy 1password 7

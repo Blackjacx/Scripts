@@ -150,7 +150,6 @@ zstyle ':fzf-tab:*' fzf-command fzf
 # History
 #-------------------------------------------------------------------------------
 
-
 export HISTFILE="${HOME}/.zsh_history"                # Explicitly set the history file
 export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"  # Ignore these commands
 export HISTSIZE=500000                                # Max number of commands loaded into memory from the history file
@@ -214,12 +213,6 @@ if type brew &>/dev/null; then
 fi
 
 #-------------------------------------------------------------------------------
-# Syntax Highlighting
-#-------------------------------------------------------------------------------
-
-source "${HOMEBREW_DIR_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-#-------------------------------------------------------------------------------
 # Power Level 10K
 #-------------------------------------------------------------------------------
 
@@ -278,8 +271,8 @@ done
 
 zsh_plugins_external=(
   "svenXY/timewarrior"
+  "zsh-users/zsh-syntax-highlighting"
 )
 for plugin in "${zsh_plugins_external[@]}"; do
   zinit light $plugin
 done
-
