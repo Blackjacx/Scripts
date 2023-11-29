@@ -177,7 +177,8 @@ setopt BANG_HIST                                      # Treat the '!' character 
 
 # Preferred editor for local and remote sessions
 # export EDITOR="subl -n -w"
-export EDITOR="nano"
+# export EDITOR="nano"
+export EDITOR="nvim"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
