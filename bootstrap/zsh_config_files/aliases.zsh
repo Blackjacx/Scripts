@@ -31,13 +31,20 @@ gupdate () {
 
 # Checkout branch selected by browsing using fuzzy finder.
 # - shown in a popup window when using tmux
-fco () {
+gcof () {
   [[ ! -d ".git" ]] && return
 
+  # IFS: split branches output at line break character
+  # sed: replace everything up to and including last occurence of "origin/" by empty string
+  # sed: delete lines starting with '*' (current branch)
+  # awk: trim spaces
+  IFS=$'\n' branches=($(git branch -a | sed 's/.*origin\///' | sed '/^*/d' | awk '{$1=$1};1' | sort -u | uniq))
+
+
   if [[ -z $TMUX ]]; then
-    branch=$(git branch -r | cut -d'/' -f2- | fzf)
+    branch=$(printf '%s\n' "${branches[@]}" | fzf)
   else 
-    branch=$(git branch -r | cut -d'/' -f2- | fzf-tmux -p)
+    branch=$(printf '%s\n' "${branches[@]}" | fzf-tmux -p)
   fi
   git checkout "$branch"
 }
