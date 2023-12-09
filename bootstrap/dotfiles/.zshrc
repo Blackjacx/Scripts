@@ -25,6 +25,8 @@ ZSH=${HOME}/.oh-my-zsh
 # ZSH_THEME="random"
 # ZSH_THEME="agnoster"
 
+# Set orange background and white foreground for the zsh-autosuggestions plugin 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ffffff,bg=#d18e1e"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
