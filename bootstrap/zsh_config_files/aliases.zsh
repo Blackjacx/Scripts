@@ -83,6 +83,12 @@ sim-boot() {
   xcrun simctl boot "$(sim-select)"
 }
 
+sim-set-lang() {
+  xcrun simctl list -j "devices" | 
+    jq -r '.devices | map(.[])[].udid' | 
+    parallel 'xcrun simctl boot {}; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLanguages -array en_BZ; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLocale -string en_BZ; xcrun simctl shutdown {}'
+}
+
 #-------------------------------------------------------------------------------
 # iCloud
 #-------------------------------------------------------------------------------
