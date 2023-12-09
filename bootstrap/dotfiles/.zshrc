@@ -107,14 +107,15 @@ export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_P
 # Configuration: https://github.com/Aloxaf/fzf-tab/wiki/Configuration
 # Preview: https://github.com/Aloxaf/fzf-tab/wiki/Preview
 
-# No sorting
+# no sorting
 # zstyle ':completion:complete:*:options' sort false
-# Show preview when using cd
+# show preview when using cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
+# show preview when using open
 zstyle ':fzf-tab:complete:open:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
+# show preview when using zoxide
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
 # Show preview when using exa (ls)
-# zstyle ':fzf-tab:complete:exa:*' fzf-preview 'bat --color always --paging never $realpath'
 zstyle ':fzf-tab:complete:exa:*' fzf-preview '
   if [[ -f $realpath ]]; then 
     if command -v bat > /dev/null 2>&1; then
