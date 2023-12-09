@@ -126,6 +126,19 @@ zstyle ':fzf-tab:complete:exa:*' fzf-preview '
     exa -aFh1 -g --color-scale --icons --color=always $realpath
   fi
 '
+# Show preview when using bat (cat)
+zstyle ':fzf-tab:complete:bat:*' fzf-preview '
+  if [[ -f $realpath ]]; then 
+    if command -v bat > /dev/null 2>&1; then
+      bat --color always --paging never $realpath
+    else
+      cat $realpath
+    fi    
+  else 
+    exa -aFh1 -g --color-scale --icons --color=always $realpath
+  fi
+'
+
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
