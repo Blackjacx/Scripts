@@ -20,12 +20,13 @@ greload () {
 }
 
 gupdate () {
-  gfa 
-  gco develop 
-  gl
-  for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' | egrep -v '\*|master|main|develop'); do 
-      git branch -D $branch
-  done
+  git fetch --all --prune --jobs=32
+  git checkout develop
+  git pull
+  git for-each-ref --format '%(refname) %(upstream:track)' refs/heads |
+      awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' |
+      egrep -v '\*|master|main|develop' |
+      xargs -I '{}' -n 1 git branch -D "{}"
 }
 
 # Checkout branch selected by browsing using fuzzy finder.
