@@ -450,6 +450,7 @@ while getopts "hvacilr" opt; do
       configureSystem
       linkConfigurationFiles
       installSoftware
+      configureSoftware
       cloneRepositories
       ;;
     c)
