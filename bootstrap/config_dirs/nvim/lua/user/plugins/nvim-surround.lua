@@ -1,10 +1,11 @@
--- import plugin safely
-local setup, plugin = pcall(require, "nvim-surround")
-if not setup then
-	return
-end
-
--- enable comment
-plugin.setup({
-	-- Configuration here, or leave empty to use defaults
-})
+-- add, delete, change surroundings (it's awesome)
+return {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+}
