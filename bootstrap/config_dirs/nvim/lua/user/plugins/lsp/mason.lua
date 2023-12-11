@@ -49,13 +49,14 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
+				"shfmt", -- shell formatter
+				"beautysh", -- shell formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
 				"shellcheck", -- bash linter
 				"commitlint", -- commit linter
 				"cspell", -- spell checker for code
 				"jsonlint", -- json linter
-				-- "quick-lint-ls", -- blazing fast alternative to eslint
 			},
 		})
 	end,

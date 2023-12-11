@@ -21,6 +21,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				swift = { "swiftformat" },
+				sh = { "beautysh" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

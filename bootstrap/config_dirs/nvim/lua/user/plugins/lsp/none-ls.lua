@@ -17,8 +17,14 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"black", -- python formatter
+				"shfmt", --shell formatter
+				"beautysh", --shell formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
+				"shellcheck", -- bash linter
+				"commitlint", -- commit linter
+				"cspell", -- spell checker for code
+				"jsonlint", -- json linter
 			},
 		})
 
@@ -43,6 +49,8 @@ return {
 				formatting.stylua, -- lua formatter
 				formatting.isort,
 				formatting.black,
+				formatting.shfmt,
+				formatting.beautysh,
 				diagnostics.pylint,
 				diagnostics.eslint_d.with({ -- js/ts linter
 					condition = function(utils)
