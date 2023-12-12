@@ -2,7 +2,7 @@
 	excludesfile = ~/.gitignore
 	mergeoptions = --no-edit
 [merge]
-  ff = only
+    ff = only
 [user]
 	name = Stefan Herold
 	email = 794372+Blackjacx@users.noreply.github.com
@@ -37,4 +37,4 @@
 	diff = false
 	log = true
 [fetch]
-  prune = true
+    prune = true
