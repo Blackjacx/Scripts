@@ -22,6 +22,8 @@ return {
 				python = { "isort", "black" },
 				swift = { "swiftformat" },
 				sh = { "beautysh" },
+				bash = { "beautysh" },
+				zsh = { "shfmt" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
