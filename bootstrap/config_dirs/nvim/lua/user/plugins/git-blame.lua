@@ -12,7 +12,7 @@ return {
 			date_format = "%r",
 			message_when_not_committed = "  Oh please, commit this !",
 			-- delay = 1000,
-			use_blame_commit_file_urls = true,
+			use_blame_commit_file_urls = false,
 		})
 	end,
 }
