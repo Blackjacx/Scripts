@@ -11,7 +11,7 @@ key_file_or_string = ARGV[0]
 key_id = "#{ARGV[1]}"
 issuer_id = "#{ARGV[2]}"
 
-if File.exists?("#{key_file_or_string}")
+if File.exist?("#{key_file_or_string}")
   private_key = OpenSSL::PKey.read(File.read("#{key_file_or_string}"))
 else
   private_key = OpenSSL::PKey.read("#{key_file_or_string}")
