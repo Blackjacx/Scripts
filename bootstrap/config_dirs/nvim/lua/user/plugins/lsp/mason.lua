@@ -6,6 +6,7 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		-- import mason
@@ -41,6 +42,13 @@ return {
 				"prismals",
 				"pyright",
 				"bashls",
+				"taplo",
+				"dockerls",
+				"kotlin_language_server",
+				"marksman",
+				"ruby_ls",
+				"terraformls",
+				"yamlls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed

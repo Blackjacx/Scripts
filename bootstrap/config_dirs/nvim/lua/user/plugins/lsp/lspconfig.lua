@@ -111,38 +111,81 @@ return {
 			end,
 		})
 
-		-- configure prisma orm server
+		-- prisma ls
 		lspconfig["prismals"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
-		-- configure graphql language server
+		-- graphql ls
 		lspconfig["graphql"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 		})
 
-		-- configure emmet language server
+		-- emmet ls
 		lspconfig["emmet_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 		})
 
-		-- configure python server
+		-- python ls
 		lspconfig["pyright"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
+		-- bash ls
 		lspconfig["bashls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
-		-- configure lua server (with special settings)
+		-- docker ls
+		lspconfig["dockerls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- toml ls
+		lspconfig["taplo"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- kotlin ls
+		lspconfig["kotlin_language_server"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- markdown ls
+		lspconfig["marksman"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- ruby ls
+		lspconfig["ruby_ls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- terraform ls
+		lspconfig["terraformls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- yaml ls
+		lspconfig["yamlls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
