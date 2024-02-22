@@ -65,7 +65,7 @@ glogp() {
 # Create fixup commit for stashed changes
 gfu() {
   message="Please select a commit hash"
-  glogp | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
+  glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
 }
 
 #-------------------------------------------------------------------------------
