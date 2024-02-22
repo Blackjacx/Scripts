@@ -121,6 +121,7 @@ cask "linkliar"                                   # Link-Layer MAC spoofing GUI 
 cask "openra"                                     # 🔥 C&C open source
 cask "provisionql"
 cask "raspberry-pi-imager"
+cask "raycast"                                    # Drop in sulution for macOS Spotlight
 cask "scummvm"
 cask "sf-symbols"                                 # 🔥
 cask "sketch"
