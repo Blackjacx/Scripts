@@ -43,7 +43,6 @@ brew "fd"                                         # Drop in replacement for find
 brew "ffmpeg"
 brew "figlet"                                     # making large letters out of ordinary text
 brew "firebase-cli"                               # automating Firebase
-brew "fzf"                                        # 🔥 A command-line fuzzy finder
 brew "fx"                                         # 🔥 Interactive terminal JSON viewer & processor
 brew "gh"
 brew "ghostscript"                                # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
@@ -56,7 +55,6 @@ brew "htop"
 brew "httpie"
 brew "imagemagick"
 brew "irssi"
-brew "jq"                                         # 🔥 command-line JSON processor
 brew "lokalise2"                                  # tool for for mobile localization cloud platform (new version)
 brew "mas"                                        # installs Mac App Store apps
 brew "micro"                                      # A modern and intuitive terminal-based text editor

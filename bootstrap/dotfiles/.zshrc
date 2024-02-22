@@ -293,3 +293,10 @@ zsh_plugins_external=(
 for plugin in "${zsh_plugins_external[@]}"; do
   zinit light $plugin
 done
+
+# Activate mise
+export PATH="$PATH:$HOME/.local/share/mise/shims"
+# Make mise shims available
+eval "$("${HOME}"/.local/bin/mise activate zsh)"
+# Activate mise completions
+eval "$("${HOME}"/.local/bin/mise completion zsh)"
