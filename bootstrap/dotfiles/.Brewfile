@@ -95,7 +95,6 @@ brew "zoxide"                                     # A smarter cd command, inspir
 
 # tap "1password"                                 # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
-cask "aerial"                                     # phenomenal screen saver with tons of options
 cask "aware"                                      # Menubar app for macOS that displays how long you've been actively using your computer.
 cask "brisk"                                      # submitting radars
 cask "cyberduck"                                  # FTP / Dropbox client 
