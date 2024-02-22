@@ -150,8 +150,15 @@ alias twm="timew month summary :ids rc.reports.month.hours=auto"
 # File System
 #-------------------------------------------------------------------------------
 alias df="df -h"
-alias la="exa -laFh"
-alias tree="exa --tree"
+
+if command -v exa >/dev/null 2>&1; then
+  alias la="exa -laFh"
+  alias tree="exa --tree"
+else 
+  alias la="ls -laFh"
+  alias tree="ls --tree"
+fi
+
 if command -v bat > /dev/null 2>&1; then
   alias cat="bat --paging=never"
 elif command -v batcat > /dev/null 2>&1; then
