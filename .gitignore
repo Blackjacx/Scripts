@@ -79,3 +79,5 @@ fastlane/README.md
 #
 # Plugin directory should be installed fresh on every machine
 bootstrap/config_dirs/tmux/plugins
+# Tmux Resurrect backups are too noisy for git (for now)
+bootstrap/config_dirs/tmux/resurrect
