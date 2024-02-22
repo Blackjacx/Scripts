@@ -140,12 +140,11 @@ alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME
 
 alias twby="timew balance 2023-11-13 - today" # balance from the beginning of all records (not including current day)
 alias twb="timew balance 2023-11-13 - tomorrow" # balance from the beginning of all records (including today)
-alias tws="timew summary :week :ids"
+alias tws="timew summary :day :ids"
 alias twsa="timew summary :all :ids"
 alias twd="timew day summary :ids rc.reports.day.hours=auto"
 alias tww="timew week summary :ids rc.reports.week.hours=auto"
 alias twm="timew month summary :ids rc.reports.month.hours=auto"
-
 
 #-------------------------------------------------------------------------------
 # File System
