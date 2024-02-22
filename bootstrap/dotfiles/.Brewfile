@@ -126,7 +126,6 @@ cask "sf-symbols"                                 # 🔥
 cask "sketch"
 # cask "skype"                                    # not used
 cask "slack"
-cask "spectacle"
 cask "spotify"
 cask "sublime-merge"
 cask "sublime-text"
