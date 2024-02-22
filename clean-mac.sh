@@ -26,7 +26,7 @@ log "Erase DerivedData folder..."
 rm -rf "${HOME}/Library/Developer/Xcode/DerivedData/*"
 
 log "Erase Caches Folder..."
-rm -rf "${HOME}/Library/Caches"
+sudo rm -rf "${HOME}/Library/Caches"
 
 log "Remove All Unavailable Simulators"
 xcrun simctl delete unavailable
