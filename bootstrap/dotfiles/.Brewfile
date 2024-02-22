@@ -121,6 +121,7 @@ cask "keycastr"                                   # KeyCastr, an open-source key
 cask "linkliar"                                   # Link-Layer MAC spoofing GUI for macOS
 cask "openra"                                     # 🔥 C&C open source
 cask "provisionql"
+cask "raspberry-pi-imager"
 cask "scummvm"
 cask "sf-symbols"                                 # 🔥
 cask "sketch"
