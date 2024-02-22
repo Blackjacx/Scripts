@@ -32,5 +32,5 @@
 
 -- 👇 toggle only teams but then it's visible in the ui for everybody (does not work currently)
 
-tell application "Microsoft Teams classic" to activate
+tell application "Microsoft Teams (work or school)" to activate
 tell application "System Events" to keystroke "m" using {shift down, command down}
