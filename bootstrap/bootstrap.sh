@@ -41,6 +41,13 @@ configureSystem() {
     printf "#################################################################\n\n"
 
     #
+    # System
+    #
+
+    # Reduce Motion - uses cross fade instead
+    defaults write com.apple.universalaccess reduceMotion -int 1
+
+    #
     # Misc
     #
 
