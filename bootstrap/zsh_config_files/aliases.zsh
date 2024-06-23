@@ -81,6 +81,7 @@ alias sm="smerge ."
 # Search hidden files and ignore some uninteresting folders - good for searching from home dir
 alias ag="ag --hidden --skip-vcs-ignores --ignore=\"*Library*\" --ignore=\"*.gem*\" --ignore=\"*.build*\" --ignore=\"*.git*\" --ignore=\"*bundle*\" --ignore=\"*.zsh_history*\""
 alias sz="source ${HOME}/.zshrc"
+alias c="clear" # clear scrollback buffer
 
 #-------------------------------------------------------------------------------
 # iOS Simulator Automation
