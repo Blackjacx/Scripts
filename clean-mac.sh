@@ -51,11 +51,9 @@ log "Reload Core Audio"
 sudo kill -9 `pgrep 'coreaudio[a-z]' | awk '{print $1}'`
 
 log "Create huge file and delete it again to re-claim hidden space from the system."
-fname="DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
-if cd /tmp/; then
-    mkfile 50G $fname
-    rm -rf $fname
-fi
+file="$(mktemp -d)/DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
+mkfile 200G $file
+rm -rf $file
 
 ##
 ## The following is highly experimental!!!
