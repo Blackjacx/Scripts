@@ -338,7 +338,7 @@ installSoftware() {
 	# brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
 	# Upgrades casks currently installed
 	log "Upgrade all casks declared in global ~/.Brewfile…"
-	brew list --cask | xargs brew upgrade
+	brew list --cask | xargs brew upgrade --cask
 
 	log "Cleanup…"
 	brew cleanup
