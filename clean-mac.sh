@@ -41,7 +41,8 @@ xcrun simctl shutdown all
 xcrun simctl erase all
 
 log "Empty Trash"
-rm -rf "${HOME}/.Trash/*"
+# The -P option overwrites the deleted files for extra security (but that takes long)
+sudo rm -rf ${HOME}/.Trash/*
 
 log "Erase Spotlight Index and Rebuild"
 sudo mdutil -E /
