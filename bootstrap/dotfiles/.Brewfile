@@ -69,6 +69,7 @@ brew "node"
 brew "npm"
 brew "nvim"
 brew "openssl"
+brew "parallel"                                   # Build and execute shell command lines from standard input in parallel - https://www.gnu.org/software/parallel/man.html
 brew "pass"                                       # open source password manager • including iOS app • syncing via git repo • encryption using GPG
 brew "peco"                                       # It’s a interactive filtering tool.
 brew "p0f"
