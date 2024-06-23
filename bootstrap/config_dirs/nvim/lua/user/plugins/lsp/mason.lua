@@ -46,7 +46,7 @@ return {
 				"dockerls",
 				"kotlin_language_server",
 				"marksman",
-				"ruby_ls",
+				"ruby_lsp",
 				"terraformls",
 				"yamlls",
 			},

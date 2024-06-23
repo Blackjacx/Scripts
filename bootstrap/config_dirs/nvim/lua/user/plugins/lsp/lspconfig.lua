@@ -167,8 +167,8 @@ return {
 			on_attach = on_attach,
 		})
 
-		-- ruby ls
-		lspconfig["ruby_ls"].setup({
+		-- ruby lsp
+		lspconfig["ruby_lsp"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
