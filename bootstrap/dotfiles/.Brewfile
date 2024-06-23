@@ -58,7 +58,6 @@ brew "imagemagick"                                # Use ImageMagick® to create,
 brew "irssi"
 brew "lokalise2"                                  # tool for for mobile localization cloud platform (new version)
 brew "mas"                                        # installs Mac App Store apps
-brew "micro"                                      # A modern and intuitive terminal-based text editor
 brew "mint"                                       # 🔥 dependency manager for swift packages
 brew "mitmproxy"                                  # 🔥 Intercepting Network Traffic
 # brew "mplayer"                                  # free and open-source media player | currently not used
