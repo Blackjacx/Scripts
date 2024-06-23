@@ -36,7 +36,7 @@ brew "chargepoint/xcparse/xcparse"                # extract screenshots from Xco
 brew "cloc"                                       # lines of code counter
 brew "coreutils"
 brew "curl"
-brew "direnv"                                     # 🔥
+brew "direnv"                                     # 🔥 .envrc file loader
 brew "doxygen"
 brew "entr"                                       # Run arbitrary commands when files change
 brew "exa"                                        # Modern `ls` replacement
