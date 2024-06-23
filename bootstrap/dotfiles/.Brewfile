@@ -91,7 +91,7 @@ brew "tree"
 brew "watch"
 brew "wget"
 brew "xcodesorg/made/xcodes"                      # The best command-line tool to install and switch between multiple versions of Xcode.
-brew "youtube-dl"
+brew "yt-dlp"
 brew "zsh-completions"                            # Additional completion definitions for Zsh
 brew "zoxide"                                     # A smarter cd command, inspired by z and autojump.
 
