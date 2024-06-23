@@ -54,7 +54,7 @@ brew "github-markdown-toc"
 brew "gource"                                     # software version control visualization
 brew "htop"
 brew "httpie"
-brew "imagemagick"
+brew "imagemagick"                                # Use ImageMagick® to create, edit, compose, or convert digital images.
 brew "irssi"
 brew "lokalise2"                                  # tool for for mobile localization cloud platform (new version)
 brew "mas"                                        # installs Mac App Store apps
