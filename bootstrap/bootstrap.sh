@@ -204,16 +204,36 @@ configureSystem() {
 
 		#
 		# Xcode
-		#
+    # Also see following examples:
+    # - https://github.com/airbnb/swift/blob/master/resources/xcode_settings.bash
+    # - https://github.com/ctreffs/xcode-defaults
+    # - https://github.com/keith/dotfiles/blob/404b35323fa95db1d3c48fcb5bfb322ea1ef32e5/osx/defaults.sh#L561
+    # - https://github.com/jogendra/dotfiles/blob/177d2adaa1aec2daa0d3fe738c9524a39d9d02c5/xcode/defaults#L32
 
-		# Shows touches in simulator - nice for recording videos
-		defaults write http://com.apple.iphonesimulator ShowSingleTouches 1
-		# Xcode Show Build Times in Toolba
-		defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
-		# Show Xcode Line Numbers
-		defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
-		# Xcode Show Code Folding Ribbons
-		defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool true
+    # Shows touches in simulator - nice for recording videos 
+    # (the built in recording does not record touches, you must hit ⌘ + ⇧ + 5, 
+    # select the Simulator and record to catch the touches)
+    defaults write com.apple.iphonesimulator ShowSingleTouches 1
+    # Xcode Show Build Times in Toolbar
+    defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
+    # Show Xcode Line Numbers
+    defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool YES
+    # Xcode Show Code Folding Ribbons
+    defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool YES
+    # Show Page Guide
+    defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool YES
+    # Set page guide location to 80
+    defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 80
+    # Set tab width to 4
+    defaults write com.apple.dt.Xcode DVTTextIndentTabWidth -int 4
+    # Set indent width to 4
+    defaults write com.apple.dt.Xcode DVTTextIndentWidth -int 4
+    # Automatically trim trailing whitespace
+    defaults write com.apple.dt.Xcode DVTTextEditorTrimTrailingWhitespace -bool YES
+    # Also trim whitespace-only lines
+    defaults write com.apple.dt.Xcode DVTTextEditorTrimWhitespaceOnlyLines -bool YES
+    # Enable spell checker
+    defaults write com.apple.dt.Xcode AutomaticallyCheckSpellingWhileTyping -bool YES
 
 		#
 		# Restart all affected apps
