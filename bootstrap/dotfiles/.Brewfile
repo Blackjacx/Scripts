@@ -29,6 +29,8 @@ brew "apg"                                        # generate strong passwords
 brew "aria2"                                      # 🔥 download manager that supports segmented downloads
 brew "asc"                                        # App Store Connect API client written in Swift
 #brew "atuin"                                     # SQLlite history plugin
+brew "awscli"                                     # The command line frontend for Amazon Web Services
+brew "bash"                                       # The bash shell
 brew "bitwarden-cli"                              # Fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
 brew "btop"                                       # 🔥 A monitor of resources
 brew "ccat"                                       # 🔥 Colorizing cat
@@ -98,6 +100,7 @@ brew "zoxide"                                     # A smarter cd command, inspir
 # tap "1password"                                 # this installs the pricy 1password 7
 cask "adobe-creative-cloud"
 cask "aware"                                      # Menubar app for macOS that displays how long you've been actively using your computer.
+cask "background-music"                           # 🔥 Control audio per-app - nice for muting teams and just look at the video •••• did not find out how to enable microphone
 cask "brisk"                                      # submitting radars
 cask "cyberduck"                                  # FTP / Dropbox client 
 cask "deckset"
