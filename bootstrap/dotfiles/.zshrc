@@ -287,7 +287,6 @@ for plugin in "${zsh_plugins_official[@]}"; do
 done
 
 zsh_plugins_external=(
-  "svenXY/timewarrior"
   "zsh-users/zsh-syntax-highlighting"
 )
 for plugin in "${zsh_plugins_external[@]}"; do
