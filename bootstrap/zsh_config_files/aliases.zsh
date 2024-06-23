@@ -21,6 +21,8 @@ alias gc="git commit"
 alias gcfu="git commit --fixup"
 alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 develop.."
 alias gst="git status -sb"
+# Git add all and continue rebase
+alias gac="git add . && git rebase --continue"
 
 greload () {
   local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
