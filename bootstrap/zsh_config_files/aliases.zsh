@@ -173,11 +173,6 @@ alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs sub
 brewinfo () { brew info $(brew list | fzf --reverse) }
 
 #-------------------------------------------------------------------------------
-# CleanUp
-#-------------------------------------------------------------------------------
-alias kill_ca="sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`"
-
-#-------------------------------------------------------------------------------
 # Remove alias rm -i to get rid of interactivity
 #-------------------------------------------------------------------------------
 # unalias rm
