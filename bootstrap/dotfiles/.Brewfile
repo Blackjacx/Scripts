@@ -88,7 +88,7 @@ brew "timewarrior"
 brew "tmux"
 brew "tpm"                                        # Tmux plugin mnager
 brew "transcrypt"                                 # used to transparently de-/encrypt the repo ios-keystore
-brew "tree"
+brew "tree"                                       # useful to print whole directory hierarchies while debugging
 brew "watch"
 brew "wget"
 brew "xcodesorg/made/xcodes"                      # The best command-line tool to install and switch between multiple versions of Xcode.
