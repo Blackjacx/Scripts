@@ -140,3 +140,5 @@ cask "vlc"
 cask "wireshark"
 cask "wwdc"
 cask "xcodes"
+
+# vim: ft=bash
