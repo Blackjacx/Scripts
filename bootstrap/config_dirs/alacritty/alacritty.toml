@@ -1,0 +1,41 @@
+# Find the documentation here:
+# https://alacritty.org/config-alacritty.html
+
+import = ["~/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 10
+padding.y = 10
+
+decorations = "Buttonless"
+
+opacity = 1.0
+blur = false
+
+# Same as Fullscreen, but you can stack windows on top.
+startup_mode = "SimpleFullscreen"
+
+option_as_alt = "OnlyRight"
+
+[font]
+normal.family = "Hack Nerd Font"
+# normal.family = "MesloLGS Nerd Font Mono"
+
+size = 12
+
+[colors]
+
+[mouse]
+hide_when_typing = true
+
+[[hints.enabled]]
+mouse = { enabled = false, mods = "None" }
+command = "open"                                                                                                                                          # On macOS
+hyperlinks = true
+post_processing = true
+persist = false
+binding = { key = "U", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
