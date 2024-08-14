@@ -119,33 +119,43 @@ export FZF_BASE="${HOME}/.local/share/mise/installs/fzf/0"
 # no sorting
 # zstyle ':completion:complete:*:options' sort false
 # show preview when using cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
-# show preview when using open
-zstyle ':fzf-tab:complete:open:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200'
 # show preview when using zoxide
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -aFh1 -g --color-scale --icons --color=always $realpath'
-# Show preview when using exa (ls)
-zstyle ':fzf-tab:complete:exa:*' fzf-preview '
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200'
+# show preview when using open
+zstyle ':fzf-tab:complete:open:*' fzf-preview '
   if [[ -f $realpath ]]; then 
     if command -v bat > /dev/null 2>&1; then
-      bat --color always --paging never $realpath
+      bat --color always --paging never $realpath --line-range :500
     else
       cat $realpath
     fi    
-  else 
-    exa -aFh1 -g --color-scale --icons --color=always $realpath
+  else
+    eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200
+  fi
+'
+# Show preview when using eza (ls)
+zstyle ':fzf-tab:complete:eza:*' fzf-preview '
+  if [[ -f $realpath ]]; then 
+    if command -v bat > /dev/null 2>&1; then
+      bat --color always --paging never $realpath --line-range :500
+    else
+      cat $realpath
+    fi    
+  else
+    eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200
   fi
 '
 # Show preview when using bat (cat)
 zstyle ':fzf-tab:complete:bat:*' fzf-preview '
   if [[ -f $realpath ]]; then 
     if command -v bat > /dev/null 2>&1; then
-      bat --color always --paging never $realpath
+      bat --color always --paging never $realpath --line-range :500
     else
       cat $realpath
     fi    
   else 
-    exa -aFh1 -g --color-scale --icons --color=always $realpath
+    eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200
   fi
 '
 
@@ -160,14 +170,53 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # Default
 zstyle ':fzf-tab:*' fzf-command fzf
 
-#export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
-#export FZF_DEFAULT_OPTS='--layout=reverse'
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+# export FZF_DEFAULT_OPTS='--layout=reverse'
+# export FZF_DEFAULT_OPTS='--cycle --tmux --color bg:#222222,preview-bg:#333333 --info=inline-right --ellipsis=… --tabstop=4 --highlight-line'
 # Uncomment the following line to disable fuzzy completion
 # export DISABLE_FZF_AUTO_COMPLETION="true"
 # Uncomment the following line to disable key bindings (CTRL-T, CTRL-R, ALT-C)
 # export DISABLE_FZF_KEY_BINDINGS="true"
 # Uncomment to specify default command when input is tty
-# export FZF_DEFAULT_COMMAND='ag'
+
+# -- START: 7 Amazing CLI Tools You Need To Try (https://www.youtube.com/watch?v=mmqDYw9C30I)
+
+# -- Use fd instead of find --
+export FZF_DEFAULT_COMMAND='fd --type=f --hidden --strip-cwd-prefix --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'" 
+export FZF_ALT_C_OPTS="--preview 'eza --tree —color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)               fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset)     fzf --preview "eval 'echo \$'{}" "$@" ;;
+    ssh)              fzf --preview 'dig {}' "$@" ;;
+    *)                fzf --preview 'bat -n --color=always --line-range :500 {}' "$@" ;;
+  esac
+}
+
+# -- END: 7 Amazing CLI Tools You Need To Try (https://www.youtube.com/watch?v=mmqDYw9C30I)
 
 #-------------------------------------------------------------------------------
 # History
