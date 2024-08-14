@@ -230,6 +230,11 @@ if type brew &>/dev/null; then
 fi
 
 #-------------------------------------------------------------------------------
+# Key Bindings
+#-------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
 # Power Level 10K
 #-------------------------------------------------------------------------------
 
@@ -299,3 +304,10 @@ export PATH="$PATH:$HOME/.local/share/mise/shims"
 eval "$("${HOME}"/.local/bin/mise activate zsh)"
 # Activate mise completions
 eval "$("${HOME}"/.local/bin/mise completion zsh)"
+
+
+# Ensure compatibility tmux <-> direnv (https://github.com/direnv/direnv/issues/106)
+if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
+    unset -m "DIRENV_*"  # unset env vars starting with DIRENV_
+fi
+eval "$(direnv hook zsh)"
