@@ -11,6 +11,10 @@ ZSH=${HOME}/.oh-my-zsh
 # Homebrew directory prefix differentiation M1 / Intel
 [[ $(uname -p) == 'arm' ]] && HOMEBREW_DIR_PREFIX="/opt/homebrew" || HOMEBREW_DIR_PREFIX="/usr/local"
 
+# Conform to XDG Standard
+# https://stackoverflow.com/a/78361332/971329
+export XDG_CONFIG_HOME="${HOME}/.config"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
