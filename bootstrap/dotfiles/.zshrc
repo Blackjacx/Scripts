@@ -92,7 +92,7 @@ plugins=(
   colored-man-pages 
   bgnotify 
   zsh-autosuggestions
-  fzf 
+  # fzf # tab-completion does not work when this is enabled
   fzf-tab
   brew
 )
@@ -112,6 +112,9 @@ export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_P
 #-------------------------------------------------------------------------------
 # Configuration: https://github.com/Aloxaf/fzf-tab/wiki/Configuration
 # Preview: https://github.com/Aloxaf/fzf-tab/wiki/Preview
+
+# Mise compatibility
+export FZF_BASE="${HOME}/.local/share/mise/installs/fzf/0"
 
 # no sorting
 # zstyle ':completion:complete:*:options' sort false
@@ -290,6 +293,7 @@ zinit light-mode for \
 
 zsh_plugins_official=(
   "direnv"
+  "fzf"
 )
 for plugin in "${zsh_plugins_official[@]}"; do
   zinit snippet OMZ::plugins/$plugin/$plugin.plugin.zsh
