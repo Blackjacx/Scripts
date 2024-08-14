@@ -256,7 +256,7 @@ export EDITOR="nvim"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 #-------------------------------------------------------------------------------
-# Completion System
+# Completions
 #-------------------------------------------------------------------------------
 
 # By the following 3 options, the completion selection menu is opened with the first press of TAB
@@ -264,7 +264,7 @@ setopt AUTOLIST AUTOMENU
 unsetopt LIST_AMBIGUOUS
 
 setopt nocaseglob # ignore case
-setopt correct # correct spelling mistakes
+# setopt correct # correct spelling mistakes
 
 # Expand aliases when pressing TAB
 # zstyle ':completion:*' completer _expand_alias _complete _ignored
