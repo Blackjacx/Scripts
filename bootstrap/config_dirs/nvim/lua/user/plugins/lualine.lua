@@ -5,51 +5,50 @@ return {
 	config = function()
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+		-- local mason = require("mason-registry") -- to configure lazy pending updates count
 		local gruvbox_material_theme = require("lualine.themes.gruvbox-material") -- get lualine gruvbox-material theme
 
-		local colors = {
-			blue = "#65D1FF",
-			green = "#3EFFDC",
-			violet = "#FF61EF",
-			yellow = "#FFDA7B",
-			red = "#FF4A4A",
-			fg = "#c3ccdc",
-			bg = "#112638",
-			inactive_bg = "#2c3043",
-		}
+		local function lspClients()
+			local msg = ""
+			local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+			local clients = vim.lsp.get_active_clients()
+			if next(clients) == nil then
+				return msg
+			end
+			for _, client in ipairs(clients) do
+				local filetypes = client.config.filetypes
+				if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+					return client.name
+				end
+			end
+		end
 
-		local my_lualine_theme = {
-			normal = {
-				a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
-				b = { bg = colors.bg, fg = colors.fg },
-				c = { bg = colors.bg, fg = colors.fg },
-			},
-			insert = {
-				a = { bg = colors.green, fg = colors.bg, gui = "bold" },
-				b = { bg = colors.bg, fg = colors.fg },
-				c = { bg = colors.bg, fg = colors.fg },
-			},
-			visual = {
-				a = { bg = colors.violet, fg = colors.bg, gui = "bold" },
-				b = { bg = colors.bg, fg = colors.fg },
-				c = { bg = colors.bg, fg = colors.fg },
-			},
-			command = {
-				a = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
-				b = { bg = colors.bg, fg = colors.fg },
-				c = { bg = colors.bg, fg = colors.fg },
-			},
-			replace = {
-				a = { bg = colors.red, fg = colors.bg, gui = "bold" },
-				b = { bg = colors.bg, fg = colors.fg },
-				c = { bg = colors.bg, fg = colors.fg },
-			},
-			inactive = {
-				a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = "bold" },
-				b = { bg = colors.inactive_bg, fg = colors.semilightgray },
-				c = { bg = colors.inactive_bg, fg = colors.semilightgray },
-			},
-		}
+		-- check for mason package upgrades
+		local function lualine_mason_updates()
+			local registry = require("mason-registry")
+			local installed_packages = registry.get_installed_package_names()
+			local upgrades_available = false
+			local packages_outdated = 0
+			function myCallback(success, result_or_err)
+				if success then
+					upgrades_available = true
+					packages_outdated = packages_outdated + 1
+				end
+			end
+
+			for _, pkg in pairs(installed_packages) do
+				local p = registry.get_package(pkg)
+				if p then
+					p:check_new_version(myCallback)
+				end
+			end
+
+			if upgrades_available then
+				return packages_outdated
+			else
+				return ""
+			end
+		end
 
 		-- configure lualine with modified theme
 		lualine.setup({
@@ -58,17 +57,51 @@ return {
 				theme = gruvbox_material_theme,
 			},
 			sections = {
+				lualine_b = {
+					{ "b:gitsigns_head", icon = "" },
+				},
 				lualine_x = {
+					-- {
+					-- 	mason.get_installed_packages(),
+					-- },
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
 						color = { fg = "#ff9e64" },
+						on_click = function()
+							vim.cmd("Lazy")
+						end,
+					},
+					{
+						lualine_mason_updates,
+						icon = "",
+						color = { fg = "#ff9e64" },
+						on_click = function()
+							vim.cmd("Mason")
+						end,
+					},
+					{ "filetype" },
+					{
+						lspClients,
+						icon = "󰧁",
+						color = { fg = "#ff9e64" },
 					},
 					{ "encoding" },
-					{ "fileformat" },
-					{ "filetype" },
 					{ "os.date('%H:%M:%S')" },
 				},
+			},
+			extensions = {
+				"mason",
+				"fugitive",
+				"fzf",
+				"lazy",
+				"mason",
+				"man",
+				"mundo",
+				"neo-tree",
+				"nvim-dap-ui",
+				"overseer",
+				"quickfix",
 			},
 		})
 	end,
