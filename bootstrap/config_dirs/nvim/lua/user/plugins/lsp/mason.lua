@@ -39,7 +39,6 @@ return {
 				"lua_ls",
 				"graphql",
 				"emmet_ls",
-				"prismals",
 				"pyright",
 				"bashls",
 				"taplo",

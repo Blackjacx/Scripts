@@ -111,12 +111,6 @@ return {
 			end,
 		})
 
-		-- prisma ls
-		lspconfig["prismals"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
 		-- graphql ls
 		lspconfig["graphql"].setup({
 			capabilities = capabilities,
