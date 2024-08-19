@@ -30,6 +30,13 @@ alias gst="git status -sb"
 # Git add all and continue rebase
 alias gac="git add . && git rebase --continue"
 
+# Fixup directly into a given commit hash
+gcfunow () {
+  git add .
+  gcfu $1 
+  grb --autosquash $1~1
+}
+
 greload () {
   local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
 }
