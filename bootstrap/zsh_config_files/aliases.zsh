@@ -301,6 +301,7 @@ if command -v bat > /dev/null 2>&1; then
 elif command -v batcat > /dev/null 2>&1; then
   alias cat="batcat"
 fi
+alias cd="z"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
 alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
 alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
