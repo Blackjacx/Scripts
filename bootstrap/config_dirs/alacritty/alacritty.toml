@@ -14,7 +14,7 @@ dynamic_padding = true
 decorations = "Buttonless"
 # decorations = "Transparent"
 
-opacity = 1.0
+opacity = 0.9
 blur = false
 
 # Same as Fullscreen, but you can stack windows on top.
