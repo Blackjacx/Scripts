@@ -27,6 +27,8 @@ alias gc="git commit"
 alias gcfu="git commit --fixup"
 alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' develop.."
 alias glogm="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' main.."
+# Re-define glog and diable pager
+alias glog="git --no-pager log --oneline --decorate"
 alias gst="git status -sb"
 # Git add all and continue rebase
 alias gac="git add . && git rebase --continue"
