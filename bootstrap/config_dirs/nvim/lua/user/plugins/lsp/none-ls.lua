@@ -22,9 +22,11 @@ return {
 				"pylint", -- python linter
 				"eslint_d", -- js linter
 				"shellcheck", -- bash linter
+				"swiftlint", -- swift linter
 				"commitlint", -- commit linter
 				"cspell", -- spell checker for code
 				"jsonlint", -- json linter
+				"actionlint", -- linter for GH Actions
 			},
 		})
 
@@ -43,8 +45,6 @@ return {
 
 		-- register any number of sources simultaneously
 		local sources = {
-			--  to disable file types use
-			--  "formatting.prettierd.with({disabled_filetypes: {}})" (see null-ls docs)
 			formatting.prettier.with({
 				extra_filetypes = {
 					"javascript",
@@ -60,7 +60,8 @@ return {
 					"txt",
 				},
 			}), -- js/ts formatter
-			formatting.stylua, -- lua formatter
+			formatting.actionlint,
+			formatting.stylua,
 			formatting.isort,
 			formatting.black,
 			formatting.shfmt,

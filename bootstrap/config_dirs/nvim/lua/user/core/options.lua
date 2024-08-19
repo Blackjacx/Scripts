@@ -1,8 +1,8 @@
 local opt = vim.opt -- for conciseness
 
 -- line numbers
-opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+opt.relativenumber = true -- show relative line numbers
 
 -- tabs & indentation
 opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
@@ -12,6 +12,8 @@ opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
+opt.textwidth = 80
+opt.colorcolumn = "81,121" -- show visual columns at 81/121
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -39,3 +41,6 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 opt.iskeyword:append("-") -- consider string-string as whole word
+
+-- turn off swapfile
+opt.swapfile = false

@@ -31,22 +31,22 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"tsserver",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"svelte",
-				"lua_ls",
-				"graphql",
-				"emmet_ls",
-				"pyright",
 				"bashls",
-				"taplo",
+				"cssls",
 				"dockerls",
+				"emmet_ls",
+				"graphql",
+				"html",
 				"kotlin_language_server",
+				"lua_ls",
 				"marksman",
+				"pyright",
 				"ruby_lsp",
+				"sourcekit-lsp",
+				"tailwindcss",
+				"taplo",
 				"terraformls",
+				"tsserver",
 				"yamlls",
 			},
 			-- auto-install configured servers (with lspconfig)
@@ -55,18 +55,20 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"shfmt", -- shell formatter
+				"actionlint", -- linter for GH actions
 				"beautysh", -- shell formatter
-				"pylint", -- python linter
-				"eslint_d", -- js linter
-				"shellcheck", -- bash linter
+				"black", -- python formatter
 				"commitlint", -- commit linter
 				"cspell", -- spell checker for code
+				"eslint_d", -- js linter
+				"isort", -- python formatter
 				"jsonlint", -- json linter
+				"prettier", -- prettier formatter
+				"pylint", -- python linter
+				"shellcheck", -- bash linter
+				"shfmt", -- shell formatter
+				"stylua", -- lua formatter
+				"swiftlint", -- swift linter
 			},
 		})
 	end,
