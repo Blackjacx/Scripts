@@ -19,11 +19,8 @@ cleanup() {
 }
 trap "cleanup" INT TERM HUP EXIT
 
-log "Clean up unused gem versions..."
+log "Clean up unused gem versions"
 gem cleanup
-
-log "Erase DerivedData folder..."
-rm -rf "${HOME}/Library/Developer/Xcode/DerivedData/*"
 
 log "Erase Caches Folder..."
 sudo rm -rf "${HOME}/Library/Caches"
@@ -34,11 +31,26 @@ brew cleanup --prune=all
 log "Remove All Unavailable Xcode Simulators"
 xcrun simctl delete unavailable
 
-log "Reset all Xcode Simulators..."
+log "Reset all Xcode Simulators"
 killall "Simulator"
 killall "iOS Simulator"
 xcrun simctl shutdown all
 xcrun simctl erase all
+
+log "Cleanup Xcode DerivedData folder"
+rm -rf "${HOME}/Library/Developer/Xcode/DerivedData/*"
+
+log "Cleanup Xcode device logs"
+rm -rf ~/Library/Developer/Xcode/iOS\ Device\ Logs/
+
+log "Cleanup Xcode archives"
+rm -rf ~/Library/Developer/Xcode/Archives
+
+log "Cleanup CocoaPods Cache"
+rm -rf ~/Library/Caches/CocoaPods
+
+log "Cleanup Carthage Cache"
+# rm -rf ~/Library/Caches/org.carthage.CarthageKit
 
 log "Empty Trash"
 # The -P option overwrites the deleted files for extra security (but that takes long)
