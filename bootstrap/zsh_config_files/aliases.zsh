@@ -111,11 +111,19 @@ alias c="clear" # clear scrollback buffer
 #-------------------------------------------------------------------------------
 
 sim-select() {
-  json=$(xcrun simctl list devices --json)
-  runtime=$(echo $json | jq '.devices | keys_unsorted | .[]' | fzf-tmux -p)
-  sim=$(echo $json | jq '.devices.'"$runtime"'.[].name' | fzf-tmux -p)
-  udid=$(echo $json | jq -r '.devices.'"$runtime"'.[] | select(.name == '"$sim"').udid')
-  echo "$udid"
+  local json=$(xcrun simctl list devices --json)
+  
+  local runtime=$(echo $json | jq '.devices | keys_unsorted | .[]' | fzf-tmux --header "Please select a runtime:" -p)
+  if [ -z "$runtime" ]; then
+    return
+  fi
+  
+  local sim=$(echo $json | jq '.devices.'"$runtime"'.[].name' | fzf-tmux --header "Please select a simulator:" -p)
+  if [ -z "$sim" ]; then
+    return
+  fi
+
+  echo $json | jq -r '.devices.'"$runtime"'.[] | select(.name == '"$sim"').udid'
 }
 
 sim-boot() {
