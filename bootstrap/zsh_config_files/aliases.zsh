@@ -288,11 +288,11 @@ alias twm="timew month summary :ids rc.reports.month.hours=auto"
 
 alias df="df -h"
 
-if command -v exa >/dev/null 2>&1; then
-  alias la="exa -laFh"
-  alias tree="exa --tree"
+if command -v eza >/dev/null 2>&1; then
+  alias la="eza --all --header --long --icons=always --color=always"
+  alias tree="eza --tree"
 else 
-  alias la="ls -laFh"
+  alias la="ls -lahF"
   alias tree="ls --tree"
 fi
 
