@@ -306,9 +306,14 @@ alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
 alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
 alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
 alias cdtemp='cd "$(mktemp -d)"'
-brewinfo () { brew info $(brew list | fzf --reverse) }
 alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
+brewinfo () { 
+  # update homebrew-packages.json using `brew info --json=v2 --eval-all > ~/homebrew-packages.json`
+  cat ~/homebrew-packages.json \
+      | jq -r '[.formulae.[].name, .casks.[].token].[]' \
+      | fzf --cycle --tmux --preview 'brew info {}' --color bg:#222222,preview-bg:#333333 --info=inline-right --ellipsis=… --tabstop=4 --highlight-line 
+}
 #-------------------------------------------------------------------------------
 # Remove alias rm -i to get rid of interactivity
 #-------------------------------------------------------------------------------
