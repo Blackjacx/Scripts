@@ -42,7 +42,6 @@ return {
 				"marksman",
 				"pyright",
 				"ruby_lsp",
-				"sourcekit-lsp",
 				"tailwindcss",
 				"taplo",
 				"terraformls",
