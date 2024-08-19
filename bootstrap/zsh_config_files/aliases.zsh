@@ -2,8 +2,14 @@
 # Security
 #-------------------------------------------------------------------------------
 
-# generate strong passphrase using bitwarden-cli
-alias pwg="bw generate -p --capitalize --words 8 --includeNumber"
+# generate strong passphrase using bitwarden-cli (deprecated because slow)
+# alias pwg="bw generate -p --capitalize --words 8 --includeNumber"
+pwg() {
+  printf '%s%s%s' \
+    "$(shuf -i 0-9 -n 1)" \
+    "$(xkcdpass --numwords 8 --delimiter '-' --case alternating)" \
+    "$(shuf -i 0-9 -n 1)"
+}
 
 #-------------------------------------------------------------------------------
 # Git
@@ -84,6 +90,11 @@ alias sm="smerge ."
 alias ag="ag --hidden --skip-vcs-ignores --ignore=\"*Library*\" --ignore=\"*.gem*\" --ignore=\"*.build*\" --ignore=\"*.git*\" --ignore=\"*bundle*\" --ignore=\"*.zsh_history*\""
 alias sz="source ${HOME}/.zshrc"
 alias c="clear" # clear scrollback buffer
+
+#-------------------------------------------------------------------------------
+# GitHub
+#-------------------------------------------------------------------------------
+
 
 #-------------------------------------------------------------------------------
 # iOS Simulator Automation
