@@ -121,22 +121,40 @@ function asc_auth_header() {
 function collage() {
   cd "$(mktemp -d)"
 
-  # check if $@ only contain (PNG) images
-
+  # Round corers of input image
   for IMAGE in "${@[@]}"
   do
     BASENAME="$(basename $IMAGE)"
-    read -r width height <<< $(convert -ping "$IMAGE" -format "%w %h" info:)
-    convert -size ${width}x${height} xc:none -fill white -draw "roundRectangle 0,0 ${width},${height} 50,50" "$IMAGE" -compose SrcIn -composite "$BASENAME"
+    read -r width height <<< $(magick -ping "$IMAGE" -format "%w %h" info:)
+    magick \
+      -size ${width}x${height} xc:none \
+      -fill white \
+      -draw "roundRectangle 0,0 ${width},${height} 50,50" "$IMAGE" \
+      -compose SrcIn \
+      -composite "$BASENAME"
   done
 
-  montage * -background none -shadow -geometry '+25+25' collage.png
-  read -r width height <<< $(convert -ping "collage.png" -format "%w %h" info:)
-  convert -size ${width}x${height} radial-gradient:#fffffe-lightgray "gradient.png"
-  composite -gravity center "collage.png" "gradient.png" "collage-gradient.png"
-  convert -size ${width}x${height} xc:none -fill white -draw "roundRectangle 0,0 ${width},${height} 50,50" "collage-gradient.png" -compose SrcIn -composite final.png
+  # Make the collage
+  montage * \
+    -background none \
+    -shadow \
+    -geometry '+25+25' collage.heic
+
+  # Make gradient background
+  read -r width height <<< $(magick -ping "collage.heic" -format "%w %h" info:)
+  magick -size ${width}x${height} radial-gradient:#fffffe-lightgray "gradient.heic"
+
+  # Put collage on gradient background
+  composite -gravity center "collage.heic" "gradient.heic" "collage-gradient.heic"
+  
+  # Round corers of final image
+  magick \
+    -size ${width}x${height} xc:none \
+    -fill white \
+    -draw "roundRectangle 0,0 ${width},${height} 50,50" "collage-gradient.heic" \
+    -compose SrcIn \
+    -composite final.heic
 
   echo "Find your files in \"$(pwd)\""
   cd -
-
 }
