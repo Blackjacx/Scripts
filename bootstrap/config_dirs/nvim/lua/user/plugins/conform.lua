@@ -1,3 +1,4 @@
+-- https://www.josean.com/posts/neovim-linting-and-formatting
 return {
 	"stevearc/conform.nvim",
 	lazy = true,
@@ -7,29 +8,48 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier" },
-				markdown = { "prettier" },
-				graphql = { "prettier" },
-				lua = { "stylua" },
-				python = { "isort", "black" },
-				swift = { "swiftformat" },
-				sh = { "beautysh" },
 				bash = { "beautysh" },
+				css = { "prettier" },
+				graphql = { "prettier" },
+				html = { "prettier" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
+				json = { "prettier" },
+				lua = { "stylua" },
+				markdown = { "prettier" },
+				python = { "isort", "black" },
+				sh = { "beautysh" },
+				swift = { "swiftformat" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				yaml = { "prettier", "yamlfmt" },
 				zsh = { "shfmt" },
 			},
+			-- formatters = {
+			-- 	stylua = {
+			-- 		command = "stylua",
+			-- 		args = {
+			-- 			"--indent-type", "Spaces",    -- Use spaces for indentation
+			-- 			"--indent-width", "4",        -- Set indent width to 4 spaces
+			-- 			"--quote-style", "AutoPreferSingle",  -- Prefer single quotes
+			-- 			"--column-width", "300", -- Set maximum column width to 100
+			-- 		},
+			-- 	},
+			-- },
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,
 				timeout_ms = 1000,
 			},
 		})
+
+		-- how-to: https://github.com/stevearc/conform.nvim#customizing-formatters
+		-- conform.formatters.stylua = {
+		-- 	env = {
+		-- 		"--column_width",
+		-- 		"300",
+		-- 	},
+		-- }
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
 			conform.format({

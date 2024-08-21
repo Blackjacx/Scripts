@@ -14,7 +14,6 @@ return {
 
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason and configure icons
@@ -62,12 +61,15 @@ return {
 				"eslint_d", -- js linter
 				"isort", -- python formatter
 				"jsonlint", -- json linter
-				"prettier", -- prettier formatter
+				-- "luacheck", -- lua linter 🚨 currently issues during install
+				"prettier", -- formatter for angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml
+				"proselint", -- formatter for prose text
 				"pylint", -- python linter
 				"shellcheck", -- bash linter
 				"shfmt", -- shell formatter
 				"stylua", -- lua formatter
 				"swiftlint", -- swift linter
+				"yamlfmt", -- yaml formatter
 			},
 		})
 	end,

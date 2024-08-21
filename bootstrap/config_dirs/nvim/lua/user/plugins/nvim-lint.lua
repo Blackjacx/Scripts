@@ -1,3 +1,4 @@
+-- https://www.josean.com/posts/neovim-linting-and-formatting
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
@@ -5,13 +6,16 @@ return {
 		local lint = require("lint")
 
 		lint.linters_by_ft = {
+			dotenv = { "dotenv_linter" },
 			javascript = { "eslint_d" },
-			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
-			svelte = { "eslint_d" },
+			-- lua = { "luacheck" }, -- 🚨 has a installing issue right now
 			python = { "pylint" },
 			swift = { "swiftlint" },
+			svelte = { "eslint_d" },
+			typescript = { "eslint_d" },
+			typescriptreact = { "eslint_d" },
+			yaml = { "actionlint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
