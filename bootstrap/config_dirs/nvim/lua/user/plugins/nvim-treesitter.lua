@@ -27,6 +27,22 @@ return {
 			-- import nvim-treesitter plugin
 			local treesitter = require("nvim-treesitter.configs")
 
+			-- vim.api.nvim_create_autocmd("FileType", {
+			-- 	pattern = "dotenv",
+			-- 	-- command = set syntax = "bash" filetype = "dotenv"
+			-- 	command = "set syntax=bash",
+			-- 	-- autocmd FileType md set syntax=markdown filetype=markdown
+			-- })
+
+			-- local filetype_augroup = vim.api.nvim_create_augroup("FileType", { clear = true })
+			-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+			-- 	group = filetype_augroup,
+			-- 	command = "set syntax=bash",
+			-- 	-- callback = function()
+			-- 	-- 	vim.cmd("set syntax=bash")
+			-- 	-- end,
+			-- })
+
 			-- configure treesitter
 			treesitter.setup({
 				-- enable syntax highlighting
@@ -35,27 +51,30 @@ return {
 				indent = { enable = true },
 				-- enable autotagging (w/ nvim-ts-autotag plugin)
 				autotag = { enable = true },
+				-- Automatically install missing parsers when entering buffer
+				-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+				auto_install = true,
 				-- ensure these language parsers are installed
 				ensure_installed = {
-					"json",
-					"javascript",
-					"typescript",
-					"tsx",
-					"yaml",
-					"html",
-					"css",
-					"markdown",
-					"markdown_inline",
-					"graphql",
 					"bash",
-					"lua",
-					"vim",
+					"css",
 					"dockerfile",
 					"gitignore",
+					"graphql",
+					"html",
+					"javascript",
+					"json",
+					"lua",
+					"markdown",
+					"markdown_inline",
 					"query",
 					"ruby",
 					"swift",
 					"toml",
+					"tsx",
+					"typescript",
+					"vim",
+					"yaml",
 				},
 				incremental_selection = {
 					enable = true,
