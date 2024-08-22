@@ -57,13 +57,7 @@ return {
 				theme = gruvbox_material_theme,
 			},
 			sections = {
-				lualine_b = {
-					{ "b:gitsigns_head", icon = "" },
-				},
 				lualine_x = {
-					-- {
-					-- 	mason.get_installed_packages(),
-					-- },
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
