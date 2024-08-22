@@ -306,7 +306,7 @@ alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
 alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
 alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
 alias cdtemp='cd "$(mktemp -d)"'
-alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview 'bat {}' | xargs nvim"
 
 brewinfo () { 
   # update homebrew-packages.json using `brew info --json=v2 --eval-all > ~/homebrew-packages.json`
