@@ -1,16 +1,17 @@
 vim.filetype.add({
 	extension = {
 		conf = "conf",
-		env = "dotenv",
-		envrc = "dotenv",
+		env = "sh",
+		envrc = "sh",
 	},
 	filename = {
-		[".env"] = "dotenv",
-		[".envrc"] = "dotenv",
+		[".env"] = "sh",
+		[".envrc"] = "sh",
+		["swiftformat"] = "conf",
 		[".yamlfmt"] = "yaml",
 	},
 	pattern = {
-		["%.env%.[%w_.-]+"] = "dotenv",
-		["%.envrc%.[%w_.-]+"] = "dotenv",
+		["%.env%.[%w_.-]+"] = "sh",
+		["%.envrc%.[%w_.-]+"] = "sh",
 	},
 })

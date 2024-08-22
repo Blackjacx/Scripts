@@ -6,6 +6,6 @@ return {
 		local plugin = require("notify")
 
 		-- enable
-		plugin.setup({})
+		plugin.setup()
 	end,
 }

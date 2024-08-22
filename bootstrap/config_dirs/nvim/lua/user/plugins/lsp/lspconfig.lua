@@ -92,6 +92,11 @@ return {
 			["bashls"] = function()
 				lspconfig["bashls"].setup({
 					capabilities = capabilities,
+					filetypes = {
+						"sh",
+						"zsh",
+						"dotenv",
+					},
 				})
 			end,
 
