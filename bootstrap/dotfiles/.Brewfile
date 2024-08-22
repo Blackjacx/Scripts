@@ -28,6 +28,7 @@ tap "jesseduffield/lazygit"                       # to install lazygit
 # mas "tweetbot", id: 557168941
 # mas "gifski", id: 1351639930
 
+brew "git-absorb"                                 # 🔥 git commit --fixup, but automatic
 brew "ag"                                         # 🔥 code-searching tool similar to ack, but faster
 brew "alacritty"                                  # A cross-platform, OpenGL terminal emulator.
 brew "apg"                                        # Generate strong passwords
@@ -47,6 +48,7 @@ brew "cmatrix"                                    # Terminal based "The Matrix" 
 brew "coreutils"
 brew "curl"
 brew "direnv"                                     # 🔥 .envrc file loader
+brew "dotenv-linter"                              # env file linter used in neovim
 brew "doxygen"
 brew "entr"                                       # Run arbitrary commands when files change
 brew "eza"                                        # Modern `ls` ... `exa` replacement
@@ -120,7 +122,7 @@ cask "aware"                                      # Menubar app for macOS that d
 # cask "background-music"                           # 🔥 Control audio per-app - nice for muting teams and just look at the video •••• did not find out how to enable microphone
 cask "battle-net"
 cask "brisk"                                      # submitting radars
-cask "cyberduck"                                  # FTP / Dropbox client 
+cask "cyberduck"                                  # FTP / Dropbox client
 cask "deckset"
 cask "docker"                                     # 🔥
 cask "dropbox"
@@ -176,4 +178,3 @@ cask "xcodes"
 
 mas "Unsplash Wallpapers", id: 1284863847
 
-# vim: ft=bash
