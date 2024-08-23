@@ -7,7 +7,7 @@ vim.filetype.add({
 	filename = {
 		[".env"] = "sh",
 		[".envrc"] = "sh",
-		["swiftformat"] = "conf",
+		["swiftformat"] = "sh",
 		[".yamlfmt"] = "yaml",
 	},
 	pattern = {
