@@ -8,6 +8,7 @@ vim.filetype.add({
 		[".env"] = "sh",
 		[".envrc"] = "sh",
 		["swiftformat"] = "sh",
+		["Cartfile"] = "sh",
 		[".yamlfmt"] = "yaml",
 	},
 	pattern = {
