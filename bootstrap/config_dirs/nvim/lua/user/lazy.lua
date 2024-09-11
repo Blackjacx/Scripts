@@ -26,6 +26,7 @@ require("lazy").setup({
 		enabled = true,
 		notify = false,
 	},
+	-- disable notification whenever a plugin file is saved
 	change_detection = {
 		notify = false,
 	},
