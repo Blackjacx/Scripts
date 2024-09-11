@@ -13,14 +13,10 @@ return {
 		{ "<leader>ws", "<cmd>SessionSave<CR>", desc = "Session save" },
 		{ "<leader>wr", "<cmd>SessionRestore<CR>", desc = "Restore session" },
 	},
-	config = function()
-		local plugin = require("auto-session")
-
-		plugin.setup({
-			bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
-			suppressed_dirs = { "/", "~/", "~/Downloads" },
-			-- log_level = 'debug',
-			auto_restore = true, -- Enables/disables auto restoring session on start
-		})
-	end,
+	opts = {
+		bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
+		suppressed_dirs = { "/", "~/", "~/Downloads" },
+		-- log_level = 'debug',
+		auto_restore = true, -- Enables/disables auto restoring session on start
+	},
 }
