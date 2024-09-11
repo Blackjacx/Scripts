@@ -1,7 +1,9 @@
 return {
 	"nvim-tree/nvim-web-devicons",
 	config = function()
-		require("nvim-web-devicons").set_icon({
+		local icons = require("nvim-web-devicons")
+
+		icons.set_icon({
 			gql = {
 				icon = "",
 				color = "#e535ab",
