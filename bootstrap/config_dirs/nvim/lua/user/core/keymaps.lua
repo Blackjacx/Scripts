@@ -45,21 +45,6 @@ keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Open tree o
 keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
 keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
--- Telescope
-keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Fuzzy find files in cwd" }) -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>fs", ":Telescope live_grep<CR>", { desc = "Find string in cwd" })
-keymap.set("n", "<leader>fc", ":Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" }) -- find string under cursor in current working directory
-keymap.set("n", "<leader>fr", ":Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
-keymap.set("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "list open buffers in current neovim instance" })
-keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "List Help Tags" })
-keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { desc = "Find todos" }) -- find todos in cwd
-
--- Telescope Git
-keymap.set("n", "<leader>gC", ":Telescope git_commits<CR>", { desc = "All Commits" }) -- use <cr> to checkout ["gc" for git commits]
-keymap.set("n", "<leader>gh", ":Telescope git_bcommits<CR>", { desc = "File History" }) -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-keymap.set("n", "<leader>gb", ":Telescope git_branches<CR>", { desc = "Git Branches" }) -- list git branches (use <cr> to checkout) ["gb" for git branch]
-keymap.set("n", "<leader>gs", ":Telescope git_status<CR>", { desc = "Git Status" })
-
 -- Neogit
 keymap.set("n", "<leader>gg", ":Neogit<CR>", { desc = "Neogit" })
 keymap.set("n", "<leader>gc", ":Neogit commit<CR>", { desc = "Neogit commit" })
