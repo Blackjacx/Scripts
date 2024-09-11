@@ -89,7 +89,6 @@ return {
 				"fugitive",
 				"fzf",
 				"lazy",
-				"mason",
 				"man",
 				"mundo",
 				"neo-tree",
