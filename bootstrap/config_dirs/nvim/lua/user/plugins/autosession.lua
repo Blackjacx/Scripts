@@ -1,15 +1,26 @@
 return {
 	"rmagatti/auto-session",
 	lazy = false,
+	init = function()
+		vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+	end,
 	dependencies = {
 		"nvim-telescope/telescope.nvim", -- Only needed if you want to use sesssion lens
 	},
-	opts = {
-		-- auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-		-- log_level = 'debug',
-
-		-- More detailled error messages
-		silent_restore = false,
+	keys = {
+		-- Will use Telescope if installed or a vim.ui.select picker otherwise
+		{ "<leader>ww", "<cmd>SessionSearch<CR>", desc = "Session search" },
+		{ "<leader>ws", "<cmd>SessionSave<CR>", desc = "Session save" },
+		{ "<leader>wr", "<cmd>SessionRestore<CR>", desc = "Restore session" },
 	},
-	config = true,
+	config = function()
+		local plugin = require("auto-session")
+
+		plugin.setup({
+			bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
+			suppressed_dirs = { "/", "~/", "~/Downloads" },
+			-- log_level = 'debug',
+			auto_restore = true, -- Enables/disables auto restoring session on start
+		})
+	end,
 }
