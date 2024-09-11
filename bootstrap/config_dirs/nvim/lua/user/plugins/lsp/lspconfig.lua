@@ -100,20 +100,6 @@ return {
 				})
 			end,
 
-			-- configure CSS server
-			["cssls"] = function()
-				lspconfig["cssls"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Docker server
-			["dockerls"] = function()
-				lspconfig["dockerls"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
 			-- configure Emmet server
 			["emmet_ls"] = function()
 				lspconfig["emmet_ls"].setup({
@@ -136,20 +122,6 @@ return {
 				lspconfig["graphql"].setup({
 					capabilities = capabilities,
 					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-				})
-			end,
-
-			-- configure HTML server
-			["html"] = function()
-				lspconfig["html"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Kotlin server
-			["kotlin_language_server"] = function()
-				lspconfig["kotlin_language_server"].setup({
-					capabilities = capabilities,
 				})
 			end,
 
@@ -179,69 +151,13 @@ return {
 				})
 			end,
 
-			-- configure Markdown server
-			["marksman"] = function()
-				lspconfig["marksman"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Python server
-			["pyright"] = function()
-				lspconfig["pyright"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Ruby server
-			["ruby_lsp"] = function()
-				lspconfig["ruby_lsp"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Swift server
-			["sourcekit"] = function()
-				lspconfig["sourcekit"].setup({
-					capabilities = capabilities,
-					-- filetypes = { "swift" },
-				})
-			end,
-
-			-- configure CSS server
-			["tailwindcss"] = function()
-				lspconfig["tailwindcss"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure TOML server
-			["taplo"] = function()
-				lspconfig["taplo"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Terraform server
-			["terraformls"] = function()
-				lspconfig["terraformls"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure typescript server with plugin
-			["tsserver"] = function()
-				lspconfig["tsserver"].setup({
-					capabilities = capabilities,
-				})
-			end,
-
-			-- configure Yaml server
-			["yamlls"] = function()
-				lspconfig["yamlls"].setup({
-					capabilities = capabilities,
-				})
-			end,
+			-- -- configure Swift server
+			-- ["sourcekit"] = function()
+			-- 	lspconfig["sourcekit"].setup({
+			-- capabilities = capabilities,
+			-- 		-- filetypes = { "swift" },
+			-- 	})
+			-- end,
 		})
 
 		-- SourceKit-LSP increasingly relies on the editor informing the server when certain files change.
@@ -255,8 +171,9 @@ return {
 		-- capability.
 		--
 
-		-- configure Swift serve here since it is not installed vioa Mason
+		-- configure Swift serve here since it is not installed via Mason
 		lspconfig.sourcekit.setup({
+			-- capabilities = capabilities,
 			capabilities = {
 				workspace = {
 					didChangeWatchedFiles = {
