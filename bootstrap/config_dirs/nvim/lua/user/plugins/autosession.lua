@@ -5,7 +5,7 @@ return {
 		vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 	end,
 	dependencies = {
-		"nvim-telescope/telescope.nvim", -- Only needed if you want to use sesssion lens
+		-- "nvim-telescope/telescope.nvim", -- Only needed if you want to use sesssion lens
 	},
 	keys = {
 		-- Will use Telescope if installed or a vim.ui.select picker otherwise
@@ -18,5 +18,8 @@ return {
 		suppressed_dirs = { "/", "~/", "~/Downloads" },
 		-- log_level = 'debug',
 		auto_restore = true, -- Enables/disables auto restoring session on start
+		session_lens = {
+			load_on_setup = false, -- prevent loading telescope with autosession, which is required on startup
+		},
 	},
 }
