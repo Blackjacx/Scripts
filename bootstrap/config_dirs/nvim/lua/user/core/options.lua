@@ -1,5 +1,7 @@
 local opt = vim.opt -- for conciseness
 
+opt.shortmess = "I" -- disable native nvim greeter / intro message / splash screen (however you wanna call it)
+
 -- line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 opt.relativenumber = true -- show relative line numbers
