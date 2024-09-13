@@ -6,7 +6,17 @@ return {
 
 		-- Only one of these is needed, not both.
 		"nvim-telescope/telescope.nvim", -- optional
-		"ibhagwan/fzf-lua", -- optional
+		-- "ibhagwan/fzf-lua", -- optional
 	},
-	config = true,
+	cmd = {
+		"Neogit",
+	},
+	keys = {
+		{ "<leader>gg", ":Neogit<CR>", desc = "Neogit" },
+		{ "<leader>gc", ":Neogit commit<CR>", desc = "Neogit commit" },
+		{ "<leader>gl", ":Neogit pull<CR>", desc = "Neogit pull" },
+		{ "<leader>gp", ":Neogit push<CR>", desc = "Neogit push" },
+		-- { "<leader>gB", ":Git blame<CR>", desc = "Git Blame" },
+	},
+	opts = {},
 }

@@ -56,13 +56,6 @@ keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Open tree o
 keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
 keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
--- Neogit
-keymap.set("n", "<leader>gg", ":Neogit<CR>", { desc = "Neogit" })
-keymap.set("n", "<leader>gc", ":Neogit commit<CR>", { desc = "Neogit commit" })
-keymap.set("n", "<leader>gl", ":Neogit pull<CR>", { desc = "Neogit pull" })
-keymap.set("n", "<leader>gp", ":Neogit push<CR>", { desc = "Neogit push" })
--- keymap.set("n", "<leader>gB", ":Git blame<CR>", { desc = "Git Blame" })
-
 -- GitSigns
 -- keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview current hunk" })
 -- keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git Toggle Line Blame" })
