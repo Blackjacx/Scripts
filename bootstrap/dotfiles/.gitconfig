@@ -1,8 +1,20 @@
 [core]
 	excludesfile = ~/.gitignore
 	mergeoptions = --no-edit
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+[diff]
+    colorMoved = default
 [merge]
     ff = only
+    conflictstyle = diff3
 [user]
 	name = Stefan Herold
 	email = 794372+Blackjacx@users.noreply.github.com
@@ -34,7 +46,7 @@
 [init]
 	defaultBranch = main
 [pager]
-	diff = false
+	diff = true
 	log = true
 [fetch]
     prune = true

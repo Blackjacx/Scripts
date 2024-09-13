@@ -60,6 +60,7 @@ brew "fx"                                         # 🔥 interactive terminal JS
 brew "gh"
 brew "ghostscript"                                # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git"                                        # distributed version-control system for tracking changes in source code during software development
+brew "git-delta"                                  # A syntax-highlighting pager for git, diff, grep, and blame output
 brew "git-extras"
 brew "git-flow"
 brew "github-markdown-toc"
