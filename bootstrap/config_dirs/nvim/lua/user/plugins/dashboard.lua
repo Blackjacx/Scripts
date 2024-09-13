@@ -1,5 +1,6 @@
 return {
 	"nvimdev/dashboard-nvim",
+	enabled = true,
 	event = "VimEnter",
 	opts = {
 		shuffle_letter = true,
@@ -14,7 +15,7 @@ return {
 			},
 			footer = {}, -- footer
 			shortcut = {
-				{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+				{ desc = "󰊳 Update Lazy", group = "@property", action = "Lazy update", key = "u" },
 				{
 					icon = " ",
 					icon_hl = "@variable",
