@@ -68,6 +68,7 @@ return {
 					"markdown",
 					"markdown_inline",
 					"query",
+					"regex",
 					"ruby",
 					"swift",
 					"toml",
@@ -77,7 +78,7 @@ return {
 					"yaml",
 				},
 				incremental_selection = {
-					enable = true,
+					enable = false, -- NOTE: enabling this conflixts with <C-i> (go forward in jumplist)
 					keymaps = {
 						init_selection = "<TAB>",
 						node_incremental = "<TAB>",
