@@ -182,9 +182,10 @@ zstyle ':fzf-tab:*' fzf-command fzf
 # -- START: 7 Amazing CLI Tools You Need To Try (https://www.youtube.com/watch?v=mmqDYw9C30I)
 
 # -- Use fd instead of find --
-export FZF_DEFAULT_COMMAND='fd --type=f --hidden --strip-cwd-prefix --exclude .git'
+FD_OPTIONS="--follow --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --type=f $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d $FD_OPTIONS"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
