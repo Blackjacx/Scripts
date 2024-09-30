@@ -63,6 +63,7 @@ return {
 				"jsonlint", -- json linter
 				-- "luacheck", -- lua linter 🚨 currently issues during install
 				"prettier", -- formatter for angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml
+				"prettierd", -- formatter for angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml
 				"proselint", -- formatter for prose text
 				"pylint", -- python linter
 				"shellcheck", -- bash linter
