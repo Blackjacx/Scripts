@@ -45,12 +45,12 @@ generateImages() {
 }
 
 generateImage() {
-  image=$(jq ".images[$1]" $CONTENTS_PATH)
+  image=$(jq ".images[$1]" "$CONTENTS_PATH")
 
-  scale=$(echo $image | jq -r ".scale" | cut -d "x" -f 1)
+  scale=$(echo "$image" | jq -r ".scale" | cut -d "x" -f 1)
   [ $scale != "null" ] || scale=1
 
-  sizePT=$(echo $image | jq -r ".size" | cut -d "x" -f 1)
+  sizePT=$(echo "$image" | jq -r ".size" | cut -d "x" -f 1)
   sizePX=$(bc -l <<<"scale=1; $sizePT*$scale" | cut -d "." -f 1)
   newFileName="appicon_${sizePX}.png"
 
@@ -62,7 +62,7 @@ generateImage() {
     echo "File $newFileName already created... Continue ✅"
   else
     echo -n "Generating $newFileName"
-    convert -density 400 "$PDF_PATH" -scale "$sizePX" "$APP_ICON_SET_PATH/$newFileName"
+    magick -density 400 "$PDF_PATH" -scale "$sizePX" "$APP_ICON_SET_PATH/$newFileName"
     echo " ✅"
   fi
 }
