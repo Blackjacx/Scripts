@@ -105,7 +105,7 @@ alias sm="smerge ."
 # Search hidden files and ignore some uninteresting folders - good for searching from home dir
 alias ag="ag -i --hidden --skip-vcs-ignores --ignore-dir={\"*Library*\",\"*.gem*\",\"*.build*\",\".git\",\"*bundle*\",\"*.zsh_history*\"}"
 alias sz="source ${HOME}/.zshrc"
-alias c="clear" # clear scrollback buffer
+alias c="clear && tmux clear-history" # clear scrollback buffer and history
 
 #-------------------------------------------------------------------------------
 # GitHub

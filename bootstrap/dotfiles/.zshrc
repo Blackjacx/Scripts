@@ -225,7 +225,7 @@ _fzf_comprun() {
 
 export HISTFILE="${HOME}/.zsh_history"                # Explicitly set the history file
 export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"  # Ignore these commands
-export HISTSIZE=500000                                # Max number of commands loaded into memory from the history file
+export HISTSIZE=5000                                  # Max number of commands loaded into memory from the history file (having too much lines in the buffer makes scrolling in tmux super slow)
 export HISTFILESIZE=500000
 export SAVEHIST=500000                                # Max number of commands stored in the zsh history file
 export DISABLE_MAGIC_FUNCTIONS=true                   # Enables fast pasting
