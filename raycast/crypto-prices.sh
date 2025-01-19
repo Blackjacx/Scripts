@@ -27,7 +27,7 @@ import sys
 # BNBUSDT - Binance Coin / USD
 # DOTUSDT - Polkadot / USD
 # XRPUSDT - Ripple / USD
-SYMBOLS = [ 'BTCUSDT', 'ETHBTC' ]
+SYMBOLS = [ 'BTCUSDT', 'ETHBTC', 'ADAUSDT', 'LTCUSDT' ]
 
 # Fetch tickers from Binance for selected symbols
 responses = []
