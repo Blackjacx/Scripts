@@ -4,7 +4,7 @@ swiftlint = '0.54.0' # A tool to enforce Swift style and conventions.
 swiftformat = '0.53' # A code formatter for Swift
 carthage = '0.39.1'  # Dependency manager for Apple development
 jq = '1'             # Lightweight and flexible command-line JSON processor
-fzf = '0.55.0'       # A command-line fuzzy finder
+fzf = '0.57.0'       # A command-line fuzzy finder
 
 [settings]
 color = true                                              # Use color in mise terminal output
