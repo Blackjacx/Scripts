@@ -7,26 +7,32 @@ jq = '1'             # Lightweight and flexible command-line JSON processor
 fzf = '0.57.0'       # A command-line fuzzy finder
 
 [settings]
-color = true                                              # Use color in mise terminal output
-all_compile = false                                       # Do not use precompiled binaries for all languages.
-always_keep_download = false                              # Should mise keep downloaded files after installation
-always_keep_install = false                               # Should mise keep install files after installation even if the installation fails
-disable_default_shorthands = false                        # Disable the default shorthands, see `MISE_DISABLE_DEFAULT_SHORTHANDS`
-disable_tools = ["ruby","node", "swift", "go", "python"]  # Disable specific tools, generally used to turn off core tools and the ones loaded by `~/.tool-versions`
-not_found_auto_install = true                             # Set to false to disable the "command not found" handler to autoinstall missing tool versions.
-paranoid = false                                          # Enables extra-secure behavior. See https://mise.jdx.dev/paranoid
-quiet = false                                             # Suppress all output except errors.
-trusted_config_paths = []                                 # Config files with these prefixes will be trusted by default
-verbose = false                                           # Shows more verbose output such as installation logs when installing tools.
-asdf_compat = false                                       # Only output .tool-versions files in mise local|global which will be usable by asdf. This disables mise functionality that would otherwise make these files incompatible with asdf such as non-pinned versions.
-yes = true                                                # This will automatically answer yes or no to prompts. This is useful for scripting.
-jobs = 5                                                  # Number of plugins or runtimes to install in parallel.
-raw = false                                               # Set to true to directly pipe plugins to stdin/stdout/stderr
-experimental = false                                      # Enable experimental features
+color = true # Use color in mise terminal output
+all_compile = false # Do not use precompiled binaries for all languages.
+always_keep_download = false # Should mise keep downloaded files after installation
+always_keep_install = false # Should mise keep install files after installation even if the installation fails
+disable_default_shorthands = false # Disable the default shorthands, see `MISE_DISABLE_DEFAULT_SHORTHANDS`
+disable_tools = [
+    "ruby",
+    "node",
+    "swift",
+    "go",
+    "python",
+] # Disable specific tools, generally used to turn off core tools and the ones loaded by `~/.tool-versions`
+not_found_auto_install = true # Set to false to disable the "command not found" handler to autoinstall missing tool versions.
+paranoid = false # Enables extra-secure behavior. See https://mise.jdx.dev/paranoid
+quiet = false # Suppress all output except errors.
+trusted_config_paths = [
+] # Config files with these prefixes will be trusted by default
+verbose = false # Shows more verbose output such as installation logs when installing tools.
+asdf_compat = false # Only output .tool-versions files in mise local|global which will be usable by asdf. This disables mise functionality that would otherwise make these files incompatible with asdf such as non-pinned versions.
+yes = true # This will automatically answer yes or no to prompts. This is useful for scripting.
+jobs = 5 # Number of plugins or runtimes to install in parallel.
+raw = false # Set to true to directly pipe plugins to stdin/stdout/stderr
+experimental = false # Enable experimental features
 # env_file = '.env'                                       # Load env vars from a dotenv file, see `MISE_ENV_FILE`
 
 # How long to wait before updating plugins automatically.
 # This is updated whenever a new runtime is installed.
 # (note: this isn't currently implemented but there are plans to add it: https://github.com/jdx/mise/issues/128)
-plugin_autoupdate_last_check_duration = "7d"              # Set to 0 to disable updates
-
+plugin_autoupdate_last_check_duration = "7d" # Set to 0 to disable updates
