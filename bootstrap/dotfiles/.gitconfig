@@ -49,4 +49,6 @@
 	diff = true
 	log = true
 [fetch]
-    prune = true
+  prune = true
+[absorb]
+  maxStack=20 # default: 10
