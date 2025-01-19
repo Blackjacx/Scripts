@@ -33,13 +33,6 @@ alias gst="git status -sb"
 # Git add all and continue rebase
 alias gac="git add . && git rebase --continue"
 
-# Fixup directly into a given commit hash
-gcfunow () {
-  git add .
-  gcfu $1 
-  grb --autosquash $1~1
-}
-
 greload () {
   local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
 }
@@ -80,10 +73,23 @@ glogp() {
   git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 $(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
 }
 
-# Create fixup commit for stashed changes
-gfu() {
+# Create fixup commit for stashed changes (git commit fixup fzf)
+gcfuf() {
   message="Please select a commit hash"
   glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
+}
+
+# Fixup directly into the selected git hash
+gcfufas () {
+  message="Please select a commit hash"
+  hash=$(glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | trim)
+  if [[ -z $hash ]]; then
+      echo "No git hash provided. Exit."
+  else
+    echo "Selected hash: \"$hash\""
+    git commit --fixup "$hash"
+    git rebase --autosquash "$hash"~1
+  fi
 }
 
 #-------------------------------------------------------------------------------
