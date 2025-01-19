@@ -54,18 +54,18 @@ log "Cleanup Carthage Cache"
 
 log "Empty Trash"
 # The -P option overwrites the deleted files for extra security (but that takes long)
-sudo rm -rf ${HOME}/.Trash/*
+sudo rm -rf "${HOME}/.Trash/*"
 
 log "Erase Spotlight Index and Rebuild"
 sudo mdutil -E /
 
 log "Reload Core Audio"
-sudo kill -9 `pgrep 'coreaudio[a-z]' | awk '{print $1}'`
+sudo kill -9 "$(pgrep 'coreaudio[a-z]' | awk '{print $1}')"
 
 log "Create huge file and delete it again to re-claim hidden space from the system."
 file="$(mktemp -d)/DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
-mkfile 200G $file
-rm -rf $file
+mkfile 200G "$file"
+rm -rf "$file"
 
 ##
 ## The following is highly experimental!!!
