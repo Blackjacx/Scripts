@@ -174,7 +174,7 @@ lane :release do |options|
 
   if is_set( homebrew_formula_name ) && is_set( lane_context[SharedValues::SET_GITHUB_RELEASE_HTML_LINK] )
     UI.important("Bumping Homebrew tap \"#{homebrew_formula_name}\" with version #{version}")
-    sh "brew bump-formula-pr --no-audit --message=\"Update Formula #{version}\" --tag=\"#{version}\" --revision=$(git rev-list -n 1 #{version}) #{homebrew_formula_name}"
+    sh "brew bump-formula-pr --no-audit --message=\"Update Formula #{version}\" --version=\"#{version}\" #{homebrew_formula_name}"
   end
 end
 
