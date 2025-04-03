@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
 #
+# Special script that is used for debugging and demonstration purposes only.
+#
 # The crontab entry must look like below to execute the script at midnight
 # every day and properly load the .envrc file so we have access to the loaded
 # environment in the script:
