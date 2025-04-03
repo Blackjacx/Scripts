@@ -51,4 +51,4 @@
 [fetch]
   prune = true
 [absorb]
-  maxStack=20 # default: 10
+  maxStack=30 # default: 10
