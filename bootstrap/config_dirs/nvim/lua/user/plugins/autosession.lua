@@ -13,11 +13,14 @@ return {
 		{ "<leader>ws", "<cmd>SessionSave<CR>", desc = "Session save" },
 		{ "<leader>wr", "<cmd>SessionRestore<CR>", desc = "Restore session" },
 	},
+
+	---enables autocomplete for opts
+	---@module "auto-session"
+	---@type AutoSession.Config
 	opts = {
 		bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
 		suppressed_dirs = { "/", "~/", "~/Downloads" },
 		-- log_level = 'debug',
-		auto_restore = true, -- Enables/disables auto restoring session on start
 		session_lens = {
 			load_on_setup = false, -- prevent loading telescope with autosession, which is required on startup
 		},
