@@ -1,54 +1,54 @@
 [core]
-	excludesfile = ~/.gitignore
-	mergeoptions = --no-edit
+    excludesfile = ~/.gitignore
+    mergeoptions = --no-edit
     pager = delta
 [interactive]
     diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
+    navigate = true # use n and N to move between diff sections
 
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
+# delta detects terminal colors automatically; set one of these to disable auto-detection
+# dark = true
+# light = true
 [diff]
     colorMoved = default
 [merge]
     ff = only
     conflictStyle = zdiff3
 [user]
-	name = Stefan Herold
-	email = 794372+Blackjacx@users.noreply.github.com
-	signingkey = DE546DEBFC1C1C01
+    name = Stefan Herold
+    email = 794372+Blackjacx@users.noreply.github.com
+    signingkey = DE546DEBFC1C1C01
 [push]
-	default = simple
+    default = simple
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 [github]
-	user = blackjacx
+    user = blackjacx
 [ghi]
-	token = !security find-internet-password -a blackjacx -s github.com -l 'ghi token' -w
+    token = !security find-internet-password -a blackjacx -s github.com -l 'ghi token' -w
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [gpg]
-	program = /usr/local/bin/gpg
+    program = /usr/local/bin/gpg
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [pull]
-	rebase = true
+    rebase = true
 [rerere]
-	enabled = true
+    enabled = true
 [rebase]
-	autosquash = true
-	autoStash = true
+    autosquash = true
+    autoStash = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [pager]
-	diff = true
-	log = true
+    diff = true
+    log = true
 [fetch]
-  prune = true
+    prune = true
 [absorb]
-  maxStack=30 # default: 10
+    maxStack=30 # default: 10
