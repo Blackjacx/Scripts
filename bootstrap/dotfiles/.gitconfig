@@ -14,7 +14,7 @@
     colorMoved = default
 [merge]
     ff = only
-    conflictstyle = diff3
+    conflictStyle = zdiff3
 [user]
 	name = Stefan Herold
 	email = 794372+Blackjacx@users.noreply.github.com
