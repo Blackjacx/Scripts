@@ -54,3 +54,6 @@ opt.iskeyword:append("-") -- consider string-string as whole word
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- conceal certain syntax and only show it when cursor is placed in the line (nice for writing MD, HTML, ...)
+-- opt.conceallevel = 3 -- commented out since hides certain control characters in non MD files
