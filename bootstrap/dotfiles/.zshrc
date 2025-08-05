@@ -234,8 +234,12 @@ export HISTORY_IGNORE="(la|ls|ll|cd|pwd|exit|cd ..)"  # Ignore these commands
 export HISTSIZE=5000                                  # Max number of commands loaded into memory from the history file (having too much lines in the buffer makes scrolling in tmux super slow)
 export HISTFILESIZE=500000
 export SAVEHIST=500000                                # Max number of commands stored in the zsh history file
-export DISABLE_MAGIC_FUNCTIONS=true                   # Enables fast pasting
+export DISABLE_MAGIC_FUNCTIONS=true                   # Enables fast pasting.
+setopt HIST_IGNORE_DUPS                               # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS                           # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_SAVE_NO_DUPS                              # Don't write duplicate entries in the history file.
+setopt HIST_FIND_NO_DUPS                              # Do not display a line previously found.
+setopt HIST_EXPIRE_DUPS_FIRST                         # Expire duplicate entries first when trimming history.
 setopt HIST_REDUCE_BLANKS                             # Tidy up the line when it is entered into the history by removing any excess blanks that mean nothing to the shell. This can also mean that the line becomes a duplicate of a previous one even if it would not have been in its untidied form. It is smart enough not to remove blanks which are important, i.e. are quoted.
 setopt HIST_IGNORE_SPACE                              # A useful trick to prevent particular entries from being recorded into a history by preceding them with at least one space.
 setopt APPEND_HISTORY                                 # Allows appending the new history to the old
@@ -243,8 +247,6 @@ setopt INC_APPEND_HISTORY                             # Write to the history fil
 setopt SHARE_HISTORY                                  # Share history between all sessions.
 setopt NO_HIST_BEEP                                   # If you try to scroll up or down beyond the end of the history list, the shell will beep. It is on by default, so use NO_HIST_BEEP to turn it off.
 setopt HIST_VERIFY                                    # Don't execute immediately upon history expansion.
-setopt HIST_SAVE_NO_DUPS                              # Don't write duplicate entries in the history file.
-setopt HIST_EXPIRE_DUPS_FIRST                         # Expire duplicate entries first when trimming history.
 setopt BANG_HIST                                      # Treat the '!' character specially during expansion.
 
 
