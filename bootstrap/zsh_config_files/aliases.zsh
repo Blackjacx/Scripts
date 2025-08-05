@@ -79,10 +79,12 @@ gcfuf() {
   glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
 }
 
-# Fixup directly into the selected git hash
+# Fixup directly into the selected git hash (Git Commit FixUp Fzf AutoSquash)
+#                                            ^   ^      ^  ^  ^   ^   ^
+#                                            g   c      f  u  f   a   s
 gcfufas () {
   message="Please select a commit hash"
-  hash=$(glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | trim)
+  hash=$(glogd | fzf-tmux -p90%,70% --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | trim)
   if [[ -z $hash ]]; then
       echo "No git hash provided. Exit."
   else
