@@ -101,7 +101,7 @@ plugins=(
 
 # User configuration
 
-# Set locale
+# Set locale, affects sort order when using `sort` (https://superuser.com/a/1598323/1860273)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # Set user gem path to avoid the need of sudo
