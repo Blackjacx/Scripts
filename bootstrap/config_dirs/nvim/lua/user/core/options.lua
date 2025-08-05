@@ -27,7 +27,12 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
--- appearance
+-- sounds
+opt.vb = true -- never ever make my terminal beep
+
+--
+-- Appearance
+--
 
 -- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
