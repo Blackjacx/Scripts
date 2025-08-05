@@ -1,0 +1,2 @@
+[whitelist]
+prefix = [ "~/dev/projects/db/beiwagen-1", "~/dev/projects/db/beiwagen-2", "~/dev/projects/db/beiwagen-3" ]
