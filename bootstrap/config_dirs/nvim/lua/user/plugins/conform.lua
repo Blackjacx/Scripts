@@ -1,14 +1,15 @@
 -- https://www.josean.com/posts/neovim-linting-and-formatting
 return {
 	"stevearc/conform.nvim",
+	enable = true,
 	lazy = true,
-	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local conform = require("conform")
 
 		conform.setup({
 			formatters_by_ft = {
-				bash = { "beautysh" },
+				bash = { "shfmt" },
 				css = { "prettierd" },
 				graphql = { "prettierd" },
 				html = { "prettierd" },
@@ -18,8 +19,10 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettierd" },
 				python = { "isort", "black" },
-				sh = { "beautysh" },
+				ruby = { "rubocop" },
+				sh = { "shfmt" },
 				swift = { "swiftformat" },
+				tex = { "latexindent" },
 				typescript = { "prettierd" },
 				typescriptreact = { "prettierd" },
 				yaml = { "prettierd", "yamlfmt" },

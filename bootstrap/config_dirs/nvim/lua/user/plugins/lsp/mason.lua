@@ -38,13 +38,13 @@ return {
 				"html",
 				"kotlin_language_server",
 				"lua_ls",
-				"marksman",
+				"marksman", -- we use tailwindcss
 				"pyright",
-				"ruby_lsp",
-				"tailwindcss",
+				"rubocop",
+				-- "tailwindcss",
 				"taplo",
 				"terraformls",
-				"tsserver",
+				"texlab",
 				"yamlls",
 			},
 			-- auto-install configured servers (with lspconfig)
@@ -61,6 +61,7 @@ return {
 				"eslint_d", -- js linter
 				"isort", -- python formatter
 				"jsonlint", -- json linter
+				"latexindent", -- latex formatter
 				-- "luacheck", -- lua linter 🚨 currently issues during install
 				"prettier", -- formatter for angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml
 				"prettierd", -- formatter for angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml
