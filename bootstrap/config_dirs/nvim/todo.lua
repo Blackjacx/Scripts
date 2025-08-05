@@ -17,6 +17,14 @@
 -- ./bootstrap/config_dirs/nvim/lua/user/plugins/nerdy.lua
 -- ./bootstrap/config_dirs/nvim/lua/user/plugins/lazygit.lua
 
+-- TODO: Checkout the following prebuild nvim configs (see how they can be installed in parallel: https://michaeluloth.com/neovim-switch-configs/):
+
+-- https://github.com/LazyVim/LazyVim
+-- https://github.com/NvChad/NvChad
+-- https://github.com/AstroNvim/AstroNvim
+-- https://github.com/lunarvim/lunarvim
+-- https://github.com/nvim-lua/kickstart.nvim
+
 -- TODO: Check out the following interesting plugins:
 
 -- ++++++++++++++++++++++ Misc +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -41,6 +49,7 @@
 -- https://github.com/pocco81/true-zen.nvim -- 🦝 Clean and elegant distraction-free writing for NeoVim
 -- https://github.com/folke/zen-mode.nvim - 🧘 Distraction-free coding for Neovim
 -- https://github.com/debugloop/telescope-undo.nvim -- A telescope extension to view and search your undo tree
+-- https://github.com/lervag/vimtex -- VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.
 
 -- ++++++++++++++++++++++ Running Code +++++++++++++++++++++++++++++++++++++++++
 -- https://github.com/michaelb/sniprun -- A neovim plugin to run lines/blocs of code
