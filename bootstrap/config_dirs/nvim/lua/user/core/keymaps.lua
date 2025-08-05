@@ -67,3 +67,15 @@ keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>", { desc = "Git Blame" })
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart lsp server" })
+
+-- Disable ESLint LSP server and hide virtual text in Neovim
+-- Add this to your init.lua or init.vim file
+-- https://samuellawrentz.com/hacks/neovim/disable-annoying-eslint-lsp-server-and-hide-virtual-text/
+local isLspDiagnosticsVisible = true
+keymap.set("n", "<leader>lx", function()
+	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+	vim.diagnostic.config({
+		virtual_text = isLspDiagnosticsVisible,
+		underline = isLspDiagnosticsVisible,
+	})
+end, { desc = "Toggle Linter Virtual Text" })
