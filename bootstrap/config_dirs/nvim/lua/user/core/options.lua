@@ -17,8 +17,8 @@ opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
-opt.textwidth = 80
-opt.colorcolumn = "81,121" -- show visual columns at 81/121
+-- opt.textwidth = 80
+opt.colorcolumn = "50,72,120" -- show visual columns at 50,72,120
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
