@@ -189,6 +189,10 @@ export FZF_DEFAULT_COMMAND="fd --type=f $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d $FD_OPTIONS"
 
+# Show FZF popup instead of inline
+export FZF_CTRL_R_OPTS="--reverse"
+export FZF_TMUX_OPTS="-p90%,70%"
+
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
