@@ -38,8 +38,17 @@ greload () {
 }
 
 gupdate () {
+  local branch="${1:-}"
+  if [ -z "$branch" ]; then
+    echo "🔴 Please specify a branch name."
+    return
+  elif if ! git branch --list "$branch" | grep -q "$branch"; then
+    echo "🔴 Branch \"$branch\" not found."
+    return
+  fi
+
   git fetch --all --prune --jobs=32
-  git checkout develop
+  git checkout "$branch"
   git pull
   git for-each-ref --format '%(refname) %(upstream:track)' refs/heads |
       awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' |
