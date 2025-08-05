@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Tutorial: https://www.youtube.com/watch?v=k94qImbFKWE
+# Docs: https://github.com/koekeishiya/yabai/wiki
+
+# by default, tile all windows
+yabai -m config layout bsp
+
+# New window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# window opacity (default: off) • does not work under macOS without disabling SIP
+# example: render all unfocused windows with 90% opacity
+# yabai -m config window_opacity on
+# yabai -m config active_window_opacity 1.0
+# yabai -m config normal_window_opacity 0.9
+
+# window border
+# yabai -m config window_border on
+# yabai -m config window_border_width 4
+# yabai -m config active_window_border_color 0xff5ac8fa # blue highlight
+# yabai -m config normal_window_border_color 0xff444444 # dark gray
+
+#
+# padding
+#
+
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 12
+
+#
+# mouse settings
+#
+
+yabai -m config mouse_follows_focus on
+
+yabai -m config mouse_modifier ctrl
+# set modifier + left-click drag to move window (default: move)
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+
+yabai -m mouse_drop_action swap
+
+yabai -m rule --add app='Slack' display=east
+
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Xcode$" manage=off
