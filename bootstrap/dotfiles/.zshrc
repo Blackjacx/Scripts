@@ -14,6 +14,7 @@ ZSH=${HOME}/.oh-my-zsh
 # Conform to XDG Standard
 # https://stackoverflow.com/a/78361332/971329
 export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CONFIG_DIR="${XDG_CONFIG_HOME}"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
