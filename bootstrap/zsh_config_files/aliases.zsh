@@ -283,9 +283,9 @@ alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME
 alias tw="timew"
 alias twby="timew balance 2023-11-13 - today" # balance from the beginning of all records (not including current day)
 alias twb="timew balance 2023-11-13 - tomorrow" # balance from the beginning of all records (including today)
-alias tws="timew summary :day :ids"
+alias tws="timew summary :day :ids :annotations"
 alias twsf="tw balance ioki 2023-11-13 - tomorrow && tws" # "tws full"
-alias twsa="timew summary :all :ids"
+alias twsa="timew summary :all :ids :annotations"
 alias twd="timew day summary :ids rc.reports.day.hours=auto"
 alias tww="timew week summary :ids rc.reports.week.hours=auto"
 alias twm="timew month summary :ids rc.reports.month.hours=auto"
