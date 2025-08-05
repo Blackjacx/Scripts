@@ -6,6 +6,9 @@ opt.shortmess = "I" -- disable native nvim greeter / intro message / splash scre
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 opt.relativenumber = true -- show relative line numbers
 
+-- scrolling
+opt.scrolloff = 5 -- determines the number of context lines you would like to see above and below the cursor. See https://vim.fandom.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen
+
 -- tabs & indentation
 opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
 opt.shiftwidth = 4 -- 4 spaces for indent width
