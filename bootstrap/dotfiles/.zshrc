@@ -78,7 +78,8 @@ HIST_STAMPS="yyyy-mm-dd"
 bgnotify_threshold=3  ## set your own notification threshold
 
 # Configure agnoster theme
-export DEFAULT_USER=`whoami`
+DEFAULT_USER="$(whoami)"
+export DEFAULT_USER
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
