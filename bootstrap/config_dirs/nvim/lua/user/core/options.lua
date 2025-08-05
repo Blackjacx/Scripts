@@ -57,3 +57,25 @@ opt.swapfile = false
 
 -- conceal certain syntax and only show it when cursor is placed in the line (nice for writing MD, HTML, ...)
 -- opt.conceallevel = 3 -- commented out since hides certain control characters in non MD files
+
+--
+-- Set vertical colum line for specific file types as auto commands
+--
+
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "gitcommit",
+-- 	callback = function()
+-- 		-- Highlight column 50 (subject line) and optionally 72 (body wrap limit)
+-- 		vim.opt_local.colorcolumn = { 50, 72 }
+-- 	end,
+-- })
+--
+-- vim.cmd([[highlight ColorColumn ctermbg=red guibg=#ff3333]])
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gitcommit",
+	callback = function()
+		vim.opt_local.colorcolumn = { 50, 72 }
+		vim.cmd([[highlight ColorColumn guibg=#51202A]]) -- customize color here
+	end,
+})
