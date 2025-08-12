@@ -38,23 +38,23 @@ greload() {
     current_branch="$(git branch --show-current)" && git switch develop && git branch -D "$current_branch" && git checkout "$current_branch" && git pull
 }
 
-gupdate () {
-  local branch="${1:-}"
-  if [ -z "$branch" ]; then
-    echo "🔴 Please specify a branch name."
-    return
-  elif if ! git branch --list "$branch" | grep -q "$branch"; then
-    echo "🔴 Branch \"$branch\" not found."
-    return
-  fi
+gupdate() {
+    local branch="${1:-}"
+    if [ -z "$branch" ]; then
+        echo "🔴 Please specify a branch name."
+        return
+    elif ! git branch --list "$branch" | grep -q "$branch"; then
+        echo "🔴 Branch \"$branch\" not found."
+        return
+    fi
 
-  git fetch --all --prune --jobs=32
-  git checkout "$branch"
-  git pull
-  git for-each-ref --format '%(refname) %(upstream:track)' refs/heads |
-      awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' |
-      egrep -v '\*|master|main|develop' |
-      xargs -I '{}' -n 1 git branch -D "{}"
+    git fetch --all --prune --jobs=32
+    git checkout "$branch"
+    git pull
+    git for-each-ref --format '%(refname) %(upstream:track)' refs/heads |
+        awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' |
+        egrep -v '\*|master|main|develop' |
+        xargs -I '{}' -n 1 git branch -D "{}"
 }
 
 # Checkout branch selected by browsing using fuzzy finder.
@@ -156,94 +156,94 @@ sim-set-lang() {
 # https://medium.com/@liwp.stephen/find-app-data-path-for-ios-simulator-6bba3d2fbab6
 # https://www.iosdev.recipes/simctl/#locate-an-app-bundle-app-data-or-app-group-data
 sim-app-backup-or-restore() {
-  trap "echo \"Cleaning up\" && unset BACKUP_DIR && unset APP_DATA_DIR" INT TERM HUP EXIT
+    trap "echo \"Cleaning up\" && unset BACKUP_DIR && unset APP_DATA_DIR" INT TERM HUP EXIT
 
-  local COMMAND="${1:-}"
-  if [[ "$COMMAND" != "backup" && "$COMMAND" != "restore" ]]; then
-    echo "Please specify a sub command (backup || restore - is $COMMAND)!"
-    return
-  fi
-
-  local BACKUP_DIR="${2:-}"
-  if [ -z "$BACKUP_DIR" ]; then
-    echo "Please specify a backup directory!"
-    return
-  elif [ ! -d "$BACKUP_DIR" ]; then
-    echo "Backup directory $BACKUP_DIR not found!"
-    return
-  fi
-
-  local SIM_ID="$(sim-select)"
-  if [ -z "$SIM_ID" ]; then
-    echo "SIM_ID was not determined!"
-    return
-  fi
-
-  # Check if simulator is already booted
-  local SIM_STATE="$(xcrun simctl list -j "devices" | jq -r '.devices | map(.[])[] | select(.udid == "'"$SIM_ID"'") | .state')"
-  echo "Simulator state $SIM_STATE"
-
-  local SIM_BOOTED=0
-  if [[ "$SIM_STATE" == "Booted" ]]; then
-    SIM_BOOTED=1
-  elif [[ "$SIM_STATE" == "Shutdown" ]]; then
-    echo "To be able to read the data dir, we boot simulator $SIM_ID now"
-    xcrun simctl boot "$SIM_ID"
-  else 
-    echo "Simulator state unhandled. Handle manually by either starting or closing it."
-    return
-  fi
-
-  local APP_BUNDLE_ID="$(xcrun simctl listapps "$SIM_ID" | plutil -convert json - -o - | jq -r '.[].CFBundleIdentifier' | fzf-tmux --header "Please select an app to backup:" -p)"
-  local APP_DATA_DIR="$( xcrun simctl get_app_container "$SIM_ID" "$APP_BUNDLE_ID" data )"
-  echo "We received the data dir $APP_DATA_DIR"
-
-  # Only shutdown when it was shutdown before
-  if [[ "$SIM_BOOTED" == 0 ]]; then
-    echo "Shutting down simulator $SIM_ID again"
-    xcrun simctl shutdown "$SIM_ID" 
-  else
-    echo "Keeping simulator $SIM_ID alive"
-  fi
-
-  if [ ! -d "$APP_DATA_DIR" ]; then
-    echo "App data dir $APP_DATA_DIR not found"
-    return
-  fi
-
-  # Encode simulator ID and bundle ID in backup path
-  local BACKUP_DIR="$(echo $(realpath $BACKUP_DIR))/$SIM_ID/$APP_BUNDLE_ID"
-
-  # Execute desired sub command
-  if [[ "$COMMAND" == "backup" ]]; then
-    
-    # Clean BACKUP_DIR before backing up
-    rm -rf "$BACKUP_DIR" 
-    mkdir -p "$BACKUP_DIR"
-    # -n: no prompt | -f: force | -r: recursive
-    cp -nfr "$APP_DATA_DIR/" "$BACKUP_DIR"
-    echo "Backup saved in $BACKUP_DIR"
-
-  elif if [[ "$COMMAND" == "restore" ]]; then
-
-    # Make sure the new backup dir exists
-    if [ ! -d "$BACKUP_DIR" ]; then
-      echo "Backup directory $BACKUP_DIR not found!"
-      return
+    local COMMAND="${1:-}"
+    if [[ "$COMMAND" != "backup" && "$COMMAND" != "restore" ]]; then
+        echo "Please specify a sub command (backup || restore - is $COMMAND)!"
+        return
     fi
 
-    # Clean APP_DATA_DIR before backing up
-    rm -rf "$APP_DATA_DIR"
-    mkdir -p "$APP_DATA_DIR"
-    # -n: no prompt | -f: force | -r: recursive
-    cp -r "$BACKUP_DIR" "$APP_DATA_DIR/"
-    echo "Backup restored to $APP_DATA_DIR"
+    local BACKUP_DIR="${2:-}"
+    if [ -z "$BACKUP_DIR" ]; then
+        echo "Please specify a backup directory!"
+        return
+    elif [ ! -d "$BACKUP_DIR" ]; then
+        echo "Backup directory $BACKUP_DIR not found!"
+        return
+    fi
 
-  else
+    local SIM_ID="$(sim-select)"
+    if [ -z "$SIM_ID" ]; then
+        echo "SIM_ID was not determined!"
+        return
+    fi
 
-    echo "Unknown sub command \"$COMMAND\"."
+    # Check if simulator is already booted
+    local SIM_STATE="$(xcrun simctl list -j "devices" | jq -r '.devices | map(.[])[] | select(.udid == "'"$SIM_ID"'") | .state')"
+    echo "Simulator state $SIM_STATE"
 
-  fi
+    local SIM_BOOTED=0
+    if [[ "$SIM_STATE" == "Booted" ]]; then
+        SIM_BOOTED=1
+    elif [[ "$SIM_STATE" == "Shutdown" ]]; then
+        echo "To be able to read the data dir, we boot simulator $SIM_ID now"
+        xcrun simctl boot "$SIM_ID"
+    else
+        echo "Simulator state unhandled. Handle manually by either starting or closing it."
+        return
+    fi
+
+    local APP_BUNDLE_ID="$(xcrun simctl listapps "$SIM_ID" | plutil -convert json - -o - | jq -r '.[].CFBundleIdentifier' | fzf-tmux --header "Please select an app to backup:" -p)"
+    local APP_DATA_DIR="$(xcrun simctl get_app_container "$SIM_ID" "$APP_BUNDLE_ID" data)"
+    echo "We received the data dir $APP_DATA_DIR"
+
+    # Only shutdown when it was shutdown before
+    if [[ "$SIM_BOOTED" == 0 ]]; then
+        echo "Shutting down simulator $SIM_ID again"
+        xcrun simctl shutdown "$SIM_ID"
+    else
+        echo "Keeping simulator $SIM_ID alive"
+    fi
+
+    if [ ! -d "$APP_DATA_DIR" ]; then
+        echo "App data dir $APP_DATA_DIR not found"
+        return
+    fi
+
+    # Encode simulator ID and bundle ID in backup path
+    local BACKUP_DIR="$(echo $(realpath $BACKUP_DIR))/$SIM_ID/$APP_BUNDLE_ID"
+
+    # Execute desired sub command
+    if [[ "$COMMAND" == "backup" ]]; then
+
+        # Clean BACKUP_DIR before backing up
+        rm -rf "$BACKUP_DIR"
+        mkdir -p "$BACKUP_DIR"
+        # -n: no prompt | -f: force | -r: recursive
+        cp -nfr "$APP_DATA_DIR/" "$BACKUP_DIR"
+        echo "Backup saved in $BACKUP_DIR"
+
+    elif [[ "$COMMAND" == "restore" ]]; then
+
+        # Make sure the new backup dir exists
+        if [ ! -d "$BACKUP_DIR" ]; then
+            echo "Backup directory $BACKUP_DIR not found!"
+            return
+        fi
+
+        # Clean APP_DATA_DIR before backing up
+        rm -rf "$APP_DATA_DIR"
+        mkdir -p "$APP_DATA_DIR"
+        # -n: no prompt | -f: force | -r: recursive
+        cp -r "$BACKUP_DIR" "$APP_DATA_DIR/"
+        echo "Backup restored to $APP_DATA_DIR"
+
+    else
+
+        echo "Unknown sub command \"$COMMAND\"."
+
+    fi
 }
 
 sim-app-backup() {
