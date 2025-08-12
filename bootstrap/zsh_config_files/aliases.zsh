@@ -317,11 +317,18 @@ if command -v bat >/dev/null 2>&1; then
 elif command -v batcat >/dev/null 2>&1; then
     alias cat="batcat"
 fi
-alias cd="z"
-alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
-alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
-alias cddb3="cd ${HOME}/dev/projects/db/beiwagen-3"
-alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
+
+#
+# DEPRECATED
+#
+# Use zoxide instead:
+# `cd b 1` - goes to beiwagen-1
+# `cdi`    - launches fzf fuzzy finder with zoxide database sorted by rank
+#
+# alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
+# alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
+# alias cddb3="cd ${HOME}/dev/projects/db/beiwagen-3"
+# alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
 alias cdtemp='cd "$(mktemp -d)"'
 alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview 'bat {}' | xargs nvim"
 alias n="nvim"
