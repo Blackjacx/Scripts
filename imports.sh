@@ -152,7 +152,7 @@ function collage() {
   # Round corers of input image
   for IMAGE in "${@[@]}"
   do
-    BASENAME="$(basename $IMAGE)"
+    BASENAME="$(basename "$IMAGE")"
     read -r width height <<< $(magick -ping "$IMAGE" -format "%w %h" info:)
     magick \
       -size ${width}x${height} xc:none \
