@@ -8,16 +8,21 @@ magenta=$'\e[1;35m'
 cyan=$'\e[1;36m'
 white=$'\e[0m'
 
-function log () {
-  echo "🟢 [$(date +'%H:%M:%S')] $1"
+# -----------------------------------------------
+# Utility Functions
+# -----------------------------------------------
+
+function trim () {
+  awk '{$1=$1};1'
 }
 
-function log_warning () {
-  echo "🟡 [$(date +'%H:%M:%S')] $1"
-}
-
-function log_error () {
-  echo >&2 "🔴 [$(date +'%H:%M:%S')] $1"
+function is_integer() {
+    local string=$1
+    if [[ $string =~ ^-?[0-9]+$ ]]; then
+        return 0  # True
+    else
+        return 1  # False
+    fi
 }
 
 # https://stackoverflow.com/a/17841619/971329
@@ -40,6 +45,7 @@ function log_warning () {
 function log_error () {
   echo >&2 "🚨 [$(date +'%H:%M:%S')] $1"
 }
+
 function loadEnvironment () {
   # Ignores commented lines
   ENV_FILE="$(dirname "$0")/../.env"
@@ -66,10 +72,6 @@ function checkInstalledImageMagick () {
   }
 }
 
-function trim () {
-  awk '{$1=$1};1'
-}
-
 function mdsee() { 
     HTMLFILE="$(mktemp -u).html"
     jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' "$1" | \
@@ -81,19 +83,30 @@ function mdsee() {
 # Create and commit changelog item
 function cci() {
   if [[ -z $1 ]]; then
-    echo "Please provide a changelog title / issue number combination in the format <title #number>. Exit." && return
+    log_error "Please provide a changelog title / issue number combination in the format <title #number>."
+    return
   fi
 
   title=$(echo $1 | sed 's/ #[0-9]*$//')
   number=$(echo $1 | sed 's/.*#//')
   account=$(git config github.user)
 
+  if ! is_integer "$number"; then
+    log_error "The PR number '$number' is not a valid integer."
+    return
+  fi
+
+  if [[ -z $account ]]; then
+    log_error "Please specify your GitHub username either globally using$green git config --global github.user \"<username>\"$white or locally for only the current checkout using$green git config --local github.user \"<username>\"$white."
+    return
+  fi
+
   while true; do
     printf 'Is the account name "%s" correct? [Y/n]: ' "$green$account$white"
     read yn
     case $yn in
       [Nn]* ) 
-              echo "Please add your GitHub username to the local config using the following account and run the command again:$green git config --local github.user \<username\>"
+              log_error "Please add your GitHub username to the local config using the following account and run the command again:$green git config --local github.user \<username\>"
               return;;
 
           * ) 
