@@ -1,5 +1,6 @@
 # Aerospace Guide: https://nikitabobko.github.io/AeroSpace/guide
-# Aerospace Repo: https://github.com/nikitabobko/AeroSpace
+# Repo: https://github.com/nikitabobko/AeroSpace
+# Goodies: https://nikitabobko.github.io/AeroSpace/goodies
 
 # It's not necessary to copy all keys to your config.
 # If the key is missing in your config, "default-config.toml" will serve as a fallback
@@ -24,7 +25,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 15
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -88,32 +89,14 @@ outer.right = 12
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-ctrl-alt-shift-left = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
-cmd-ctrl-alt-shift-down = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
-cmd-ctrl-alt-shift-up = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
-cmd-ctrl-alt-shift-right = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#move
-# cmd-ctrl-alt-shift-h = 'move left'
-# cmd-ctrl-alt-shift-j = 'move down'
-# cmd-ctrl-alt-shift-k = 'move up'
-# cmd-ctrl-alt-shift-l = 'move right'
-
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
 alt-b = 'workspace B' # browser
 alt-d = 'workspace D' # development
 alt-e = 'workspace E' # finder
+alt-l = 'workspace L' # Learning
 alt-n = 'workspace N' # notes
 alt-t = 'workspace T' # terminal
 
@@ -121,15 +104,10 @@ alt-t = 'workspace T' # terminal
 cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
 cmd-ctrl-alt-shift-2 = 'move-node-to-workspace 2'
 cmd-ctrl-alt-shift-3 = 'move-node-to-workspace 3'
-cmd-ctrl-alt-shift-4 = 'move-node-to-workspace 4'
-cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
-cmd-ctrl-alt-shift-6 = 'move-node-to-workspace 6'
-cmd-ctrl-alt-shift-7 = 'move-node-to-workspace 7'
-cmd-ctrl-alt-shift-8 = 'move-node-to-workspace 8'
-cmd-ctrl-alt-shift-9 = 'move-node-to-workspace 9'
 cmd-ctrl-alt-shift-b = 'move-node-to-workspace B'
 cmd-ctrl-alt-shift-d = 'move-node-to-workspace D'
 cmd-ctrl-alt-shift-e = 'move-node-to-workspace E'
+cmd-ctrl-alt-shift-l = 'move-node-to-workspace L'
 cmd-ctrl-alt-shift-n = 'move-node-to-workspace N'
 cmd-ctrl-alt-shift-t = 'move-node-to-workspace T'
 
@@ -141,16 +119,46 @@ alt-tab = 'workspace-back-and-forth'
 cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-ctrl-alt-shift-semicolon = 'mode service'
+cmd-ctrl-alt-shift-0 = 'mode service'
 cmd-ctrl-alt-shift-x = 'mode resize'
+cmd-ctrl-alt-shift-m = 'mode move'
+
+# Move window to monitor
+# See https://nikitabobko.github.io/AeroSpace/commands#move-node-to-monitor 
+cmd-ctrl-alt-shift-pageUp = 'move-node-to-monitor next --wrap-around --focus-follows-window'
+cmd-ctrl-alt-shift-pageDown = 'move-node-to-monitor prev --wrap-around --focus-follows-window'
+
+# Focus window
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+cmd-ctrl-alt-shift-left = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
+cmd-ctrl-alt-shift-down = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
+cmd-ctrl-alt-shift-up = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
+cmd-ctrl-alt-shift-right = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
+
+[mode.move.binding]
+
+# Join Windows
+# See https://nikitabobko.github.io/AeroSpace/commands#join-with
+cmd-ctrl-alt-shift-left = ['join-with left', 'mode main']
+cmd-ctrl-alt-shift-down = ['join-with down', 'mode main']
+cmd-ctrl-alt-shift-up = ['join-with up', 'mode main']
+cmd-ctrl-alt-shift-right = ['join-with right', 'mode main']
+
+# Move Window
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+alt-shift-left = 'move left'
+alt-shift-down = 'move down'
+alt-shift-up = 'move up'
+alt-shift-right = 'move right'
+
+esc = 'mode main'
 
 [mode.resize.binding]
-h = 'resize width -50'
-j = 'resize height +50'
-k = 'resize height -50'
-l = 'resize width +50'
+left = 'resize width -50'
+up = 'resize height +50'
+down = 'resize height -50'
+right = 'resize width +50'
 b = 'balance-sizes'
-
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
@@ -162,6 +170,7 @@ esc = 'mode main'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
+
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -170,11 +179,6 @@ f = [
     'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
-
-cmd-ctrl-alt-shift-left = ['join-with left', 'mode main']
-cmd-ctrl-alt-shift-down = ['join-with down', 'mode main']
-cmd-ctrl-alt-shift-up = ['join-with up', 'mode main']
-cmd-ctrl-alt-shift-right = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
@@ -185,8 +189,20 @@ if.app-id = 'com.apple.dt.Xcode'
 run = "move-node-to-workspace D"
 
 [[on-window-detected]]
+if.app-id = 'com.sublimemerge'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iphonesimulator'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = "move-node-to-workspace E"
+
+[[on-window-detected]]
+if.app-id = 'developer.apple.wwdc-Release'
+run = "move-node-to-workspace L"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
@@ -214,10 +230,6 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'developer.apple.wwdc-Release'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
