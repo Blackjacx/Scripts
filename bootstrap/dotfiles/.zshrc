@@ -118,6 +118,17 @@ export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_P
 # Mise compatibility
 export FZF_BASE="${HOME}/.local/share/mise/installs/fzf/0"
 
+# Check if the $TMUX environment variable is set and not empty
+# ${TMUX:-} gives a default empty string if unset — so it won’t crash when using `set -u`.
+# -n tests for non-empty
+if [ -n "${TMUX:-}" ]; then
+    # We are in tmux, so run fzf-tmux in poopup mode
+    alias fzf="fzf-tmux -p90%,70%"
+else
+    # We are not in tmux, so run fzf normally
+    unalias fzf
+fi
+
 # no sorting
 # zstyle ':completion:complete:*:options' sort false
 # show preview when using cd
