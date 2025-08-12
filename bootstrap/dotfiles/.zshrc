@@ -331,8 +331,7 @@ source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
 eval "$(rbenv init - zsh)"
 
 # zoxide
-command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
-
+command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh --cmd cd)"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
