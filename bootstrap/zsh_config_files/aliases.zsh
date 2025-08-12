@@ -5,10 +5,10 @@
 # generate strong passphrase using bitwarden-cli (deprecated because slow)
 # alias pwg="bw generate -p --capitalize --words 8 --includeNumber"
 pwg() {
-  printf '%s%s%s' \
-    "$(shuf -i 0-9 -n 1)" \
-    "$(xkcdpass --numwords 8 --delimiter '-' --case alternating)" \
-    "$(shuf -i 0-9 -n 1)"
+    printf '%s%s%s' \
+        "$(shuf -i 0-9 -n 1)" \
+        "$(xkcdpass --numwords 8 --delimiter '-' --case alternating)" \
+        "$(shuf -i 0-9 -n 1)"
 }
 
 #-------------------------------------------------------------------------------
@@ -16,12 +16,12 @@ pwg() {
 #-------------------------------------------------------------------------------
 
 # List branches created by me
-alias gbm="git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)""
+alias gbm='git branch -r | xargs -L1 git --no-pager show -s --oneline --author="$(git config user.name)"'
 alias gb="git --no-pager branch"
-# Prevent adding comments to git commit message file 
-# (removes --verbose). This triggers the git hook that prevents 
-# commmitting on failing  commit message lint. It also checks the 
-# comments whcih is wrong of course. Whenever the hook is fixed this 
+# Prevent adding comments to git commit message file
+# (removes --verbose). This triggers the git hook that prevents
+# commmitting on failing  commit message lint. It also checks the
+# comments whcih is wrong of course. Whenever the hook is fixed this
 # can be removed again.
 alias gc="git commit"
 alias gcfu="git commit --fixup"
@@ -33,8 +33,9 @@ alias gst="git status -sb"
 # Git add all and continue rebase
 alias gac="git add . && git rebase --continue"
 
-greload () {
-  local current_branch=$(git branch --show-current) && git switch develop && git branch -D $current_branch && git checkout $current_branch && git pull
+greload() {
+    local current_branch
+    current_branch="$(git branch --show-current)" && git switch develop && git branch -D "$current_branch" && git checkout "$current_branch" && git pull
 }
 
 gupdate () {
@@ -58,49 +59,48 @@ gupdate () {
 
 # Checkout branch selected by browsing using fuzzy finder.
 # - shown in a popup window when using tmux
-gcof () {
-  [[ ! -d ".git" ]] && return
+gcof() {
+    [[ ! -d ".git" ]] && return
 
-  # IFS: split branches output at line break character
-  # sed: replace everything up to and including last occurence of "origin/" by empty string
-  # sed: delete lines starting with '*' (current branch)
-  # awk: trim spaces
-  IFS=$'\n' branches=($(git branch -a | sed 's/.*origin\///' | sed '/^*/d' | awk '{$1=$1};1' | sort -u | uniq))
+    # IFS: split branches output at line break character
+    # sed: replace everything up to and including last occurence of "origin/" by empty string
+    # sed: delete lines starting with '*' (current branch)
+    # awk: trim spaces
+    IFS=$'\n' branches=($(git branch -a | sed 's/.*origin\///' | sed '/^*/d' | awk '{$1=$1};1' | sort -u | uniq))
 
-
-  if [[ -z $TMUX ]]; then
-    branch=$(printf '%s\n' "${branches[@]}" | fzf)
-  else 
-    branch=$(printf '%s\n' "${branches[@]}" | fzf-tmux -p)
-  fi
-  git checkout "$branch"
+    if [[ -z $TMUX ]]; then
+        branch=$(printf '%s\n' "${branches[@]}" | fzf)
+    else
+        branch=$(printf '%s\n' "${branches[@]}" | fzf-tmux -p)
+    fi
+    git checkout "$branch"
 }
 
 # Show commit difference to parent branch
 # - https://stackoverflow.com/a/42562318/971329
 glogp() {
-  git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 $(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
+    git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 $(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
 }
 
 # Create fixup commit for stashed changes (git commit fixup fzf)
 gcfuf() {
-  message="Please select a commit hash"
-  glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
+    message="Please select a commit hash"
+    glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
 }
 
-# Fixup directly into the selected git hash (Git Commit FixUp Fzf AutoSquash)
-#                                            ^   ^      ^  ^  ^   ^   ^
-#                                            g   c      f  u  f   a   s
-gcfufas () {
-  message="Please select a commit hash"
-  hash=$(glogd | fzf-tmux -p90%,70% --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | trim)
-  if [[ -z $hash ]]; then
-      echo "No git hash provided. Exit."
-  else
-    echo "Selected hash: \"$hash\""
-    git commit --fixup "$hash"
-    git rebase --autosquash "$hash"~1
-  fi
+# TODO: Find a shorter and more memorable alias
+#
+# Fixup directly into the selected git hash ([G]it [C]ommit [F]ix [U]p [F]zf [A]utoSquash)
+gcfufas() {
+    message="Please select a commit hash"
+    hash=$(glogd | fzf-tmux -p90%,70% --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | trim)
+    if [[ -z $hash ]]; then
+        echo "No git hash provided. Exit."
+    else
+        echo "Selected hash: \"$hash\""
+        git commit --fixup "$hash"
+        git rebase --autosquash "$hash"~1
+    fi
 }
 
 #-------------------------------------------------------------------------------
@@ -115,42 +115,41 @@ alias images="http://placehold.it/150x350"
 alias sm="smerge ."
 # Search hidden files and ignore some uninteresting folders - good for searching from home dir
 alias ag="ag -i --hidden --skip-vcs-ignores --ignore-dir={\".tmp/*\",\"*Library*\",\"*.gem*\",\"*.build*\",\".git\",\"*bundle*\",\"*.zsh_history*\"}"
-alias sz="source ${HOME}/.zshrc"
+alias sz='source ${HOME}/.zshrc'
 alias c="clear && tmux clear-history" # clear scrollback buffer and history
 
 #-------------------------------------------------------------------------------
 # GitHub
 #-------------------------------------------------------------------------------
 
-
 #-------------------------------------------------------------------------------
 # iOS Simulator Automation
 #-------------------------------------------------------------------------------
 
 sim-select() {
-  local json=$(xcrun simctl list devices --json)
-  
-  local runtime=$(echo $json | jq '.devices | keys_unsorted | .[]' | fzf-tmux --header "Please select a runtime:" -p)
-  if [ -z "$runtime" ]; then
-    return
-  fi
-  
-  local sim=$(echo $json | jq '.devices.'"$runtime"'.[].name' | fzf-tmux --header "Please select a simulator:" -p)
-  if [ -z "$sim" ]; then
-    return
-  fi
+    local json=$(xcrun simctl list devices --json)
 
-  echo $json | jq -r '.devices.'"$runtime"'.[] | select(.name == '"$sim"').udid'
+    local runtime=$(echo $json | jq '.devices | keys_unsorted | .[]' | fzf-tmux --header "Please select a runtime:" -p)
+    if [ -z "$runtime" ]; then
+        return
+    fi
+
+    local sim=$(echo $json | jq '.devices.'"$runtime"'.[].name' | fzf-tmux --header "Please select a simulator:" -p)
+    if [ -z "$sim" ]; then
+        return
+    fi
+
+    echo $json | jq -r '.devices.'"$runtime"'.[] | select(.name == '"$sim"').udid'
 }
 
 sim-boot() {
-  xcrun simctl boot "$(sim-select)"
+    xcrun simctl boot "$(sim-select)"
 }
 
 sim-set-lang() {
-  xcrun simctl list -j "devices" | 
-    jq -r '.devices | map(.[])[].udid' | 
-    parallel 'xcrun simctl boot {}; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLanguages -array en_BZ; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLocale -string en_BZ; xcrun simctl shutdown {}'
+    xcrun simctl list -j "devices" |
+        jq -r '.devices | map(.[])[].udid' |
+        parallel 'xcrun simctl boot {}; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLanguages -array en_BZ; xcrun simctl spawn {} defaults write "Apple Global Domain" AppleLocale -string en_BZ; xcrun simctl shutdown {}'
 }
 
 # https://egeek.me/2021/06/12/how-to-save-and-restore-application-data-on-ios-simulator-quickly/
@@ -248,11 +247,11 @@ sim-app-backup-or-restore() {
 }
 
 sim-app-backup() {
-  sim-app-backup-or-restore backup $1
+    sim-app-backup-or-restore backup $1
 }
 
 sim-app-restore() {
-  sim-app-backup-or-restore restore $1
+    sim-app-backup-or-restore restore $1
 }
 
 #-------------------------------------------------------------------------------
@@ -290,7 +289,7 @@ alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME
 #-------------------------------------------------------------------------------
 
 alias tw="timew"
-alias twby="timew balance 2023-11-13 - today" # balance from the beginning of all records (not including current day)
+alias twby="timew balance 2023-11-13 - today"   # balance from the beginning of all records (not including current day)
 alias twb="timew balance 2023-11-13 - tomorrow" # balance from the beginning of all records (including today)
 alias tws="timew summary :day :ids :annotations"
 alias twsf="tw balance ioki 2023-11-13 - tomorrow && tws" # "tws full"
@@ -306,17 +305,17 @@ alias twm="timew month summary :ids rc.reports.month.hours=auto"
 alias df="df -h"
 
 if command -v eza >/dev/null 2>&1; then
-  alias la="eza --all --header --long --icons=always --color=always"
-  alias tree="eza --tree"
-else 
-  alias la="ls -lahF"
-  alias tree="ls --tree"
+    alias la="eza --all --header --long --icons=always --color=always"
+    alias tree="eza --tree"
+else
+    alias la="ls -lahF"
+    alias tree="ls --tree"
 fi
 
-if command -v bat > /dev/null 2>&1; then
-  alias cat="bat --paging=never"
-elif command -v batcat > /dev/null 2>&1; then
-  alias cat="batcat"
+if command -v bat >/dev/null 2>&1; then
+    alias cat="bat --paging=never"
+elif command -v batcat >/dev/null 2>&1; then
+    alias cat="batcat"
 fi
 alias cd="z"
 alias cddb="cd ${HOME}/dev/projects/db/beiwagen-1"
@@ -327,17 +326,16 @@ alias cdtemp='cd "$(mktemp -d)"'
 alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview 'bat {}' | xargs nvim"
 alias n="nvim"
 
-brewinfo () { 
-  # update homebrew-packages.json using `brew info --json=v2 --eval-all > ~/homebrew-packages.json`
-  cat ~/homebrew-packages.json \
-      | jq -r '[.formulae.[].name, .casks.[].token].[]' \
-      | fzf --cycle --tmux --preview 'brew info {}' --color bg:#222222,preview-bg:#333333 --info=inline-right --ellipsis=… --tabstop=4 --highlight-line 
+brewinfo() {
+    # update homebrew-packages.json using `brew info --json=v2 --eval-all > ~/homebrew-packages.json`
+    cat ~/homebrew-packages.json |
+        jq -r '[.formulae.[].name, .casks.[].token].[]' |
+        fzf --cycle --tmux --preview 'brew info {}' --color bg:#222222,preview-bg:#333333 --info=inline-right --ellipsis=… --tabstop=4 --highlight-line
 }
 
 #-------------------------------------------------------------------------------
 # Temporary Fixes
 #-------------------------------------------------------------------------------
-
 
 #-------------------------------------------------------------------------------
 # Remove alias rm -i to get rid of interactivity
