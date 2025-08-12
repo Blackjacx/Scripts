@@ -333,6 +333,18 @@ alias cdtemp='cd "$(mktemp -d)"'
 alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview 'bat {}' | xargs nvim"
 alias n="nvim"
 
+# -----------------------------------------------
+# Ruby Gems
+# -----------------------------------------------
+#
+alias bu='bundle update'
+alias bi='bundle install'
+alias be='bundle exec'
+
+# -----------------------------------------------
+# Homebrew
+# -----------------------------------------------
+
 brewinfo() {
     # update homebrew-packages.json using `brew info --json=v2 --eval-all > ~/homebrew-packages.json`
     cat ~/homebrew-packages.json |
