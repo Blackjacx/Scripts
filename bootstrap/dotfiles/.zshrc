@@ -328,8 +328,7 @@ source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
 # echo 'eval "$(atuin init zsh)"' >> ~/.zshrceval "$(atuin init zsh)"
 
 # rbenv
-eval "$(rbenv init - zsh)"
-
+command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init - zsh)"
 # zoxide
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh --cmd cd)"
 
