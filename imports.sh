@@ -25,6 +25,21 @@ function join_by {
   local IFS="$1"; shift; echo "$*"; 
 }
 
+# -----------------------------------------------
+# Logging Functions
+# -----------------------------------------------
+
+function log () {
+  echo "✅ [$(date +'%H:%M:%S')] $1"
+}
+
+function log_warning () {
+  echo "⚠️ [$(date +'%H:%M:%S')] $1"
+}
+
+function log_error () {
+  echo >&2 "🚨 [$(date +'%H:%M:%S')] $1"
+}
 function loadEnvironment () {
   # Ignores commented lines
   ENV_FILE="$(dirname "$0")/../.env"
