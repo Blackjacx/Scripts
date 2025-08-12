@@ -324,9 +324,6 @@ source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
 # Load tools for ZSH
 #-------------------------------------------------------------------------------
 
-# atuin
-# echo 'eval "$(atuin init zsh)"' >> ~/.zshrceval "$(atuin init zsh)"
-
 # rbenv
 command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init - zsh)"
 # zoxide
