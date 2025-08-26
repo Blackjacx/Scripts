@@ -1,3 +1,5 @@
+-- Fugitive is the premier Vim plugin for Git.
+-- It integrates Git commands directly into the Vim text editor.
 return {
 	"tpope/vim-fugitive",
 	dependencies = {
