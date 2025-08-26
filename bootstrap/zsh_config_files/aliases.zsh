@@ -43,6 +43,8 @@ alias greload='git fetch origin && git reset --hard origin/$(git rev-parse --abb
 #     local current_branch
 #     current_branch="$(git branch --show-current)" && git switch develop && git branch -D "$current_branch" && git checkout "$current_branch" && git pull
 # }
+
+# Pulls the specified branch and deletes all branches that have been merged / deleted on remote.
 gupdate() {
     local branch="${1:-}"
     if [ -z "$branch" ]; then
