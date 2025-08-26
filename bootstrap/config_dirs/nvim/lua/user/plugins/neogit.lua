@@ -1,3 +1,4 @@
+-- An interactive and powerful Git interface for Neovim.
 return {
 	"NeogitOrg/neogit",
 	dependencies = {
