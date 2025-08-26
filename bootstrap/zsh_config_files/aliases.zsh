@@ -32,12 +32,13 @@ alias glog="git --no-pager log --oneline --decorate"
 alias gst="git status -sb"
 # Git add all and continue rebase
 alias gac="git add . && git rebase --continue"
-
-greload() {
-    local current_branch
-    current_branch="$(git branch --show-current)" && git switch develop && git branch -D "$current_branch" && git checkout "$current_branch" && git pull
-}
-
+# New alias for setting back the current branch. It is faster than defining the function below.
+alias greload='git fetch origin && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
+# TODO: DEPRECATED: Delete when alias above is working well.
+# greload() {
+#     local current_branch
+#     current_branch="$(git branch --show-current)" && git switch develop && git branch -D "$current_branch" && git checkout "$current_branch" && git pull
+# }
 gupdate() {
     local branch="${1:-}"
     if [ -z "$branch" ]; then
