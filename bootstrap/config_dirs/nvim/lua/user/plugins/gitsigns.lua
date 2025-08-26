@@ -1,3 +1,5 @@
+-- Provides a lightweight, performant, and feature-rich way to show
+-- Git changes within your editor.
 return {
 	"lewis6991/gitsigns.nvim",
 	enable = true,
