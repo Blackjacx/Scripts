@@ -1,3 +1,5 @@
+-- Allows to launch and interact with lazygit—a powerful, terminal-based
+-- Git user interface (TUI)—from directly within Neovim.
 return {
 	"kdheepak/lazygit.nvim",
 	cmd = {
