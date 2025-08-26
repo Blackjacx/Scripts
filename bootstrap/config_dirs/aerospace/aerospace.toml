@@ -181,6 +181,34 @@ f = [
 backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
+if.app-id = 'com.apple.reminders'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'org.keepassxc.keepassxc'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = "move-node-to-workspace B"
 
@@ -215,27 +243,3 @@ run = "move-node-to-workspace N"
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace T"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.reminders'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'org.keepassxc.keepassxc'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iCal'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace 2"
