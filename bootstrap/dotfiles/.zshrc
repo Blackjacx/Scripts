@@ -96,6 +96,7 @@ plugins=(
   zsh-autosuggestions
   # fzf # tab-completion does not work when this is enabled
   fzf-tab
+  you-should-use
 )
 
 # User configuration
