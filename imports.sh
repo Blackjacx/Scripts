@@ -126,7 +126,7 @@ function cci() {
           * ) 
               echo "$entry" > "changelog/$number.md"
               git add "changelog/$number.md"
-              git commit -m "Add Changelog Item"
+              git commit -m "chore: add changelog item"
               git push
               break;;
     esac
