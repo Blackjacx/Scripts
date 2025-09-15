@@ -114,9 +114,10 @@ cmd-ctrl-alt-shift-t = 'move-node-to-workspace T'
 cmd-ctrl-alt-shift-f = 'fullscreen --no-outer-gaps'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+# alt-tab = 'workspace-back-and-forth'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+# cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-ctrl-alt-shift-0 = 'mode service'
