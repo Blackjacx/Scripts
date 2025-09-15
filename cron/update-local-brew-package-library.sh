@@ -6,4 +6,4 @@
 #
 # `0 8 * * * /Users/stherold/dev/scripts/update-local-brew-package-library.sh`
 
-brew info --json=v2 --eval-all >~/homebrew-packages.json
+brew info --json=v2 --eval-all 2>/dev/null > ~/homebrew-packages.json
