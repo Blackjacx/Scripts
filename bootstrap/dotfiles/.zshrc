@@ -254,7 +254,8 @@ setopt HIST_EXPIRE_DUPS_FIRST                         # Expire duplicate entries
 setopt HIST_REDUCE_BLANKS                             # Tidy up the line when it is entered into the history by removing any excess blanks that mean nothing to the shell. This can also mean that the line becomes a duplicate of a previous one even if it would not have been in its untidied form. It is smart enough not to remove blanks which are important, i.e. are quoted.
 setopt HIST_IGNORE_SPACE                              # A useful trick to prevent particular entries from being recorded into a history by preceding them with at least one space.
 setopt APPEND_HISTORY                                 # Allows appending the new history to the old
-setopt INC_APPEND_HISTORY                             # Write to the history file immediately, not when the shell exits.
+# Don't enable when SHARE_HIST is enabled: https://askubuntu.com/a/23631
+# setopt INC_APPEND_HISTORY                             # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY                                  # Share history between all sessions.
 setopt NO_HIST_BEEP                                   # If you try to scroll up or down beyond the end of the history list, the shell will beep. It is on by default, so use NO_HIST_BEEP to turn it off.
 setopt HIST_VERIFY                                    # Don't execute immediately upon history expansion.
