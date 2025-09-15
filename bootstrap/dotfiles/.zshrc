@@ -96,7 +96,6 @@ plugins=(
   zsh-autosuggestions
   # fzf # tab-completion does not work when this is enabled
   fzf-tab
-  brew
 )
 
 # User configuration
