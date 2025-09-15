@@ -62,10 +62,11 @@ sudo mdutil -E /
 log "Reload Core Audio"
 sudo kill -9 "$(pgrep 'coreaudio[a-z]' | awk '{print $1}')"
 
-log "Create huge file and delete it again to re-claim hidden space from the system."
-file="$(mktemp -d)/DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
-mkfile 200G "$file"
-rm -rf "$file"
+# The below does not seem to be necessary naymore.
+# log "Create huge file and delete it again to re-claim hidden space from the system."
+# file="$(mktemp -d)/DELETE_THIS_DUMMY_FILE_TO_FREE_UP_SPACE.txt"
+# mkfile 200G "$file"
+# rm -rf "$file"
 
 ##
 ## The following is highly experimental!!!
