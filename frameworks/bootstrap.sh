@@ -36,6 +36,7 @@ function download_config_files {
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Fastfile -o ./fastlane/Fastfile --create-dirs
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/Pluginfile -o ./fastlane/Pluginfile --create-dirs
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/gh-actions/spm-only-test.yml -o ./.github/workflows/test.yml --create-dirs
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/gh-actions/auto-assign-to-project.yml -o ./.github/workflows/auto-assign-to-project.yml --create-dirs
 
   # Do not use custom script since Swift Package Index can host the docs automatically
   #curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/Blackjacx/Scripts/main/frameworks/make-docc-documentation.sh -o ./scripts/make-docc-documentation.sh --create-dirs
