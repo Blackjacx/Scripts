@@ -225,6 +225,10 @@ if.app-id = 'com.apple.iphonesimulator'
 run = "move-node-to-workspace D"
 
 [[on-window-detected]]
+if.app-id = 'com.github.CopilotForXcode.ExtensionService'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = "move-node-to-workspace E"
 
