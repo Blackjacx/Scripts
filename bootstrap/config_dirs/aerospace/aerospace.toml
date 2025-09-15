@@ -178,7 +178,7 @@ f = [
     'layout floating tiling',
     'mode main',
 ] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+# backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.reminders'
