@@ -9,5 +9,5 @@ updates:
     schedule:
       interval: "weekly"
     assignees:
-      - "blackjacx"
+      - "Blackjacx"
     open-pull-requests-limit: 20 # Limit the number of open PRs
