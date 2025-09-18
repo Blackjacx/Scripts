@@ -68,32 +68,32 @@ sudo kill -9 "$(pgrep 'coreaudio[a-z]' | awk '{print $1}')"
 # mkfile 200G "$file"
 # rm -rf "$file"
 
-##
-## The following is highly experimental!!!
-## It is used to automatically delete iOS device support files and keeps
-## the two most recent versions. Those are one of the biggest space
-## killers on a Mac.
-##
+# ====================================================================================================================
+# The following is highly experimental!!!
+#
+# It is used to automatically delete iOS device support files and keeps
+# the 3 most recent versions. Those are one of the biggest space
+# killers on a Mac.
+# ====================================================================================================================
 
-# set -euo pipefail
+delete_unused_device_support_files() {
+    local device_support_folder=~/Library/Developer/Xcode/iOS\ DeviceSupport/
+    log "The following device support files exist:"
+    printf '%s\n\n' "$(ls -1 "$device_support_folder")"
 
-# 1: find all versions (folders) currently installed
-# 2: reverse sort folders - use file name major version as key
-# folders=$(find ${HOME}/Library/Developer/Xcode/iOS\ DeviceSupport -type d -d 1 | sort -t. -nr)
+    # Keeps device support files of latest 3 versions.
+    # 1: find all versions (folders) currently installed
+    # 2: extract the version number
+    # 3: reverse sort folders - use file name major version as key
+    # 4: keep the first 3
+    local keep
+    keep="$(ls -1 "$device_support_folder" | cut -d' ' -f2 | sort -unrt. | head -3)"
+    log "Keep the following versions:"
+    printf '%s\n\n' "${keep[*]}"
 
-# 1: filter latest 2 major versions
-# 2: remove path components after the version number
-# 3: trim trailing whitespaces
-# keep=$(echo "${folders[*]}" \
-    #   | awk -F. 'a[$1]++<1' \
-    #   | cut -d'(' -f1 \
-    #   | sed 's/ *$//g' \
-    #   | head -2 \
-    #   | paste -s -d '|' -)
-# echo "${folders[*]}" | grep -vE $keep
-# echo "-----"
-# echo "${folders[*]}"
-# echo "-----"
-# echo "${keep}"
-
-
+    local purge
+    purge=$(find "$device_support_folder" -type d -d 1 | grep -vE "$keep")
+    log "Purge the following folders:"
+    printf '%s\n\n' "${purge[*]}"
+}
+delete_unused_device_support_files
