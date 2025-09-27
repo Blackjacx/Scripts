@@ -87,7 +87,11 @@ gcof() {
 # Show commit difference to parent branch
 # - https://stackoverflow.com/a/42562318/971329
 glogp() {
-    git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=iso8601 $(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
+    git --no-pager \
+        log --graph \
+        --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' \
+        --date=iso8601 \
+        $(git show-branch | grep -F '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
 }
 
 # Create fixup commit for stashed changes (git commit fixup fzf)
