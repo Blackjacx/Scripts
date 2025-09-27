@@ -172,7 +172,7 @@ cask "sublime-merge"
 cask "sublime-text"
 cask "supercollider"                              # An audio server, programming language, and IDE for sound synthesis and algorithmic composition.
 cask "swiftformat-for-xcode"
-cask "syntax-highlight"
+cask "syntax-highlight", args: { no_quarantine: true }
 cask "telegram"
 cask "tex-live-utility"                           # TeX Live Utility, a Mac OS GUI for the TeX Live Manager
 # cask "texshop"                                  # switched off since quite big - re-enable when needed
