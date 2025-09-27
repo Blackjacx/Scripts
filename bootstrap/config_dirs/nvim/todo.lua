@@ -14,7 +14,6 @@
 -- ./bootstrap/config_dirs/nvim/lua/user/plugins/neogit.lua
 -- ./bootstrap/config_dirs/nvim/lua/user/plugins/nvim-treesitter-text-objects.lua
 -- ./bootstrap/config_dirs/nvim/lua/user/plugins/nvim-surround.lua
--- ./bootstrap/config_dirs/nvim/lua/user/plugins/nerdy.lua
 -- ./bootstrap/config_dirs/nvim/lua/user/plugins/lazygit.lua
 
 -- TODO: Checkout the following prebuild nvim configs (see how they can be installed in parallel: https://michaeluloth.com/neovim-switch-configs/):
