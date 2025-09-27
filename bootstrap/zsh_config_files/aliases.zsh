@@ -347,14 +347,6 @@ alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview '
 alias n="nvim"
 
 # -----------------------------------------------
-# Ruby Gems
-# -----------------------------------------------
-#
-alias bu='bundle update'
-alias bi='bundle install'
-alias be='bundle exec'
-
-# -----------------------------------------------
 # Homebrew
 # -----------------------------------------------
 
