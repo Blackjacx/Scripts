@@ -311,6 +311,48 @@ alias twd="timew day summary :ids rc.reports.day.hours=auto"
 alias tww="timew week summary :ids rc.reports.week.hours=auto"
 alias twm="timew month summary :ids rc.reports.month.hours=auto"
 
+# Wraps timewarrior into FZF so we can conveniently build our command using fuzzy search
+twf() {
+    local sub_commands=(retag start stop continue join split modify)
+
+    local selected_command
+    selected_command=$(printf '%s\n' "${sub_commands[@]}" | fzf --header "Please select a sub command:")
+
+    case $selected_command in
+    start)
+        # selected_line=$(timew export ioki | jq -r '.[] | .tags | join(" ")' | sort -u | fzf --header "Please select your desired tags:")
+        # Force split on spaces. (@s/ /) → split on spaces.
+        # shellcheck disable=SC2296
+        selected_line="$(
+            timew export ioki |
+                jq -r '.[] | .tags | join(" ")' |
+                sort -u |
+                fzf --header "Please select your desired tags:"
+        )"
+        IFS=' ' read -rA selected_tags <<<"$selected_line"
+        printf "You selected a total of %d tags (%s)\n" "${#selected_tags[@]}" "${selected_tags[*]}"
+
+        if [ -z "${selected_tags:-}" ]; then
+            echo "⚠️ Please Select valid tags."
+            return
+        fi
+        timew start "${selected_tags[@]}"
+        ;;
+    stop)
+        timew stop
+        ;;
+    continue)
+        timew continue
+        ;;
+    retag) ;;
+    join) ;;
+    split) ;;
+    modify) ;;
+    *)
+        IFS=',' echo "⚠️ Select a valid sub command from: ${sub_commands[*]}"
+        ;;
+    esac
+}
 #-------------------------------------------------------------------------------
 # File System
 #-------------------------------------------------------------------------------
