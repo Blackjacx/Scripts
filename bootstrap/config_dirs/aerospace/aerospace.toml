@@ -261,5 +261,9 @@ if.app-id = 'com.apple.Notes'
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]
+if.app-id = 'com.sublimetext.4'
+run = "move-node-to-workspace N"
+
+[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace T"
