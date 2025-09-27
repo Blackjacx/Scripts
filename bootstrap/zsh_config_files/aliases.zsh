@@ -105,7 +105,7 @@ gcfuf() {
 # Fixup directly into the selected git hash ([G]it [C]ommit [F]ix [U]p [F]zf [A]utoSquash)
 gcfufas() {
     message="Please select a commit hash"
-    hash=$(glogd | fzf-tmux -p90%,70% --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | trim)
+    hash=$(git --no-pager log --oneline --pretty='%h - %s' develop.. | fzf-tmux -p90%,70% --ghost "$message" --info=inline | cut -d '-' -f1 | trim)
     if [[ -z $hash ]]; then
         echo "No git hash provided. Exit."
     else
