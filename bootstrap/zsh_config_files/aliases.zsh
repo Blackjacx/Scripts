@@ -280,12 +280,13 @@ alias icloud-kill="killall cloudd"
 alias swiftb='swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15"'
 alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 # Not correct according to https://lapcatsoftware.com/articles/DerivedData.html
-# alias ddd="rm -rf ${HOME}/Library/Developer/Xcode/DerivedData"
+alias ddd='rm -rf ${HOME}/Library/Developer/Xcode/DerivedData'
+
 # Correct - including empty trash
 # alias 'ddd=osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash" -e "tell application \"Finder\" to empty trash"'
-#
+
 # Semi-correct - without emptying trash
-alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
+# alias ddd='osascript -e "tell application \"Finder\" to move POSIX file \"${HOME}/Library/Developer/Xcode/DerivedData\" to trash"'
 
 #-------------------------------------------------------------------------------
 # Task Warrior • Scrum Daily
