@@ -14,9 +14,16 @@ opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
 opt.shiftwidth = 4 -- 4 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+opt.smartindent = true -- make indenting smarter again
+
+-- Preview substitutions
+opt.inccommand = "split"
+
+opt.undofile = true -- enable persistent undo
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
+opt.breakindent = true -- Every wrapped line will continue visually indented
 -- opt.textwidth = 80
 opt.colorcolumn = "50,72,120" -- show visual columns at 50,72,120
 
@@ -49,6 +56,11 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
+
+-- Set the default border for all floating windows
+opt.winborder = "rounded"
+
+opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 
 opt.iskeyword:append("-") -- consider string-string as whole word
 
