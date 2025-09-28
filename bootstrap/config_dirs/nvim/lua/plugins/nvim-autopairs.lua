@@ -1,5 +1,7 @@
+-- A super powerful autopair plugin for Neovim that supports multiple characters.
 return {
 	"windwp/nvim-autopairs",
+	enabled = false, -- dissbled due to native integration of LPS in nvim 0.11+ (https://gpanders.com/blog/whats-new-in-neovim-0-11/#builtin-auto-completion)
 	event = { "InsertEnter" },
 	dependencies = {
 		"hrsh7th/nvim-cmp",
