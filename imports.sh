@@ -148,41 +148,53 @@ function asc_auth_header() {
 
 function collage() {
   cd "$(mktemp -d)"
-
-  # Round corers of input image
+  
+  # Array to store processed image arguments for montage
+  montage_args=()
+  
+  # Round corners of each input image
   for IMAGE in "${@[@]}"
   do
     BASENAME="$(basename "$IMAGE")"
     read -r width height <<< $(magick -ping "$IMAGE" -format "%w %h" info:)
+    
     magick \
       -size ${width}x${height} xc:none \
       -fill white \
       -draw "roundRectangle 0,0 ${width},${height} 50,50" "$IMAGE" \
       -compose SrcIn \
       -composite "$BASENAME"
+    
+    # Add to montage args with label
+    montage_args+=( \( "$BASENAME" -set label "$BASENAME" \) )
   done
-
-  # Make the collage
-  montage * \
-    -background none \
-    -shadow \
-    -geometry '+25+25' collage.heic
-
-  # Make gradient background
-  read -r width height <<< $(magick -ping "collage.heic" -format "%w %h" info:)
-  magick -size ${width}x${height} radial-gradient:#fffffe-lightgray "gradient.heic"
-
-  # Put collage on gradient background
-  composite -gravity center "collage.heic" "gradient.heic" "collage-gradient.heic"
   
-  # Round corers of final image
+  # Make the collage with captions
+  montage "${montage_args[@]}" \
+    -font Courier \
+    -pointsize 36 \
+    -fill black \
+    -background none \
+    -gravity South \
+    -shadow \
+    -geometry '+25+25' \
+    '01_collage.heic'
+  
+  # Make gradient background
+  read -r width height <<< $(magick -ping '01_collage.heic' -format "%w %h" info:)
+  magick -size ${width}x${height} radial-gradient:#fffffe-lightgray '02_gradient.heic'
+  
+  # Put collage on gradient background
+  composite -gravity center '01_collage.heic' '02_gradient.heic' '03_collage_gradient.heic'
+  
+  # Round corners of final image
   magick \
     -size ${width}x${height} xc:none \
     -fill white \
-    -draw "roundRectangle 0,0 ${width},${height} 50,50" "collage-gradient.heic" \
+    -draw "roundRectangle 0,0 ${width},${height} 50,50" '03_collage_gradient.heic' \
     -compose SrcIn \
-    -composite final.heic
-
+    -composite '04_final.heic'
+    
   echo "Find your files in \"$(pwd)\""
   cd -
 }
