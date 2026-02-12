@@ -232,9 +232,17 @@ configureSystem() {
         defaults write com.apple.dt.Xcode AutomaticallyCheckSpellingWhileTyping -bool YES
 
         #
+        # MS Teams
+        #
+
+        defaults write com.microsoft.office SendAllTelemetryEnabled -boolean false
+        defaults write com.microsoft.office DiagnosticDataTypePreference ZeroDiagnosticData
+        defaults write com.microsoft.autoupdate2 HowToCheck AutomaticDownload
+
+        #
         # Restart all affected apps
         #
-        for app in Safari Finder Dock Mail SystemUIServer iTerm2; do
+        for app in Safari Finder Dock Mail SystemUIServer iTerm2 MSTeams; do
             log "Killing $app"
             killall -HUP "$app"
         done
