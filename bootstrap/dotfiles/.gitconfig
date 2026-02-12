@@ -2,7 +2,7 @@
     excludesfile = ~/.gitignore
     mergeoptions = --no-edit
     pager = delta
-	editor = nvim -c startinsert
+    editor = nvim -c startinsert
 [interactive]
     diffFilter = delta --color-only
 [add.interactive]
