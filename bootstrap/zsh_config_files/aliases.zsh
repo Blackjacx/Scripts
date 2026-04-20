@@ -39,11 +39,6 @@ alias gst="git status -sb"
 alias gac="git add . && git rebase --continue"
 # New alias for setting back the current branch. It is faster than defining the function below.
 alias greload='git fetch origin && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
-# TODO: DEPRECATED: Delete when alias above is working well.
-# greload() {
-#     local current_branch
-#     current_branch="$(git branch --show-current)" && git switch develop && git branch -D "$current_branch" && git checkout "$current_branch" && git pull
-# }
 
 # Pulls the specified branch and deletes all branches that have been merged / deleted on remote.
 gupdate() {
@@ -278,7 +273,6 @@ alias icloud-kill="killall cloudd"
 #-------------------------------------------------------------------------------
 
 alias swiftb='swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.15"'
-alias sss='xcrun simctl io booted screenshot ${HOME}/Desktop/screenshots/`date +%Y-%m-%d.%H:%M:%S`.png'
 # Not correct according to https://lapcatsoftware.com/articles/DerivedData.html
 alias ddd='rm -rf ${HOME}/Library/Developer/Xcode/DerivedData'
 
@@ -305,7 +299,7 @@ alias tw="timew"
 alias twby="timew balance 2023-11-13 - today"   # balance from the beginning of all records (not including current day)
 alias twb="timew balance 2023-11-13 - tomorrow" # balance from the beginning of all records (including today)
 alias tws="timew summary :day :ids :annotations"
-alias twsf="tw balance ioki 2023-11-13 - tomorrow && tws" # "tws full"
+alias twsf="timew balance ioki 2023-11-13 - tomorrow; timew summary :day :ids; timew export ioki | tw-charts" # "tws full"
 alias twsa="timew summary :all :ids :annotations"
 alias twd="timew day summary :ids rc.reports.day.hours=auto"
 alias tww="timew week summary :ids rc.reports.week.hours=auto"
@@ -384,9 +378,11 @@ fi
 # alias cddb2="cd ${HOME}/dev/projects/db/beiwagen-2"
 # alias cddb3="cd ${HOME}/dev/projects/db/beiwagen-3"
 # alias cdass="cd ${HOME}/dev/projects/private/Packages/Assist"
+
 alias cdtemp='cd "$(mktemp -d)"'
 alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview 'bat {}' | xargs nvim"
 alias n="nvim"
+alias br="broot"
 
 # -----------------------------------------------
 # Homebrew
