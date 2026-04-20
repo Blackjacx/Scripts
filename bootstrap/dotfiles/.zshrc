@@ -127,8 +127,8 @@ export FZF_BASE="${HOME}/.local/share/mise/installs/fzf/0"
 if [ -n "${TMUX:-}" ]; then
     # We are in tmux, so run fzf-tmux in poopup mode
     alias fzf="fzf-tmux -p90%,70%"
-else
-    # We are not in tmux, so run fzf normally
+elif alias fzf &>/dev/null; then
+    # We are not in tmux and FZF is not declared as alias, so run fzf normally
     unalias fzf
 fi
 
