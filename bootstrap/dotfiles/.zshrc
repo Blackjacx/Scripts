@@ -267,6 +267,8 @@ setopt NO_HIST_BEEP                                   # If you try to scroll up 
 setopt HIST_VERIFY                                    # Don't execute immediately upon history expansion.
 setopt BANG_HIST                                      # Treat the '!' character specially during expansion.
 
+# Load ZSH completion right before source "$ZSH"/oh-my-zsh.sh
+fpath=(~/.oh-my-zsh/completions $fpath)
 
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
 [ -f ~/dev/scripts/imports.sh ] && source ~/dev/scripts/imports.sh
