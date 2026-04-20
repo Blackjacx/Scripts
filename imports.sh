@@ -79,6 +79,23 @@ function mdsee() {
     echo "$HTMLFILE"
     open "$HTMLFILE"
 }
+# ====================================================================================================================
+# Use advanced FZF if in tmux environment
+# ====================================================================================================================
+
+# Add this to your ~/.zshrc or ~/.bashrc file
+function fzf_command {
+    # Check if the $TMUX environment variable is set and not empty
+    # ${TMUX:-} gives a default empty string if unset — so it won’t crash when using `set -u`.
+    # -n tests for non-empty
+    if [ -n "${TMUX:-}" ]; then
+        # We are in tmux, so run fzf-tmux
+        fzf-tmux -p90%,70% "$@"
+    else
+        # We are not in tmux, so run fzf normally
+        fzf "$@"
+    fi
+}
 
 # ====================================================================================================================
 # Working with GIT
