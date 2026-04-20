@@ -133,13 +133,6 @@ function cci() {
   done
 }
 
-# Open man page in textedit
-function manv() {
-  if [[ -z $1 ]]; then
-    echo "Please provide the command you want to view the man page for. Exit." && return
-  fi
-  MANWIDTH=80 MANPAGER='col -bx' man "$1" | subl 
-}
 # Git commit extended
 #
 # This script is used to write a conventional commit message.
