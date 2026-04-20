@@ -15,7 +15,7 @@ return {
 			svelte = { "eslint_d" },
 			typescript = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-			yaml = { "actionlint" },
+			yaml = { "yamllint" },
 			zsh = { "shellcheck" },
 		}
 
