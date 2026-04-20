@@ -422,3 +422,6 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset -m "DIRENV_*"  # unset env vars starting with DIRENV_
 fi
 eval "$(direnv hook zsh)"
+
+
+source /Users/stherold/.config/broot/launcher/bash/br
