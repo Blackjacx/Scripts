@@ -327,10 +327,17 @@ function y() {
 # Power Level 10K
 #-------------------------------------------------------------------------------
 
-# Load powerlevel10K theme
-source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
+# # Load powerlevel10K theme
+# source "${HOMEBREW_DIR_PREFIX}/share/powerlevel10k/powerlevel10k.zsh-theme"
+# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
+
+# ====================================================================================================================
+# Starship zero config prompt
+# ====================================================================================================================
+
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config.toml"
+eval "$(starship init zsh)"
 
 #-------------------------------------------------------------------------------
 # Load tools for ZSH
