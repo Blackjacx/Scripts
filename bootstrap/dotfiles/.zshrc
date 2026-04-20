@@ -406,7 +406,7 @@ zsh_plugins_external=(
   "TamCore/autoupdate-oh-my-zsh-plugins"
 )
 for plugin in "${zsh_plugins_external[@]}"; do
-  zinit light $plugin
+    zinit light "$plugin"
 done
 
 # Activate mise
