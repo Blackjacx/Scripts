@@ -227,6 +227,10 @@ if.app-id = 'com.apple.Preview'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = "move-node-to-workspace B"
 
@@ -244,11 +248,7 @@ run = "move-node-to-workspace D"
 
 [[on-window-detected]]
 if.app-id = 'com.github.CopilotForXcode.ExtensionService'
-run = "move-node-to-workspace D"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace E"
+run = ['move-node-to-workspace D', 'layout floating']
 
 [[on-window-detected]]
 if.app-id = 'developer.apple.wwdc-Release'
