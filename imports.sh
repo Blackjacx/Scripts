@@ -140,6 +140,76 @@ function manv() {
   fi
   MANWIDTH=80 MANPAGER='col -bx' man "$1" | subl 
 }
+# Git commit extended
+#
+# This script is used to write a conventional commit message.
+# It prompts the user to choose the type of commit as specified in the
+# conventional commit spec. And then prompts for the summary and detailed
+# description of the message and uses the values provided. as the summary and
+# details of the message.
+# function gce() {
+#     # If you want to add a simpler version of this script to your dotfiles, use:
+#     #
+#     # alias gcm='git commit -m "$(gum input)" -m "$(gum write)"'
+    
+#     TYPE="$(gum choose "build" "ci" "fix" "feat" "docs" "style" "refactor" "perf" "test" "chore" "revert")"
+#     SCOPE="$(gum input --placeholder "scope")"
+    
+#     # Since the scope is optional, wrap it in parentheses if it has a value.
+#     test -n "$SCOPE" && SCOPE="($SCOPE)"
+
+#     # Pre-populate the input with the type(scope): so that the user may change it
+#     SUMARY="$(gum input --value "$TYPE$SCOPE: " --placeholder "Summary of this change")"
+#     BODY=$(gum write --placeholder "Details of this change")
+    
+#     # Commit these changes if user confirms
+#     gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$BODY"
+# }
+function gce() {
+        local type scope summary body prefix
+        local -a commit_args
+ 
+        type="$(
+                gum choose \
+                        "build" "ci" "fix" "feat" "docs" "style" \
+                        "refactor" "perf" "test" "chore" "revert"
+        )" || return 130
+ 
+        scope="$(gum input --placeholder "scope (optional)")" || return 130
+        [[ -n "$scope" ]] && scope="($scope)"
+ 
+        prefix="$type$scope: "
+        summary="$(
+                gum input \
+                        --value "$prefix" \
+                        --placeholder "Summary of this change"
+        )" || return 130
+ 
+        [[ -z "${summary//[[:space:]]/}" ]] && {
+                echo "Summary must not be empty."
+                return 1
+        }
+ 
+        body="$(gum write --placeholder "Commit body (optional)")" || return 130
+ 
+        echo
+        echo "Commit message preview:"
+        echo "$summary"
+        [[ -n "${body//[[:space:]]/}" ]] && printf '\n%s\n' "$body"
+        echo
+ 
+        gum confirm "Commit changes?" || return 1
+ 
+        commit_args=(
+                -m "$summary"
+        )
+ 
+        [[ -n "${body//[[:space:]]/}" ]] && commit_args+=(
+                -m "$body"
+        )
+ 
+        git commit "${commit_args[@]}"
+ }
 
 # Easily create ASC auth header
 function asc_auth_header() {
