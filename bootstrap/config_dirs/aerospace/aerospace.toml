@@ -28,7 +28,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 15
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -85,9 +85,6 @@ outer.right = 12
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -149,6 +146,10 @@ cmd-ctrl-alt-shift-up = 'focus --boundaries all-monitors-outer-frame --boundarie
 cmd-ctrl-alt-shift-right = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
 
 [mode.move.binding]
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+cmd-slash = 'layout tiles horizontal vertical'
+cmd-period = 'layout accordion horizontal vertical'
 
 # Join Windows
 # See https://nikitabobko.github.io/AeroSpace/commands#join-with
