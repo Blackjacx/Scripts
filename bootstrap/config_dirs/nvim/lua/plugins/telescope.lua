@@ -25,6 +25,9 @@ return {
 		{ "<leader>gh", ":Telescope git_bcommits<CR>", desc = "File History" }, -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
 		{ "<leader>gb", ":Telescope git_branches<CR>", desc = "Git Branches" }, -- list git branches (use <cr> to checkout) ["gb" for git branch]
 		{ "<leader>gs", ":Telescope git_status<CR>", desc = "Git Status" },
+
+		-- comand history
+		{ "<leader>hh", ":Telescope command_history<CR>", desc = "Command history" },
 	},
 	config = function()
 		local telescope = require("telescope")
