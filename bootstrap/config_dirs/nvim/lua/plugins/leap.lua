@@ -2,7 +2,7 @@
 -- fast, uniform way, and minimizes the required focus level while executing a jump.
 -- https://github.com/ggandor/leap.nvim
 return {
-	"ggandor/leap.nvim",
+	url = "https://codeberg.org/andyg/leap.nvim",
 	-- keys = {
 	--   { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
 	--   { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
@@ -13,7 +13,6 @@ return {
 		-- for k, v in pairs(opts) do
 		--   leap.opts[k] = v
 		-- end
-		leap.add_default_mappings(true)
 		-- vim.keymap.del({ "x", "o" }, "x")
 		-- vim.keymap.del({ "x", "o" }, "X")
 	end,
