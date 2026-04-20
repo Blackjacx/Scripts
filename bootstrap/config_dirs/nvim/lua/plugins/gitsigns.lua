@@ -2,8 +2,7 @@
 -- Git changes within your editor.
 return {
 	"lewis6991/gitsigns.nvim",
-	enable = true,
-	lvent = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		current_line_blame = true,
 		current_line_blame_formatter = "<author> • <author_time:%R> • <summary>",
