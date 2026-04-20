@@ -1,3 +1,6 @@
+--
+-- See for keymaps of Josean Martinez: https://github.com/josean-dev/dev-environment-files/blob/main/.config/nvim/lua/josean/lsp.lua
+--
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local map = function(keys, func, desc)
@@ -35,7 +38,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		})
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client:supports_method(client, "textDocument/completion", event.bufbuf) then
+		if client and client:supports_method("textDocument/completion", event.buf) then
 			vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
 			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
 			vim.keymap.set("i", "<C-Space>", function()

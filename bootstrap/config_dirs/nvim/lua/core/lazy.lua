@@ -17,7 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ import = "plugins" },
-  { import = "plugins.mason" },
+	{ import = "plugins.mason" },
+	{ import = "plugins.mason.lsp" },
 }, {
 	install = {
 		colorscheme = { "gruvbox-material" },

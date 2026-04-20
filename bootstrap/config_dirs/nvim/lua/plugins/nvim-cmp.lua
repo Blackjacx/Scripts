@@ -1,12 +1,11 @@
 -- A completion plugin for neovim coded in Lua.
 return {
 	"hrsh7th/nvim-cmp",
-	enabled = false, -- dissbled due to native integration of LPS in nvim 0.11+ (https://gpanders.com/blog/whats-new-in-neovim-0-11/#builtin-auto-completion)
+	enabled = true,
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
-		"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim builtin LSP client
 		{
 			"L3MON4D3/LuaSnip", -- snippet engine
 			-- follow latest release.

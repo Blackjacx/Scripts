@@ -1,6 +1,8 @@
 -- Mason PATH is handled by core.mason-path
--- Example for setting up different servers without any plugins:
--- https://github.com/adibhanna/nvim/tree/main/lsp
+-- Example for setting up different servers without any plugins, using nvim-lspconfig:
+-- Available LSP configs (add these names here): https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+-- Other Example: https://github.com/adibhanna/nvim/tree/main/lsp
+-- Josean Matrinez Tutorial: https://www.youtube.com/watch?v=oBiBEx7L000
 vim.lsp.enable({
 	"bashls",
 	"emmet_ls",
@@ -21,6 +23,8 @@ vim.lsp.enable({
 -- LSP servers are automatically managed by Mason
 -- Use :MasonVerify to check which tools are Mason-managed
 
+local severity = vim.diagnostic.severity
+
 vim.diagnostic.config({
 	-- Use the default configuration
 	-- virtual_lines = true,
@@ -40,10 +44,10 @@ vim.diagnostic.config({
 	},
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = "󰅚 ",
-			[vim.diagnostic.severity.WARN] = "󰀪 ",
-			[vim.diagnostic.severity.INFO] = "󰋽 ",
-			[vim.diagnostic.severity.HINT] = "󰌶 ",
+			[severity.ERROR] = " ",
+			[severity.WARN] = " ",
+			[severity.HINT] = "󰠠 ",
+			[severity.INFO] = " ",
 		},
 		numhl = {
 			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
@@ -247,19 +251,19 @@ local function lsp_info()
 		-- Key capabilities
 		local caps = client.server_capabilities
 		local key_features = {}
-		if caps.completionProvider then
+		if caps and caps.completionProvider then
 			table.insert(key_features, "completion")
 		end
-		if caps.hoverProvider then
+		if caps and caps.hoverProvider then
 			table.insert(key_features, "hover")
 		end
-		if caps.definitionProvider then
+		if caps and caps.definitionProvider then
 			table.insert(key_features, "definition")
 		end
-		if caps.documentFormattingProvider then
+		if caps and caps.documentFormattingProvider then
 			table.insert(key_features, "formatting")
 		end
-		if caps.codeActionProvider then
+		if caps and caps.codeActionProvider then
 			table.insert(key_features, "code_action")
 		end
 

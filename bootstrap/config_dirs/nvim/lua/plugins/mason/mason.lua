@@ -2,30 +2,46 @@
 -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
 
 return {
-	"williamboman/mason.nvim",
-	dependencies = {
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"neovim/nvim-lspconfig",
-	},
-	config = function()
-		-- import mason
-		local mason = require("mason")
-
-		-- import mason_tool_installer
-		local mason_tool_installer = require("mason-tool-installer")
-
-		-- enable mason and configure icons
-		mason.setup({
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
+	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			-- list of servers for mason to install
+			ensure_installed = {
+				"bashls",
+				"emmet_ls",
+				"gopls",
+				"graphql",
+				"kotlin_language_server",
+				"lua_ls",
+				"marksman", -- we use tailwindcss
+				"pyright",
+				"rubocop",
+				-- "sourcekit", -- installed manually
+				"taplo",
+				"terraformls",
+				"texlab",
+				"yamlls",
+			},
+		},
+		dependencies = {
+			{
+				"williamboman/mason.nvim",
+				opts = {
+					ui = {
+						icons = {
+							package_installed = "✓",
+							package_pending = "➜",
+							package_uninstalled = "✗",
+						},
+					},
 				},
 			},
-		})
-
-		mason_tool_installer.setup({
+			"neovim/nvim-lspconfig",
+		},
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
 			ensure_installed = {
 				"actionlint", -- linter for GH actions
 				"beautysh", -- shell formatter
@@ -47,6 +63,9 @@ return {
 				"swiftlint", -- swift linter
 				"yamlfmt", -- yaml formatter
 			},
-		})
-	end,
+		},
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+	},
 }
