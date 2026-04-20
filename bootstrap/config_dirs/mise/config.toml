@@ -1,10 +1,13 @@
 [tools]
-fzf = '0.65.0' # A command-line fuzzy finder
-# tuist = '4.47.0'       # Create, maintain, and interact with Xcode projects at scale
-swiftlint = '0.59.1'   # A tool to enforce Swift style and conventions.
-swiftformat = '0.57.2' # A code formatter for Swift
-carthage = '0.40.0'    # Dependency manager for Apple development
-jq = '1.8.1'           # Lightweight and flexible command-line JSON processor
+fzf = '0.67.0'                      # A command-line fuzzy finder
+swiftlint = '0.62.2'                # A tool to enforce Swift style and conventions.
+carthage = '0.40.0'                 # Dependency manager for Apple development
+jq = '1.8.1'                        # Lightweight and flexible command-line JSON processor
+
+opencode = 'latest'                 # The open source coding agent.
+
+"spm:blackjacx/assist" = "0.10.1"   # App Store Connect API access via CLI written in Swift
+"asdf:swiftformat" = '0.58.7'       # A code formatter for Swift. ⚠️ We need to explicitly use the ASDF backend here since Mise tries to download SwiftFormat.for.Xcode.app.zip otherwise and as a result the binary cannot be found.
 
 [settings]
 color = true # Use color in mise terminal output
@@ -29,7 +32,7 @@ asdf_compat = false # Only output .tool-versions files in mise local|global whic
 yes = true # This will automatically answer yes or no to prompts. This is useful for scripting.
 jobs = 5 # Number of plugins or runtimes to install in parallel.
 raw = false # Set to true to directly pipe plugins to stdin/stdout/stderr
-experimental = false # Enable experimental features
+experimental = true # Enable experimental features
 # env_file = '.env'                                       # Load env vars from a dotenv file, see `MISE_ENV_FILE`
 
 # How long to wait before updating plugins automatically.
