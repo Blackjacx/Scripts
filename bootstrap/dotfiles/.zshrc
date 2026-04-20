@@ -88,6 +88,9 @@ export DEFAULT_USER
 plugins=(
   git 
   git-extras 
+  git-extra-commands
+  forgit
+  # timewarrior
   swiftpm 
   bundler 
   common-aliases 
