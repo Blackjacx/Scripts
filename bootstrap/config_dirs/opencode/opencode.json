@@ -16,6 +16,7 @@
       "git log*": "allow",
       "git branch*": "allow",
       "xcodebuild *": "allow",
+      "xcrun *": "allow",
       "swift test*": "allow",
       "ls *": "allow",
       "rg *": "allow",
