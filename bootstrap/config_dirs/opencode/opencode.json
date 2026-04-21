@@ -1,8 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "watcher": {
+    "ignore": ["node_modules/**", "dist/**", ".git/**"]
+  },
   "permission": {
     "*": "ask",
     "read": "allow",
+    "grep *": "allow",
+    "glob *": "allow",
     "bash": {
       "*": "ask",
       "git status*": "allow",
@@ -12,7 +18,6 @@
       "xcodebuild *": "allow",
       "swift test*": "allow",
       "ls *": "allow",
-      "grep *": "allow",
       "rg *": "allow",
       "rm *": "deny",
       "sudo *": "deny"
