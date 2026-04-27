@@ -23,6 +23,34 @@ return {
 			end
 		end
 
+		local function linters()
+			local ok, lint = pcall(require, "lint")
+			if not ok then
+				return ""
+			end
+			local active = lint.linters_by_ft[vim.bo.filetype] or {}
+			if #active == 0 then
+				return ""
+			end
+			return "󰁨 " .. table.concat(active, ",")
+		end
+
+		local function formatters()
+			local ok, conform = pcall(require, "conform")
+			if not ok then
+				return ""
+			end
+			local active = conform.list_formatters_to_run(0)
+			if #active == 0 then
+				return ""
+			end
+			local names = {}
+			for _, f in ipairs(active) do
+				table.insert(names, f.name)
+			end
+			return "󰉿 " .. table.concat(names, ",")
+		end
+
 		-- check for mason package upgrades
 		local function lualine_mason_updates()
 			local registry = require("mason-registry")
@@ -80,6 +108,8 @@ return {
 						icon = "󰧁",
 						color = { fg = "#ff9e64" },
 					},
+					{ linters },
+					{ formatters },
 					{ "encoding" },
 					{ "os.date('%H:%M:%S')" },
 				},
