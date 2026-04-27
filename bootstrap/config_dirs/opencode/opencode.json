@@ -16,6 +16,8 @@
       "git log*": "allow",
       "git branch*": "allow",
       "gh * view *": "allow",
+      "gh pr diff *": "allow",
+      "gh label list": "allow",
       "git remote -v": "allow",
       "xcodebuild *": "allow",
       "xcrun *": "allow",
