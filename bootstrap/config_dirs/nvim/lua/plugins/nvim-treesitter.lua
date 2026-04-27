@@ -21,62 +21,47 @@ return {
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			"MeanderingProgrammer/treesitter-modules.nvim",
 			"windwp/nvim-ts-autotag",
 		},
 		config = function()
-			-- import nvim-treesitter plugin
-			local treesitter = require("nvim-treesitter.configs")
+			local languages = {
+				"bash",
+				"css",
+				"dockerfile",
+				"gitignore",
+				"graphql",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"query",
+				"regex",
+				"ruby",
+				"swift",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"yaml",
+			}
 
-			-- vim.api.nvim_create_autocmd("FileType", {
-			-- 	pattern = "dotenv",
-			-- 	-- command = set syntax = "bash" filetype = "dotenv"
-			-- 	command = "set syntax=bash",
-			-- 	-- autocmd FileType md set syntax=markdown filetype=markdown
-			-- })
-
-			-- local filetype_augroup = vim.api.nvim_create_augroup("FileType", { clear = true })
-			-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-			-- 	group = filetype_augroup,
-			-- 	command = "set syntax=bash",
-			-- 	-- callback = function()
-			-- 	-- 	vim.cmd("set syntax=bash")
-			-- 	-- end,
-			-- })
-
-			-- configure treesitter
-			treesitter.setup({
-				-- enable syntax highlighting
-				highlight = { enable = true },
-				-- enable indentation
-				indent = { enable = true },
-				-- enable autotagging (w/ nvim-ts-autotag plugin)
-				autotag = { enable = true },
+			-- Covers ensure_installed + highlight + indent + fold + incremental selection
+			local ts = require("treesitter-modules")
+			ts.setup({
+				ensure_installed = languages,
+				ignore_install = {},
+				sync_install = false,
 				-- Automatically install missing parsers when entering buffer
 				-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
 				auto_install = true,
-				-- ensure these language parsers are installed
-				ensure_installed = {
-					"bash",
-					"css",
-					"dockerfile",
-					"gitignore",
-					"graphql",
-					"html",
-					"javascript",
-					"json",
-					"lua",
-					"markdown",
-					"markdown_inline",
-					"query",
-					"regex",
-					"ruby",
-					"swift",
-					"toml",
-					"tsx",
-					"typescript",
-					"vim",
-					"yaml",
-				},
+				highlight = { enable = true },
+				indent = { enable = true },
+				-- enable autotagging (w/ nvim-ts-autotag plugin)
+				autotag = { enable = true },
+				fold = { enable = false },
 				incremental_selection = {
 					enable = false, -- NOTE: enabling this conflixts with <C-i> (go forward in jumplist)
 					keymaps = {
@@ -88,8 +73,22 @@ return {
 				},
 			})
 
-			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-			require("ts_context_commentstring").setup({})
+			-- Fold settings (do not fold)
+			-- vim.opt.foldmethod = "expr"
+			-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+			-- autotag
+			require("nvim-ts-autotag").setup()
+
+			-- textobjects plugin now uses its own setup + keymaps
+			require("nvim-treesitter-textobjects").setup({
+				move = {
+					set_jumps = false,
+				},
+				select = {
+					lookahead = true,
+				},
+			})
 		end,
 	},
 }
