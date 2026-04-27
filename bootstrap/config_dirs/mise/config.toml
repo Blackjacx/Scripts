@@ -5,6 +5,7 @@ carthage = '0.40.0'                 # Dependency manager for Apple development
 jq = '1.8.1'                        # Lightweight and flexible command-line JSON processor
 
 opencode = 'latest'                 # The open source coding agent.
+claude = 'latest'                   # The Anthropic coding agent.
 
 "spm:blackjacx/assist" = "0.10.1"   # App Store Connect API access via CLI written in Swift
 "asdf:swiftformat" = '0.58.7'       # A code formatter for Swift. ⚠️ We need to explicitly use the ASDF backend here since Mise tries to download SwiftFormat.for.Xcode.app.zip otherwise and as a result the binary cannot be found.
