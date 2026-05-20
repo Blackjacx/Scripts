@@ -4,6 +4,80 @@
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
+# ====================================================================================================================
+# Opt-out from Analytics
+# ====================================================================================================================
+
+#-------------------------------------------------------------------------------
+# Universal / proposed standard
+#-------------------------------------------------------------------------------
+
+# There's an initiative to have a single do-not-track env variable, but it's not honored by many tools yet
+# https://consoledonottrack.com/
+export DO_NOT_TRACK=1
+
+#-------------------------------------------------------------------------------
+# macOS / package managers
+#-------------------------------------------------------------------------------
+
+# Opt-out of homebrews user tracking
+# See https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md for details
+export HOMEBREW_NO_ANALYTICS=1
+
+# Also opt-out of the Github API usage
+export HOMEBREW_NO_GITHUB_API=1
+
+#-------------------------------------------------------------------------------
+# iOS / Apple dev
+#-------------------------------------------------------------------------------
+
+export FASTLANE_OPT_OUT_USAGE=1     # https://docs.fastlane.tools/#metrics
+export FASTLANE_SKIP_UPDATE_CHECK=1 # bonus: silences the update nag
+
+# Disable Bitrise analytics
+export BITRISE_ANALYTICS_DISABLED=true
+
+#-------------------------------------------------------------------------------
+# Source control / GitHub
+#-------------------------------------------------------------------------------
+
+# Disable GitHub CLI telemetry
+export GH_TELEMETRY=false
+
+#-------------------------------------------------------------------------------
+# Gemini
+#-------------------------------------------------------------------------------
+
+export GEMINI_TELEMETRY_ENABLED=false
+
+#-------------------------------------------------------------------------------
+# Claude (Code)
+#-------------------------------------------------------------------------------
+
+# Granular flags (recommended — preserves auto-updates)
+export DISABLE_TELEMETRY=1
+export DISABLE_ERROR_REPORTING=1
+export DISABLE_BUG_COMMAND=1
+export CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1
+# Or the umbrella switch (also turns off the autoupdater):
+# export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+
+#-------------------------------------------------------------------------------
+# Misc
+#-------------------------------------------------------------------------------
+
+# Opt out of all Hashicorp products like Terraform
+export CHECKPOINT_DISABLE=1
+
+# https://github.com/returntocorp/semgrep/pull/3874
+export SEMGREP_SEND_METRICS=off
+
+# https://yarnpkg.com/advanced/telemetry#how-can-i-disable-it
+# https://yarnpkg.com/configuration/yarnrc
+export YARN_ENABLE_TELEMETRY=0
+
+# https://k6.io/docs/misc/usage-collection/
+export K6_NO_USAGE_REPORT=true
 
 # Path to your oh-my-zsh installation.
 ZSH=${HOME}/.oh-my-zsh
@@ -302,10 +376,6 @@ setopt nocaseglob # ignore case
 
 # Fastlane autocompletion
 [ -f ~/.fastlane/completions/completion.sh ] && source ~/.fastlane/completions/completion.sh
-# Do Not Track Environment Variables
-[ -f ~/dotfiles/do_not_track_env_vars.sh ] && source ~/dotfiles/do_not_track_env_vars.sh
-
-# Lots of different, nice looking completions
 
 if type brew &>/dev/null; then
   fpath=($(brew --prefix)/share/zsh-completions $fpath)
