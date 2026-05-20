@@ -1,8 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": "notify",
+  // https://opencode.ai/docs/config/#sharing
+  "share": "disabled",
+  "lsp": true,
   "watcher": {
     "ignore": ["node_modules/**", "dist/**", ".git/**"]
+  },
+  "experimental": { 
+    "openTelemetry": false 
   },
   "permission": {
     "*": "ask",
@@ -14,20 +20,24 @@
       "git status*": "allow",
       "git diff*": "allow",
       "git log*": "allow",
-      "git branch*": "allow",
       "gh * view *": "allow",
       "gh pr diff *": "allow",
+      "gh pr list *": "allow",
       "gh label list": "allow",
       "git remote -v": "allow",
+      "git show *": "allow",
+      "mktemp -d*": "allow",
       "xcodebuild *": "allow",
       "xcrun *": "allow",
       "swift test*": "allow",
       "ls *": "allow",
       "rg *": "allow",
+      "git config --get *": "allow",
       "rm *": "deny",
       "sudo *": "deny"
     },
     "edit": "ask",
-    "webfetch": "ask"
+    "webfetch": "ask",
+    "todowrite": "allow"
   }
 }
