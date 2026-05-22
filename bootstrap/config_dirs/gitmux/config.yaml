@@ -1,6 +1,5 @@
 sections:
   - type: branch
-  - type: remote
   - type: dirty
   - type: staged
   - type: stash
@@ -18,6 +17,7 @@ options:
   branch_icon: ""
   hide_clean: true
 tmux:
+  layout: [branch, divergence, ' - ', flags]
   styles:
     clear: "#[fg=#{@thm_fg}]"
     state: "#[fg=#{@thm_red},bold]"
