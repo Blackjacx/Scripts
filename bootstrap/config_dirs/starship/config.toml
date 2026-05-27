@@ -13,11 +13,7 @@ format = """
 [](color_orange)\
 [](bg:color_yellow fg:color_orange)\
 $directory\
-[](fg:color_yellow bg:color_aqua)\
-$git_branch\
-$git_status\
-$git_metrics\
-[](fg:color_aqua bg:color_blue)\
+[](fg:color_yellow bg:color_blue)\
 $all\
 [](fg:color_blue bg:color_bg3)\
 $cmd_duration\
@@ -104,11 +100,13 @@ truncation_length = 1
 truncation_symbol = ""
 
 [git_branch]
+disabled = true
 symbol = ""
 style = "bg:color_aqua"
 format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
 
 [git_status]
+disabled = true
 style = "bg:color_aqua"
 use_git_executable = true
 format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
