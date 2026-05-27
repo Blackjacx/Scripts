@@ -17,9 +17,10 @@
     "glob *": "allow",
     "bash": {
       "*": "ask",
-      "git status*": "allow",
-      "git diff*": "allow",
-      "git log*": "allow",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git branch --show-current": "allow",
       "gh * view *": "allow",
       "gh pr diff *": "allow",
       "gh pr list *": "allow",
