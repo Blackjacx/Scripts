@@ -12,7 +12,14 @@
   },
   "permission": {
     "*": "ask",
-    "read": "allow",
+    "read": {
+      "*": "allow",
+      "*.env*": "deny",
+      "*AppProtectedEnvironment.swift*": "deny",
+      "*ProtectedEnvironment.swift*": "deny",
+      "*app-store-connect-api-keys*": "deny",
+      "*.git/*": "deny"
+    },
     "grep *": "allow",
     "glob *": "allow",
     "bash": {
@@ -24,6 +31,7 @@
       "gh * view *": "allow",
       "gh pr diff *": "allow",
       "gh pr list *": "allow",
+      "gh pr status": "allow",
       "gh label list": "allow",
       "git remote -v": "allow",
       "git show *": "allow",
@@ -35,7 +43,12 @@
       "rg *": "allow",
       "git config --get *": "allow",
       "rm *": "deny",
-      "sudo *": "deny"
+      "sudo *": "deny",
+      "*.env*": "deny",
+      "*AppProtectedEnvironment.swift*": "deny",
+      "*ProtectedEnvironment.swift*": "deny",
+      "*app-store-connect-api-keys*": "deny",
+      "*.git/*": "deny"
     },
     "edit": "ask",
     "webfetch": "ask",
