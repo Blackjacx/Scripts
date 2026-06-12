@@ -427,12 +427,6 @@ linkConfigurationFiles() {
         ln -sf "$tool_config_dir" "$link_dir/"
     done
 
-    find "$SCRIPT_DIR/bootstrap/zsh_config_files" -type f -iname "*" -print0 | while read -r -d $'\0' file; do
-        link_dir="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/"
-        log "Link zsh-config file $file --> $link_dir$(basename $file)"
-        ln -sf "$file" "$link_dir/"
-    done
-
     # [TODO]
     #log "Link .config directory to \$HOME"
     #ln -s "$SCRIPT_DIR/bootstrap/dotfiles/config/karabiner.json" "${HOME}/config/karabiner/karabiner.json"
