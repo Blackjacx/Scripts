@@ -74,7 +74,7 @@ export YARN_ENABLE_TELEMETRY=0
 export K6_NO_USAGE_REPORT=true
 
 # Path to your oh-my-zsh installation.
-ZSH=${HOME}/.oh-my-zsh
+ZSH="$HOME/.oh-my-zsh"
 
 # Homebrew directory prefix differentiation M1 / Intel
 [[ $(uname -p) == 'arm' ]] && HOMEBREW_DIR_PREFIX="/opt/homebrew" || HOMEBREW_DIR_PREFIX="/usr/local"
