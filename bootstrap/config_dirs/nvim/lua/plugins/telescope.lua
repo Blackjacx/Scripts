@@ -9,7 +9,27 @@ return {
 	},
 	keys = {
 		-- Files
-		{ "<leader>ff", ":Telescope find_files<CR>", desc = "Fuzzy find files in cwd" }, -- find files within current working directory, respects .gitignore
+		-- { "<leader>ff", ":Telescope find_files<CR>", desc = "Fuzzy find files in cwd" }, -- find files within current working directory, respects .gitignore
+		{
+			"<leader>ff",
+			function()
+				require("telescope.builtin").find_files({
+					find_command = {
+						"fd",
+						".",
+						vim.fn.getcwd(),
+						"--type",
+						"f",
+						"--hidden",
+						"--exclude",
+						".git",
+						"--exclude",
+						"node_modules",
+					},
+				})
+			end,
+			desc = "Fuzzy find files in cwd",
+		},
 		{ "<leader>fs", ":Telescope live_grep<CR>", desc = "Find string in cwd" },
 		{ "<leader>fc", ":Telescope grep_string<CR>", desc = "Find string under cursor in cwd" }, -- find string under cursor in current working directory
 		{ "<leader>fr", ":Telescope oldfiles<CR>", desc = "Fuzzy find recent files" },
