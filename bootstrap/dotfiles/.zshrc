@@ -271,8 +271,16 @@ export FZF_DEFAULT_COMMAND="fd --type=f $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d $FD_OPTIONS"
 
+# Control command history options
+# export FZF_CTRL_R_OPTS="--reverse"
+
+# Enable command copy via `CTRL + y`` for command history
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(printf %s {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
 # Show FZF popup instead of inline
-export FZF_CTRL_R_OPTS="--reverse"
 export FZF_TMUX_OPTS="-p90%,70%"
 
 export TMUX_FZF_MENU_POPUP_WIDTH=90%
