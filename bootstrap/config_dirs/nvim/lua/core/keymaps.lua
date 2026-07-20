@@ -7,6 +7,9 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 ---------------------
 
+-- Replace inner word with clipboard contents, preserving the clipboard
+vim.keymap.set("n", "<leader>rw", '"_ciw<C-r>+<Esc>', { desc = "Replace word with clipboard" })
+
 -- exit insert mode with jk
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
