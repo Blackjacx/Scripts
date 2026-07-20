@@ -8,7 +8,7 @@ opencode = 'latest'                 # The open source coding agent.
 claude = 'latest'                   # The Anthropic coding agent.
 
 "spm:blackjacx/assist" = "0.10.1"   # App Store Connect API access via CLI written in Swift
-"asdf:swiftformat" = '0.58.7'       # A code formatter for Swift. ⚠️ We need to explicitly use the ASDF backend here since Mise tries to download SwiftFormat.for.Xcode.app.zip otherwise and as a result the binary cannot be found.
+"swiftformat" = '0.58.7'       # A code formatter for Swift. ⚠️ We need to explicitly use the ASDF backend here since Mise tries to download SwiftFormat.for.Xcode.app.zip otherwise and as a result the binary cannot be found.
 chezmoi = "2.70.5"
 
 [settings]
