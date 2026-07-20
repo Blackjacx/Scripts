@@ -139,8 +139,8 @@ DISABLE_UPDATE_PROMPT=true
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# This folder is going to be manged with 'Chezmoi'?
+ZSH_CUSTOM="$HOME/.config/zsh"
 
 # Configure bgnotify
 bgnotify_threshold=3 ## set your own notification threshold
@@ -349,10 +349,6 @@ fpath=(~/.oh-my-zsh/completions $fpath)
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
 [ -f ~/dev/scripts/imports.sh ] && source ~/dev/scripts/imports.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
 # export EDITOR="subl -n -w"
 # export EDITOR="nano"
 export VISUAL="nvim"
