@@ -10,18 +10,18 @@
 # cask "firefox", args: { appdir: "~/my-apps/Applications" }
 # mas "1Password", id: 443987910
 
-tap "jzaleski/homebrew-jzaleski"                  # support for apg
-tap "lokalise/cli-2"
-tap "homebrew/cask-fonts"                         # support for fonts
-tap "colindean/fonts-nonfree"                     # Calibri, Cambria, ...
-tap "github/gh"                                   # support for gh • Github CLI
-tap "romkatv/powerlevel10k"
-tap "Blackjacx/homebrew-formulae"                 # support for asc • App Store Connect API client written in Swift
-tap "getsentry/tools"                             # to install sentry CLI
-tap "chargepoint/xcparse"                         # to install xcparse
-tap "peripheryapp/periphery"                      # to install periphery
-tap "julien-cpsn/atac"                            # to install atag
-tap "jesseduffield/lazygit"                       # to install lazygit
+tap "jzaleski/homebrew-jzaleski", trusted: true                  # support for apg
+tap "lokalise/cli-2", trusted: true                              # localization engine
+tap "homebrew/cask-fonts", trusted: true                         # support for fonts
+tap "colindean/fonts-nonfree", trusted: true                     # Calibri, Cambria, ...
+tap "github/gh", trusted: true                                   # support for gh • Github CLI
+tap "romkatv/powerlevel10k", trusted: true                       # terminal/prompt theming
+tap "Blackjacx/homebrew-formulae", trusted: true                 # support for asc • App Store Connect API client written in Swift
+tap "getsentry/tools", trusted: true                             # to install sentry CLI
+tap "chargepoint/xcparse", trusted: true                         # to install xcparse
+tap "peripheryapp/periphery", trusted: true                      # to install periphery
+tap "julien-cpsn/atac", trusted: true                            # to install atag
+tap "jesseduffield/lazygit", trusted: true                       # to install lazygit
 
 # Xcode first since it is required by applications below, e.g. xcparse
 # mas "xcode", id: 497799835 # This will download Xcode even if it is installed - which takes a lot of time
