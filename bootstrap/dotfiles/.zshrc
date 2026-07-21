@@ -157,7 +157,6 @@ plugins=(
     git
     git-extras
     git-extra-commands
-    forgit
     # timewarrior
     swiftpm
     bundler
@@ -470,6 +469,7 @@ done
 zsh_plugins_external=(
     "zsh-users/zsh-syntax-highlighting"
     "TamCore/autoupdate-oh-my-zsh-plugins"
+    "wfxr/forgit"
 )
 for plugin in "${zsh_plugins_external[@]}"; do
     zinit light "$plugin"
