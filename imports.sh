@@ -104,24 +104,34 @@ function fzf_command {
 
 # Create and commit changelog item
 function cci() {
-  if [[ -z $1 ]]; then
-    log_error "Please provide a changelog title / issue number combination in the format <title #number>."
-    return
-  fi
+  command -v gh >/dev/null 2>&1 || {
+    log_error "gh missing - Install using$green brew install gh$white."; return;
+  }
+  command -v gum >/dev/null 2>&1 || {
+    log_error "gum missing - Install using$green brew install gum$white."; return;
+  }
 
-  title=$(echo $1 | sed 's/ #[0-9]*$//')
-  number=$(echo $1 | sed 's/.*#//')
   account=$(git config github.user)
-
-  if ! is_integer "$number"; then
-    log_error "The PR number '$number' is not a valid integer."
-    return
-  fi
 
   if [[ -z $account ]]; then
     log_error "Please specify your GitHub username either globally using$green git config --global github.user \"<username>\"$white or locally for only the current checkout using$green git config --local github.user \"<username>\"$white."
     return
   fi
+
+  pr=$(gum input --placeholder "PR number or URL")
+  if [[ -z $pr ]]; then
+    log_error "No PR provided."
+    return
+  fi
+
+  pr_json=$(gh pr view "$pr" --json title,number,url) || {
+    log_error "Could not fetch PR '$pr'. Make sure the number/URL is valid and you are in the right repository."
+    return
+  }
+
+  title=$(echo "$pr_json" | jq -r '.title')
+  number=$(echo "$pr_json" | jq -r '.number')
+  url=$(echo "$pr_json" | jq -r '.url')
 
   while true; do
     printf 'Is the account name "%s" correct? [Y/n]: ' "$green$account$white"
@@ -136,7 +146,7 @@ function cci() {
     esac
   done
 
-  entry="* [#$number](https://github.com/dbdrive/beiwagen/pull/$number): $title - [@$account](https://github.com/$account)."
+  entry="* [#$number]($url): $title - [@$account](https://github.com/$account)."
 
   while true; do
     printf 'Do you want to commit the change log entry:%s? [Y/n]: ' "$green $entry $white"
