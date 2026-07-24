@@ -6,15 +6,15 @@
 [interactive]
     diffFilter = delta --color-only
 [add.interactive]
-    useBuiltin = false # required for git 2.37.0
+    useBuiltin = false                              # required for git 2.37.0
 [delta]
-    navigate = true                 # n/N to jump between file diffs — huge for big diffs
+    navigate = true                                 # n/N to jump between file diffs — huge for big diffs
     light = false
     line-numbers = true
     syntax-theme = gruvbox-dark
-    hyperlinks = true               # cmd/ctrl-click a filename → opens in editor (if term supports it)
+    hyperlinks = true                               # cmd/ctrl-click a filename → opens in editor (if term supports it)
 [diff]
-    colorMoved = default            # delta highlights moved blocks distinctly from add/remove
+    colorMoved = default                            # delta highlights moved blocks distinctly from add/remove
 [merge]
     ff = only
     conflictStyle = zdiff3
@@ -54,4 +54,4 @@
 [fetch]
     prune = true
 [absorb]
-    maxStack=30 # default: 10
+    maxStack=30                                     # default: 10

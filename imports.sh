@@ -77,6 +77,7 @@ function checkInstalledImageMagick() {
     }
 }
 
+# Markdown to HTML
 function mdsee() {
     HTMLFILE="$(mktemp -u).html"
     jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' "$1" |
