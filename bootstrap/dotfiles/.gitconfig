@@ -1,7 +1,7 @@
 [core]
     excludesfile = ~/.gitignore
     mergeoptions = --no-edit
-    pager = delta
+    pager = delta                                   # nicer diffs; falls back gracefully if not installed
     editor = nvim -c startinsert
 [interactive]
     diffFilter = delta --color-only
@@ -13,19 +13,15 @@
     line-numbers = true
     syntax-theme = gruvbox-dark
     hyperlinks = true                               # cmd/ctrl-click a filename → opens in editor (if term supports it)
-[diff]
-    colorMoved = default                            # delta highlights moved blocks distinctly from add/remove
-[merge]
-    ff = only
-    conflictStyle = zdiff3
 [user]
     name = Stefan Herold
     email = 794372+Blackjacx@users.noreply.github.com
     signingkey = DE546DEBFC1C1C01
-[push]
-    default = simple
 [branch]
     autosetuprebase = always
+    sort = -committerdate                           # most-recently-used branches first
+[tag]
+    sort = version:refname                          # v1.10 sorts after v1.9, not before
 [github]
     user = blackjacx
 [ghi]
@@ -39,19 +35,45 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[pull]
-    rebase = true
-[rerere]
-    enabled = true
-[rebase]
-    autosquash = true
-    autoStash = true
 [init]
     defaultBranch = main
 [pager]
     diff = true
     log = true
-[fetch]
-    prune = true
 [absorb]
     maxStack=30                                     # default: 10
+
+# ---- Fetch / pull / push hygiene ----
+[fetch]
+    prune = true                                    # drop local refs for deleted remote branches
+    pruneTags = true                                # ...same for tags
+[pull]
+    ff = only                                       # never create surprise merge commits on pull
+    rebase = true
+[push]
+    default = simple
+    autoSetupRemote = true                          # `git push` on a new branch just works
+
+# ---- Diff quality ----
+[diff]
+    algorithm = histogram                           # better hunk matching than the default
+    colorMoved = default                            # delta highlights moved blocks distinctly from add/remove
+    mnemonicPrefix = true                           # i/ w/ c/ prefixes instead of a/ b/
+    renames = copies                                # let Git detect copies as renames
+
+# ---- Merge / rebase / conflicts ----
+[merge]
+    ff = only                                       # allow only fast-forward merges
+    conflictStyle = zdiff3                          # shows the common ancestor in conflicts
+[rerere]
+    enabled = true                                  # remember how you resolved a conflict, replay it
+[rebase]
+    autosquash = true                               # honor fixup!/squash! commits automatically
+    autoStash = true                                # stash & restore dirty tree around a rebase
+    updateRefs = true                               # keep stacked branches in sync on rebase
+
+# ---- Misc quality of life ----
+[help]
+      autocorrect = prompt                          # "did you mean...?" and offer to run it
+[commit]
+    verbose = true                                  # show the full diff in the commit-message editor
