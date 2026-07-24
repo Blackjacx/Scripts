@@ -140,7 +140,7 @@ DISABLE_UPDATE_PROMPT=true
 HIST_STAMPS="yyyy-mm-dd"
 
 # This folder is going to be manged with 'Chezmoi'?
-ZSH_CUSTOM="$HOME/.config/zsh"
+export ZSH_CUSTOM="$HOME/.config/zsh"
 
 # Configure bgnotify
 bgnotify_threshold=3 ## set your own notification threshold
