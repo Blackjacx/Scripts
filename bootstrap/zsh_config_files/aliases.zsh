@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# All my personal shell aliases and useful functions
+#
+
 # shellcheck shell=bash
 
 #-------------------------------------------------------------------------------
@@ -392,7 +396,7 @@ brewinfo() {
     # update homebrew-packages.json using `brew info --json=v2 --eval-all > ~/homebrew-packages.json`
     cat ~/homebrew-packages.json |
         jq -r '[.formulae.[].name, .casks.[].token].[]' |
-        fzf --cycle --tmux --preview 'brew info {}' --color bg:#222222,preview-bg:#333333 --info=inline-right --ellipsis=… --tabstop=4 --highlight-line
+        fzf --cycle --popup --preview 'brew info {}' --color bg:#222222,preview-bg:#333333 --info=inline-right --ellipsis=… --tabstop=4 --highlight-line
 }
 
 #-------------------------------------------------------------------------------
