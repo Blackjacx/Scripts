@@ -202,8 +202,27 @@ function cci() {
 #     gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$BODY"
 # }
 function gce() {
-    local type scope summary body prefix
-    local -a commit_args
+    local type scope summary body prefix choice
+    local -a commit_args staged
+
+    # ── nothing staged? show what's there and offer to stage ────────────
+    if git diff --cached --quiet; then
+        if [[ -z "$(git status --porcelain)" ]]; then
+            echo "Nothing to commit — working tree is clean."
+            return 1
+        fi
+
+        echo "Nothing staged yet:"
+        git -c color.status=always status --short
+        echo
+
+        choice="$(gum choose "stage all" "abort")" || return 130
+
+        case "$choice" in
+        "stage all") git add -A ;;
+        abort) return 130 ;;
+        esac
+    fi
 
     type="$(
         gum choose \
