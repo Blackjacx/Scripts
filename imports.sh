@@ -12,70 +12,75 @@ white=$'\e[0m'
 # Utility Functions
 # ====================================================================================================================
 
-function trim () {
-  awk '{$1=$1};1'
+function trim() {
+    awk '{$1=$1};1'
 }
 
 function is_integer() {
     local string=$1
     if [[ $string =~ ^-?[0-9]+$ ]]; then
-        return 0  # True
+        return 0 # True
     else
-        return 1  # False
+        return 1 # False
     fi
 }
 
 # https://stackoverflow.com/a/17841619/971329
-function join_by { 
-  local IFS="$1"; shift; echo "$*"; 
+function join_by {
+    local IFS="$1"
+    shift
+    echo "$*"
 }
 
 # ====================================================================================================================
 # Logging Functions
 # ====================================================================================================================
 
-function log () {
-  echo "✅ [$(date +'%H:%M:%S')] $1"
+function log() {
+    echo "✅ [$(date +'%H:%M:%S')] $1"
 }
 
-function log_warning () {
-  echo "⚠️ [$(date +'%H:%M:%S')] $1"
+function log_warning() {
+    echo "⚠️ [$(date +'%H:%M:%S')] $1"
 }
 
-function log_error () {
-  echo >&2 "🚨 [$(date +'%H:%M:%S')] $1"
+function log_error() {
+    echo >&2 "🚨 [$(date +'%H:%M:%S')] $1"
 }
 
-function loadEnvironment () {
-  # Ignores commented lines
-  ENV_FILE="$(dirname "$0")/../.env"
-  if [ -f "$ENV_FILE" ]; then
-    export "$(grep -v '^#' "$ENV_FILE" | xargs)"
-  fi
+function loadEnvironment() {
+    # Ignores commented lines
+    ENV_FILE="$(dirname "$0")/../.env"
+    if [ -f "$ENV_FILE" ]; then
+        export "$(grep -v '^#' "$ENV_FILE" | xargs)"
+    fi
 }
 
-function checkInstalledJq () {
-  command -v jq >/dev/null 2>&1 || { 
-    echo >&2 "jq missing - Install using \"brew install jq\"."; exit 1; 
-  }
+function checkInstalledJq() {
+    command -v jq >/dev/null 2>&1 || {
+        echo >&2 "jq missing - Install using \"brew install jq\"."
+        exit 1
+    }
 }
 
-function checkInstalledLocalise () {
-  command -v lokalise >/dev/null 2>&1 || { 
-    echo >&2 "lokalise missing - Install using \"brew tap lokalise/brew; brew install lokalise\"."; exit 1;
-  }
+function checkInstalledLocalise() {
+    command -v lokalise >/dev/null 2>&1 || {
+        echo >&2 "lokalise missing - Install using \"brew tap lokalise/brew; brew install lokalise\"."
+        exit 1
+    }
 }
 
-function checkInstalledImageMagick () {
-  command -v convert >/dev/null 2>&1 || { 
-    echo >&2 "imagemagick missing - Install using \"brew install imagemagick\"."; exit 1;
-  }
+function checkInstalledImageMagick() {
+    command -v convert >/dev/null 2>&1 || {
+        echo >&2 "imagemagick missing - Install using \"brew install imagemagick\"."
+        exit 1
+    }
 }
 
-function mdsee() { 
+function mdsee() {
     HTMLFILE="$(mktemp -u).html"
-    jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' "$1" | \
-      curl -s --data @- https://api.github.com/markdown > "$HTMLFILE"
+    jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' "$1" |
+        curl -s --data @- https://api.github.com/markdown >"$HTMLFILE"
     echo "$HTMLFILE"
     open "$HTMLFILE"
 }
@@ -104,65 +109,71 @@ function fzf_command {
 
 # Create and commit changelog item
 function cci() {
-  command -v gh >/dev/null 2>&1 || {
-    log_error "gh missing - Install using$green brew install gh$white."; return;
-  }
-  command -v gum >/dev/null 2>&1 || {
-    log_error "gum missing - Install using$green brew install gum$white."; return;
-  }
+    command -v gh >/dev/null 2>&1 || {
+        log_error "gh missing - Install using$green brew install gh$white."
+        return
+    }
+    command -v gum >/dev/null 2>&1 || {
+        log_error "gum missing - Install using$green brew install gum$white."
+        return
+    }
 
-  account=$(git config github.user)
+    account=$(git config github.user)
 
-  if [[ -z $account ]]; then
-    log_error "Please specify your GitHub username either globally using$green git config --global github.user \"<username>\"$white or locally for only the current checkout using$green git config --local github.user \"<username>\"$white."
-    return
-  fi
+    if [[ -z $account ]]; then
+        log_error "Please specify your GitHub username either globally using$green git config --global github.user \"<username>\"$white or locally for only the current checkout using$green git config --local github.user \"<username>\"$white."
+        return
+    fi
 
-  pr=$(gum input --placeholder "PR number or URL")
-  if [[ -z $pr ]]; then
-    log_error "No PR provided."
-    return
-  fi
+    pr=$(gum input --placeholder "PR number or URL")
+    if [[ -z $pr ]]; then
+        log_error "No PR provided."
+        return
+    fi
 
-  pr_json=$(gh pr view "$pr" --json title,number,url) || {
-    log_error "Could not fetch PR '$pr'. Make sure the number/URL is valid and you are in the right repository."
-    return
-  }
+    pr_json=$(gh pr view "$pr" --json title,number,url) || {
+        log_error "Could not fetch PR '$pr'. Make sure the number/URL is valid and you are in the right repository."
+        return
+    }
 
-  title=$(echo "$pr_json" | jq -r '.title')
-  number=$(echo "$pr_json" | jq -r '.number')
-  url=$(echo "$pr_json" | jq -r '.url')
+    title=$(echo "$pr_json" | jq -r '.title')
+    number=$(echo "$pr_json" | jq -r '.number')
+    url=$(echo "$pr_json" | jq -r '.url')
 
-  while true; do
-    printf 'Is the account name "%s" correct? [Y/n]: ' "$green$account$white"
-    read yn
-    case $yn in
-      [Nn]* ) 
-              log_error "Please add your GitHub username to the local config using the following account and run the command again:$green git config --local github.user \<username\>"
-              return;;
+    while true; do
+        printf 'Is the account name "%s" correct? [Y/n]: ' "$green$account$white"
+        read yn
+        case $yn in
+        [Nn]*)
+            log_error "Please add your GitHub username to the local config using the following account and run the command again:$green git config --local github.user \<username\>"
+            return
+            ;;
 
-          * ) 
-              break;; # continue with suggested account
-    esac
-  done
+        *)
+            break
+            ;; # continue with suggested account
+        esac
+    done
 
-  entry="* [#$number]($url): $title - [@$account](https://github.com/$account)."
+    entry="* [#$number]($url): $title - [@$account](https://github.com/$account)."
 
-  while true; do
-    printf 'Do you want to commit the change log entry:%s? [Y/n]: ' "$green $entry $white"
-    read yn
-    case $yn in
-      [Nn]* ) 
-              break;; # cancel process
+    while true; do
+        printf 'Do you want to commit the change log entry:%s? [Y/n]: ' "$green $entry $white"
+        read yn
+        case $yn in
+        [Nn]*)
+            break
+            ;; # cancel process
 
-          * ) 
-              echo "$entry" > "changelog/$number.md"
-              git add "changelog/$number.md"
-              git commit -m "chore: add changelog item"
-              git push
-              break;;
-    esac
-  done
+        *)
+            echo "$entry" >"changelog/$number.md"
+            git add "changelog/$number.md"
+            git commit -m "chore: add changelog item"
+            git push
+            break
+            ;;
+        esac
+    done
 }
 
 # Git commit extended
@@ -176,65 +187,65 @@ function cci() {
 #     # If you want to add a simpler version of this script to your dotfiles, use:
 #     #
 #     # alias gcm='git commit -m "$(gum input)" -m "$(gum write)"'
-    
+
 #     TYPE="$(gum choose "build" "ci" "fix" "feat" "docs" "style" "refactor" "perf" "test" "chore" "revert")"
 #     SCOPE="$(gum input --placeholder "scope")"
-    
+
 #     # Since the scope is optional, wrap it in parentheses if it has a value.
 #     test -n "$SCOPE" && SCOPE="($SCOPE)"
 
 #     # Pre-populate the input with the type(scope): so that the user may change it
 #     SUMARY="$(gum input --value "$TYPE$SCOPE: " --placeholder "Summary of this change")"
 #     BODY=$(gum write --placeholder "Details of this change")
-    
+
 #     # Commit these changes if user confirms
 #     gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$BODY"
 # }
 function gce() {
-        local type scope summary body prefix
-        local -a commit_args
- 
-        type="$(
-                gum choose \
-                        "build" "ci" "fix" "feat" "docs" "style" \
-                        "refactor" "perf" "test" "chore" "revert"
-        )" || return 130
- 
-        scope="$(gum input --placeholder "scope (optional)")" || return 130
-        [[ -n "$scope" ]] && scope="($scope)"
- 
-        prefix="$type$scope: "
-        summary="$(
-                gum input \
-                        --value "$prefix" \
-                        --placeholder "Summary of this change"
-        )" || return 130
- 
-        [[ -z "${summary//[[:space:]]/}" ]] && {
-                echo "Summary must not be empty."
-                return 1
-        }
- 
-        body="$(gum write --placeholder "Commit body (optional)")" || return 130
- 
-        echo
-        echo "Commit message preview:"
-        echo "$summary"
-        [[ -n "${body//[[:space:]]/}" ]] && printf '\n%s\n' "$body"
-        echo
- 
-        gum confirm "Commit changes?" || return 1
- 
-        commit_args=(
-                -m "$summary"
-        )
- 
-        [[ -n "${body//[[:space:]]/}" ]] && commit_args+=(
-                -m "$body"
-        )
- 
-        git commit "${commit_args[@]}"
- }
+    local type scope summary body prefix
+    local -a commit_args
+
+    type="$(
+        gum choose \
+            "build" "ci" "fix" "feat" "docs" "style" \
+            "refactor" "perf" "test" "chore" "revert"
+    )" || return 130
+
+    scope="$(gum input --placeholder "scope (optional)")" || return 130
+    [[ -n "$scope" ]] && scope="($scope)"
+
+    prefix="$type$scope: "
+    summary="$(
+        gum input \
+            --value "$prefix" \
+            --placeholder "Summary of this change"
+    )" || return 130
+
+    [[ -z "${summary//[[:space:]]/}" ]] && {
+        echo "Summary must not be empty."
+        return 1
+    }
+
+    body="$(gum write --placeholder "Commit body (optional)")" || return 130
+
+    echo
+    echo "Commit message preview:"
+    echo "$summary"
+    [[ -n "${body//[[:space:]]/}" ]] && printf '\n%s\n' "$body"
+    echo
+
+    gum confirm "Commit changes?" || return 1
+
+    commit_args=(
+        -m "$summary"
+    )
+
+    [[ -n "${body//[[:space:]]/}" ]] && commit_args+=(
+        -m "$body"
+    )
+
+    git commit "${commit_args[@]}"
+}
 
 # ====================================================================================================================
 # App Store Connect
@@ -242,7 +253,7 @@ function gce() {
 
 # Easily create ASC auth header
 function asc_auth_header() {
-  echo "Bearer $(ruby ~/dev/scripts/jwt.rb "$ASC_AUTH_KEY" "$ASC_AUTH_KEY_ID" "$ASC_AUTH_KEY_ISSUER_ID")"
+    echo "Bearer $(ruby ~/dev/scripts/jwt.rb "$ASC_AUTH_KEY" "$ASC_AUTH_KEY_ID" "$ASC_AUTH_KEY_ISSUER_ID")"
 }
 
 # ====================================================================================================================
@@ -250,54 +261,53 @@ function asc_auth_header() {
 # ====================================================================================================================
 
 function collage() {
-  cd "$(mktemp -d)"
-  
-  # Array to store processed image arguments for montage
-  montage_args=()
-  
-  # Round corners of each input image
-  for IMAGE in "${@[@]}"
-  do
-    BASENAME="$(basename "$IMAGE")"
-    read -r width height <<< $(magick -ping "$IMAGE" -format "%w %h" info:)
-    
+    cd "$(mktemp -d)"
+
+    # Array to store processed image arguments for montage
+    montage_args=()
+
+    # Round corners of each input image
+    for IMAGE in "${@[@]}"; do
+        BASENAME="$(basename "$IMAGE")"
+        read -r width height <<<$(magick -ping "$IMAGE" -format "%w %h" info:)
+
+        magick \
+            -size ${width}x${height} xc:none \
+            -fill white \
+            -draw "roundRectangle 0,0 ${width},${height} 50,50" "$IMAGE" \
+            -compose SrcIn \
+            -composite "$BASENAME"
+
+        # Add to montage args with label
+        montage_args+=(\( "$BASENAME" -set label "$BASENAME" \))
+    done
+
+    # Make the collage with captions
+    montage "${montage_args[@]}" \
+        -font Courier \
+        -pointsize 36 \
+        -fill black \
+        -background none \
+        -gravity South \
+        -shadow \
+        -geometry '+25+25' \
+        '01_collage.heic'
+
+    # Make gradient background
+    read -r width height <<<$(magick -ping '01_collage.heic' -format "%w %h" info:)
+    magick -size ${width}x${height} radial-gradient:#fffffe-lightgray '02_gradient.heic'
+
+    # Put collage on gradient background
+    composite -gravity center '01_collage.heic' '02_gradient.heic' '03_collage_gradient.heic'
+
+    # Round corners of final image
     magick \
-      -size ${width}x${height} xc:none \
-      -fill white \
-      -draw "roundRectangle 0,0 ${width},${height} 50,50" "$IMAGE" \
-      -compose SrcIn \
-      -composite "$BASENAME"
-    
-    # Add to montage args with label
-    montage_args+=( \( "$BASENAME" -set label "$BASENAME" \) )
-  done
-  
-  # Make the collage with captions
-  montage "${montage_args[@]}" \
-    -font Courier \
-    -pointsize 36 \
-    -fill black \
-    -background none \
-    -gravity South \
-    -shadow \
-    -geometry '+25+25' \
-    '01_collage.heic'
-  
-  # Make gradient background
-  read -r width height <<< $(magick -ping '01_collage.heic' -format "%w %h" info:)
-  magick -size ${width}x${height} radial-gradient:#fffffe-lightgray '02_gradient.heic'
-  
-  # Put collage on gradient background
-  composite -gravity center '01_collage.heic' '02_gradient.heic' '03_collage_gradient.heic'
-  
-  # Round corners of final image
-  magick \
-    -size ${width}x${height} xc:none \
-    -fill white \
-    -draw "roundRectangle 0,0 ${width},${height} 50,50" '03_collage_gradient.heic' \
-    -compose SrcIn \
-    -composite '04_final.heic'
-    
-  echo "Find your files in \"$(pwd)\""
-  cd -
+        -size ${width}x${height} xc:none \
+        -fill white \
+        -draw "roundRectangle 0,0 ${width},${height} 50,50" '03_collage_gradient.heic' \
+        -compose SrcIn \
+        -composite '04_final.heic'
+
+    echo "Find your files in \"$(pwd)\""
+    cd -
 }
