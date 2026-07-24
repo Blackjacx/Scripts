@@ -33,11 +33,11 @@ alias gb="git --no-pager branch"
 # can be removed again.
 alias gc="git commit"
 alias gcfu="git commit --fixup"
-alias glogd="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' develop.."
-alias gld="git --no-pager log --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' develop.."
-alias glogm="git --no-pager log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' main.."
+alias glogd="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' develop.."
+alias glogm="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' main.."
+alias gld="git log --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset' develop.."
 # Re-define glog and diable pager
-alias glog="git --no-pager log --oneline --decorate"
+alias glog="git log --oneline --decorate"
 alias gst="git status -sb"
 # Git add all and continue rebase
 alias gac="git add . && git rebase --continue"
