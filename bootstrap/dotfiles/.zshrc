@@ -207,37 +207,37 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --all --header -1 -g --color-sc
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200'
 # show preview when using open
 zstyle ':fzf-tab:complete:open:*' fzf-preview '
-  if [[ -f $realpath ]]; then 
+  if [[ -f $realpath ]]; then
     if command -v bat > /dev/null 2>&1; then
       bat --color always --paging never $realpath --line-range :500
     else
       cat $realpath
-    fi    
+    fi
   else
     eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200
   fi
 '
 # Show preview when using eza (ls)
 zstyle ':fzf-tab:complete:eza:*' fzf-preview '
-  if [[ -f $realpath ]]; then 
+  if [[ -f $realpath ]]; then
     if command -v bat > /dev/null 2>&1; then
       bat --color always --paging never $realpath --line-range :500
     else
       cat $realpath
-    fi    
+    fi
   else
     eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200
   fi
 '
 # Show preview when using bat (cat)
 zstyle ':fzf-tab:complete:bat:*' fzf-preview '
-  if [[ -f $realpath ]]; then 
+  if [[ -f $realpath ]]; then
     if command -v bat > /dev/null 2>&1; then
       bat --color always --paging never $realpath --line-range :500
     else
       cat $realpath
-    fi    
-  else 
+    fi
+  else
     eza --all --header -1 -g --color-scale --icons --color=always $realpath | head -200
   fi
 '

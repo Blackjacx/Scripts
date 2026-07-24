@@ -468,7 +468,7 @@ showUsage() {
     cat <<EOF
 Usage: $0 [-hvacilr]
 
-Sets up a development mac by setting system configurations, installing 
+Sets up a development mac by setting system configurations, installing
 software and linking configuration (dotfiles) to your home and configuration folders.
 
 -h     Display this help
