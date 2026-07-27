@@ -1,6 +1,10 @@
 local opt = vim.opt -- for conciseness
 
+-- misc
 opt.shortmess = "I" -- disable native nvim greeter / intro message / splash screen (however you wanna call it)
+opt.confirm = true -- prompt instead of failing on :q with unsaved changes
+opt.undofile = true -- enable persistent undo
+opt.updatetime = 250 -- default 4000ms; makes CursorHold-based UI feel instant
 
 -- line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
@@ -16,10 +20,11 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 opt.smartindent = true -- make indenting smarter again
 
+-- navigation
+opt.jumpoptions = "stack" -- jumplist behaves like a browser back button
+
 -- Preview substitutions
 opt.inccommand = "split"
-
-opt.undofile = true -- enable persistent undo
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping

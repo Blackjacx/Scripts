@@ -18,6 +18,25 @@ return {
 			-- { "<leader>fn", desc = "New File" },
 			-- { "<leader>f1", hidden = true }, -- hide this keymap
 			-- { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
+
+			-- Group labels for the <leader> menu. The mappings themselves live in
+			-- core/keymaps.lua, core/autocmds.lua (LSP, on LspAttach) and in the
+			-- `keys` table of each plugin spec -- these entries only name the prefixes.
+			{ "<leader>e", group = "explorer" }, -- <leader>e also toggles nvim-tree
+			{ "<leader>f", group = "find (telescope)" },
+			{ "<leader>g", group = "git" },
+			{ "<leader>h", group = "git hunks" },
+			{ "<leader>l", group = "lsp" },
+			{ "<leader>m", group = "format" },
+			{ "<leader>n", group = "swap w/ next + nohl" }, -- nh clears highlights, n{a,m,:} swap
+			{ "<leader>p", group = "swap w/ previous" },
+			{ "<leader>r", group = "replace + restart lsp" }, -- rw replaces word, rs restarts lsp
+			{ "<leader>s", group = "splits" },
+			{ "<leader>t", group = "tabs" },
+			{ "<leader>w", group = "sessions" },
+			{ "<leader>W", group = "workspace folders" },
+			{ "<leader>x", group = "trouble" },
+
 			{
 				"<leader>b",
 				group = "buffers",

@@ -47,7 +47,7 @@ return {
 		{ "<leader>gs", ":Telescope git_status<CR>", desc = "Git Status" },
 
 		-- comand history
-		{ "<leader>hh", ":Telescope command_history<CR>", desc = "Command history" },
+		{ "<leader>fH", ":Telescope command_history<CR>", desc = "Command history" },
 	},
 	config = function()
 		local telescope = require("telescope")
