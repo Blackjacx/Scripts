@@ -385,7 +385,6 @@ fi
 
 alias cdtemp='cd "$(mktemp -d)"'
 alias o="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse --preview 'bat {}' | xargs nvim"
-alias n="nvim"
 alias br="broot"
 
 # -----------------------------------------------
