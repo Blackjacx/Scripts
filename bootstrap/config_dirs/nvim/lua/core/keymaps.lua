@@ -50,9 +50,6 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- Plugin Keybinds
 ----------------------
 
--- vim-maximizer
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
-
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Open tree on current file" })
