@@ -39,8 +39,6 @@ alias gld="git log --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cI) %
 # Re-define glog and diable pager
 alias glog="git log --oneline --decorate"
 alias gst="git status -sb"
-# Git add all and continue rebase
-alias gac="git add . && git rebase --continue"
 # New alias for setting back the current branch. It is faster than defining the function below.
 alias greload='git fetch origin && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 
