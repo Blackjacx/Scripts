@@ -382,9 +382,6 @@ if type brew &>/dev/null; then
     # chmod -R go-w '$HOMEBREW_PREFIX/share/zsh'
 fi
 
-# Load completions for jj
-source <(COMPLETE=zsh jj)
-
 #-------------------------------------------------------------------------------
 # Key Bindings
 #-------------------------------------------------------------------------------
