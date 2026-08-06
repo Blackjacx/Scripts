@@ -127,7 +127,19 @@ alias sm="smerge ."
 # Search hidden files and ignore some uninteresting folders - good for searching from home dir
 alias ag="ag -i --hidden --skip-vcs-ignores --ignore-dir={\".tmp/*\",\"*Library*\",\"*.gem*\",\"*.build*\",\".git\",\"*bundle*\",\"*.zsh_history*\"}"
 alias sz='source ${HOME}/.zshrc'
-alias c="clear && tmux clear-history" # clear scrollback buffer and history
+
+c() {
+    # Check if the $TMUX environment variable is set and not empty
+    # ${TMUX:-} gives a default empty string if unset — so it won’t crash when using `set -u`.
+    # -n tests for non-empty
+    if [ -n "${TMUX:-}" ]; then
+        # We are in tmux
+        clear && tmux clear-history
+    else
+        # We are not in tmux
+        clear
+    fi
+}
 
 #-------------------------------------------------------------------------------
 # GitHub
