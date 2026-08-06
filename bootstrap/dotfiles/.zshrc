@@ -514,4 +514,4 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
 fi
 eval "$(direnv hook zsh)"
 
-source /Users/stherold/.config/broot/launcher/bash/br
+[ -f "${HOME}/.config/broot/launcher/bash/br" ] && source "${HOME}/.config/broot/launcher/bash/br"
