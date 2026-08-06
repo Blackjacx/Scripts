@@ -153,21 +153,21 @@ export DEFAULT_USER
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    git-extras
-    git-extra-commands
-    # timewarrior
-    swiftpm
-    bundler
-    common-aliases
-    colored-man-pages
-    bgnotify
-    zsh-autosuggestions
-    # fzf # tab-completion does not work when this is enabled
-    fzf-tab
-    you-should-use
-)
+# plugins=(
+#     git
+#     git-extras
+#     git-extra-commands
+#     # timewarrior
+#     swiftpm
+#     bundler
+#     common-aliases
+#     colored-man-pages
+#     bgnotify
+#     zsh-autosuggestions
+#     # fzf # tab-completion does not work when this is enabled
+#     fzf-tab
+#     you-should-use
+# )
 
 # User configuration
 
@@ -458,22 +458,51 @@ zinit light-mode for \
 # Zinit Plugins • Completions • Aliases
 #-------------------------------------------------------------------------------
 
+#
+# internal/official ZSH plugins
+#
+
 zsh_plugins_official=(
     "direnv"
     "fzf"
+    "git"
+    "git-extras"
+    # "git-extra-commands"
+    # "timewarrior"
+    "swiftpm"
+    "bundler"
+    "common-aliases"
+    "colored-man-pages"
+    "bgnotify"
+    # "zsh-autosuggestions"
+    # "fzf" # tab-completion does not work when this is enabled
+    # "fzf-tab"
+    # "you-should-use"
 )
 for plugin in "${zsh_plugins_official[@]}"; do
-    zinit snippet OMZ::plugins/$plugin/$plugin.plugin.zsh
+    zinit snippet "OMZ::plugins/$plugin/$plugin.plugin.zsh"
 done
 
-zsh_plugins_external=(
-    "zsh-users/zsh-syntax-highlighting"
-    "TamCore/autoupdate-oh-my-zsh-plugins"
-    "wfxr/forgit"
-)
-for plugin in "${zsh_plugins_external[@]}"; do
-    zinit light "$plugin"
-done
+#
+# external ZSH plugins
+#
+
+# RELOAD aliases.zsh AFTER 'forgit'
+# Zinit's Ice is a way to attach options to the next zinit command only.
+# "Turbo mode" is just the name for using the 'wait' ice. It defers loading until after the first prompt renders, so your shell is interactive immediately and plugins stream in behind you.
+# Lucid suppresses the "Loaded plugin" output when the plugin is loaded.
+# The catch: turbo breaks anything that assumes load order, which is exactly the trap you were in with aliases.zsh. Your .zshrc finishes running before the deferred plugin loads, so a source on the next line now runs too early.
+# atload and friends — the hook ices. These attach shell code to points in a plugin's lifecycle.
+# This is why atload is the turbo-safe answer to your original question — it anchors your re-source to the plugin's actual load event instead of to a line number in .zshrc.
+# Zinit's ice syntax is its own mini-parser, and it's picky. Inside atload you want single quotes so $ZSH_CUSTOM expands at load time rather than at registration time.
+zinit ice wait lucid atload'source "$ZSH_CUSTOM/aliases.zsh"'
+zinit light "wfxr/forgit"
+zinit light "zsh-users/zsh-syntax-highlighting"
+zinit light "TamCore/autoupdate-oh-my-zsh-plugins"
+zinit light "unixorn/git-extra-commands"
+zinit light "zsh-users/zsh-autosuggestions"
+zinit light "aloxaf/fzf-tab"
+zinit light "MichaelAquilina/zsh-you-should-use"
 
 # Activate mise
 export PATH="$PATH:$HOME/.local/share/mise/shims"
