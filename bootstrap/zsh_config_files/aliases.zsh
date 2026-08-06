@@ -41,6 +41,8 @@ alias glog="git log --oneline --decorate"
 alias gst="git status -sb"
 # New alias for setting back the current branch. It is faster than defining the function below.
 alias greload='git fetch origin && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
+# Overwrites forgit::gd
+alias gd='git diff'
 
 # Pulls the specified branch and deletes all branches that have been merged / deleted on remote.
 gupdate() {
