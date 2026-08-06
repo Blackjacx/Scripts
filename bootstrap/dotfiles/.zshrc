@@ -416,8 +416,10 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # Starship zero config prompt
 # ====================================================================================================================
 
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config.toml"
-eval "$(starship init zsh)"
+if type starship &>/dev/null; then
+    export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config.toml"
+    eval "$(starship init zsh)"
+fi
 
 #-------------------------------------------------------------------------------
 # Load tools for ZSH
