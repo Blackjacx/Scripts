@@ -48,7 +48,6 @@
     prune = true                                    # drop local refs for deleted remote branches
     pruneTags = true                                # ...same for tags
 [pull]
-    ff = only                                       # never create surprise merge commits on pull
     rebase = true
 [push]
     default = simple
