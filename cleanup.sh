@@ -23,7 +23,7 @@ log "Clean up unused gem versions"
 gem cleanup
 
 log "Erase Caches Folder..."
-sudo rm -rf "${HOME}/Library/Caches"
+sudo rm -rf ~/Library/Caches/*
 
 log "Remove Homebrew cache"
 brew cleanup --prune=all
@@ -38,7 +38,7 @@ xcrun simctl shutdown all
 xcrun simctl erase all
 
 log "Cleanup Xcode DerivedData folder"
-rm -rf "${HOME}/Library/Developer/Xcode/DerivedData/*"
+rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
 log "Cleanup Xcode device logs"
 rm -rf ~/Library/Developer/Xcode/iOS\ Device\ Logs/
@@ -54,7 +54,7 @@ log "Cleanup Carthage Cache"
 
 log "Empty Trash"
 # The -P option overwrites the deleted files for extra security (but that takes long)
-sudo rm -rf "${HOME}/.Trash/*"
+sudo rm -rf ~/.Trash/*
 
 log "Erase Spotlight Index and Rebuild"
 sudo mdutil -E /
