@@ -30,24 +30,29 @@ return {
 			end,
 			desc = "Fuzzy find files in cwd",
 		},
-		{ "<leader>fs", ":Telescope live_grep<CR>", desc = "Find string in cwd" },
-		{ "<leader>fc", ":Telescope grep_string<CR>", desc = "Find string under cursor in cwd" }, -- find string under cursor in current working directory
-		{ "<leader>fr", ":Telescope oldfiles<CR>", desc = "Fuzzy find recent files" },
-		{ "<leader>fb", ":Telescope buffers<CR>", desc = "List open buffers" },
-		{ "<leader>fj", ":Telescope jumplist<CR>", desc = "Open jumplist" },
-		{ "<leader>fh", ":Telescope help_tags<CR>", desc = "List Help Tags" },
+		{ "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Find string in cwd" },
+		{ "<leader>fc", "<cmd>Telescope grep_string<cr>", desc = "Find string under cursor in cwd" }, -- find string under cursor in current working directory
+		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Fuzzy find recent files" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "List open buffers" },
+		{ "<leader>fj", "<cmd>Telescope jumplist<cr>", desc = "Open jumplist" },
+		{ "<leader>fp", "<cmd>Telescope builtin<cr>", desc = "List Builtin Pickers" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "List Help Tags" },
+
+		-- Keymaps
+		{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "List Keymaps" },
 
 		-- ToDo Comment
-		{ "<leader>ft", ":TodoTelescope<CR>", desc = "Find todos" }, -- find todos in cwd
+		{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" }, -- find todos in cwd
 
 		-- Git
-		{ "<leader>gC", ":Telescope git_commits<CR>", desc = "All Commits" }, -- use <cr> to checkout ["gc" for git commits]
-		{ "<leader>gh", ":Telescope git_bcommits<CR>", desc = "File History" }, -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-		{ "<leader>gb", ":Telescope git_branches<CR>", desc = "Git Branches" }, -- list git branches (use <cr> to checkout) ["gb" for git branch]
-		{ "<leader>gs", ":Telescope git_status<CR>", desc = "Git Status" },
+		{ "<leader>gC", "<cmd>Telescope git_commits<cr>", desc = "All Commits" }, -- use <cr> to checkout ["gc" for git commits]
+		{ "<leader>gh", "<cmd>Telescope git_bcommits<cr>", desc = "File History" }, -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
+		{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" }, -- list git branches (use <cr> to checkout) ["gb" for git branch]
+		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git Status" },
 
-		-- comand history
-		{ "<leader>fH", ":Telescope command_history<CR>", desc = "Command history" },
+		-- Commands
+		{ "<leader>fH", "<cmd>Telescope command_history<cr>", desc = "Command history" },
+		{ "<leader>fC", "<cmd>Telescope commands<cr>", desc = "Commands" },
 	},
 	config = function()
 		local telescope = require("telescope")
