@@ -79,7 +79,3 @@ keymap.set("n", "<leader>lx", function()
 		underline = isLspDiagnosticsVisible,
 	})
 end, { desc = "Toggle Linter Virtual Text" })
-
--- Scratch
-keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>", { desc = "New Scratch File" })
-keymap.set("n", "<M-C-o>", "<cmd>ScratchOpen<cr>", { desc = "Scratch Open" })
