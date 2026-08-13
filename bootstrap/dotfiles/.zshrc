@@ -452,7 +452,7 @@ zinit light-mode for \
 
 zsh_plugins_official=(
     "direnv"
-    "fzf"
+    # "fzf" # manually sourced below
     "git"
     "git-extras"
     # "git-extra-commands"
@@ -499,6 +499,11 @@ zinit light "MichaelAquilina/zsh-you-should-use"
 
 zinit add-fpath --front "$ZSH_CUSTOM"/functions
 autoload -Uz "$ZSH_CUSTOM"/functions/*(-.N:t)
+
+# fzf shell integration (CTRL-T / CTRL-R / ALT-C + completion).
+# `command` bypasses the `fzf` alias defined in aliases.zsh - otherwise this line is
+# parsed as `fzf-tmux -p90%,70% --zsh` and flashes a tmux popup at every startup.
+eval "$(command fzf --zsh)"
 
 # Activate mise
 export PATH="$PATH:$HOME/.local/share/mise/shims"
