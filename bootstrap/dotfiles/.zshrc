@@ -455,17 +455,12 @@ zsh_plugins_official=(
     # "fzf" # manually sourced below
     "git"
     "git-extras"
-    # "git-extra-commands"
     # "timewarrior"
     "swiftpm"
     "bundler"
     "common-aliases"
     "colored-man-pages"
     "bgnotify"
-    # "zsh-autosuggestions"
-    # "fzf" # tab-completion does not work when this is enabled
-    # "fzf-tab"
-    # "you-should-use"
 )
 for plugin in "${zsh_plugins_official[@]}"; do
     zinit snippet "OMZ::plugins/$plugin/$plugin.plugin.zsh"
