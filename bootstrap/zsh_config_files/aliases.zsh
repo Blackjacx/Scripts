@@ -141,6 +141,17 @@ c() {
     fi
 }
 
+# Check if the $TMUX environment variable is set and not empty
+# ${TMUX:-} gives a default empty string if unset — so it won’t crash when using `set -u`.
+# -n tests for non-empty
+if [ -n "${TMUX:-}" ]; then
+    # We are in tmux, so run fzf-tmux in poopup mode
+    alias fzf="fzf-tmux -p90%,70%"
+elif alias fzf &>/dev/null; then
+    # We are not in tmux and FZF is not declared as alias, so run fzf normally
+    unalias fzf
+fi
+
 #-------------------------------------------------------------------------------
 # GitHub
 #-------------------------------------------------------------------------------
