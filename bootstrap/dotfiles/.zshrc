@@ -503,6 +503,14 @@ zinit light "zsh-users/zsh-autosuggestions"
 zinit light "aloxaf/fzf-tab"
 zinit light "MichaelAquilina/zsh-you-should-use"
 
+#
+# ZSH Custom Shell Functions
+# All custom shell function, e.g. the ones in imports.sh should be moved there! ⚠️ tbd.
+#
+
+zinit add-fpath --front "$ZSH_CUSTOM"/functions
+autoload -Uz "$ZSH_CUSTOM"/functions/*(-.N:t)
+
 # Activate mise
 export PATH="$PATH:$HOME/.local/share/mise/shims"
 # Make mise shims available

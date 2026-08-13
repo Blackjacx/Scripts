@@ -77,15 +77,6 @@ function checkInstalledImageMagick() {
     }
 }
 
-# Markdown to HTML
-function mdsee() {
-    HTMLFILE="$(mktemp -u).html"
-    jq --slurp --raw-input '{"text": "\(.)", "mode": "markdown"}' "$1" |
-        curl -s --data @- https://api.github.com/markdown >"$HTMLFILE"
-    echo "$HTMLFILE"
-    open "$HTMLFILE"
-}
-
 # ====================================================================================================================
 # Use advanced FZF if in tmux environment
 # ====================================================================================================================

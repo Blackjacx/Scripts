@@ -427,9 +427,17 @@ linkConfigurationFiles() {
         ln -sf "$tool_config_dir" "$link_dir/"
     done
 
+    # Find ZSH files, e.g. aliases.zsh, that get autoloaded during shell startup
     find "$SCRIPT_DIR/bootstrap/zsh_config_files" -type f -iname "*" -print0 | while read -r -d $'\0' file; do
-        link_dir="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/"
+        link_dir="${ZSH_CUSTOM:-${HOME}/.config/zsh}/"
         log "Link zsh-config file $file --> $link_dir$(basename $file)"
+        ln -sf "$file" "$link_dir/"
+    done
+
+    # Find custom ZSH shell functions, that get autoloaded during shell startup and are made available for usaage
+    find "$SCRIPT_DIR/bootstrap/zsh_custom_shell_functions" -type f -iname "*" -print0 | while read -r -d $'\0' file; do
+        link_dir="${ZSH_CUSTOM:-${HOME}/.config/zsh}/functions/"
+        log "Link zsh-custom-shell function file $file --> $link_dir$(basename $file)"
         ln -sf "$file" "$link_dir/"
     done
 
