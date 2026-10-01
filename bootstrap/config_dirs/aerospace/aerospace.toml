@@ -148,8 +148,8 @@ cmd-ctrl-alt-shift-right = 'focus --boundaries all-monitors-outer-frame --bounda
 [mode.move.binding]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-slash = 'layout tiles horizontal vertical'
-cmd-period = 'layout accordion horizontal vertical'
+cmd-slash = ['layout tiles horizontal vertical', 'mode main']
+cmd-period = ['layout accordion horizontal vertical', 'mode main']
 
 # Join Windows
 # See https://nikitabobko.github.io/AeroSpace/commands#join-with
