@@ -237,7 +237,7 @@ function gce() {
         return 1
     }
 
-    body="$(gum write --placeholder "Commit body (optional)")" || return 130
+    body="$(gum write --width 72 --placeholder "Commit body (optional)")" || return 130
 
     echo
     echo "Commit message preview:"
