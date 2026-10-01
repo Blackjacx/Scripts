@@ -40,6 +40,12 @@ keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "Next tab" })
 keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "Previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+-- Move lines up/down
+keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
+keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
+keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
+keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
+
 -- Search and replace all occurrences of word under cursor in file (https://neovim.discourse.group/t/non-buggy-keymap-to-search-and-replace-word-under-cursor/4314/4)
 -- PROBLEM: This replaces also parts of words which contain the word under
 -- cursor.
