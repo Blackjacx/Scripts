@@ -7,6 +7,26 @@ return {
 	config = function()
 		local conform = require("conform")
 
+		-- Nearest directory wins; within one directory, .swiftformat beats .config/swiftformat
+		local function find_swiftformat_config(start_dir)
+			local candidates = { ".swiftformat", ".config/swiftformat" }
+
+			local dirs = { start_dir }
+			for parent in vim.fs.parents(start_dir) do
+				table.insert(dirs, parent)
+			end
+
+			for _, dir in ipairs(dirs) do
+				for _, name in ipairs(candidates) do
+					local path = vim.fs.joinpath(dir, name)
+					local stat = vim.uv.fs_stat(path)
+					if stat and stat.type == "file" then
+						return path
+					end
+				end
+			end
+		end
+
 		conform.setup({
 			formatters_by_ft = {
 				bash = { "shfmt" },
@@ -28,6 +48,14 @@ return {
 				yaml = { "prettierd", "yamlfmt" },
 				zsh = { "shfmt" },
 			},
+			formatters = {
+				swiftformat = {
+					prepend_args = function(_, ctx)
+						local cfg = find_swiftformat_config(ctx.dirname)
+						return cfg and { "--config", cfg } or {}
+					end,
+				},
+			},
 			-- formatters = {
 			-- 	stylua = {
 			-- 		command = "stylua",
@@ -40,9 +68,7 @@ return {
 			-- 	},
 			-- },
 			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				-- timeout_ms = 500,
+				lsp_format = "fallback", -- `lsp_fallback` is the deprecated spelling
 				timeout_ms = 3000,
 			},
 		})
