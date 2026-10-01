@@ -44,6 +44,17 @@ alias greload='git fetch origin && git reset --hard origin/$(git rev-parse --abb
 # Overwrites forgit::gd
 alias gd='git diff'
 
+# Checkout branches via fzf which shows them sorted by committer date (see gitconfig::branch::sort = -committerdate)
+unalias gcb 2>/dev/null
+gcb() {
+    local branch
+    # The grep is to filter out emission of a `* (HEAD detached at abc1234)` line on a detached HEAD.
+    branch=$(git --no-pager branch | grep -v '^\* (' | fzf) || return
+    branch=${branch:2}
+    [[ -n $branch ]] || return
+    git checkout "$branch"
+}
+
 # Pulls the specified branch and deletes all branches that have been merged / deleted on remote.
 gupdate() {
     local branch="${1:-}"
