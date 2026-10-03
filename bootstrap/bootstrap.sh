@@ -300,7 +300,7 @@ configureSoftware() {
 }
 
 #
-# Installs all useful software, ruby gems, Homebrew packages and casks
+# Installs all useful software, Homebrew packages and casks
 #
 installSoftware() {
 
@@ -398,13 +398,6 @@ installSoftware() {
     git clone https://github.com/powerline/fonts.git --depth=1 "$tmp"
     "$tmp"/install.sh
     rm -rf "$tmp"
-
-    printf "\n\n#################################################################\n"
-    printf "Install Ruby Gems\n"
-    printf "#################################################################\n\n"
-
-    gem install bundler --no-document
-    gem install jwt --no-document
 }
 
 linkConfigurationFiles() {

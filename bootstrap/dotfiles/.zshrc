@@ -402,6 +402,17 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
 # ====================================================================================================================
+# This has to run before usage of any tool installed via mise - e.g. Starship
+# ====================================================================================================================
+
+# Activate mise
+export PATH="$PATH:$HOME/.local/share/mise/shims"
+# Make mise shims available
+eval "$("${HOME}"/.local/bin/mise activate zsh)"
+# Activate mise completions
+eval "$("${HOME}"/.local/bin/mise completion zsh)"
+
+# ====================================================================================================================
 # Starship zero config prompt
 # ====================================================================================================================
 
@@ -499,13 +510,6 @@ autoload -Uz "$ZSH_CUSTOM"/functions/*(-.N:t)
 # `command` bypasses the `fzf` alias defined in aliases.zsh - otherwise this line is
 # parsed as `fzf-tmux -p90%,70% --zsh` and flashes a tmux popup at every startup.
 eval "$(command fzf --zsh)"
-
-# Activate mise
-export PATH="$PATH:$HOME/.local/share/mise/shims"
-# Make mise shims available
-eval "$("${HOME}"/.local/bin/mise activate zsh)"
-# Activate mise completions
-eval "$("${HOME}"/.local/bin/mise completion zsh)"
 
 # Ensure compatibility tmux <-> direnv (https://github.com/direnv/direnv/issues/106)
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then

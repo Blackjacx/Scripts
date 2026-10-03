@@ -96,7 +96,6 @@ brew "pngquant"                                   # lossy PNG compressor
 brew "poppler"                                    # necessary for pdfinfo command
 brew "powerlevel10k"                              # blazing fast theme for ZSH
 brew "pstree"
-brew "rbenv"
 brew "rga"                                        # 🔥 rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.
 brew "ripgrep"                                    # ripgrep recursively searches directories for a regex pattern while respecting your gitignore
 brew "sentry-cli"                                 # a command line utility to work with Sentry.
