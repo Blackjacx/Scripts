@@ -118,6 +118,7 @@ format = '([+$added]($added_style))([ -$deleted]($deleted_style))'
 disabled = true
 
 [nodejs]
+disabled = true
 symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
@@ -181,6 +182,7 @@ style = "bg:color_bg3"
 format = '[[ $symbol( $version)( $environment) ](fg:color_fg0 bg:color_bg3)]($style)'
 
 [aws]
+disabled = true
 symbol = " "
 style = "bg:color_blue"
 format = '[$symbol($profile )(\($region\) )(\[$duration\] )](fg:color_fg0 bg:color_blue)($style)'
@@ -331,6 +333,7 @@ style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [swift]
+disabled = true
 symbol = " "
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
