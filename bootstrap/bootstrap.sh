@@ -408,6 +408,9 @@ linkConfigurationFiles() {
     printf "Link Configuration Files\n"
     printf "#################################################################\n\n"
 
+    log "Recursively create necessary folders for linking."
+    mkdir -p ~/.config/zsh/functions
+
     # Finds hidden dotfiles and uses safe syntax to execute loop
     find "$SCRIPT_DIR/bootstrap/dotfiles" -type f -iname ".*" -print0 | while read -r -d $'\0' file; do
         link_dir="${HOME}/"
