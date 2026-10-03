@@ -1,0 +1,5 @@
+# Customize theme
+--theme="gruvbox-dark"
+
+# Use Bash syntax for direnv files
+--map-syntax ".envrc.*:Bourne Again Shell (bash)"
