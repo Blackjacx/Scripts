@@ -357,7 +357,7 @@ installSoftware() {
     brew update
 
     log "Install all dependencies declared in global  ~/.Brewfile (eventually upgrade them)…"
-    brew bundle -v --global --force --cleanup
+    brew bundle -v --global --force
 
     log "Upgrade all dependencies (even those not declared in global ~/.Brewfile)…"
     brew upgrade
