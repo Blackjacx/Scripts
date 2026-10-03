@@ -323,6 +323,8 @@ installSoftware() {
         printf "Install Mise\n"
         printf "#################################################################\n\n"
         curl https://mise.run | sh
+        # Activate Mise once
+        eval "$("${HOME}"/.local/bin/mise activate zsh)"
     }
 
     printf "\n\n#################################################################\n"
