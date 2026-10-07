@@ -100,7 +100,7 @@ truncation_length = 1
 truncation_symbol = ""
 
 [git_branch]
-disabled = true
+disabled = false
 symbol = ""
 style = "bg:color_aqua"
 format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
