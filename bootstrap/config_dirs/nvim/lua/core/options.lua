@@ -96,3 +96,25 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd([[highlight ColorColumn guibg=#51202A]]) -- customize color here
 	end,
 })
+
+--
+-- Over SSH, route the system clipboard through OSC 52 so yanks land on the local machine
+---
+
+if vim.env.SSH_TTY then
+	local osc52 = require("vim.ui.clipboard.osc52") -- built-in since Neovim 0.10
+
+	-- Paste from Neovim's unnamed register instead of OSC 52 read,
+	-- which terminals usually block or prompt for (causes hangs on `p`)
+	local function paste()
+		return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+	end
+
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") }, -- send yanks to local clipboard
+		paste = { ["+"] = paste, ["*"] = paste }, -- read from Neovim's own register
+	}
+end
+-- Optional: make plain `y`/`p` use the system clipboard (no need for "+)
+vim.opt.clipboard = "unnamedplus"
