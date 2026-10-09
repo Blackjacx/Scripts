@@ -14,7 +14,6 @@ tap "jzaleski/homebrew-jzaleski", trusted: true                  # support for a
 tap "lokalise/cli-2", trusted: true                              # localization engine
 tap "homebrew/cask-fonts", trusted: true                         # support for fonts
 tap "colindean/fonts-nonfree", trusted: true                     # Calibri, Cambria, ...
-tap "github/gh", trusted: true                                   # support for gh • Github CLI
 tap "romkatv/powerlevel10k", trusted: true                       # terminal/prompt theming
 tap "Blackjacx/homebrew-formulae", trusted: true                 # support for asc • App Store Connect API client written in Swift
 tap "getsentry/tools", trusted: true                             # to install sentry CLI
@@ -40,27 +39,21 @@ brew "atac"                                       # a simple API client (postman
 brew "awscli"                                     # the command line frontend for Amazon Web Services
 brew "bash"                                       # the bash shell
 brew "basictex"                                   # BasicTeX is a subset of TeX Live of size 110 megabytes instead of 2 gigabytes.
-brew "bat"                                        # a cat clone with wings.
 brew "bitwarden-cli"                              # fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
 brew "btop"                                       # 🔥 a monitor of resources
 brew "cloc"                                       # lines of code counter
 brew "cmatrix"                                    # terminal based "The Matrix" like implementation
 brew "coreutils"
 brew "curl"
-brew "direnv"                                     # 🔥 .envrc file loader
 brew "diskonaut"                                  # Terminal disk space navigator 🔭
-brew "dotenv-linter"                              # env file linter used in neovim
 brew "doxygen"
 brew "entr"                                       # run arbitrary commands when files change
 brew "eza"                                        # modern `ls` ... replacement
 brew "fastfetch"                                  # feature-rich and performance oriented, system information tool.
-brew "fd"                                         # drop in replacement for find
 brew "ffmpeg"
 brew "figlet"                                     # making large letters out of ordinary text
 brew "firebase-cli"                               # automating Firebase
 brew "fx"                                         # 🔥 interactive terminal JSON viewer & processor
-# brew "fzf"                                        # a command-line fuzzy finder (installed using "mise en place")
-brew "gh"
 brew "ghostscript"                                # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git"                                        # distributed version-control system for tracking changes in source code during software development
 brew "git-delta"                                  # A syntax-highlighting pager for git, diff, grep, and blame output
@@ -115,7 +108,6 @@ brew "transcrypt"                                 # used to transparently de-/en
 brew "tree"                                       # useful to print whole directory hierarchies while debugging
 brew "watch"
 brew "wget"
-brew "xcodes"                                     # the best CLI to install and switch between multiple versions of Xcode.
 brew "xcparse"                                    # command line tool & Swift framework for parsing Xcode 11+ xcresult
 brew "yt-dlp"
 brew "zsh-completions"                            # additional completion definitions for Zsh
@@ -145,7 +137,6 @@ cask "gpg-suite-no-mail"                          # 🔥
 cask "handbrake"
 cask "iina"
 cask "inkscape"
-cask "insomnia"                                   # 🔥 open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC.
 cask "karabiner-elements"                         # 🔥
 cask "keepassxc"
 cask "keycastr"                                   # open-source keystroke visualizer
@@ -163,7 +154,6 @@ cask "raycast"                                    # drop in sulution for macOS S
 cask "scummvm"
 cask "sf-symbols"                                 # 🔥
 cask "signal"                                     # secure messenger
-cask "sketch"
 # cask "skype"                                    # will be removed from MS world soon - replaced by teams
 cask "slack"
 cask "spotify"
@@ -176,10 +166,8 @@ cask "telegram"
 cask "tex-live-utility"                           # TeX Live Utility, a Mac OS GUI for the TeX Live Manager
 # cask "texshop"                                  # switched off since quite big - re-enable when needed
 cask "tunnelblick"
-# cask "visual-studio-code"
 cask "vlc"
 cask "wireshark"
-# cask "wwdc"
 
 mas "Unsplash Wallpapers", id: 1284863847
 mas "Aware", id: 1082170746                       # menubar app for macOS that displays how long you've been actively using your computer.
