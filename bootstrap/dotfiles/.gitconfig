@@ -76,3 +76,7 @@
       autocorrect = prompt                          # "did you mean...?" and offer to run it
 [commit]
     verbose = true                                  # show the full diff in the commit-message editor
+
+[url "git@github.com-ioki:dbdrive/"]
+    insteadOf = git@github.com:dbdrive/
+    insteadOf = https://github.com/dbdrive/
