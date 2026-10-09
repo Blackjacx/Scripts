@@ -177,7 +177,7 @@ export LANG=en_US.UTF-8
 # Set user gem path to avoid the need of sudo
 export GEM_HOME=$HOME/.gem
 # Set the path using specified order
-export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_PREFIX}/sbin:${HOMEBREW_DIR_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:/Library/TeX/texbin:${PATH}"
+export PATH="$HOME/.rbenv/bin:${HOME}/.mint/bin:${GEM_HOME}/bin:${HOMEBREW_DIR_PREFIX}/sbin:${HOMEBREW_DIR_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/local/libexec/gnubin:/Library/TeX/texbin:/Users/stherold/.lmstudio/bin:${PATH}"
 
 #-------------------------------------------------------------------------------
 # FZF
