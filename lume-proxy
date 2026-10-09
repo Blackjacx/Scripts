@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# lume-proxy <host> <port>: boot Lume VM if needed, wait, then tunnel
+vm=${1#lume-}
+port=${2:-22}
+tries=90
+[ -n "$vm" ] || {
+    printf 'lume-proxy: no VM name given\n' >&2
+    exit 1
+}
+
+case $vm in
+macos-tahoe-sandbox)
+    args="--shared-dir $HOME/dev/projects/db/claude-projects:rw"
+    ;;
+macos-tahoe-golden)
+    args="--shared-dir $HOME/dev/projects/db/claude-projects:rw"
+    ;;
+*) args="" ;;
+esac
+
+field() {
+    lume get "$vm" --format json 2>/dev/null | jq -r ".[0].$1 // empty" 2>/dev/null
+}
+
+if [ "$(field status)" != "running" ]; then
+    printf 'lume-proxy: starting VM [%s]...\n' "$vm" >&2
+    lume run "$vm" --detach --no-display $args </dev/null >/dev/null 2>&1
+fi
+
+printf 'lume-proxy: waiting for VM [%s]...\n' "$vm" >&2
+while [ "$tries" -gt 0 ]; do
+    ip=$(field ipAddress)
+    if [ -n "$ip" ] && nc -z -G 2 "$ip" "$port" 2>/dev/null; then
+        exec nc "$ip" "$port"
+    fi
+    tries=$((tries - 1))
+    sleep 2
+done
+printf 'lume-proxy: VM [%s] not reachable\n' "$vm" >&2
+exit 1
+
+
