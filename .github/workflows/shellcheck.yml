@@ -1,22 +1,64 @@
-# https://github.com/marketplace/actions/shellcheck
 on:
   workflow_dispatch:
   push:
     branches:
-      - '*'
-
-name: "Shellheck"
-
+      - "**" # each branch, '*' only matches branches without '/'
+concurrency:
+  group: $( echo -n "${{ github.workflow }}-${{ github.ref }}" | sha256sum | awk '{ print $1 }' )
+  cancel-in-progress: true
+name: "ShellCheck"
 jobs:
   shellcheck:
-    name: Shellcheck
-    runs-on: ubuntu-latest
+    name: ShellCheck
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
+        id: run-shell-check
+        run: |
+          issue_count="$(
+            shopt -s globstar
+            shellcheck \
+              --source-path=SCRIPTDIR \
+              --shell=bash \
+              --external-sources \
+              --severity=style \
+              --format=gcc \
+              ./**/*.sh | wc -l
+          )"
+          echo "count=$issue_count" >> $GITHUB_OUTPUT
+
+          shopt -s globstar
+          shellcheck \
+            --source-path=SCRIPTDIR \
+            --shell "bash" \
+            --external-sources \
+            ./**/*.sh
+        continue-on-error: true
+      - name: Dump steps context
+        if: env.DEBUG == 'true'
         env:
-          SHELLCHECK_OPTS: -s bash
-        with: 
-          ignore_paths: actions .github .git _archive
-          ignore_names: \*.rb .p10k.zsh .zshrc
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Check on failures
+        if: steps.run-shell-check.outcome == 'failure'
+        run: |
+          # Below you see an example for how to control a GitHub-Action workflow's annotations
+          # See also https://stackoverflow.com/a/58003436/971329
+
+          issue_count="${{ steps.run-shell-check.outputs.count }}"
+          text="💥 ShellCheck detected $issue_count issues, please fix them."
+          echo "::warning ::$text"
+
+          # You can also trigger an error:
+          # echo "::error file=shellcheck.yml,line=1,col=1::$text"
+
+          # You can also post on the workflow run's summary page
+
+          echo "## Summary" >> $GITHUB_STEP_SUMMARY
+          echo "$text" >> $GITHUB_STEP_SUMMARY
+
+          exit 1
