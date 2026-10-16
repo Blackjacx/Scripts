@@ -2,7 +2,7 @@ require 'zip'
 
 # Check if a variable is set
 def is_set(var)
-  !var.nil? && !var.to_s.strip.empty? && var != "0"
+  !var.nil? && !var.to_s.strip.empty? && var != '0'
 end
 
 # Splits a string into components and returns them as an array.
@@ -10,27 +10,26 @@ end
 # Params:
 # +string+:: The string to split.
 # +delimiter+:: The delimiter which should be used to split.
-def split_string(string, delimiter)
-  if string.nil?
-    return []
-  end
-  return string
+def split_string(string, _delimiter)
+  return [] if string.nil?
+
+  string
     .split(',')
-    .map{ |s| s.strip || s }
+    .map { |s| s.strip || s }
     .reject { |s| s.empty? }
 end
 
 # Uses a section from a changelog and converts them to an array of hashes of issue number and pr title.
 # Params:
 # +section+:: The section of a changelog representing a release. The format has to be like https://raw.githubusercontent.com/Blackjacx/SHSearchBar/develop/CHANGELOG.md.
-def get_issue_numbers_and_titles(section)  
+def get_issue_numbers_and_titles(section)
   issues_titles = []
   section.split(/\n/).each do |line|
     issue = line[/\* \[#(.*?)\]\(/m, 1]
-    title = line[/\)\: (.*?) - \[@/m, 1].gsub(/\"/, "") # strip double quotations from pr titles
-    issues_titles.push( { "issue" => issue, "title" => title } ) if issue && !issue.empty? && title && !title.empty?
-  end    
-  return issues_titles
+    title = line[/\): (.*?) - \[@/m, 1].gsub(/"/, '') # strip double quotations from pr titles
+    issues_titles.push({ 'issue' => issue, 'title' => title }) if issue && !issue.empty? && title && !title.empty?
+  end
+  issues_titles
 end
 
 # Extracting a ZIP file
