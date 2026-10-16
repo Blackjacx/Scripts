@@ -79,4 +79,3 @@
 
 [url "git@github.com-ioki:dbdrive/"]
     insteadOf = git@github.com:dbdrive/
-    insteadOf = https://github.com/dbdrive/
