@@ -13,6 +13,7 @@ gh = 'latest'                                               # GitHub’s officia
 fd = 'latest'                                               # A simple, fast and user-friendly alternative to 'find'
 bat = 'latest'                                              # A cat clone with wings.
 starship = 'latest'                                         # Minimal, blazing-fast, and infinitely customizable prompt for any shell!
+lazygit = 'latest'                                          # Simple terminal UI for git commands
 direnv = 'latest'                                           # Auto-load and -unload .envrc files
 neovim = '0.12'                                             # Vim-fork focused on extensibility and usability
 tree-sitter = 'latest'                                      # Required for neovim
