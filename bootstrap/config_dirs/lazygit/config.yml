@@ -1,0 +1,40 @@
+# Config relating to git
+git:
+  nerdFontsVersion: "3"
+  diffRenderers:
+    - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  # If true, do not spawn a separate process when using GPG
+  overrideGpg: true
+  log:
+    showGraph: always
+  localBranchSortOrder: recency
+  mainBranches: [develop, main, master]
+os:
+  editPreset: nvim-remote
+gui:
+  nerdFontsVersion: "3"
+  expandFocusedSidePanel: true
+  sidePanelWidth: 0.25
+  shrinkSidePanelsToContent: true
+  showDivergenceFromBaseBranch: arrowAndNumber
+  filterMode: fuzzy
+  showNumstatInFilesView: true
+  border: double # rounded | single | double | hidden | bold (bold only in newer versions)
+  theme:
+    activeBorderColor:
+      - "#ff9e64" # anything that pops against your bg
+      - bold
+      # inactiveBorderColor:
+      #   - "#3b4261" # dim the rest so the active one stands out
+customCommands:
+  - key: "<c-r>" # 8
+    context: "global"
+    command: "git fetch origin develop && git rebase --update-refs origin/develop"
+    description: "Rebase stack onto origin/develop"
+    loadingText: "Rebasing stack..."
+  - key: "<c-o>" # 9
+    context: "localBranches"
+    command: "gh pr view --web {{.SelectedLocalBranch.Name}} || gh pr create --web --head {{.SelectedLocalBranch.Name}}"
+    description: "Open or create PR in browser"
+# removes the "press enter to return" prompt after the editor or other subprocesses exit.
+promptToReturnFromSubprocess: false
