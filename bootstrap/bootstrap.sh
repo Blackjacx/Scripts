@@ -350,27 +350,19 @@ installSoftware() {
     printf "Install Homebrew Dependencies\n"
     printf "#################################################################\n\n"
 
-    log "Update-reset Homebrew…"
+    log "Resets Homebrew local repositories in case of manual modifications"
     brew update-reset
 
-    log "Update Homebrew…"
+    log "Update Homebrew itself"
     brew update
 
     log "Install all dependencies declared in global  ~/.Brewfile (eventually upgrade them)…"
     brew bundle -v --global --force
 
-    log "Upgrade all dependencies (even those not declared in global ~/.Brewfile)…"
-    brew upgrade
+    log "Upgrade all casks and formulae, also the ones with version tag 'latest'"
+    brew upgrade --greedy
 
-    # Upgrades casks defined in Brewfile
-    # brew upgrade --cask "$(sed -n -e '/^cask "/p' "${HOME}/.Brewfile" | cut -d \" -f2)"
-    # Upgrades casks currently installed • https://stackoverflow.com/a/31994862/971329
-    log "Upgrade all casks declared in global ~/.Brewfile…"
-    brew upgrade --cask --greedy
-    # See outdated
-    # brew outdated --cask --greedy --verbose
-
-    log "Cleanup…"
+    log "Cleanup"
     brew cleanup
 
     log "Display homebrew system health…"
