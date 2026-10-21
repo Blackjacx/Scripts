@@ -26,8 +26,6 @@
     user = blackjacx
 [ghi]
     token = !security find-internet-password -a blackjacx -s github.com -l 'ghi token' -w
-[credential]
-    helper = osxkeychain
 [gpg]
     program = /usr/local/bin/gpg
 [filter "lfs"]
