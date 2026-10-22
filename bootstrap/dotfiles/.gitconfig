@@ -39,7 +39,7 @@
     diff = true
     log = true
 [absorb]
-    maxStack=30                                     # default: 10
+    maxStack=100                                     # default: 10
 
 # ---- Fetch / pull / push hygiene ----
 [fetch]
