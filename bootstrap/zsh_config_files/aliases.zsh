@@ -104,12 +104,6 @@ glogp() {
         $(git show-branch | grep -F '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')..
 }
 
-# Create fixup commit for stashed changes (git commit fixup fzf)
-gcfuf() {
-    message="Please select a commit hash"
-    glogd | fzf-tmux -p --header "$message" --info=inline | awk -F"[\*\-]" '{print $2}' | xargs -I {} git commit --fixup {}
-}
-
 # TODO: Find a shorter and more memorable alias
 #
 # Fixup directly into the selected git hash ([G]it [C]ommit [F]ix [U]p [F]zf [A]utoSquash)
