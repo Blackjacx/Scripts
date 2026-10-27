@@ -119,6 +119,22 @@ gcfufas() {
     fi
 }
 
+# Copy a Markdown changelog line for a PR: "Title ([#123](url))"
+# Usage: gh-changelog [pr]  (no arg opens an fzf picker over open PRs)
+gh-changelog() {
+    local pr=${1:-$(gh pr list --limit 200 \
+        --json number,title --jq '.[] | "\(.number)\t\(.title)"' |
+        fzf --delimiter='\t' | cut -f1)} # number + title shown and searchable; return number
+    [[ -z $pr ]] && return 1             # fzf aborted, nothing picked
+
+    local line
+    line=$(gh pr view "$pr" --json title,number,url \
+        --jq '"\(.title) ([#\(.number)](\(.url)))"') || return # on gh failure, keep clipboard intact
+
+    print -r -- "$line"           # -r: don't interpret backslashes in titles
+    print -rn -- "$line" | pbcopy # -n: no trailing newline in clipboard
+}
+
 #-------------------------------------------------------------------------------
 # Developer
 #-------------------------------------------------------------------------------
