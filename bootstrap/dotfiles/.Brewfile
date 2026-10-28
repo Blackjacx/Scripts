@@ -21,6 +21,7 @@ tap "chargepoint/xcparse", trusted: true                         # to install xc
 tap "peripheryapp/periphery", trusted: true                      # to install periphery
 tap "julien-cpsn/atac", trusted: true                            # to install atag
 tap "jesseduffield/lazygit", trusted: true                       # to install lazygit
+tap "FelixKratz/formulae", trusted: true                         # to install Janky Borders
 
 # Xcode first since it is required by applications below, e.g. xcparse
 # mas "xcode", id: 497799835 # This will download Xcode even if it is installed - which takes a lot of time
@@ -40,6 +41,7 @@ brew "awscli"                                     # the command line frontend fo
 brew "bash"                                       # the bash shell
 brew "basictex"                                   # BasicTeX is a subset of TeX Live of size 110 megabytes instead of 2 gigabytes.
 brew "bitwarden-cli"                              # fully-featured tool for accessing and managing your Bitwarden Vault • Used to auto-export credentials
+brew "borders"                                    # A window border system for macOS
 brew "btop"                                       # 🔥 a monitor of resources
 brew "cloc"                                       # lines of code counter
 brew "cmatrix"                                    # terminal based "The Matrix" like implementation

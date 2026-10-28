@@ -13,7 +13,10 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+    # JankyBorder setup
+    'exec-and-forget borders active_color=0xff5e81ac inactive_color=0x00000000 width=6.0',
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -87,21 +90,26 @@ outer.right = 12
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3' # social
-alt-4 = 'workspace 4' # ??? (Preview)
-alt-5 = 'workspace 5' # 
-alt-6 = 'workspace 6' # 
-alt-7 = 'workspace 7' #
-alt-8 = 'workspace 8' #
-alt-9 = 'workspace 9' #
-alt-b = 'workspace B' # browser
-alt-d = 'workspace D' # development
-# alt-e = 'workspace E' # finder / explorer
-alt-l = 'workspace L' # Learning
-alt-n = 'workspace N' # notes
-alt-t = 'workspace T' # terminal
+cmd-ctrl-alt-1 = 'workspace --auto-back-and-forth 1'
+cmd-ctrl-alt-2 = 'workspace --auto-back-and-forth 2'
+cmd-ctrl-alt-3 = 'workspace --auto-back-and-forth 3'
+cmd-ctrl-alt-4 = 'workspace --auto-back-and-forth 4'
+cmd-ctrl-alt-5 = 'workspace --auto-back-and-forth 5'
+cmd-ctrl-alt-6 = 'workspace --auto-back-and-forth 6'
+cmd-ctrl-alt-7 = 'workspace --auto-back-and-forth 7'
+cmd-ctrl-alt-8 = 'workspace --auto-back-and-forth 8'
+cmd-ctrl-alt-9 = 'workspace --auto-back-and-forth 9'
+cmd-ctrl-alt-b = 'workspace --auto-back-and-forth B' # browser
+cmd-ctrl-alt-d = 'workspace --auto-back-and-forth D' # development
+cmd-ctrl-alt-e = 'workspace --auto-back-and-forth E' # explorer / finder
+cmd-ctrl-alt-k = 'workspace --auto-back-and-forth K' # keepassxc
+cmd-ctrl-alt-l = 'workspace --auto-back-and-forth L' # learning
+cmd-ctrl-alt-m = 'workspace --auto-back-and-forth M' # mail
+cmd-ctrl-alt-n = 'workspace --auto-back-and-forth N' # notes
+cmd-ctrl-alt-o = 'workspace --auto-back-and-forth O' # office
+cmd-ctrl-alt-p = 'workspace --auto-back-and-forth P' # preview
+cmd-ctrl-alt-s = 'workspace --auto-back-and-forth S' # social
+cmd-ctrl-alt-t = 'workspace --auto-back-and-forth T' # terminal
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
@@ -115,120 +123,106 @@ cmd-ctrl-alt-shift-8 = 'move-node-to-workspace 8'
 cmd-ctrl-alt-shift-9 = 'move-node-to-workspace 9'
 cmd-ctrl-alt-shift-b = 'move-node-to-workspace B'
 cmd-ctrl-alt-shift-d = 'move-node-to-workspace D'
-# cmd-ctrl-alt-shift-e = 'move-node-to-workspace E'
+cmd-ctrl-alt-shift-e = 'move-node-to-workspace E'
+cmd-ctrl-alt-shift-k = 'move-node-to-workspace K'
 cmd-ctrl-alt-shift-l = 'move-node-to-workspace L'
+cmd-ctrl-alt-shift-m = 'move-node-to-workspace M'
 cmd-ctrl-alt-shift-n = 'move-node-to-workspace N'
+cmd-ctrl-alt-shift-o = 'move-node-to-workspace O'
+cmd-ctrl-alt-shift-p = 'move-node-to-workspace P'
+cmd-ctrl-alt-shift-s = 'move-node-to-workspace S'
 cmd-ctrl-alt-shift-t = 'move-node-to-workspace T'
 
-cmd-ctrl-alt-shift-f = 'fullscreen --no-outer-gaps'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-# alt-tab = 'workspace-back-and-forth'
+cmd-ctrl-alt-tab = 'workspace-back-and-forth'
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus-back-and-forth
+cmd-ctrl-alt-backtick = 'focus-back-and-forth'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 # cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-ctrl-alt-shift-0 = 'mode service'
-cmd-ctrl-alt-shift-x = 'mode resize'
-cmd-ctrl-alt-shift-m = 'mode move'
+cmd-ctrl-alt-enter = 'fullscreen --no-outer-gaps'
+# entering mode move → orange border
+cmd-ctrl-alt-semicolon = [
+    'mode move',
+    'exec-and-forget borders active_color=0xffff9e3b',
+]
+# entering mode move → white border
+cmd-ctrl-alt-quote = [
+    'mode resize',
+    'exec-and-forget borders active_color=0xffffffff',
+]
+# entering mode move → red border
+cmd-ctrl-alt-0 = [
+    'mode service',
+    'exec-and-forget borders active_color=0xffff0000',
+]
 
 # Move window to monitor
 # See https://nikitabobko.github.io/AeroSpace/commands#move-node-to-monitor 
-cmd-ctrl-alt-shift-pageUp = 'move-node-to-monitor next --wrap-around --focus-follows-window'
-cmd-ctrl-alt-shift-pageDown = 'move-node-to-monitor prev --wrap-around --focus-follows-window'
+cmd-ctrl-alt-pageUp = 'move-node-to-monitor next --wrap-around --focus-follows-window'
+cmd-ctrl-alt-pageDown = 'move-node-to-monitor prev --wrap-around --focus-follows-window'
 
 # Focus window
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-ctrl-alt-shift-left = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
-cmd-ctrl-alt-shift-down = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
-cmd-ctrl-alt-shift-up = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
-cmd-ctrl-alt-shift-right = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
+cmd-ctrl-alt-left = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
+cmd-ctrl-alt-down = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
+cmd-ctrl-alt-up = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
+cmd-ctrl-alt-right = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
 
 [mode.move.binding]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-slash = ['layout tiles horizontal vertical', 'mode main']
-cmd-period = ['layout accordion horizontal vertical', 'mode main']
+slash = ['layout tiles horizontal vertical']
+period = ['layout accordion horizontal vertical']
 
 # Join Windows
 # See https://nikitabobko.github.io/AeroSpace/commands#join-with
-left = ['join-with left', 'mode main']
-down = ['join-with down', 'mode main']
-up = ['join-with up', 'mode main']
-right = ['join-with right', 'mode main']
+left = ['join-with left']
+down = ['join-with down']
+up = ['join-with up']
+right = ['join-with right']
 
 # Move Window
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-left = 'move left'
-alt-shift-down = 'move down'
-alt-shift-up = 'move up'
-alt-shift-right = 'move right'
+alt-shift-left = ['move left']
+alt-shift-down = ['move down']
+alt-shift-up = ['move up']
+alt-shift-right = ['move right']
 
-esc = 'mode main'
+# every way out → back to blue
+esc = ['mode main', 'exec-and-forget borders active_color=0xff5e81ac']
 
 [mode.resize.binding]
-left = 'resize width -50'
-up = 'resize height +50'
-down = 'resize height -50'
-right = 'resize width +50'
+left = 'resize width -100'
+up = 'resize height +100'
+down = 'resize height -100'
+right = 'resize width +100'
 b = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-minus = 'resize smart -50'
-equal = 'resize smart +50'
+minus = 'resize smart -100'
+equal = 'resize smart +100'
 
-esc = 'mode main'
+# every way out → back to blue
+esc = ['mode main', 'exec-and-forget borders active_color=0xff5e81ac']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 
-esc = ['reload-config', 'mode main']
+# every way out → back to blue
+esc = [
+    'reload-config',
+    'mode main',
+    'exec-and-forget borders active_color=0xff5e81ac',
+]
+
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = ['layout floating tiling'] # Toggle between floating and tiling layout
 # backspace = ['close-all-windows-but-current', 'mode main']
-
-[[on-window-detected]]
-if.app-id = 'com.apple.reminders'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'org.keepassxc.keepassxc'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iCal'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'net.whatsapp.WhatsApp'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'org.whispersystems.signal-desktop'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Preview'
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
@@ -251,6 +245,21 @@ if.app-id = 'com.github.CopilotForXcode.ExtensionService'
 run = ['move-node-to-workspace D', 'layout floating']
 
 [[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace E"
+
+# Passkey popup: float it, stay on the current workspace
+[[on-window-detected]]
+if.app-id = 'org.keepassxc.keepassxc'
+if.window-title-regex-substring = 'Passkey'
+run = 'layout floating'
+
+# Everything else from KeePassXC (main window): workspace K
+[[on-window-detected]]
+if.app-id = 'org.keepassxc.keepassxc'
+run = 'move-node-to-workspace K'
+
+[[on-window-detected]]
 if.app-id = 'developer.apple.wwdc-Release'
 run = "move-node-to-workspace L"
 
@@ -263,8 +272,40 @@ if.app-id = 'com.apple.Notes'
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = "move-node-to-workspace M"
+
+[[on-window-detected]]
 if.app-id = 'com.sublimetext.4'
 run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.reminders'
+run = "move-node-to-workspace O"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = "move-node-to-workspace O"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = "move-node-to-workspace P"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
