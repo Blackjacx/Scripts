@@ -87,7 +87,7 @@ outer.right = 12
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
+alt-1 = 'workspace 1' # office
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3' # social
 alt-4 = 'workspace 4' # ??? (Preview)
