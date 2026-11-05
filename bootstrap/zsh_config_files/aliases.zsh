@@ -60,19 +60,36 @@ gupdate() {
     local branch="${1:-}"
     if [ -z "$branch" ]; then
         echo "🔴 Please specify a branch name."
-        return
-    elif ! git branch --list "$branch" | grep -q "$branch"; then
+        return 1
+    # exact ref check, no grep false-positives (e.g. "dev" matching "develop")
+    elif ! git show-ref --verify --quiet "refs/heads/$branch"; then
         echo "🔴 Branch \"$branch\" not found."
-        return
+        return 1
     fi
 
     git fetch --all --prune --jobs=32
-    git checkout "$branch"
-    git pull
-    git for-each-ref --format '%(refname) %(upstream:track)' refs/heads |
-        awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' |
-        egrep -v '\*|master|main|develop' |
-        xargs -I '{}' -n 1 git branch -D "{}"
+
+    # find the worktree (if any) that has $branch checked out
+    local wt
+    wt=$(git worktree list --porcelain | awk -v b="refs/heads/$branch" '
+		/^worktree / { path = substr($0, 10) }
+		$0 == "branch " b { print path; exit }')
+
+    if [ -n "$wt" ]; then
+        # checked out somewhere → pull inside that worktree (keeps its working tree in sync)
+        git -C "$wt" pull --ff-only
+    else
+        # not checked out anywhere → fast-forward the ref directly from its upstream, no checkout needed
+        local upstream
+        upstream=$(git rev-parse --abbrev-ref --symbolic-full-name "$branch@{u}") || return 1
+        git fetch . "refs/remotes/$upstream:refs/heads/$branch" # fails safely if not a fast-forward
+    fi
+
+    # delete branches whose upstream is gone, skipping protected ones and any checked out in a worktree
+    git for-each-ref --format '%(refname:short)|%(upstream:track)|%(worktreepath)' refs/heads |
+        awk -F'|' '$2 == "[gone]" && $3 == "" { print $1 }' |
+        grep -E -v '^(master|main|develop)$' |
+        xargs -r -n 1 git branch -D
 }
 
 # Checkout branch selected by browsing using fuzzy finder.
