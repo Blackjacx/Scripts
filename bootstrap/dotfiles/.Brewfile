@@ -28,7 +28,6 @@ tap "FelixKratz/formulae", trusted: true                         # to install Ja
 # mas "tweetbot", id: 557168941
 # mas "gifski", id: 1351639930
 
-brew "git-absorb"                                 # 🔥 git commit --fixup, but automatic
 brew "ag"                                         # 🔥 code-searching tool similar to ack, but faster
 brew "alacritty"                                  # a cross-platform, OpenGL terminal emulator.
 brew "apg"                                        # generate strong passwords
@@ -58,6 +57,7 @@ brew "firebase-cli"                               # automating Firebase
 brew "fx"                                         # 🔥 interactive terminal JSON viewer & processor
 brew "ghostscript"                                # needed inconjunction with imagemagick to convert pdf > png (conversion of PDF app icons from UX to PNG automatically)
 brew "git"                                        # distributed version-control system for tracking changes in source code during software development
+brew "git-absorb"                                 # 🔥 git commit --fixup, but automatic
 brew "git-delta"                                  # A syntax-highlighting pager for git, diff, grep, and blame output
 brew "git-extras"
 brew "git-flow"
@@ -116,6 +116,7 @@ brew "zsh-completions"                            # additional completion defini
 brew "zoxide"                                     # a smarter cd command, inspired by z and autojump.
 
 cask "adobe-creative-cloud"
+case "nikitabobko/tap/aerospace", trusted: true   # AeroSpace is an i3-like tiling window manager for macOS
 cask "basictex"                                   # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "battle-net"
 cask "blackhole-64ch"                             # Modern macOS audio loopback driver that allows applications to pass audio to other applications with zero additional latency.
