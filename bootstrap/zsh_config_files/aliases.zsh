@@ -82,7 +82,7 @@ gupdate() {
         # not checked out anywhere → fast-forward the ref directly from its upstream, no checkout needed
         local upstream
         upstream=$(git rev-parse --abbrev-ref --symbolic-full-name "$branch@{u}") || return 1
-        git fetch . "refs/remotes/$upstream:refs/heads/$branch" # fails safely if not a fast-forward
+        git fetch . "refs/remotes/${upstream}:refs/heads/${branch}" # fails safely if not a fast-forward
     fi
 
     # delete branches whose upstream is gone, skipping protected ones and any checked out in a worktree
