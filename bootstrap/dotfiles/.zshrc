@@ -73,6 +73,9 @@ export YARN_ENABLE_TELEMETRY=0
 # https://k6.io/docs/misc/usage-collection/
 export K6_NO_USAGE_REPORT=true
 
+# Shorten worktree picker output of forgit
+export FORGIT_WORKTREE_FZF_OPTS="--delimiter='/[^ ]*/' --with-nth='{1} {2}'"
+
 # Path to your oh-my-zsh installation.
 ZSH="$HOME/.oh-my-zsh"
 
@@ -305,11 +308,6 @@ _fzf_comprun() {
 }
 
 # -- END: 7 Amazing CLI Tools You Need To Try (https://www.youtube.com/watch?v=mmqDYw9C30I)
-
-#-------------------------------------------------------------------------------
-# Shorten wroktree picker output of forgit
-#-------------------------------------------------------------------------------
-export FORGIT_WORKTREE_FZF_OPTS="--delimiter='/[^ ]*/' --with-nth='{1} {2}'"
 
 #-------------------------------------------------------------------------------
 # History
