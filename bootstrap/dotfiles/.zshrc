@@ -73,6 +73,15 @@ export YARN_ENABLE_TELEMETRY=0
 # https://k6.io/docs/misc/usage-collection/
 export K6_NO_USAGE_REPORT=true
 
+# ====================================================================================================================
+# Setting Various Environment Variables
+# ====================================================================================================================
+
+# Skip optional lock for background git operations.
+# This way background git operations from e.g. prompt, lazygit and
+# editor plugins don't create the lock anymore.
+export GIT_OPTIONAL_LOCKS=0
+
 # Shorten worktree picker output of forgit
 export FORGIT_WORKTREE_FZF_OPTS="--delimiter='/[^ ]*/' --with-nth='{1} {2}'"
 
