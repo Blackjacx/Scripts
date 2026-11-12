@@ -37,9 +37,9 @@ customCommands:
     command: "git fetch origin develop && git rebase --update-refs origin/develop"
     description: "Rebase stack onto origin/develop"
     loadingText: "Rebasing stack..."
-  - key: "<c-o>" # 9
-    context: "localBranches"
-    command: "gh pr view --web {{.SelectedLocalBranch.Name}} || gh pr create --web --head {{.SelectedLocalBranch.Name}}"
-    description: "Open or create PR in browser"
+    # - key: "<c-o>" # 9
+    #   context: "localBranches"
+    #   command: "gh pr view --web {{.SelectedLocalBranch.Name}} || gh pr create --web --head {{.SelectedLocalBranch.Name}}"
+    #   description: "Open or create PR in browser"
 # removes the "press enter to return" prompt after the editor or other subprocesses exit.
 promptToReturnFromSubprocess: false
