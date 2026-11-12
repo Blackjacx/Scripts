@@ -7,7 +7,7 @@ git:
   overrideGpg: true
   log:
     showGraph: always
-  localBranchSortOrder: recency
+  localBranchSortOrder: date
   mainBranches: [develop, main, master]
 os:
   editPreset: nvim-remote
