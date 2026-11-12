@@ -30,9 +30,11 @@ git diff --cached --no-ext-diff >"$diff" || fail "git diff failed"
 [ -s "$diff" ] || fail "Nothing staged"
 
 prompt='Write a git commit message for the staged diff on stdin.
-Conventional Commits. Title max 50 chars. Blank line, then body as
-"- " bullets, no blank lines between them, max 72 chars per line.
-Output only the message: no preamble, no code fences.'
+Follow the rules of conventional commits (
+https://www.conventionalcommits.org/en/v1.0.0/#summary). Title 
+max 50 chars. Blank line, then body as "- " bullets, no blank 
+lines between them, max 72 chars per line. Output only the 
+message: no preamble, no code fences.'
 
 printf 'Generating commit message (%s)…\n' "$MODEL"
 
