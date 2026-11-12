@@ -27,6 +27,11 @@ gui:
       # inactiveBorderColor:
       #   - "#3b4261" # dim the rest so the active one stands out
 customCommands:
+  - key: "<c-g>"
+    context: "files"
+    description: "AI commit message"
+    output: terminal
+    command: "~/.config/lazygit/ai-commit.sh"
   - key: "<c-r>" # 8
     context: "global"
     command: "git fetch origin develop && git rebase --update-refs origin/develop"
