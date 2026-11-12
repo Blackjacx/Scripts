@@ -102,6 +102,7 @@ cmd-ctrl-alt-9 = 'workspace --auto-back-and-forth 9'
 cmd-ctrl-alt-b = 'workspace --auto-back-and-forth B' # browser
 cmd-ctrl-alt-d = 'workspace --auto-back-and-forth D' # development
 cmd-ctrl-alt-e = 'workspace --auto-back-and-forth E' # explorer / finder
+cmd-ctrl-alt-h = 'workspace --auto-back-and-forth H' # home (smart)
 cmd-ctrl-alt-k = 'workspace --auto-back-and-forth K' # keepassxc
 cmd-ctrl-alt-l = 'workspace --auto-back-and-forth L' # learning
 cmd-ctrl-alt-m = 'workspace --auto-back-and-forth M' # mail
@@ -124,6 +125,7 @@ cmd-ctrl-alt-shift-9 = 'move-node-to-workspace 9'
 cmd-ctrl-alt-shift-b = 'move-node-to-workspace B'
 cmd-ctrl-alt-shift-d = 'move-node-to-workspace D'
 cmd-ctrl-alt-shift-e = 'move-node-to-workspace E'
+cmd-ctrl-alt-shift-h = 'move-node-to-workspace H'
 cmd-ctrl-alt-shift-k = 'move-node-to-workspace K'
 cmd-ctrl-alt-shift-l = 'move-node-to-workspace L'
 cmd-ctrl-alt-shift-m = 'move-node-to-workspace M'
@@ -252,6 +254,10 @@ run = ['move-node-to-workspace D', 'layout floating']
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = "move-node-to-workspace E"
+
+[[on-window-detected]]
+if.app-id = 'io.robbie.HomeAssistant'
+run = "move-node-to-workspace H"
 
 # Passkey popup: float it, stay on the current workspace
 [[on-window-detected]]
