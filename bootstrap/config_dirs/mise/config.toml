@@ -30,7 +30,7 @@ xcodes = 'latest'                                           # Command-line tool 
 [settings]
 color = true # Use color in mise terminal output
 all_compile = false # Do not use precompiled binaries for all languages.
-always_keep_download = false # Should mise keep downloaded files after installation
+download_cache = false # Should mise keep downloaded files after installation
 always_keep_install = false # Should mise keep install files after installation even if the installation fails
 disable_default_registry = false # Disable the default shorthands, see `MISE_DISABLE_DEFAULT_REGISTRY`
 disable_tools = [
