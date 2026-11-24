@@ -29,7 +29,7 @@ gui:
 customCommands:
   - key: "<c-g>"
     context: "files"
-    description: "AI commit message"
+    description: "AI commit message (VM)"
     output: terminal
     command: "~/.config/lazygit/ai-commit.sh"
   - key: "<c-r>" # 8
